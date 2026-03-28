@@ -33,11 +33,11 @@ function getInitials(name: string) {
 }
 
 const gradients = [
-  "from-amber-500 to-orange-400",
-  "from-rose-500 to-pink-400",
-  "from-emerald-500 to-teal-400",
-  "from-violet-500 to-purple-400",
-  "from-blue-500 to-cyan-400",
+  "from-brand-lime to-brand-green",
+  "from-brand-teal to-brand-dark",
+  "from-brand-green to-brand-teal",
+  "from-brand-dark to-brand-teal",
+  "from-brand-teal to-brand-green",
 ];
 
 async function getLeaderboard(): Promise<LeaderboardPlayer[]> {
@@ -109,7 +109,7 @@ export default async function LeaderboardPage() {
                             {getInitials(player.username)}
                           </div>
                           <h3 className="font-bold">{player.username}</h3>
-                          <p className="text-2xl font-extrabold text-primary">
+                          <p className="text-2xl font-extrabold text-brand-teal">
                             {player.score.toLocaleString("tr-TR")}
                           </p>
                           <p className="text-xs text-muted-foreground">
@@ -138,7 +138,7 @@ export default async function LeaderboardPage() {
                             {getInitials(player.username)}
                           </div>
                           <h3 className="font-bold">{player.username}</h3>
-                          <p className="text-2xl font-extrabold text-primary">
+                          <p className="text-2xl font-extrabold text-brand-teal">
                             {player.score.toLocaleString("tr-TR")}
                           </p>
                           <p className="text-xs text-muted-foreground">

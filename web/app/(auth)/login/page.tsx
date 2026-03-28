@@ -66,8 +66,8 @@ export default function LoginPage() {
     <div className="w-full max-w-md space-y-8">
       <div className="flex flex-col items-center">
         <Link href="/" className="flex items-center gap-2 mb-8">
-          <Gamepad2 className="h-10 w-10 text-primary" />
-          <span className="text-2xl font-extrabold text-primary">React Game</span>
+          <Gamepad2 className="h-10 w-10 text-brand-dark" />
+          <span className="text-2xl font-extrabold text-brand-dark">React Game</span>
         </Link>
         <h1 className="text-3xl font-extrabold">Giriş Yap</h1>
         <p className="mt-2 text-muted-foreground">
@@ -112,7 +112,7 @@ export default function LoginPage() {
 
         <p className="text-center text-sm text-muted-foreground">
           Hesabın yok mu?{" "}
-          <Link href="/register" className="font-semibold text-primary hover:underline">
+          <Link href="/register" className="font-semibold text-brand-dark hover:underline">
             Kayıt Ol
           </Link>
         </p>

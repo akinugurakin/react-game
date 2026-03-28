@@ -6,8 +6,8 @@ export function Footer() {
     <footer className="border-t bg-muted/30">
       <div className="container flex flex-col items-center gap-4 py-8 md:flex-row md:justify-between">
         <div className="flex items-center gap-2">
-          <Gamepad2 className="h-5 w-5 text-primary" />
-          <span className="text-sm font-bold text-primary">React Game</span>
+          <Gamepad2 className="h-5 w-5 text-brand-dark" />
+          <span className="text-sm font-bold text-brand-dark">React Game</span>
         </div>
         <nav className="flex gap-6">
           <Link

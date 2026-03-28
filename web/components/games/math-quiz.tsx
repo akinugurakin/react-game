@@ -131,7 +131,7 @@ function Numpad({
 function ChampionsPanel({ champions }: { champions: Champion[] }) {
   return (
     <div className="rounded-2xl bg-amber-50 border border-amber-200 p-4">
-      <div className="mb-3 flex items-center justify-center gap-2 rounded-full bg-amber-400 px-4 py-1.5">
+      <div className="mb-3 flex items-center justify-center gap-2 rounded-full bg-brand-lime px-4 py-1.5">
         <Trophy className="h-4 w-4 text-amber-900" />
         <span className="text-sm font-bold text-amber-900">Şampiyonlar</span>
       </div>
@@ -143,7 +143,7 @@ function ChampionsPanel({ champions }: { champions: Champion[] }) {
           <div key={i} className="flex items-center gap-2 rounded-xl bg-white p-2 shadow-sm">
             <div className={cn(
               "flex h-7 w-7 items-center justify-center rounded-full text-xs font-bold text-white",
-              i === 0 ? "bg-amber-400" : i === 1 ? "bg-gray-400" : i === 2 ? "bg-orange-400" : "bg-gray-300"
+              i === 0 ? "bg-brand-lime" : i === 1 ? "bg-gray-400" : i === 2 ? "bg-orange-400" : "bg-gray-300"
             )}>
               {i + 1}
             </div>
@@ -381,14 +381,14 @@ export function MathQuiz() {
       <div className="grid w-full max-w-5xl gap-4 lg:grid-cols-[200px_1fr_220px]">
 
         {/* === SOL PANEL — Logo === */}
-        <div className="hidden lg:flex flex-col items-center justify-center rounded-3xl bg-indigo-50 border border-indigo-100 p-6">
-          <div className="mb-3 flex h-16 w-16 items-center justify-center rounded-2xl bg-indigo-500 text-white">
+        <div className="hidden lg:flex flex-col items-center justify-center rounded-3xl bg-brand-sand/20 border border-brand-sand/30 p-6">
+          <div className="mb-3 flex h-16 w-16 items-center justify-center rounded-2xl bg-brand-teal text-white">
             <Brain className="h-8 w-8" />
           </div>
-          <h3 className="text-center text-lg font-extrabold text-indigo-700">
+          <h3 className="text-center text-lg font-extrabold text-brand-dark">
             Matematik Macerası!
           </h3>
-          <p className="mt-1 text-center text-xs text-indigo-400">
+          <p className="mt-1 text-center text-xs text-brand-sand">
             Eğlenerek öğren
           </p>
         </div>
@@ -406,7 +406,7 @@ export function MathQuiz() {
                 exit={{ opacity: 0, y: -20 }}
                 className="flex h-full min-h-[500px] flex-col items-center justify-center p-8"
               >
-                <div className="mb-2 flex h-14 w-14 items-center justify-center rounded-full bg-indigo-100">
+                <div className="mb-2 flex h-14 w-14 items-center justify-center rounded-full bg-brand-sand/30">
                   <span className="text-2xl">👤</span>
                 </div>
                 <h2 className="text-2xl font-extrabold text-gray-800">Kim Oynuyor?</h2>
@@ -417,13 +417,13 @@ export function MathQuiz() {
                   onChange={(e) => setPlayerName(e.target.value)}
                   onKeyDown={(e) => e.key === "Enter" && startGame()}
                   placeholder="Adını Buraya Yaz"
-                  className="mt-6 w-full max-w-xs rounded-xl border-2 border-indigo-200 px-4 py-3 text-center text-lg font-medium text-gray-700 placeholder:text-indigo-300 focus:border-indigo-400 focus:outline-none"
+                  className="mt-6 w-full max-w-xs rounded-xl border-2 border-brand-sand px-4 py-3 text-center text-lg font-medium text-gray-700 placeholder:text-brand-sand focus:border-brand-teal focus:outline-none"
                   autoFocus
                 />
                 <button
                   onClick={startGame}
                   disabled={!playerName.trim()}
-                  className="mt-6 rounded-xl bg-indigo-500 px-8 py-3 text-lg font-bold text-white shadow-lg transition-all hover:bg-indigo-600 active:scale-95 disabled:opacity-40 disabled:cursor-not-allowed"
+                  className="mt-6 rounded-xl bg-brand-teal px-8 py-3 text-lg font-bold text-white shadow-lg transition-all hover:bg-brand-dark active:scale-95 disabled:opacity-40 disabled:cursor-not-allowed"
                 >
                   BAŞLA →
                 </button>
@@ -437,7 +437,7 @@ export function MathQuiz() {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
-                className="flex h-full min-h-[500px] flex-col items-center justify-center bg-indigo-500 rounded-3xl"
+                className="flex h-full min-h-[500px] flex-col items-center justify-center bg-brand-teal rounded-3xl"
               >
                 <h2 className="text-2xl font-extrabold text-white">
                   Hazır Ol, {playerName}!
@@ -447,7 +447,7 @@ export function MathQuiz() {
                   initial={{ scale: 0.5, opacity: 0 }}
                   animate={{ scale: 1, opacity: 1 }}
                   exit={{ scale: 1.5, opacity: 0 }}
-                  className="mt-6 text-8xl font-extrabold text-amber-400"
+                  className="mt-6 text-8xl font-extrabold text-brand-lime"
                 >
                   {countdown}
                 </motion.span>
@@ -479,7 +479,7 @@ export function MathQuiz() {
                     <span className="rounded-full bg-gray-100 px-2 py-0.5 font-mono text-xs">
                       ⏱ {elapsed}s
                     </span>
-                    <span className="rounded-full bg-indigo-100 px-2 py-0.5 text-xs font-bold text-indigo-700">
+                    <span className="rounded-full bg-brand-sand/30 px-2 py-0.5 text-xs font-bold text-brand-dark">
                       📝 {currentQ + 1}/{TOTAL_QUESTIONS}
                     </span>
                   </div>
@@ -529,19 +529,19 @@ export function MathQuiz() {
                       >
                         {q.type === "normal" ? (
                           <>
-                            <span className="text-indigo-600">{q.a}</span>
+                            <span className="text-brand-dark">{q.a}</span>
                             <span className="text-gray-400">×</span>
-                            <span className="text-purple-600">{q.b}</span>
+                            <span className="text-brand-teal">{q.b}</span>
                             <span className="text-gray-400">=</span>
-                            <span className="text-amber-500">?</span>
+                            <span className="text-brand-lime">?</span>
                           </>
                         ) : (
                           <>
-                            <span className="text-amber-500">?</span>
+                            <span className="text-brand-lime">?</span>
                             <span className="text-gray-400">×</span>
-                            <span className="text-purple-600">{q.b}</span>
+                            <span className="text-brand-teal">{q.b}</span>
                             <span className="text-gray-400">=</span>
-                            <span className="text-indigo-600">{q.answer}</span>
+                            <span className="text-brand-dark">{q.answer}</span>
                           </>
                         )}
                       </motion.div>
@@ -554,7 +554,7 @@ export function MathQuiz() {
                             key={i}
                             className={cn(
                               "h-2 w-2 rounded-full transition-colors",
-                              i < input.length ? "bg-amber-400" : "bg-gray-200"
+                              i < input.length ? "bg-brand-lime" : "bg-gray-200"
                             )}
                           />
                         ))}
@@ -600,7 +600,7 @@ export function MathQuiz() {
                     </div>
                     <div>
                       <p className="text-[10px] uppercase tracking-wider text-muted-foreground">Puan</p>
-                      <p className="text-2xl font-extrabold text-indigo-600">{result.score}</p>
+                      <p className="text-2xl font-extrabold text-brand-dark">{result.score}</p>
                     </div>
                     <div>
                       <p className="text-[10px] uppercase tracking-wider text-muted-foreground">&nbsp;</p>
@@ -611,7 +611,7 @@ export function MathQuiz() {
                             className={cn(
                               "h-6 w-6",
                               result.correct >= s * 3
-                                ? "fill-amber-400 text-amber-400"
+                                ? "fill-amber-400 text-brand-lime"
                                 : "text-gray-200"
                             )}
                           />
@@ -622,7 +622,7 @@ export function MathQuiz() {
 
                   <button
                     onClick={playAgain}
-                    className="mt-8 flex items-center gap-2 rounded-xl bg-indigo-500 px-6 py-3 text-lg font-bold text-white shadow-lg transition-all hover:bg-indigo-600 active:scale-95"
+                    className="mt-8 flex items-center gap-2 rounded-xl bg-brand-teal px-6 py-3 text-lg font-bold text-white shadow-lg transition-all hover:bg-brand-dark active:scale-95"
                   >
                     Yeniden Oyna <RotateCcw className="h-5 w-5" />
                   </button>

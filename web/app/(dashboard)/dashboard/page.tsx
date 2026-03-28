@@ -121,7 +121,7 @@ export default function DashboardPage() {
       title: "Toplam Oyun",
       value: stats ? String(stats.total_games) : "0",
       icon: Gamepad2,
-      color: "text-primary",
+      color: "text-brand-teal",
       bgColor: "bg-primary/10",
     },
     {
@@ -167,7 +167,7 @@ export default function DashboardPage() {
         transition={{ duration: 0.5 }}
         className="mb-8 overflow-hidden rounded-2xl"
       >
-        <div className="relative h-36 bg-gradient-to-r from-indigo-600 via-blue-600 to-cyan-500">
+        <div className="relative h-36 bg-gradient-to-r from-brand-dark via-brand-teal to-brand-green">
           <div className="absolute inset-0 overflow-hidden">
             <div className="absolute left-1/2 top-1/2 h-48 w-48 -translate-x-1/2 -translate-y-1/2 rounded-full bg-white/5 blur-3xl" />
             <div className="absolute right-1/4 top-0 h-full w-[1px] rotate-[25deg] bg-gradient-to-b from-white/20 to-transparent" />
@@ -298,7 +298,7 @@ export default function DashboardPage() {
                               </p>
                             </div>
                             <div className="text-right">
-                              <p className="font-bold text-primary">{session.score}</p>
+                              <p className="font-bold text-brand-teal">{session.score}</p>
                               <p className="text-xs text-muted-foreground">puan</p>
                             </div>
                           </motion.div>

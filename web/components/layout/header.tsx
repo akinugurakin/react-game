@@ -152,8 +152,8 @@ export function Header() {
       <div className="container flex h-16 items-center justify-between">
         <div className="flex items-center gap-4">
           <Link href="/" className="flex items-center gap-2">
-            <Gamepad2 className="h-8 w-8 text-primary" />
-            <span className="text-xl font-extrabold text-primary">
+            <Gamepad2 className="h-8 w-8 text-brand-dark" />
+            <span className="text-xl font-extrabold text-brand-dark">
               React Game
             </span>
           </Link>
@@ -188,7 +188,7 @@ export function Header() {
               <Button asChild variant="ghost" size="sm">
                 <Link href="/login">{t("login")}</Link>
               </Button>
-              <Button asChild size="sm" className="shadow-sm shadow-primary/20">
+              <Button asChild size="sm" className="shadow-sm shadow-brand-teal/20">
                 <Link href="/register">{t("register")}</Link>
               </Button>
             </>
@@ -206,8 +206,8 @@ export function Header() {
             <SheetHeader>
               <SheetTitle>
                 <Link href="/" className="flex items-center gap-2">
-                  <Gamepad2 className="h-6 w-6 text-primary" />
-                  <span className="font-extrabold text-primary">React Game</span>
+                  <Gamepad2 className="h-6 w-6 text-brand-dark" />
+                  <span className="font-extrabold text-brand-dark">React Game</span>
                 </Link>
               </SheetTitle>
             </SheetHeader>

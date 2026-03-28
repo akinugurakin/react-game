@@ -32,25 +32,25 @@ const features = [
     icon: Brain,
     title: "Eğitici Oyunlar",
     description: "Matematik, kelime ve hafıza oyunlarıyla eğlenerek öğrenme deneyimi.",
-    gradient: "from-purple-500 to-indigo-500",
+    gradient: "from-brand-teal to-brand-dark",
   },
   {
     icon: Trophy,
     title: "Liderlik Tablosu",
     description: "Haftalık ve tüm zamanlar sıralamalarıyla motivasyonu artır.",
-    gradient: "from-amber-500 to-orange-500",
+    gradient: "from-brand-green to-brand-lime",
   },
   {
     icon: BarChart3,
     title: "İlerleme Takibi",
     description: "Çocuğunuzun gelişimini detaylı istatistiklerle takip edin.",
-    gradient: "from-emerald-500 to-teal-500",
+    gradient: "from-brand-teal to-brand-green",
   },
   {
     icon: Shield,
     title: "Güvenli Ortam",
     description: "Ebeveyn kontrolü ve yaşa uygun içeriklerle güvenli bir platform.",
-    gradient: "from-blue-500 to-cyan-500",
+    gradient: "from-brand-dark to-brand-teal",
   },
 ];
 
@@ -60,7 +60,7 @@ const popularGames = [
     title: "Matematik Yarışması",
     description: "Toplama ve çıkarma ile hızını test et",
     icon: Calculator,
-    color: "bg-blue-500",
+    color: "bg-brand-teal",
     illustration: "math" as const,
     players: "1.2K",
   },
@@ -94,11 +94,11 @@ const popularGames = [
 ];
 
 const topPlayers = [
-  { username: "matKral42", initials: "MK", score: 12850, games: 156, rank: 1, gradient: "from-amber-500 to-orange-400", avatar: "https://i.pravatar.cc/150?img=11" },
-  { username: "zeynepOyun", initials: "ZO", score: 11200, games: 134, rank: 2, gradient: "from-rose-500 to-pink-400", avatar: "https://i.pravatar.cc/150?img=5" },
-  { username: "aliCoder", initials: "AC", score: 10750, games: 128, rank: 3, gradient: "from-emerald-500 to-teal-400", avatar: "https://i.pravatar.cc/150?img=8" },
-  { username: "elifStar", initials: "ES", score: 9800, games: 115, rank: 4, gradient: "from-violet-500 to-purple-400", avatar: "https://i.pravatar.cc/150?img=9" },
-  { username: "canBey", initials: "CB", score: 9350, games: 108, rank: 5, gradient: "from-blue-500 to-cyan-400", avatar: "https://i.pravatar.cc/150?img=12" },
+  { username: "matKral42", initials: "MK", score: 12850, games: 156, rank: 1, gradient: "from-brand-lime to-brand-green", avatar: "https://i.pravatar.cc/150?img=11" },
+  { username: "zeynepOyun", initials: "ZO", score: 11200, games: 134, rank: 2, gradient: "from-brand-teal to-brand-dark", avatar: "https://i.pravatar.cc/150?img=5" },
+  { username: "aliCoder", initials: "AC", score: 10750, games: 128, rank: 3, gradient: "from-brand-green to-brand-teal", avatar: "https://i.pravatar.cc/150?img=8" },
+  { username: "elifStar", initials: "ES", score: 9800, games: 115, rank: 4, gradient: "from-brand-dark to-brand-teal", avatar: "https://i.pravatar.cc/150?img=9" },
+  { username: "canBey", initials: "CB", score: 9350, games: 108, rank: 5, gradient: "from-brand-teal to-brand-green", avatar: "https://i.pravatar.cc/150?img=12" },
 ];
 
 const steps = [
@@ -107,21 +107,21 @@ const steps = [
     title: "Kayıt Ol",
     description: "Ücretsiz hesap oluştur, sadece birkaç saniye sürer.",
     icon: Users,
-    gradient: "from-indigo-500 to-blue-500",
+    gradient: "from-brand-dark to-brand-teal",
   },
   {
     step: "2",
     title: "Oyun Seç",
     description: "Yaşına uygun eğitici oyunlar arasından birini seç.",
     icon: Gamepad2,
-    gradient: "from-blue-500 to-cyan-500",
+    gradient: "from-brand-dark to-brand-teal",
   },
   {
     step: "3",
     title: "Öğren & Kazan",
     description: "Oyna, puan topla ve liderlik tablosunda yüksel!",
     icon: Trophy,
-    gradient: "from-cyan-500 to-emerald-500",
+    gradient: "from-brand-green to-brand-teal",
   },
 ];
 
@@ -142,9 +142,9 @@ export default function HomePage() {
       <main className="flex-1">
         {/* Hero */}
         <section className="relative overflow-hidden">
-          <GlowOrb className="right-0 top-0" color="bg-indigo-500/8" size="w-[600px] h-[600px]" />
-          <GlowOrb className="-left-32 bottom-0" color="bg-cyan-500/8" size="w-[500px] h-[500px]" />
-          <GlowOrb className="left-1/2 top-1/3" color="bg-purple-500/5" size="w-[300px] h-[300px]" />
+          <GlowOrb className="right-0 top-0" color="bg-brand-teal/8" size="w-[600px] h-[600px]" />
+          <GlowOrb className="-left-32 bottom-0" color="bg-brand-green/8" size="w-[500px] h-[500px]" />
+          <GlowOrb className="left-1/2 top-1/3" color="bg-brand-dark/5" size="w-[300px] h-[300px]" />
           <FloatingIcons />
 
           <div className="container relative py-24 md:py-32">
@@ -155,7 +155,7 @@ export default function HomePage() {
                 transition={{ duration: 0.6 }}
                 className="mb-6 flex items-center gap-2 rounded-full border bg-background/80 px-4 py-1.5 shadow-sm backdrop-blur-sm"
               >
-                <Star className="h-4 w-4 text-amber-400" />
+                <Star className="h-4 w-4 text-brand-lime" />
                 <span className="text-sm font-medium">
                   6-12 yaş arası çocuklar için
                 </span>
@@ -168,7 +168,7 @@ export default function HomePage() {
                 className="max-w-4xl text-5xl font-extrabold leading-tight tracking-tight md:text-6xl lg:text-7xl"
               >
                 Eğlenerek{" "}
-                <span className="bg-gradient-to-r from-indigo-600 via-blue-500 to-cyan-500 bg-clip-text text-transparent">
+                <span className="bg-gradient-to-r from-brand-dark via-brand-teal to-brand-green bg-clip-text text-transparent">
                   Öğrenmenin
                 </span>{" "}
                 En Güzel Yolu
@@ -209,17 +209,17 @@ export default function HomePage() {
                 className="mt-16 flex flex-wrap justify-center gap-8 rounded-2xl border bg-background/60 px-8 py-5 shadow-sm backdrop-blur-sm"
               >
                 <div>
-                  <p className="text-3xl font-extrabold bg-gradient-to-r from-indigo-600 to-blue-500 bg-clip-text text-transparent">3.2K+</p>
+                  <p className="text-3xl font-extrabold bg-gradient-to-r from-brand-dark to-brand-teal bg-clip-text text-transparent">3.2K+</p>
                   <p className="text-sm text-muted-foreground">Aktif Oyuncu</p>
                 </div>
                 <div className="h-12 w-px bg-border" />
                 <div>
-                  <p className="text-3xl font-extrabold bg-gradient-to-r from-blue-500 to-cyan-500 bg-clip-text text-transparent">4</p>
+                  <p className="text-3xl font-extrabold bg-gradient-to-r from-brand-dark to-brand-teal bg-clip-text text-transparent">4</p>
                   <p className="text-sm text-muted-foreground">Eğitici Oyun</p>
                 </div>
                 <div className="h-12 w-px bg-border" />
                 <div>
-                  <p className="text-3xl font-extrabold bg-gradient-to-r from-cyan-500 to-emerald-500 bg-clip-text text-transparent">50K+</p>
+                  <p className="text-3xl font-extrabold bg-gradient-to-r from-brand-green to-brand-teal bg-clip-text text-transparent">50K+</p>
                   <p className="text-sm text-muted-foreground">Oynanan Oyun</p>
                 </div>
               </motion.div>
@@ -277,7 +277,7 @@ export default function HomePage() {
 
         {/* Popüler Oyunlar */}
         <section className="relative py-24">
-          <GlowOrb className="-right-20 top-1/3" color="bg-purple-500/5" size="w-[400px] h-[400px]" />
+          <GlowOrb className="-right-20 top-1/3" color="bg-brand-dark/5" size="w-[400px] h-[400px]" />
           <div className="container relative">
             <div className="mb-16 text-center">
               <motion.span
@@ -335,7 +335,7 @@ export default function HomePage() {
 
         {/* En İyi Oyuncular */}
         <section className="relative overflow-hidden border-t bg-muted/30 py-24">
-          <GlowOrb className="-left-20 top-1/4" color="bg-amber-500/5" size="w-[300px] h-[300px]" />
+          <GlowOrb className="-left-20 top-1/4" color="bg-brand-lime/5" size="w-[300px] h-[300px]" />
           <div className="container relative">
             <div className="mb-16 text-center">
               <motion.span
@@ -424,7 +424,7 @@ export default function HomePage() {
 
         {/* Neden React Game */}
         <section className="relative py-24">
-          <GlowOrb className="right-0 bottom-0" color="bg-indigo-500/5" size="w-[400px] h-[400px]" />
+          <GlowOrb className="right-0 bottom-0" color="bg-brand-teal/5" size="w-[400px] h-[400px]" />
           <div className="container relative">
             <div className="mb-16 text-center">
               <motion.span
@@ -521,7 +521,7 @@ export default function HomePage() {
         {/* Son CTA */}
         <section className="py-24">
           <div className="container">
-            <div className="relative overflow-hidden rounded-3xl bg-gradient-to-r from-indigo-600 via-blue-600 to-cyan-500 px-8 py-16 text-center text-white">
+            <div className="relative overflow-hidden rounded-3xl bg-gradient-to-r from-brand-dark via-brand-teal to-brand-green px-8 py-16 text-center text-white">
               <div className="absolute inset-0 overflow-hidden">
                 <div className="absolute left-1/2 top-1/2 h-80 w-80 -translate-x-1/2 -translate-y-1/2 rounded-full bg-white/5 blur-3xl" />
                 <div className="absolute right-1/4 top-0 h-full w-[1px] rotate-[25deg] bg-white/10" />
@@ -550,7 +550,7 @@ export default function HomePage() {
                 <Button
                   asChild
                   size="lg"
-                  className="mt-8 bg-white text-lg px-8 text-indigo-600 shadow-xl hover:bg-white/90"
+                  className="mt-8 bg-white text-lg px-8 text-brand-dark shadow-xl hover:bg-white/90"
                 >
                   <Link href="/register">
                     Ücretsiz Başla <ArrowRight className="ml-2 h-5 w-5" />

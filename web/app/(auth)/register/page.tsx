@@ -85,8 +85,8 @@ export default function RegisterPage() {
     <div className="w-full max-w-md space-y-8">
       <div className="flex flex-col items-center">
         <Link href="/" className="flex items-center gap-2 mb-8">
-          <Gamepad2 className="h-10 w-10 text-primary" />
-          <span className="text-2xl font-extrabold text-primary">React Game</span>
+          <Gamepad2 className="h-10 w-10 text-brand-dark" />
+          <span className="text-2xl font-extrabold text-brand-dark">React Game</span>
         </Link>
         <h1 className="text-3xl font-extrabold">Kayıt Ol</h1>
         <p className="mt-2 text-muted-foreground">
@@ -181,7 +181,7 @@ export default function RegisterPage() {
 
         <p className="text-center text-sm text-muted-foreground">
           Zaten hesabın var mı?{" "}
-          <Link href="/login" className="font-semibold text-primary hover:underline">
+          <Link href="/login" className="font-semibold text-brand-dark hover:underline">
             Giriş Yap
           </Link>
         </p>
