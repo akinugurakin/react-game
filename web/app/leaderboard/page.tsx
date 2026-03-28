@@ -1,14 +1,10 @@
-"use client";
-
-import { useState, useEffect } from "react";
-import { motion } from "framer-motion";
-import { Trophy, Medal, Crown, Flame, Loader2 } from "lucide-react";
+import { Trophy, Medal, Crown } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Header } from "@/components/layout/header";
-import { Footer } from "@/components/layout/footer";
-import { api } from "@/lib/api";
+import { Header, Footer } from "@/components/layout/client-header";
 import { cn } from "@/lib/utils";
+
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
 
 interface LeaderboardPlayer {
   rank: number;
@@ -42,54 +38,37 @@ const gradients = [
   "from-emerald-500 to-teal-400",
   "from-violet-500 to-purple-400",
   "from-blue-500 to-cyan-400",
-  "from-indigo-500 to-blue-400",
-  "from-pink-500 to-rose-400",
-  "from-teal-500 to-emerald-400",
-  "from-purple-500 to-violet-400",
-  "from-cyan-500 to-blue-400",
 ];
 
-export default function LeaderboardPage() {
-  const [players, setPlayers] = useState<LeaderboardPlayer[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState("");
+async function getLeaderboard(): Promise<LeaderboardPlayer[]> {
+  try {
+    const res = await fetch(
+      "https://react-game-api.onrender.com/games/1/leaderboard",
+      { cache: "no-store" }
+    );
+    if (!res.ok) return [];
+    const data = await res.json();
+    return data.map((d: any, i: number) => ({
+      rank: i + 1,
+      username: d.username,
+      score: d.score,
+      correct_count: d.correct_count,
+      duration_seconds: d.duration_seconds,
+    }));
+  } catch {
+    return [];
+  }
+}
 
-  useEffect(() => {
-    async function fetchLeaderboard() {
-      try {
-        const res = await fetch("/api/leaderboard");
-        const data = await res.json();
-        if (Array.isArray(data) && data.length > 0) {
-          setPlayers(
-            data.map((d: any, i: number) => ({
-              rank: i + 1,
-              username: d.username,
-              score: d.score,
-              correct_count: d.correct_count,
-              duration_seconds: d.duration_seconds,
-            }))
-          );
-        }
-      } catch (err: any) {
-        setError(err?.message || "API hatası");
-      } finally {
-        setLoading(false);
-      }
-    }
-    fetchLeaderboard();
-  }, []);
+export default async function LeaderboardPage() {
+  const players = await getLeaderboard();
 
   return (
     <div className="flex min-h-screen flex-col">
       <Header />
       <main className="flex-1">
         <div className="container py-8">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4 }}
-            className="mb-8 text-center"
-          >
+          <div className="mb-8 text-center">
             <div className="mb-4 flex justify-center">
               <Trophy className="h-12 w-12 text-amber-400" />
             </div>
@@ -97,19 +76,13 @@ export default function LeaderboardPage() {
             <p className="mt-1 text-muted-foreground">
               En iyi oyuncular burada!
             </p>
-          </motion.div>
+          </div>
 
-          {loading ? (
-            <div className="flex flex-col items-center justify-center py-20 gap-3">
-              <Loader2 className="h-8 w-8 animate-spin text-muted-foreground" />
-              <p className="text-sm text-muted-foreground">Veriler yükleniyor...</p>
-            </div>
-          ) : players.length === 0 ? (
+          {players.length === 0 ? (
             <div className="py-20 text-center">
               <Trophy className="mx-auto mb-4 h-16 w-16 text-muted-foreground/30" />
               <h2 className="text-xl font-bold text-muted-foreground">Henüz kimse oynamamış</h2>
               <p className="mt-2 text-muted-foreground">İlk skor sana ait olabilir!</p>
-              {error && <p className="mt-4 text-sm text-red-500">Hata: {error}</p>}
             </div>
           ) : (
             <>
@@ -117,19 +90,22 @@ export default function LeaderboardPage() {
               {players.length >= 3 && (
                 <div className="mb-8 grid gap-4 sm:grid-cols-3">
                   {players.slice(0, 3).map((player, index) => (
-                    <motion.div
+                    <div
                       key={`top-${player.rank}`}
-                      initial={{ opacity: 0, y: 30 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.5, delay: index * 0.15 }}
-                      className={cn(index === 0 && "sm:order-2", index === 1 && "sm:order-1", index === 2 && "sm:order-3")}
+                      className={cn(
+                        index === 0 && "sm:order-2",
+                        index === 1 && "sm:order-1",
+                        index === 2 && "sm:order-3"
+                      )}
                     >
                       <Card className={cn("text-center", getRankBg(player.rank))}>
                         <CardContent className="p-6">
                           <div className="mb-3 flex justify-center">
                             {getRankIcon(player.rank)}
                           </div>
-                          <div className={`mx-auto mb-3 flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-br ${gradients[index]} text-xl font-bold text-white ring-2 ring-background`}>
+                          <div
+                            className={`mx-auto mb-3 flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-br ${gradients[index % gradients.length]} text-xl font-bold text-white ring-2 ring-background`}
+                          >
                             {getInitials(player.username)}
                           </div>
                           <h3 className="font-bold">{player.username}</h3>
@@ -141,28 +117,56 @@ export default function LeaderboardPage() {
                           </p>
                         </CardContent>
                       </Card>
-                    </motion.div>
+                    </div>
                   ))}
                 </div>
               )}
 
-              {/* Rest of list */}
+              {/* Top 3'ten az varsa hepsini listele */}
+              {players.length < 3 && (
+                <div className="mb-8 grid gap-4 sm:grid-cols-3">
+                  {players.map((player, index) => (
+                    <div key={`top-${player.rank}`}>
+                      <Card className={cn("text-center", getRankBg(player.rank))}>
+                        <CardContent className="p-6">
+                          <div className="mb-3 flex justify-center">
+                            {getRankIcon(player.rank)}
+                          </div>
+                          <div
+                            className={`mx-auto mb-3 flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-br ${gradients[index % gradients.length]} text-xl font-bold text-white ring-2 ring-background`}
+                          >
+                            {getInitials(player.username)}
+                          </div>
+                          <h3 className="font-bold">{player.username}</h3>
+                          <p className="text-2xl font-extrabold text-primary">
+                            {player.score.toLocaleString("tr-TR")}
+                          </p>
+                          <p className="text-xs text-muted-foreground">
+                            ✅ {player.correct_count}/10 • ⏱ {player.duration_seconds}s
+                          </p>
+                        </CardContent>
+                      </Card>
+                    </div>
+                  ))}
+                </div>
+              )}
+
+              {/* 3'ten sonrası liste */}
               {players.length > 3 && (
                 <Card>
                   <CardContent className="divide-y p-0">
-                    {players.slice(3).map((player, index) => (
-                      <motion.div
+                    {players.slice(3).map((player) => (
+                      <div
                         key={`rest-${player.rank}`}
-                        initial={{ opacity: 0, x: -20 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ duration: 0.3, delay: 0.6 + index * 0.05 }}
                         className="flex items-center justify-between p-4"
                       >
                         <div className="flex items-center gap-4">
                           <div className="flex w-8 justify-center">
                             {getRankIcon(player.rank)}
                           </div>
-                          <div className={`flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-br ${gradients[(player.rank - 1) % gradients.length]} text-sm font-bold text-white`}>
+                          <div
+                            className={`flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-br ${gradients[(player.rank - 1) % gradients.length]} text-sm font-bold text-white`}
+                          >
                             {getInitials(player.username)}
                           </div>
                           <div>
@@ -175,7 +179,7 @@ export default function LeaderboardPage() {
                         <p className="text-lg font-bold">
                           {player.score.toLocaleString("tr-TR")}
                         </p>
-                      </motion.div>
+                      </div>
                     ))}
                   </CardContent>
                 </Card>
