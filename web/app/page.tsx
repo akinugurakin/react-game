@@ -46,27 +46,27 @@ function HandDrawnUnderline({
 }) {
   return (
     <svg
-      viewBox="0 0 200 12"
+      viewBox="0 0 200 16"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       className={className}
       style={{ width, display: "block" }}
       preserveAspectRatio="none"
     >
+      {/* Highlighter arka plan — kalın, yarı saydam */}
       <path
-        d="M2 8.5C20 3.5 40 2 60 4.5C80 7 100 9.5 130 5C150 2 170 3 198 7"
+        d="M4 10 Q 40 4, 100 8 T 196 7"
         stroke={color}
-        strokeWidth="3"
+        strokeWidth="8"
         strokeLinecap="round"
-        strokeLinejoin="round"
+        opacity="0.3"
       />
+      {/* Üst çizgi — ince, belirgin */}
       <path
-        d="M5 10C30 5 70 3.5 100 6C130 8.5 165 4 195 8.5"
+        d="M8 8 C 50 5, 90 10, 140 6 S 185 9, 194 7"
         stroke={color}
-        strokeWidth="2"
+        strokeWidth="2.5"
         strokeLinecap="round"
-        strokeLinejoin="round"
-        opacity="0.5"
       />
     </svg>
   );
@@ -133,14 +133,14 @@ const testimonials = [
     name: "Ayse Yilmaz",
     avatar: "https://i.pravatar.cc/150?img=44",
     description:
-      "Kizim bu platformu cok seviyor! Matematik oyunuyla carpim tablosunu ogrenmesi cok kolaylasti. Her gun oynamak istiyor.",
+      "Kızım bu platformu çok seviyor! Matematik oyunuyla çarpım tablosunu öğrenmesi çok kolaylaştı. Her gün oynamak istiyor.",
   },
   {
     id: 2,
     name: "Mehmet Kaya",
     avatar: "https://i.pravatar.cc/150?img=68",
     description:
-      "Oglum icin guvenli bir egitim ortami ariyordum. React Game tam aradigim sey oldu. Ebeveyn kontrolu harika.",
+      "Oğlum için güvenli bir eğitim ortamı arıyordum. React Game tam aradığım şey oldu. Ebeveyn kontrolü harika.",
   },
   {
     id: 3,
@@ -161,16 +161,16 @@ const testimonials = [
     name: "Fatma Arslan",
     avatar: "https://i.pravatar.cc/150?img=45",
     description:
-      "Reklamsiz ve guvenli bir ortam. Cocugumun verilerinin korundugunu bilmek cok degerli. Kesinlikle tavsiye ediyorum.",
+      "Reklamsız ve güvenli bir ortam. Çocuğumun verilerinin korunduğunu bilmek çok değerli. Kesinlikle tavsiye ediyorum.",
   },
 ];
 
 const features = [
   {
     icon: Brain,
-    title: "Egitici Oyunlar",
+    title: "Eğitici Oyunlar",
     description:
-      "Matematik, kelime ve hafiza oyunlariyla eglenerek ogrenme deneyimi.",
+      "Matematik, kelime ve hafıza oyunlarıyla eğlenerek öğrenme deneyimi.",
     gradient: "from-brand-teal to-brand-dark",
     accent: "#005C53",
   },
@@ -186,7 +186,7 @@ const features = [
     icon: BarChart3,
     title: "Ilerleme Takibi",
     description:
-      "Cocugunuzun gelisimini detayli istatistiklerle takip edin.",
+      "Çocuğunuzun gelişimini detaylı istatistiklerle takip edin.",
     gradient: "from-brand-dark to-brand-teal",
     accent: "#042940",
   },
@@ -194,7 +194,7 @@ const features = [
     icon: Shield,
     title: "Guvenli Ortam",
     description:
-      "Ebeveyn kontrolu ve yasa uygun iceriklerle guvenli bir platform.",
+      "Ebeveyn kontrolü ve yaşa uygun içeriklerle güvenli bir platform.",
     gradient: "from-brand-teal to-brand-green",
     accent: "#005C53",
   },
@@ -295,21 +295,21 @@ const steps = [
   {
     step: "1",
     title: "Kayit Ol",
-    description: "Ucretsiz hesap olustur, sadece birkac saniye surer.",
+    description: "Ücretsiz hesap oluştur, sadece birkaç saniye sürer.",
     icon: Users,
     gradient: "from-brand-dark to-brand-teal",
   },
   {
     step: "2",
     title: "Oyun Sec",
-    description: "Yasina uygun egitici oyunlar arasindan birini sec.",
+    description: "Yaşına uygun eğitici oyunlar arasından birini seç.",
     icon: Gamepad2,
     gradient: "from-brand-teal to-brand-green",
   },
   {
     step: "3",
-    title: "Ogren & Kazan",
-    description: "Oyna, puan topla ve liderlik tablosunda yuksel!",
+    title: "Öğren & Kazan",
+    description: "Oyna, puan topla ve liderlik tablosunda yüksel!",
     icon: Trophy,
     gradient: "from-brand-green to-brand-lime",
   },
@@ -317,8 +317,8 @@ const steps = [
 
 const trustPoints = [
   "Yasa uygun, pedagojik acidan onaylanmis icerikler",
-  "13 yas alti icin ebeveyn onayi zorunlulugu",
-  "Kisisel veri guvenligi ve KVKK uyumu",
+  "13 yaş altı için ebeveyn onayı zorunluluğu",
+  "Kişisel veri güvenliği ve KVKK uyumu",
   "Reklamsiz, dikkat dagitmayan arayuz",
   "Oyun suresi takibi ve ebeveyn bildirimleri",
 ];
@@ -409,7 +409,7 @@ export default function HomePage() {
                 >
                   <Sparkles className="h-4 w-4 text-brand-lime" />
                   <span className="text-sm font-medium text-white/80">
-                    6-12 yas arasi cocuklar icin
+                    6-12 yaş arası çocuklar için
                   </span>
                 </motion.div>
 
@@ -419,15 +419,15 @@ export default function HomePage() {
                   transition={{ duration: 0.6, delay: 0.1 }}
                   className="text-4xl font-extrabold leading-[1.1] tracking-tight md:text-5xl lg:text-6xl"
                 >
-                  Eglenerek{" "}
+                  Eğlenerek{" "}
                   <span className="relative inline-block">
-                    <span className="relative z-10 text-brand-lime">Ogrenmenin</span>
+                    <span className="relative z-10 text-brand-lime">Öğrenmenin</span>
                     <span className="absolute -bottom-2 left-0 right-0 z-0">
                       <HandDrawnUnderline color="#DBF227" />
                     </span>
                   </span>
                   <br />
-                  En Guzel Yolu
+                  En Güzel Yolu
                 </motion.h1>
 
                 <motion.p
@@ -436,8 +436,8 @@ export default function HomePage() {
                   transition={{ duration: 0.6, delay: 0.25 }}
                   className="mt-6 max-w-md text-lg leading-relaxed text-white/60"
                 >
-                  Egitici mini oyunlarla cocugunuzun matematik, dil ve problem
-                  cozme becerilerini gelistirin. Guvenli, reklamsiz, eglencelil.
+                  Eğitici mini oyunlarla çocuğunuzun matematik, dil ve problem
+                  çözme becerilerini geliştirin. Güvenli, reklamsız, eğlenceli.
                 </motion.p>
 
                 <motion.div
@@ -452,7 +452,7 @@ export default function HomePage() {
                     className="bg-brand-lime text-brand-dark text-base px-8 py-6 shadow-lg shadow-brand-lime/20 hover:bg-brand-lime/90 font-bold rounded-xl"
                   >
                     <Link href="/register">
-                      Ucretsiz Basla <ArrowRight className="ml-2 h-5 w-5" />
+                      Ücretsiz Başla <ArrowRight className="ml-2 h-5 w-5" />
                     </Link>
                   </Button>
                   <Button
@@ -461,7 +461,7 @@ export default function HomePage() {
                     size="lg"
                     className="text-base px-8 py-6 border-white/20 text-white hover:bg-white/10 rounded-xl"
                   >
-                    <Link href="/login">Giris Yap</Link>
+                    <Link href="/login">Giriş Yap</Link>
                   </Button>
                 </motion.div>
 
@@ -474,7 +474,7 @@ export default function HomePage() {
                 >
                   {[
                     { value: "3.2K+", label: "Aktif Oyuncu", color: "text-brand-lime" },
-                    { value: "4", label: "Egitici Oyun", color: "text-brand-green" },
+                    { value: "4", label: "Eğitici Oyun", color: "text-brand-green" },
                     { value: "50K+", label: "Oynanan Oyun", color: "text-brand-sand" },
                   ].map((stat) => (
                     <div key={stat.label}>
@@ -499,7 +499,7 @@ export default function HomePage() {
                   <div className="overflow-hidden rounded-3xl border border-white/10 shadow-2xl shadow-black/30">
                     <img
                       src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=600&h=420&fit=crop"
-                      alt="Cocuklar ogreniyor"
+                      alt="Çocuklar öğreniyor"
                       className="h-[400px] w-full object-cover"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-brand-dark/40 via-transparent to-transparent rounded-3xl" />
@@ -536,7 +536,7 @@ export default function HomePage() {
                       </div>
                       <div>
                         <p className="text-sm font-bold text-brand-dark">Liderlik</p>
-                        <p className="text-xs text-brand-dark/50">Siralamaya gir!</p>
+                        <p className="text-xs text-brand-dark/50">Sıralamaya gir!</p>
                       </div>
                     </div>
                   </motion.div>
@@ -550,7 +550,7 @@ export default function HomePage() {
                   >
                     <img
                       src="https://images.unsplash.com/photo-1588072432836-e10032774350?w=200&h=200&fit=crop"
-                      alt="Cocuk tablet kullaniyor"
+                      alt="Çocuk tablet kullanıyor"
                       className="h-full w-full object-cover"
                     />
                   </motion.div>
@@ -599,7 +599,7 @@ export default function HomePage() {
                 </span>
               </h2>
               <p className="mx-auto mt-5 max-w-md text-lg text-muted-foreground">
-                3 kolay adimda ogrenmeye basla
+                3 kolay adımda öğrenmeye başla
               </p>
             </motion.div>
 
@@ -682,7 +682,7 @@ export default function HomePage() {
                 </span>
               </h2>
               <p className="mx-auto mt-5 max-w-md text-lg text-muted-foreground">
-                En cok oynanan egitici oyunlarimiz
+                En çok oynanan eğitici oyunlarımız
               </p>
             </motion.div>
 
@@ -796,7 +796,7 @@ export default function HomePage() {
                 </span>
               </h2>
               <p className="mx-auto mt-5 max-w-lg text-lg text-muted-foreground">
-                Cocugunuzun gelisimini destekleyen guclu ozellikler
+                Çocuğunuzun gelişimini destekleyen güçlü özellikler
               </p>
             </motion.div>
 
@@ -860,7 +860,7 @@ export default function HomePage() {
                 </span>
               </h2>
               <p className="mx-auto mt-5 max-w-md text-lg text-muted-foreground">
-                Bu haftanin yildizlari
+                Bu haftanın yıldızları
               </p>
             </motion.div>
 
@@ -1035,7 +1035,7 @@ export default function HomePage() {
                   </span>
                 </h2>
                 <p className="mx-auto mt-5 max-w-md text-lg text-muted-foreground">
-                  Cocugunuzun guvenligi bizim onceligimiz
+                  Çocuğunuzun güvenliği bizim önceliğimiz
                 </p>
               </motion.div>
 
