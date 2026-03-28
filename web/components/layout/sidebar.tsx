@@ -32,19 +32,26 @@ const oyunAltMenusu = [
   { href: "/games?subject=ingilizce", icon: Languages, label: "\u0130ngilizce" },
 ];
 
+import { MapPin, School, UsersRound } from "lucide-react";
+
+const liderlikAltMenusu = [
+  { href: "/leaderboard?scope=turkiye", icon: MapPin, label: "T\u00fcrkiye Geneli" },
+  { href: "/leaderboard?scope=okul", icon: School, label: "Okul" },
+  { href: "/leaderboard?scope=sinif", icon: UsersRound, label: "S\u0131n\u0131f" },
+];
+
 const menuItems = [
   { href: "/dashboard", icon: User, label: "Profil" },
   { href: "/games", icon: Gamepad2, label: "Oyunlar", hasSubmenu: true },
-  { href: "/leaderboard", icon: Trophy, label: "Liderlik" },
+  { href: "/leaderboard", icon: Trophy, label: "Liderlik", hasSubmenu: true },
 ];
 
 export function Sidebar() {
   const pathname = usePathname();
   const { user, logout } = useAuthStore();
   const [collapsed, setCollapsed] = useState(false);
-  const [oyunlarAcik, setOyunlarAcik] = useState(
-    pathname.startsWith("/games")
-  );
+  const [oyunlarAcik, setOyunlarAcik] = useState(pathname.startsWith("/games"));
+  const [liderlikAcik, setLiderlikAcik] = useState(pathname.startsWith("/leaderboard"));
   // URL search params'i takip et (client-side navigation icin)
   const [currentSearch, setCurrentSearch] = useState("");
   useEffect(() => {
@@ -148,23 +155,27 @@ export function Sidebar() {
       {/* Men&#252; */}
       <nav className="flex-1 space-y-1 overflow-y-auto p-3">
         {menuItems.map((item) => {
-          const isActive =
-            item.href === "/games"
-              ? pathname === "/games" || pathname.startsWith("/games")
-              : pathname === item.href;
+          const basePath = item.href.split("?")[0];
+          const isActive = pathname === basePath || pathname.startsWith(basePath + "/");
 
-          // Oyunlar &#246;zel davran&#305;&#351;
           if (item.hasSubmenu) {
+            const isOyunlar = item.href === "/games";
+            const isLiderlik = item.href === "/leaderboard";
+            const subMenuOpen = isOyunlar ? oyunlarAcik : liderlikAcik;
+            const setSubMenuOpen = isOyunlar ? setOyunlarAcik : setLiderlikAcik;
+            const subItems = isOyunlar ? oyunAltMenusu : liderlikAltMenusu;
+            const paramKey = isOyunlar ? "subject" : "scope";
+            const allLabel = isOyunlar ? "T\u00fcm Oyunlar" : "Genel";
+            const AllIcon = isOyunlar ? Gamepad2 : Trophy;
+
             return (
               <div key={item.href}>
-                {/* Ana buton */}
                 <button
                   onClick={() => {
                     if (collapsed) {
-                      // Collapsed modda direkt sayfaya git
                       window.location.href = item.href;
                     } else {
-                      setOyunlarAcik(!oyunlarAcik);
+                      setSubMenuOpen(!subMenuOpen);
                     }
                   }}
                   className={cn(
@@ -175,64 +186,44 @@ export function Sidebar() {
                     collapsed && "justify-center px-2"
                   )}
                 >
-                  <item.icon
-                    className={cn(
-                      "h-5 w-5 shrink-0",
-                      isActive && "text-brand-lime"
-                    )}
-                  />
+                  <item.icon className={cn("h-5 w-5 shrink-0", isActive && "text-brand-lime")} />
                   {!collapsed && (
                     <>
                       <span className="flex-1 text-left">{item.label}</span>
-                      <ChevronDown
-                        className={cn(
-                          "h-4 w-4 shrink-0 transition-transform duration-200",
-                          oyunlarAcik && "rotate-180"
-                        )}
-                      />
+                      <ChevronDown className={cn("h-4 w-4 shrink-0 transition-transform duration-200", subMenuOpen && "rotate-180")} />
                     </>
                   )}
                 </button>
 
-                {/* Alt men&#252; */}
                 {!collapsed && (
-                  <div
-                    className={cn(
-                      "overflow-hidden transition-all duration-300 ease-in-out",
-                      oyunlarAcik
-                        ? "mt-1 max-h-[200px] opacity-100"
-                        : "max-h-0 opacity-0"
-                    )}
-                  >
+                  <div className={cn("overflow-hidden transition-all duration-300 ease-in-out", subMenuOpen ? "mt-1 max-h-[250px] opacity-100" : "max-h-0 opacity-0")}>
                     <div className="ml-3 space-y-0.5 border-l border-white/10 pl-3">
-                      {/* T&#252;m Oyunlar */}
+                      {/* T&#252;m / Genel */}
                       <Link
-                        href="/games"
+                        href={basePath}
                         onClick={() => setTimeout(() => setCurrentSearch(""), 0)}
                         className={cn(
                           "flex items-center gap-2.5 rounded-lg px-3 py-2 text-xs font-medium transition-colors",
-                          pathname === "/games" && !currentSearch.includes("subject")
+                          pathname === basePath && !currentSearch.includes(paramKey)
                             ? "bg-white/10 text-white"
                             : "text-white/50 hover:bg-white/5 hover:text-white/80"
                         )}
                       >
-                        <Gamepad2 className="h-4 w-4 shrink-0" />
-                        <span>T&#252;m Oyunlar</span>
+                        <AllIcon className="h-4 w-4 shrink-0" />
+                        <span>{allLabel}</span>
                       </Link>
 
-                      {oyunAltMenusu.map((sub) => {
-                        const subjectValue = sub.href.split("=")[1];
-                        const isSubActive = pathname === "/games" && currentSearch.includes(`subject=${subjectValue}`);
+                      {subItems.map((sub) => {
+                        const paramValue = sub.href.split("=")[1];
+                        const isSubActive = pathname === basePath && currentSearch.includes(`${paramKey}=${paramValue}`);
                         return (
                           <Link
                             key={sub.href}
                             href={sub.href}
-                            onClick={() => setTimeout(() => setCurrentSearch(`?subject=${subjectValue}`), 0)}
+                            onClick={() => setTimeout(() => setCurrentSearch(`?${paramKey}=${paramValue}`), 0)}
                             className={cn(
                               "flex items-center gap-2.5 rounded-lg px-3 py-2 text-xs font-medium transition-colors",
-                              isSubActive
-                                ? "bg-white/10 text-white"
-                                : "text-white/50 hover:bg-white/5 hover:text-white/80"
+                              isSubActive ? "bg-white/10 text-white" : "text-white/50 hover:bg-white/5 hover:text-white/80"
                             )}
                           >
                             <sub.icon className="h-4 w-4 shrink-0" />
