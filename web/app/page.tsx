@@ -162,14 +162,14 @@ export default function HomePage() {
         </section>
 
         {/* ===== 2. NASIL ÇALIŞIR — Beyaz ===== */}
-        <section className="relative py-24">
+        <section className="relative py-14">
           <div className="container">
-            <div className="mb-16 text-center">
+            <div className="mb-10 text-center">
               <motion.span initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} className="mb-2 inline-block rounded-full bg-brand-teal/10 px-4 py-1 text-sm font-semibold text-brand-teal">Kolay Başlangıç</motion.span>
               <h2 className="mt-2 text-3xl font-extrabold md:text-4xl">Nasıl Çalışır?</h2>
               <p className="mt-4 text-lg text-muted-foreground">3 kolay adımda öğrenmeye başla</p>
             </div>
-            <div className="mx-auto grid max-w-4xl gap-8 md:grid-cols-3">
+            <div className="mx-auto grid max-w-4xl gap-6 md:grid-cols-3">
               {steps.map((item, index) => (
                 <motion.div key={item.step} initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: index * 0.15 }} className="relative flex flex-col items-center text-center">
                   <div className={`mb-4 flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br ${item.gradient} text-white shadow-lg`}><item.icon className="h-8 w-8" /></div>
@@ -217,16 +217,16 @@ export default function HomePage() {
         </section>
 
         {/* ===== 4. NEDEN REACT GAME — Beyaz ===== */}
-        <section className="relative py-24">
+        <section className="relative py-14">
           <div className="container relative">
-            <div className="mb-16 text-center">
+            <div className="mb-10 text-center">
               <motion.span initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} className="mb-2 inline-block rounded-full bg-brand-teal/10 px-4 py-1 text-sm font-semibold text-brand-teal">Özellikler</motion.span>
               <h2 className="mt-2 text-3xl font-extrabold md:text-4xl">Neden React Game?</h2>
               <p className="mt-4 text-lg text-muted-foreground">Çocuğunuzun gelişimini destekleyen güçlü özellikler</p>
             </div>
             <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
               {features.map((feature, index) => (
-                <motion.div key={feature.title} initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: index * 0.1 }} className="group flex flex-col items-center rounded-2xl border bg-background p-8 text-center shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md">
+                <motion.div key={feature.title} initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: index * 0.1 }} className="group flex flex-col items-center rounded-2xl border bg-background p-6 text-center shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md">
                   <div className={`mb-4 rounded-2xl bg-gradient-to-br ${feature.gradient} p-4 text-white shadow-lg transition-transform duration-300 group-hover:scale-110`}><feature.icon className="h-8 w-8" /></div>
                   <h3 className="mb-2 text-xl font-bold">{feature.title}</h3>
                   <p className="text-muted-foreground">{feature.description}</p>
