@@ -55,11 +55,29 @@ export default function LeaderboardPage() {
   const [error, setError] = useState("");
 
   useEffect(() => {
+    async function fetchWithRetry(retries = 3): Promise<any[]> {
+      for (let i = 0; i < retries; i++) {
+        try {
+          const controller = new AbortController();
+          const timeout = setTimeout(() => controller.abort(), 15000);
+          const res = await fetch("https://react-game-api.onrender.com/games/1/leaderboard", {
+            signal: controller.signal,
+            cache: "no-store",
+          });
+          clearTimeout(timeout);
+          if (!res.ok) throw new Error(`HTTP ${res.status}`);
+          return await res.json();
+        } catch (err) {
+          if (i === retries - 1) throw err;
+          await new Promise(r => setTimeout(r, 2000));
+        }
+      }
+      return [];
+    }
+
     async function fetchLeaderboard() {
       try {
-        const res = await fetch("https://react-game-api.onrender.com/games/1/leaderboard");
-        if (!res.ok) throw new Error(`HTTP ${res.status}`);
-        const data = await res.json();
+        const data = await fetchWithRetry();
         setPlayers(
           data.map((d: any, i: number) => ({
             rank: i + 1,
@@ -99,8 +117,9 @@ export default function LeaderboardPage() {
           </motion.div>
 
           {loading ? (
-            <div className="flex justify-center py-20">
+            <div className="flex flex-col items-center justify-center py-20 gap-3">
               <Loader2 className="h-8 w-8 animate-spin text-muted-foreground" />
+              <p className="text-sm text-muted-foreground">Veriler yükleniyor...</p>
             </div>
           ) : players.length === 0 ? (
             <div className="py-20 text-center">
