@@ -55,29 +55,10 @@ export default function LeaderboardPage() {
   const [error, setError] = useState("");
 
   useEffect(() => {
-    async function fetchWithRetry(retries = 3): Promise<any[]> {
-      for (let i = 0; i < retries; i++) {
-        try {
-          const controller = new AbortController();
-          const timeout = setTimeout(() => controller.abort(), 15000);
-          const res = await fetch("https://react-game-api.onrender.com/games/1/leaderboard", {
-            signal: controller.signal,
-            cache: "no-store",
-          });
-          clearTimeout(timeout);
-          if (!res.ok) throw new Error(`HTTP ${res.status}`);
-          return await res.json();
-        } catch (err) {
-          if (i === retries - 1) throw err;
-          await new Promise(r => setTimeout(r, 2000));
-        }
-      }
-      return [];
-    }
-
     async function fetchLeaderboard() {
       try {
-        const data = await fetchWithRetry();
+        const res = await fetch("/api/leaderboard");
+        const data = await res.json();
         if (Array.isArray(data) && data.length > 0) {
           setPlayers(
             data.map((d: any, i: number) => ({
@@ -88,11 +69,9 @@ export default function LeaderboardPage() {
               duration_seconds: d.duration_seconds,
             }))
           );
-        } else {
-          setError("API boş veri döndü (length: " + (data?.length ?? "null") + ")");
         }
       } catch (err: any) {
-        setError(err?.message || "Bilinmeyen hata");
+        setError(err?.message || "API hatası");
       } finally {
         setLoading(false);
       }
