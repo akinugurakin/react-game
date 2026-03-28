@@ -36,8 +36,8 @@ import { MapPin, School, UsersRound } from "lucide-react";
 
 const liderlikAltMenusu = [
   { href: "/leaderboard?scope=turkiye", icon: MapPin, label: "T\u00fcrkiye Geneli" },
-  { href: "/leaderboard?scope=okul", icon: School, label: "Okul" },
-  { href: "/leaderboard?scope=sinif", icon: UsersRound, label: "S\u0131n\u0131f" },
+  { href: "/leaderboard?scope=okul", icon: School, label: "Okulum" },
+  { href: "/leaderboard?scope=sinif", icon: UsersRound, label: "S\u0131n\u0131f\u0131m" },
 ];
 
 const menuItems = [
