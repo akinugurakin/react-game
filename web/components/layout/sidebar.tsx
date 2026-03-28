@@ -20,13 +20,16 @@ import { useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
 import { useAuthStore } from "@/lib/auth";
 import { HexAvatar } from "@/components/ui/hex-avatar";
-import { AvatarPicker, BeanHeadAvatar } from "@/components/ui/avatar-picker";
+import { BeanHeadAvatar } from "@/components/ui/avatar-picker";
+
+import { Languages } from "lucide-react";
 
 const oyunAltMenusu = [
-  { href: "/games?subject=turkce", icon: BookOpen, label: "T\u00fcrk\u00e7e", labelEn: "Turkish" },
-  { href: "/games?subject=matematik", icon: Calculator, label: "Matematik", labelEn: "Mathematics" },
-  { href: "/games?subject=fen", icon: FlaskConical, label: "Fen Bilimleri", labelEn: "Science" },
-  { href: "/games?subject=sosyal", icon: Globe, label: "Sosyal Bilgiler", labelEn: "Social Studies" },
+  { href: "/games?subject=turkce", icon: BookOpen, label: "T\u00fcrk\u00e7e" },
+  { href: "/games?subject=matematik", icon: Calculator, label: "Matematik" },
+  { href: "/games?subject=fen", icon: FlaskConical, label: "Fen Bilimleri" },
+  { href: "/games?subject=sosyal", icon: Globe, label: "Sosyal Bilgiler" },
+  { href: "/games?subject=ingilizce", icon: Languages, label: "\u0130ngilizce" },
 ];
 
 const menuItems = [
@@ -59,7 +62,6 @@ export function Sidebar() {
       clearTimeout(timer);
     };
   }, [pathname]);
-  const [avatarPickerOpen, setAvatarPickerOpen] = useState(false);
   const [avatarId, setAvatarId] = useState<string | null>(() => {
     if (typeof window !== "undefined") return localStorage.getItem("lumo-avatar-id") || null;
     return null;
@@ -71,12 +73,6 @@ export function Sidebar() {
   const username = user?.username || "Oyuncu";
   const initials = username.slice(0, 2).toUpperCase();
 
-  const handleAvatarSelect = (id: string, bgColor: string) => {
-    setAvatarId(id);
-    setAvatarBg(bgColor);
-    localStorage.setItem("lumo-avatar-id", id);
-    localStorage.setItem("lumo-avatar-bg", bgColor);
-  };
 
   return (
     <aside
@@ -111,9 +107,9 @@ export function Sidebar() {
         )}
       >
         {collapsed ? (
-          <button
-            onClick={() => setAvatarPickerOpen(true)}
-            className="transition-transform hover:scale-110"
+          <Link
+            href="/dashboard"
+            className="block transition-transform hover:scale-110"
           >
             {avatarId ? (
               <div className="flex h-9 w-9 items-center justify-center overflow-hidden rounded-full" style={{ backgroundColor: avatarBg }}>
@@ -122,13 +118,13 @@ export function Sidebar() {
             ) : (
               <HexAvatar initials={initials} size="sm" gradient="from-brand-green to-brand-lime" />
             )}
-          </button>
+          </Link>
         ) : (
           <div className="flex items-center gap-3">
-            <button
-              onClick={() => setAvatarPickerOpen(true)}
+            <Link
+              href="/dashboard"
               className="shrink-0 transition-transform hover:scale-110"
-              title="Avatar de&#287;i&#351;tir"
+              title="Profil"
             >
               {avatarId ? (
                 <div className="flex h-9 w-9 items-center justify-center overflow-hidden rounded-full" style={{ backgroundColor: avatarBg }}>
@@ -137,7 +133,7 @@ export function Sidebar() {
               ) : (
                 <HexAvatar initials={initials} size="sm" gradient="from-brand-green to-brand-lime" />
               )}
-            </button>
+            </Link>
             <div className="min-w-0">
               <p className="truncate text-sm font-bold">{username}</p>
               <p className="text-xs text-white/50">
@@ -148,14 +144,6 @@ export function Sidebar() {
         )}
       </div>
 
-      {/* Avatar Se&#231;ici */}
-      <AvatarPicker
-        isOpen={avatarPickerOpen}
-        onClose={() => setAvatarPickerOpen(false)}
-        onSelect={handleAvatarSelect}
-        currentAvatar={avatarId || undefined}
-        currentBgColor={avatarBg}
-      />
 
       {/* Men&#252; */}
       <nav className="flex-1 space-y-1 overflow-y-auto p-3">
@@ -220,6 +208,7 @@ export function Sidebar() {
                       {/* T&#252;m Oyunlar */}
                       <Link
                         href="/games"
+                        onClick={() => setTimeout(() => setCurrentSearch(""), 0)}
                         className={cn(
                           "flex items-center gap-2.5 rounded-lg px-3 py-2 text-xs font-medium transition-colors",
                           pathname === "/games" && !currentSearch.includes("subject")
@@ -247,10 +236,7 @@ export function Sidebar() {
                             )}
                           >
                             <sub.icon className="h-4 w-4 shrink-0" />
-                            <div className="flex flex-col">
-                              <span>{sub.label}</span>
-                              <span className="text-[10px] text-white/30">{sub.labelEn}</span>
-                            </div>
+                            <span>{sub.label}</span>
                           </Link>
                         );
                       })}

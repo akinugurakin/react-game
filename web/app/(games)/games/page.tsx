@@ -20,6 +20,7 @@ import {
   Pen,
   MessageSquare,
   Layers,
+  Languages,
 } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -214,6 +215,46 @@ const allGames: GameItem[] = [
     avgDuration: "4-6 dk",
     href: "#",
   },
+  // ── \u0130ngilizce ──
+  {
+    id: 14,
+    title: "Vocabulary Builder",
+    description: "Resimlerle e\u015fle\u015ftirerek \u0130ngilizce kelime \u00f6\u011fren. Her g\u00fcn yeni kelimeler!",
+    icon: Languages,
+    color: "bg-brand-teal",
+    minAge: 7, maxAge: 12,
+    category: "Kelime",
+    subject: "ingilizce",
+    players: 780,
+    avgDuration: "3-5 dk",
+    href: "#",
+  },
+  {
+    id: 15,
+    title: "Grammar Quest",
+    description: "\u0130ngilizce dilbilgisi kurallar\u0131n\u0131 e\u011flenceli sorularla peki\u015ftir!",
+    icon: BookOpen,
+    color: "bg-brand-green",
+    minAge: 8, maxAge: 12,
+    category: "Dilbilgisi",
+    subject: "ingilizce",
+    players: 520,
+    avgDuration: "4-6 dk",
+    href: "#",
+  },
+  {
+    id: 16,
+    title: "Listening Lab",
+    description: "Dinledi\u011fini anla, sorular\u0131 yan\u0131tla. Dinleme becerinizi geli\u015ftir!",
+    icon: MessageSquare,
+    color: "bg-brand-dark",
+    minAge: 8, maxAge: 12,
+    category: "Dinleme",
+    subject: "ingilizce",
+    players: 390,
+    avgDuration: "5-7 dk",
+    href: "#",
+  },
 ];
 
 const subjectLabels: Record<string, string> = {
@@ -221,6 +262,7 @@ const subjectLabels: Record<string, string> = {
   fen: "Fen Bilimleri",
   sosyal: "Sosyal Bilgiler",
   turkce: "T\u00fcrk\u00e7e",
+  ingilizce: "\u0130ngilizce",
 };
 
 function GamesContent() {
