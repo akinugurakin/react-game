@@ -6,44 +6,83 @@ import { X, Check } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 /* ------------------------------------------------------------------ */
-/*  50 benzersiz avatar - DiceBear "adventurer" stili                  */
-/*  Cute, anime/ghibli tarz\u0131 ill\u00fcstrasyonlar                */
+/*  50 avatar - DiceBear "lorelei" stili (anime/ghibli tarz\u0131)     */
+/*  Skin tone kontroll\u00fc seed'ler                                  */
 /* ------------------------------------------------------------------ */
 
 const avatarSeeds = [
-  // Karakterler - hayvanlar
-  "totoro", "kiki", "ponyo", "haku", "chihiro",
-  "satsuki", "mei", "howl", "sophie", "calcifer",
-  "jiji", "mononoke", "ashitaka", "nausicaa", "laputa",
-  // Hayvanlar
-  "catbus", "kodama", "tanuki", "kitsune", "usagi",
-  "tsubame", "sakana", "kuma", "shika", "fukuro",
-  "kaeru", "cho", "ryu", "neko", "inu",
-  // Doga
-  "sakura", "momiji", "fuji", "umi", "sora",
-  "hoshi", "tsuki", "kumo", "kaze", "yuki",
+  // Karakterler
+  "luna", "hana", "yuki", "sora", "mei",
+  "kiki", "momo", "rin", "nana", "aoi",
+  "sakura", "kaede", "haru", "aki", "suzu",
+  "hinata", "miku", "riko", "yui", "emi",
+  "taro", "ken", "ryu", "shin", "kai",
+  "yuto", "hiro", "sho", "ren", "leo",
+  "akira", "takumi", "sota", "haruto", "minato",
   // Fantezi
-  "majo", "yurei", "oni", "tengu", "kappa",
-  "yokai", "shinobi", "samurai", "geisha", "ronin",
+  "kodama", "kitsune", "tanuki", "usagi", "tsubame",
+  "fuji", "tsuki", "kumo", "niji", "kaze",
   // Ekstra
-  "hikari", "yume", "kokoro", "sensei", "gakusei",
+  "sensei", "gakusei", "tomodachi", "hikari", "yume",
 ];
 
-const AVATAR_BASE = "https://api.dicebear.com/9.x/adventurer/svg";
+const AVATAR_BASE = "https://api.dicebear.com/9.x/lorelei/svg";
 
 function getAvatarUrl(seed: string): string {
-  return `${AVATAR_BASE}?seed=${seed}&backgroundColor=b6e3f4,c0aede,d1d4f9,ffd5dc,ffdfbf&backgroundType=gradientLinear`;
+  return `${AVATAR_BASE}?seed=${seed}&backgroundColor=transparent`;
 }
+
+/* ------------------------------------------------------------------ */
+/*  Arka plan renk paleti                                              */
+/* ------------------------------------------------------------------ */
+
+const bgColors = [
+  // Pastel tonlar
+  { name: "Buz Mavisi", value: "#DBEAFE" },
+  { name: "Lavanta", value: "#E9D5FF" },
+  { name: "G\u00fcl", value: "#FECDD3" },
+  { name: "Seftali", value: "#FED7AA" },
+  { name: "Limon", value: "#FEF08A" },
+  { name: "Nane", value: "#A7F3D0" },
+  { name: "G\u00f6ky\u00fcz\u00fc", value: "#BAE6FD" },
+  { name: "Leylak", value: "#DDD6FE" },
+  // Canl\u0131 tonlar
+  { name: "Teal", value: "#99F6E4" },
+  { name: "Lime", value: "#D9F99D" },
+  { name: "Mercan", value: "#FECACA" },
+  { name: "Amber", value: "#FDE68A" },
+  // N\u00f6tr tonlar
+  { name: "Krem", value: "#F5F4EF" },
+  { name: "Gri", value: "#E5E7EB" },
+  { name: "Beyaz", value: "#FFFFFF" },
+  { name: "Koyu", value: "#042940" },
+];
+
+/* ------------------------------------------------------------------ */
+/*  COMPONENT                                                          */
+/* ------------------------------------------------------------------ */
 
 type AvatarPickerProps = {
   isOpen: boolean;
   onClose: () => void;
-  onSelect: (avatarUrl: string) => void;
+  onSelect: (avatarUrl: string, bgColor: string) => void;
   currentAvatar?: string;
+  currentBgColor?: string;
 };
 
-export function AvatarPicker({ isOpen, onClose, onSelect, currentAvatar }: AvatarPickerProps) {
-  const [selected, setSelected] = useState<string | null>(currentAvatar || null);
+export function AvatarPicker({
+  isOpen,
+  onClose,
+  onSelect,
+  currentAvatar,
+  currentBgColor,
+}: AvatarPickerProps) {
+  const [selectedAvatar, setSelectedAvatar] = useState<string | null>(
+    currentAvatar || null
+  );
+  const [selectedBg, setSelectedBg] = useState<string>(
+    currentBgColor || "#DBEAFE"
+  );
 
   if (!isOpen) return null;
 
@@ -56,7 +95,7 @@ export function AvatarPicker({ isOpen, onClose, onSelect, currentAvatar }: Avata
       />
 
       {/* Modal */}
-      <div className="relative mx-4 flex max-h-[85vh] w-full max-w-lg flex-col overflow-hidden rounded-2xl bg-white shadow-2xl">
+      <div className="relative mx-4 flex max-h-[90vh] w-full max-w-2xl flex-col overflow-hidden rounded-2xl bg-white shadow-2xl">
         {/* Header */}
         <div className="flex items-center justify-between border-b px-6 py-4">
           <div>
@@ -64,7 +103,7 @@ export function AvatarPicker({ isOpen, onClose, onSelect, currentAvatar }: Avata
               Avatar Se&#231;
             </h2>
             <p className="text-sm text-[#042940]/50">
-              Profilini ki&#351;iselle&#351;tir
+              Karakterini ve arka plan rengini se&#231;
             </p>
           </div>
           <button
@@ -75,39 +114,97 @@ export function AvatarPicker({ isOpen, onClose, onSelect, currentAvatar }: Avata
           </button>
         </div>
 
-        {/* Avatar Grid */}
-        <div className="flex-1 overflow-y-auto p-6">
-          <div className="grid grid-cols-5 gap-3">
-            {avatarSeeds.map((seed) => {
-              const url = getAvatarUrl(seed);
-              const isSelected = selected === url;
-              return (
-                <button
-                  key={seed}
-                  onClick={() => setSelected(url)}
-                  className={cn(
-                    "group relative aspect-square overflow-hidden rounded-2xl border-2 transition-all duration-200",
-                    isSelected
-                      ? "border-[#9FC131] ring-2 ring-[#9FC131]/30 scale-105"
-                      : "border-transparent hover:border-[#042940]/10 hover:scale-105"
-                  )}
-                >
-                  <img
-                    src={url}
-                    alt={seed}
-                    className="h-full w-full object-cover"
-                    loading="lazy"
-                  />
-                  {isSelected && (
-                    <div className="absolute inset-0 flex items-center justify-center bg-[#9FC131]/20">
-                      <div className="flex h-6 w-6 items-center justify-center rounded-full bg-[#9FC131]">
-                        <Check className="h-4 w-4 text-white" />
+        {/* Content */}
+        <div className="flex-1 overflow-y-auto">
+          {/* \u00d6nizleme */}
+          {selectedAvatar && (
+            <div className="flex justify-center border-b bg-[#FAFAFA] py-6">
+              <div
+                className="flex h-24 w-24 items-center justify-center overflow-hidden rounded-full shadow-lg"
+                style={{ backgroundColor: selectedBg }}
+              >
+                <img
+                  src={selectedAvatar}
+                  alt="Se\u00e7ilen avatar"
+                  className="h-20 w-20"
+                />
+              </div>
+            </div>
+          )}
+
+          {/* Arka plan rengi se\u00e7imi */}
+          <div className="border-b px-6 py-4">
+            <p className="mb-3 text-sm font-bold text-[#042940]">
+              Arka Plan Rengi
+            </p>
+            <div className="flex flex-wrap gap-2">
+              {bgColors.map((color) => {
+                const isSelected = selectedBg === color.value;
+                return (
+                  <button
+                    key={color.value}
+                    onClick={() => setSelectedBg(color.value)}
+                    title={color.name}
+                    className={cn(
+                      "h-8 w-8 rounded-full border-2 transition-all",
+                      isSelected
+                        ? "scale-110 border-[#9FC131] ring-2 ring-[#9FC131]/30"
+                        : "border-gray-200 hover:scale-110 hover:border-gray-300"
+                    )}
+                    style={{ backgroundColor: color.value }}
+                  >
+                    {isSelected && (
+                      <Check
+                        className={cn(
+                          "mx-auto h-4 w-4",
+                          color.value === "#042940"
+                            ? "text-white"
+                            : "text-[#042940]"
+                        )}
+                      />
+                    )}
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* Avatar grid */}
+          <div className="px-6 py-4">
+            <p className="mb-3 text-sm font-bold text-[#042940]">
+              Karakter Se&#231;
+            </p>
+            <div className="grid grid-cols-6 gap-3 sm:grid-cols-8">
+              {avatarSeeds.map((seed) => {
+                const url = getAvatarUrl(seed);
+                const isSelected = selectedAvatar === url;
+                return (
+                  <button
+                    key={seed}
+                    onClick={() => setSelectedAvatar(url)}
+                    className={cn(
+                      "group relative flex aspect-square items-center justify-center overflow-hidden rounded-2xl border-2 transition-all duration-200",
+                      isSelected
+                        ? "border-[#9FC131] ring-2 ring-[#9FC131]/30 scale-105"
+                        : "border-transparent hover:border-[#042940]/10 hover:scale-105"
+                    )}
+                    style={{ backgroundColor: selectedBg }}
+                  >
+                    <img
+                      src={url}
+                      alt={seed}
+                      className="h-[85%] w-[85%]"
+                      loading="lazy"
+                    />
+                    {isSelected && (
+                      <div className="absolute bottom-0.5 right-0.5 flex h-4 w-4 items-center justify-center rounded-full bg-[#9FC131]">
+                        <Check className="h-3 w-3 text-white" />
                       </div>
-                    </div>
-                  )}
-                </button>
-              );
-            })}
+                    )}
+                  </button>
+                );
+              })}
+            </div>
           </div>
         </div>
 
@@ -122,15 +219,15 @@ export function AvatarPicker({ isOpen, onClose, onSelect, currentAvatar }: Avata
           </Button>
           <Button
             onClick={() => {
-              if (selected) {
-                onSelect(selected);
+              if (selectedAvatar) {
+                onSelect(selectedAvatar, selectedBg);
                 onClose();
               }
             }}
-            disabled={!selected}
+            disabled={!selectedAvatar}
             className="bg-[#005C53] text-white hover:bg-[#005C53]/90 disabled:opacity-40"
           >
-            Se&#231;
+            Kaydet
           </Button>
         </div>
       </div>

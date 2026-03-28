@@ -43,20 +43,22 @@ export function Sidebar() {
     pathname.startsWith("/games")
   );
   const [avatarPickerOpen, setAvatarPickerOpen] = useState(false);
-  const [avatarUrl, setAvatarUrl] = useState<string | null>(
-    () => {
-      if (typeof window !== "undefined") {
-        return localStorage.getItem("lumo-avatar") || null;
-      }
-      return null;
-    }
-  );
+  const [avatarUrl, setAvatarUrl] = useState<string | null>(() => {
+    if (typeof window !== "undefined") return localStorage.getItem("lumo-avatar") || null;
+    return null;
+  });
+  const [avatarBg, setAvatarBg] = useState<string>(() => {
+    if (typeof window !== "undefined") return localStorage.getItem("lumo-avatar-bg") || "#DBEAFE";
+    return "#DBEAFE";
+  });
   const username = user?.username || "Oyuncu";
   const initials = username.slice(0, 2).toUpperCase();
 
-  const handleAvatarSelect = (url: string) => {
+  const handleAvatarSelect = (url: string, bgColor: string) => {
     setAvatarUrl(url);
+    setAvatarBg(bgColor);
     localStorage.setItem("lumo-avatar", url);
+    localStorage.setItem("lumo-avatar-bg", bgColor);
   };
 
   return (
@@ -94,7 +96,9 @@ export function Sidebar() {
             className="transition-transform hover:scale-110"
           >
             {avatarUrl ? (
-              <img src={avatarUrl} alt="Avatar" className="h-9 w-9 rounded-full" />
+              <div className="flex h-9 w-9 items-center justify-center overflow-hidden rounded-full" style={{ backgroundColor: avatarBg }}>
+                <img src={avatarUrl} alt="Avatar" className="h-8 w-8" />
+              </div>
             ) : (
               <HexAvatar initials={initials} size="sm" gradient="from-brand-green to-brand-lime" />
             )}
@@ -107,7 +111,9 @@ export function Sidebar() {
               title="Avatar de&#287;i&#351;tir"
             >
               {avatarUrl ? (
-                <img src={avatarUrl} alt="Avatar" className="h-9 w-9 rounded-full" />
+                <div className="flex h-9 w-9 items-center justify-center overflow-hidden rounded-full" style={{ backgroundColor: avatarBg }}>
+                  <img src={avatarUrl} alt="Avatar" className="h-8 w-8" />
+                </div>
               ) : (
                 <HexAvatar initials={initials} size="sm" gradient="from-brand-green to-brand-lime" />
               )}
@@ -128,6 +134,7 @@ export function Sidebar() {
         onClose={() => setAvatarPickerOpen(false)}
         onSelect={handleAvatarSelect}
         currentAvatar={avatarUrl || undefined}
+        currentBgColor={avatarBg}
       />
 
       {/* Men&#252; */}
