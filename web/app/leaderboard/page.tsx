@@ -78,17 +78,21 @@ export default function LeaderboardPage() {
     async function fetchLeaderboard() {
       try {
         const data = await fetchWithRetry();
-        setPlayers(
-          data.map((d: any, i: number) => ({
-            rank: i + 1,
-            username: d.username,
-            score: d.score,
-            correct_count: d.correct_count,
-            duration_seconds: d.duration_seconds,
-          }))
-        );
+        if (Array.isArray(data) && data.length > 0) {
+          setPlayers(
+            data.map((d: any, i: number) => ({
+              rank: i + 1,
+              username: d.username,
+              score: d.score,
+              correct_count: d.correct_count,
+              duration_seconds: d.duration_seconds,
+            }))
+          );
+        } else {
+          setError("API boş veri döndü (length: " + (data?.length ?? "null") + ")");
+        }
       } catch (err: any) {
-        setError(err?.message || "API hatası");
+        setError(err?.message || "Bilinmeyen hata");
       } finally {
         setLoading(false);
       }
