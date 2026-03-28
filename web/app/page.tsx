@@ -28,6 +28,7 @@ import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 import { useAuthStore, useAuthHydrated } from "@/lib/auth";
 import { useRouter } from "next/navigation";
+import { BackgroundSymbols } from "@/components/ui/background-symbols";
 
 /* ------------------------------------------------------------------ */
 /*  RENK PALETI                                                        */
@@ -199,6 +200,7 @@ export default function HomePage() {
 
   return (
     <div className="relative flex min-h-screen flex-col bg-[#F5F4EF]">
+      <BackgroundSymbols />
       <Header />
 
       <main className="flex-1">
