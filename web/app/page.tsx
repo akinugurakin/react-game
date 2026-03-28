@@ -22,7 +22,6 @@ import { Card, CardContent } from "@/components/ui/card";
 import { HexAvatar } from "@/components/ui/hex-avatar";
 import { BadgeIcon, ALL_BADGES } from "@/components/ui/badge-icon";
 import { FloatingIcons } from "@/components/ui/floating-icons";
-import { GameIllustration } from "@/components/ui/decorative";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 import { PageLines } from "@/components/ui/page-lines";
@@ -47,10 +46,10 @@ const features = [
 ];
 
 const popularGames = [
-  { id: 1, title: "Matematik Yarışması", description: "Toplama ve çıkarma ile hızını test et", icon: Calculator, illustration: "math" as const, players: "1.2K" },
-  { id: 2, title: "Kelime Avı", description: "Harflerden anlamlı kelimeler oluştur", icon: BookOpen, illustration: "words" as const, players: "890" },
-  { id: 3, title: "Hafıza Kartları", description: "Eşleşen kartları bul ve hafızanı güçlendir", icon: Brain, illustration: "memory" as const, players: "1.1K" },
-  { id: 4, title: "Bulmaca Dünyası", description: "Şekilleri doğru yere yerleştir", icon: Puzzle, illustration: "puzzle" as const, players: "670" },
+  { id: 1, title: "Matematik Yarışması", description: "Toplama ve çıkarma ile hızını test et", icon: Calculator, image: "https://images.unsplash.com/photo-1596495578065-6e0763fa1178?w=400&h=250&fit=crop", players: "1.2K" },
+  { id: 2, title: "Kelime Avı", description: "Harflerden anlamlı kelimeler oluştur", icon: BookOpen, image: "https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?w=400&h=250&fit=crop", players: "890" },
+  { id: 3, title: "Hafıza Kartları", description: "Eşleşen kartları bul ve hafızanı güçlendir", icon: Brain, image: "https://images.unsplash.com/photo-1606092195730-5d7b9af1efc5?w=400&h=250&fit=crop", players: "1.1K" },
+  { id: 4, title: "Bulmaca Dünyası", description: "Şekilleri doğru yere yerleştir", icon: Puzzle, image: "https://images.unsplash.com/photo-1611996515299-d2a9b2e8b45c?w=400&h=250&fit=crop", players: "670" },
 ];
 
 const topPlayers = [
@@ -182,22 +181,23 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* ===== 3. POPÜLER OYUNLAR — #005C53 teal ===== */}
-        <section className="relative py-24 bg-brand-teal text-white overflow-hidden">
-          <div className="absolute top-0 left-0 right-0 rotate-180">
-            <svg viewBox="0 0 1440 80" className="w-full" preserveAspectRatio="none"><path d="M0,40 C360,80 720,0 1080,40 C1260,60 1380,50 1440,40 L1440,80 L0,80 Z" className="fill-background" /></svg>
-          </div>
+        {/* ===== 3. POPÜLER OYUNLAR — Sand bant ===== */}
+        <section className="relative py-24 bg-brand-sand/15 overflow-hidden">
           <div className="container relative">
             <div className="mb-16 text-center">
-              <motion.span initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} className="mb-2 inline-block rounded-full bg-brand-lime/20 px-4 py-1 text-sm font-semibold text-brand-lime">Keşfet</motion.span>
+              <motion.span initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} className="mb-2 inline-block rounded-full bg-brand-teal/10 px-4 py-1 text-sm font-semibold text-brand-teal">Keşfet</motion.span>
               <h2 className="mt-2 text-3xl font-extrabold md:text-4xl">Popüler Oyunlar</h2>
-              <p className="mt-4 text-lg text-white/60">En çok oynanan eğitici oyunlarımız</p>
+              <p className="mt-4 text-lg text-muted-foreground">En çok oynanan eğitici oyunlarımız</p>
             </div>
             <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
               {popularGames.map((game, index) => (
                 <motion.div key={game.id} initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: index * 0.1 }}>
                   <Card className="group cursor-pointer overflow-hidden transition-all duration-300 hover:-translate-y-2 hover:shadow-xl">
-                    <div className="relative overflow-hidden"><GameIllustration type={game.illustration} /><div className="absolute bottom-3 right-3 rounded-full bg-white/90 p-2 shadow-sm opacity-0 transition-all group-hover:opacity-100 group-hover:scale-110"><Play className="h-4 w-4 text-brand-dark" /></div></div>
+                    <div className="relative overflow-hidden h-40">
+                      <img src={game.image} alt={game.title} className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
+                      <div className="absolute bottom-3 right-3 rounded-full bg-white/90 p-2 shadow-sm opacity-0 transition-all group-hover:opacity-100 group-hover:scale-110"><Play className="h-4 w-4 text-brand-dark" /></div>
+                    </div>
                     <CardContent className="p-5">
                       <h3 className="font-bold">{game.title}</h3>
                       <p className="mt-1 text-sm text-muted-foreground">{game.description}</p>
@@ -210,9 +210,6 @@ export default function HomePage() {
                 </motion.div>
               ))}
             </div>
-          </div>
-          <div className="absolute bottom-0 left-0 right-0">
-            <svg viewBox="0 0 1440 80" className="w-full" preserveAspectRatio="none"><path d="M0,40 C360,80 720,0 1080,40 C1260,60 1380,50 1440,40 L1440,80 L0,80 Z" className="fill-background" /></svg>
           </div>
         </section>
 
@@ -236,8 +233,8 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* ===== 5. EN İYİ OYUNCULAR — Sand bant ===== */}
-        <section className="relative overflow-hidden py-24 bg-brand-sand/15">
+        {/* ===== 5. EN İYİ OYUNCULAR — Beyaz ===== */}
+        <section className="relative overflow-hidden py-24">
           <div className="container relative">
             <div className="mb-16 text-center">
               <motion.span initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} className="mb-2 inline-block rounded-full bg-brand-dark/10 px-4 py-1 text-sm font-semibold text-brand-dark">🏆 Sıralama</motion.span>
