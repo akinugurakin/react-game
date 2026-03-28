@@ -112,32 +112,32 @@ export function PageLines() {
       {/* ====== DALGALI ÇİZGİLER ====== */}
       <motion.svg style={{ y: y1 }} className="absolute inset-0 h-[500vh] w-full opacity-[0.07]" viewBox="0 0 1440 5000" fill="none" preserveAspectRatio="none">
         {Array.from({ length: 10 }).map((_, i) => (
-          <path key={`wa-${i}`} d={`M 0 ${i * 500 + 250} Q 360 ${i * 500 + 80} 720 ${i * 500 + 250} Q 1080 ${i * 500 + 420} 1440 ${i * 500 + 250}`} stroke="#384001" strokeWidth="1.5" />
+          <path key={`wa-${i}`} d={`M 0 ${i * 500 + 250} Q 360 ${i * 500 + 80} 720 ${i * 500 + 250} Q 1080 ${i * 500 + 420} 1440 ${i * 500 + 250}`} stroke="#042940" strokeWidth="1.5" />
         ))}
       </motion.svg>
       <motion.svg style={{ y: y2 }} className="absolute inset-0 h-[500vh] w-full opacity-[0.05]" viewBox="0 0 1440 5000" fill="none" preserveAspectRatio="none">
         {Array.from({ length: 10 }).map((_, i) => (
-          <path key={`wb-${i}`} d={`M 0 ${i * 500 + 120} Q 360 ${i * 500 + 350} 720 ${i * 500 + 120} Q 1080 ${i * 500 - 60} 1440 ${i * 500 + 120}`} stroke="#384001" strokeWidth="1.2" />
+          <path key={`wb-${i}`} d={`M 0 ${i * 500 + 120} Q 360 ${i * 500 + 350} 720 ${i * 500 + 120} Q 1080 ${i * 500 - 60} 1440 ${i * 500 + 120}`} stroke="#042940" strokeWidth="1.2" />
         ))}
       </motion.svg>
 
       {/* ====== MATEMATİK ====== */}
       {mathItems.map(({ x, y, text, size, l }, i) => (
-        <motion.div key={`math-${i}`} className={`absolute ${size} font-mono font-bold select-none`} style={{ y: layers[l], left: `${x}%`, top: `${y}%`, opacity: 0.08, color: "#384001" }}>
+        <motion.div key={`math-${i}`} className={`absolute ${size} font-mono font-bold select-none`} style={{ y: layers[l], left: `${x}%`, top: `${y}%`, opacity: 0.08, color: "#042940" }}>
           {text}
         </motion.div>
       ))}
 
       {/* ====== FİZİK ====== */}
       {physicsItems.map(({ x, y, text, size, l }, i) => (
-        <motion.div key={`phys-${i}`} className={`absolute ${size} font-mono font-bold select-none`} style={{ y: layers[l], left: `${x}%`, top: `${y}%`, opacity: 0.08, color: "#384001" }}>
+        <motion.div key={`phys-${i}`} className={`absolute ${size} font-mono font-bold select-none`} style={{ y: layers[l], left: `${x}%`, top: `${y}%`, opacity: 0.08, color: "#042940" }}>
           {text}
         </motion.div>
       ))}
 
       {/* ====== KİMYA ====== */}
       {chemItems.map(({ x, y, text, size, l }, i) => (
-        <motion.div key={`chem-${i}`} className={`absolute ${size} font-mono font-bold select-none`} style={{ y: layers[l], left: `${x}%`, top: `${y}%`, opacity: 0.08, color: "#384001" }}>
+        <motion.div key={`chem-${i}`} className={`absolute ${size} font-mono font-bold select-none`} style={{ y: layers[l], left: `${x}%`, top: `${y}%`, opacity: 0.08, color: "#042940" }}>
           {text}
         </motion.div>
       ))}
@@ -167,13 +167,13 @@ export function PageLines() {
       {atoms.map(({ x, y, s, l }, i) => (
         <motion.div key={`atom-${i}`} className="absolute" style={{ y: layers[l], left: `${x}%`, top: `${y}%`, opacity: 0.09 }}>
           <svg width={s} height={s} viewBox="0 0 200 200" fill="none">
-            <circle cx="100" cy="100" r="12" fill="#384001" opacity="0.4" />
-            <ellipse cx="100" cy="100" rx="80" ry="30" stroke="#384001" strokeWidth="1.5" transform="rotate(0 100 100)" />
-            <ellipse cx="100" cy="100" rx="80" ry="30" stroke="#384001" strokeWidth="1.5" transform="rotate(60 100 100)" />
-            <ellipse cx="100" cy="100" rx="80" ry="30" stroke="#F29F05" strokeWidth="1.5" transform="rotate(120 100 100)" />
-            <circle cx="180" cy="100" r="5" fill="#384001" opacity="0.6" />
-            <circle cx="60" cy="58" r="5" fill="#384001" opacity="0.6" />
-            <circle cx="60" cy="142" r="5" fill="#F29F05" opacity="0.6" />
+            <circle cx="100" cy="100" r="12" fill="#042940" opacity="0.4" />
+            <ellipse cx="100" cy="100" rx="80" ry="30" stroke="#042940" strokeWidth="1.5" transform="rotate(0 100 100)" />
+            <ellipse cx="100" cy="100" rx="80" ry="30" stroke="#042940" strokeWidth="1.5" transform="rotate(60 100 100)" />
+            <ellipse cx="100" cy="100" rx="80" ry="30" stroke="#9FC131" strokeWidth="1.5" transform="rotate(120 100 100)" />
+            <circle cx="180" cy="100" r="5" fill="#042940" opacity="0.6" />
+            <circle cx="60" cy="58" r="5" fill="#042940" opacity="0.6" />
+            <circle cx="60" cy="142" r="5" fill="#9FC131" opacity="0.6" />
           </svg>
         </motion.div>
       ))}
@@ -182,12 +182,12 @@ export function PageLines() {
       {globes.map(({ x, y, s, l }, i) => (
         <motion.div key={`globe-${i}`} className="absolute" style={{ y: layers[l], left: `${x}%`, top: `${y}%`, opacity: 0.08 }}>
           <svg width={s} height={s} viewBox="0 0 200 200" fill="none">
-            <circle cx="100" cy="100" r="90" stroke="#384001" strokeWidth="1.5" />
-            <ellipse cx="100" cy="100" rx="90" ry="20" stroke="#384001" strokeWidth="1" />
-            <ellipse cx="100" cy="70" rx="75" ry="15" stroke="#384001" strokeWidth="1" />
-            <ellipse cx="100" cy="130" rx="75" ry="15" stroke="#384001" strokeWidth="1" />
-            <ellipse cx="100" cy="100" rx="20" ry="90" stroke="#384001" strokeWidth="1" />
-            <ellipse cx="100" cy="100" rx="55" ry="90" stroke="#384001" strokeWidth="1" />
+            <circle cx="100" cy="100" r="90" stroke="#042940" strokeWidth="1.5" />
+            <ellipse cx="100" cy="100" rx="90" ry="20" stroke="#042940" strokeWidth="1" />
+            <ellipse cx="100" cy="70" rx="75" ry="15" stroke="#042940" strokeWidth="1" />
+            <ellipse cx="100" cy="130" rx="75" ry="15" stroke="#042940" strokeWidth="1" />
+            <ellipse cx="100" cy="100" rx="20" ry="90" stroke="#042940" strokeWidth="1" />
+            <ellipse cx="100" cy="100" rx="55" ry="90" stroke="#042940" strokeWidth="1" />
           </svg>
         </motion.div>
       ))}
@@ -197,13 +197,13 @@ export function PageLines() {
         <motion.div key={`tri-${i}`} className="absolute" style={{ y: layers[l], left: `${x}%`, top: `${y}%`, opacity: 0.08 }}>
           <svg width={s} height={s} viewBox="0 0 160 160" fill="none">
             {/* Dik üçgen */}
-            <path d="M 20 140 L 20 30 L 140 140 Z" stroke="#384001" strokeWidth="2" fill="none" />
+            <path d="M 20 140 L 20 30 L 140 140 Z" stroke="#042940" strokeWidth="2" fill="none" />
             {/* Dik açı işareti */}
-            <path d="M 20 120 L 40 120 L 40 140" stroke="#384001" strokeWidth="1.5" fill="none" />
+            <path d="M 20 120 L 40 120 L 40 140" stroke="#042940" strokeWidth="1.5" fill="none" />
             {/* Kenar etiketleri */}
-            <text x="8" y="88" fill="#384001" fontSize="14" fontFamily="monospace" opacity="0.6">a</text>
-            <text x="75" y="155" fill="#384001" fontSize="14" fontFamily="monospace" opacity="0.6">b</text>
-            <text x="78" y="78" fill="#384001" fontSize="14" fontFamily="monospace" opacity="0.6">c</text>
+            <text x="8" y="88" fill="#042940" fontSize="14" fontFamily="monospace" opacity="0.6">a</text>
+            <text x="75" y="155" fill="#042940" fontSize="14" fontFamily="monospace" opacity="0.6">b</text>
+            <text x="78" y="78" fill="#042940" fontSize="14" fontFamily="monospace" opacity="0.6">c</text>
           </svg>
         </motion.div>
       ))}
