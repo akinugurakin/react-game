@@ -52,13 +52,16 @@ const gradients = [
 export default function LeaderboardPage() {
   const [players, setPlayers] = useState<LeaderboardPlayer[]>([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
 
   useEffect(() => {
     async function fetchLeaderboard() {
       try {
-        const data = await api.get<any[]>("/games/1/leaderboard");
+        const res = await fetch("https://react-game-api.onrender.com/games/1/leaderboard");
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        const data = await res.json();
         setPlayers(
-          data.map((d, i) => ({
+          data.map((d: any, i: number) => ({
             rank: i + 1,
             username: d.username,
             score: d.score,
@@ -66,8 +69,8 @@ export default function LeaderboardPage() {
             duration_seconds: d.duration_seconds,
           }))
         );
-      } catch {
-        // API hatası — boş göster
+      } catch (err: any) {
+        setError(err?.message || "API hatası");
       } finally {
         setLoading(false);
       }
@@ -104,6 +107,7 @@ export default function LeaderboardPage() {
               <Trophy className="mx-auto mb-4 h-16 w-16 text-muted-foreground/30" />
               <h2 className="text-xl font-bold text-muted-foreground">Henüz kimse oynamamış</h2>
               <p className="mt-2 text-muted-foreground">İlk skor sana ait olabilir!</p>
+              {error && <p className="mt-4 text-sm text-red-500">Hata: {error}</p>}
             </div>
           ) : (
             <>
