@@ -417,9 +417,8 @@ const allSymbols: SymbolItem[] = [
 /*  YERLESIM                                                           */
 /* ================================================================== */
 
-function seededRandom(seed: number) {
-  const x = Math.sin(seed * 9301 + 49297) * 233280;
-  return x - Math.floor(x);
+function rand() {
+  return Math.random();
 }
 
 const BLOCK_COUNT = 14;
@@ -445,35 +444,28 @@ function generateBlocks(): PlacedItem[][] {
   for (let b = 0; b < BLOCK_COUNT; b++) {
     const blockItems: PlacedItem[] = [];
     for (let i = 0; i < ITEMS_PER_BLOCK; i++) {
-      const seed = b * 1000 + i;
-      const idx = Math.floor(seededRandom(seed * 13 + 7) * allSymbols.length);
+      const idx = Math.floor(rand() * allSymbols.length);
       const symbol = allSymbols[idx];
 
       const isSvg = symbol.type === "svg";
-      // SVG'ler buyuk: 60-180px, metinler: 20-56px
       const baseSize = isSvg ? 60 : 20;
       const sizeRange = isSvg ? 120 : 36;
-      // Globe ve buyuk cizimler icin ekstra buyuk
       const isGlobe = symbol.Component === GlobeSvg;
       const isTurkey = symbol.Component === TurkeySvg;
       const isAtaturk = symbol.Component === AtaturkSignSvg;
       const extraSize = isGlobe ? 60 : (isTurkey || isAtaturk) ? 30 : 0;
-      // Her elemana ucusma animasyonu: sure ve gecikme
-      const floatDuration = 4 + seededRandom(seed * 59 + 41) * 6; // 4-10s
-      const floatDelay = seededRandom(seed * 61 + 43) * -10; // -10 - 0s (negatif = offset baslangic)
-      const floatDistance = 6 + Math.floor(seededRandom(seed * 67 + 47) * 12); // 6-18px
 
       blockItems.push({
         symbol,
-        x: seededRandom(seed * 17 + 3) * 90 + 5,
-        y: seededRandom(seed * 23 + 11) * 86 + 7,
-        size: baseSize + Math.floor(seededRandom(seed * 31 + 5) * sizeRange) + extraSize,
-        opacity: 0.04 + seededRandom(seed * 37 + 19) * 0.06,
-        rotation: Math.floor(seededRandom(seed * 41 + 29) * 30) - 15,
-        parallax: seededRandom(seed * 47 + 31) > 0.3 ? 0.02 + seededRandom(seed * 53 + 37) * 0.05 : 0,
-        floatDuration,
-        floatDelay,
-        floatDistance,
+        x: rand() * 90 + 5,
+        y: rand() * 86 + 7,
+        size: baseSize + Math.floor(rand() * sizeRange) + extraSize,
+        opacity: 0.04 + rand() * 0.06,
+        rotation: Math.floor(rand() * 30) - 15,
+        parallax: rand() > 0.3 ? 0.02 + rand() * 0.05 : 0,
+        floatDuration: 4 + rand() * 6,
+        floatDelay: rand() * -10,
+        floatDistance: 6 + Math.floor(rand() * 12),
         key: `${b}-${i}`,
       });
     }
@@ -482,13 +474,12 @@ function generateBlocks(): PlacedItem[][] {
   return blocks;
 }
 
-const blocks = generateBlocks();
-
 /* ================================================================== */
 /*  COMPONENT                                                          */
 /* ================================================================== */
 
 export function BackgroundSymbols() {
+  const [blocks] = useState(() => generateBlocks());
   const [scrollY, setScrollY] = useState(0);
 
   useEffect(() => {
@@ -521,7 +512,7 @@ export function BackgroundSymbols() {
           {blockItems.map((el) => {
             const offsetY = el.parallax > 0 ? scrollY * el.parallax : 0;
             // 8 farkli ucusma varyasyonu arasinda dagit
-            const floatVariant = Math.floor(seededRandom(parseInt(el.key.replace("-", "")) * 7 + 3) * 8);
+            const floatVariant = Math.floor(Math.abs(Math.sin(parseInt(el.key.replace("-", "")) * 7 + 3)) * 8);
             return (
               <div
                 key={el.key}
