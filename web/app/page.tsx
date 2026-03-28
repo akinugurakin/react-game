@@ -140,12 +140,16 @@ export default function HomePage() {
       <Header />
 
       <main className="flex-1">
-        {/* Hero */}
-        <section className="relative overflow-hidden">
-          <GlowOrb className="right-0 top-0" color="bg-brand-teal/8" size="w-[600px] h-[600px]" />
-          <GlowOrb className="-left-32 bottom-0" color="bg-brand-green/8" size="w-[500px] h-[500px]" />
-          <GlowOrb className="left-1/2 top-1/3" color="bg-brand-dark/5" size="w-[300px] h-[300px]" />
+        {/* ===== HERO — Koyu lacivert arka plan ===== */}
+        <section className="relative overflow-hidden bg-brand-dark text-white">
           <FloatingIcons />
+          {/* Dekoratif dalgalı çizgi */}
+          <div className="absolute inset-0 pointer-events-none overflow-hidden">
+            <svg className="absolute -left-20 top-20 w-[400px] opacity-10" viewBox="0 0 200 200"><path d="M 0 100 Q 50 50 100 100 Q 150 150 200 100" fill="none" stroke="#9FC131" strokeWidth="2"/></svg>
+            <svg className="absolute right-10 bottom-20 w-[350px] opacity-10" viewBox="0 0 200 200"><path d="M 0 100 Q 50 150 100 100 Q 150 50 200 100" fill="none" stroke="#DBF227" strokeWidth="2"/></svg>
+            <div className="absolute right-0 top-0 h-96 w-96 rounded-full bg-brand-teal/10 blur-3xl" />
+            <div className="absolute -left-20 bottom-0 h-72 w-72 rounded-full bg-brand-green/10 blur-3xl" />
+          </div>
 
           <div className="container relative py-24 md:py-32">
             <div className="flex flex-col items-center text-center">
@@ -153,10 +157,10 @@ export default function HomePage() {
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6 }}
-                className="mb-6 flex items-center gap-2 rounded-full border bg-background/80 px-4 py-1.5 shadow-sm backdrop-blur-sm"
+                className="mb-6 flex items-center gap-2 rounded-full bg-white/10 px-4 py-1.5 backdrop-blur-sm"
               >
                 <Star className="h-4 w-4 text-brand-lime" />
-                <span className="text-sm font-medium">
+                <span className="text-sm font-medium text-white/90">
                   6-12 yaş arası çocuklar için
                 </span>
               </motion.div>
@@ -168,9 +172,7 @@ export default function HomePage() {
                 className="max-w-4xl text-5xl font-extrabold leading-tight tracking-tight md:text-6xl lg:text-7xl"
               >
                 Eğlenerek{" "}
-                <span className="bg-gradient-to-r from-brand-dark via-brand-teal to-brand-green bg-clip-text text-transparent">
-                  Öğrenmenin
-                </span>{" "}
+                <span className="text-brand-lime">Öğrenmenin</span>{" "}
                 En Güzel Yolu
               </motion.h1>
 
@@ -178,7 +180,7 @@ export default function HomePage() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.3 }}
-                className="mt-6 max-w-2xl text-xl text-muted-foreground"
+                className="mt-6 max-w-2xl text-xl text-white/70"
               >
                 Eğitici mini oyunlarla çocuğunuzun matematik, dil ve problem
                 çözme becerilerini geliştirin. Liderlik tablosuyla motivasyonu
@@ -191,12 +193,12 @@ export default function HomePage() {
                 transition={{ duration: 0.6, delay: 0.45 }}
                 className="mt-10 flex flex-col gap-4 sm:flex-row"
               >
-                <Button asChild size="lg" className="text-lg px-8 shadow-lg shadow-primary/25">
+                <Button asChild size="lg" className="bg-brand-lime text-brand-dark text-lg px-8 shadow-lg shadow-brand-lime/25 hover:bg-brand-lime/90 font-bold">
                   <Link href="/register">
                     Hemen Başla <ArrowRight className="ml-2 h-5 w-5" />
                   </Link>
                 </Button>
-                <Button asChild variant="outline" size="lg" className="text-lg px-8">
+                <Button asChild variant="outline" size="lg" className="text-lg px-8 border-white/30 text-white hover:bg-white/10">
                   <Link href="/login">Giriş Yap</Link>
                 </Button>
               </motion.div>
@@ -206,32 +208,36 @@ export default function HomePage() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.6 }}
-                className="mt-16 flex flex-wrap justify-center gap-8 rounded-2xl border bg-background/60 px-8 py-5 shadow-sm backdrop-blur-sm"
+                className="mt-16 flex flex-wrap justify-center gap-8 rounded-2xl bg-white/5 border border-white/10 px-8 py-5 backdrop-blur-sm"
               >
                 <div>
-                  <p className="text-3xl font-extrabold bg-gradient-to-r from-brand-dark to-brand-teal bg-clip-text text-transparent">3.2K+</p>
-                  <p className="text-sm text-muted-foreground">Aktif Oyuncu</p>
+                  <p className="text-3xl font-extrabold text-brand-lime">3.2K+</p>
+                  <p className="text-sm text-white/60">Aktif Oyuncu</p>
                 </div>
-                <div className="h-12 w-px bg-border" />
+                <div className="h-12 w-px bg-white/10" />
                 <div>
-                  <p className="text-3xl font-extrabold bg-gradient-to-r from-brand-dark to-brand-teal bg-clip-text text-transparent">4</p>
-                  <p className="text-sm text-muted-foreground">Eğitici Oyun</p>
+                  <p className="text-3xl font-extrabold text-brand-green">4</p>
+                  <p className="text-sm text-white/60">Eğitici Oyun</p>
                 </div>
-                <div className="h-12 w-px bg-border" />
+                <div className="h-12 w-px bg-white/10" />
                 <div>
-                  <p className="text-3xl font-extrabold bg-gradient-to-r from-brand-green to-brand-teal bg-clip-text text-transparent">50K+</p>
-                  <p className="text-sm text-muted-foreground">Oynanan Oyun</p>
+                  <p className="text-3xl font-extrabold text-brand-sand">50K+</p>
+                  <p className="text-sm text-white/60">Oynanan Oyun</p>
                 </div>
               </motion.div>
             </div>
           </div>
+
+          {/* Hero → beyaz dalga geçişi */}
+          <div className="absolute bottom-0 left-0 right-0">
+            <svg viewBox="0 0 1440 100" className="w-full" preserveAspectRatio="none">
+              <path d="M0,60 C360,100 720,20 1080,60 C1260,80 1380,70 1440,60 L1440,100 L0,100 Z" className="fill-background" />
+            </svg>
+          </div>
         </section>
 
-        {/* Wave Divider */}
-        <WaveDivider />
-
-        {/* Nasıl Çalışır */}
-        <section className="relative bg-muted/30 py-24">
+        {/* ===== NASIL ÇALIŞIR — Beyaz arka plan ===== */}
+        <section className="relative py-24">
           <div className="container">
             <div className="mb-16 text-center">
               <motion.span
@@ -273,25 +279,31 @@ export default function HomePage() {
           </div>
         </section>
 
-        <WaveDivider flip />
-
-        {/* Popüler Oyunlar */}
-        <section className="relative py-24">
-          <GlowOrb className="-right-20 top-1/3" color="bg-brand-dark/5" size="w-[400px] h-[400px]" />
+        {/* ===== POPÜLER OYUNLAR — Koyu yeşil arka plan ===== */}
+        <section className="relative py-24 bg-brand-teal text-white overflow-hidden">
+          {/* Dalga geçişi üst */}
+          <div className="absolute top-0 left-0 right-0 rotate-180">
+            <svg viewBox="0 0 1440 80" className="w-full" preserveAspectRatio="none">
+              <path d="M0,40 C360,80 720,0 1080,40 C1260,60 1380,50 1440,40 L1440,80 L0,80 Z" className="fill-background" />
+            </svg>
+          </div>
+          <div className="absolute inset-0 pointer-events-none">
+            <svg className="absolute right-10 top-20 w-[300px] opacity-10" viewBox="0 0 200 200"><path d="M 0 100 Q 50 50 100 100 Q 150 150 200 100" fill="none" stroke="#DBF227" strokeWidth="2"/></svg>
+          </div>
           <div className="container relative">
             <div className="mb-16 text-center">
               <motion.span
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
                 viewport={{ once: true }}
-                className="mb-2 inline-block rounded-full bg-primary/10 px-4 py-1 text-sm font-semibold text-primary"
+                className="mb-2 inline-block rounded-full bg-brand-lime/20 px-4 py-1 text-sm font-semibold text-brand-lime"
               >
                 Keşfet
               </motion.span>
-              <h2 className="mt-2 text-3xl font-extrabold md:text-4xl">
+              <h2 className="mt-2 text-3xl font-extrabold md:text-4xl text-white">
                 Popüler Oyunlar
               </h2>
-              <p className="mt-4 text-lg text-muted-foreground">
+              <p className="mt-4 text-lg text-white/60">
                 En çok oynanan eğitici oyunlarımız
               </p>
             </div>
@@ -331,11 +343,17 @@ export default function HomePage() {
               ))}
             </div>
           </div>
+
+          {/* Dalga geçişi alt */}
+          <div className="absolute bottom-0 left-0 right-0">
+            <svg viewBox="0 0 1440 80" className="w-full" preserveAspectRatio="none">
+              <path d="M0,40 C360,80 720,0 1080,40 C1260,60 1380,50 1440,40 L1440,80 L0,80 Z" className="fill-background" />
+            </svg>
+          </div>
         </section>
 
-        {/* En İyi Oyuncular */}
-        <section className="relative overflow-hidden border-t bg-muted/30 py-24">
-          <GlowOrb className="-left-20 top-1/4" color="bg-brand-lime/5" size="w-[300px] h-[300px]" />
+        {/* ===== EN İYİ OYUNCULAR — Beyaz arka plan ===== */}
+        <section className="relative overflow-hidden py-24">
           <div className="container relative">
             <div className="mb-16 text-center">
               <motion.span
@@ -422,9 +440,8 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* Neden React Game */}
-        <section className="relative py-24">
-          <GlowOrb className="right-0 bottom-0" color="bg-brand-teal/5" size="w-[400px] h-[400px]" />
+        {/* ===== NEDEN REACT GAME — Açık yeşil/sand bant ===== */}
+        <section className="relative py-24 bg-brand-sand/20">
           <div className="container relative">
             <div className="mb-16 text-center">
               <motion.span
@@ -463,8 +480,14 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* Ebeveyn Güven Bölümü */}
-        <section className="relative border-t bg-muted/30 py-24">
+        {/* ===== EBEVEYN GÜVENLİĞİ — Koyu lacivert bant ===== */}
+        <section className="relative py-24 bg-brand-dark text-white overflow-hidden">
+          {/* Üst dalga */}
+          <div className="absolute top-0 left-0 right-0 rotate-180">
+            <svg viewBox="0 0 1440 60" className="w-full" preserveAspectRatio="none">
+              <path d="M0,30 C480,60 960,0 1440,30 L1440,60 L0,60 Z" fill="#D6D58E" fillOpacity="0.2" />
+            </svg>
+          </div>
           <div className="container">
             <div className="mx-auto max-w-3xl">
               <div className="text-center">
@@ -484,18 +507,18 @@ export default function HomePage() {
                     <span className="text-3xl">💚</span>
                   </div>
                   {/* Kalkan sticker */}
-                  <div className="absolute -left-4 bottom-4 flex h-13 w-13 items-center justify-center rounded-2xl bg-white shadow-lg -rotate-12 border border-gray-100 p-3">
-                    <Shield className="h-6 w-6 text-emerald-500" />
+                  <div className="absolute -left-4 bottom-4 flex h-13 w-13 items-center justify-center rounded-2xl bg-brand-teal shadow-lg -rotate-12 border border-brand-green/30 p-3">
+                    <Shield className="h-6 w-6 text-brand-lime" />
                   </div>
                   {/* Yıldız sticker */}
-                  <div className="absolute right-2 bottom-0 flex h-11 w-11 items-center justify-center rounded-full bg-emerald-400 shadow-lg rotate-6">
+                  <div className="absolute right-2 bottom-0 flex h-11 w-11 items-center justify-center rounded-full bg-brand-green shadow-lg rotate-6">
                     <span className="text-xl">⭐</span>
                   </div>
                 </div>
-                <h2 className="text-3xl font-extrabold md:text-4xl">
+                <h2 className="text-3xl font-extrabold md:text-4xl text-white">
                   Ebeveynler İçin Güvenli
                 </h2>
-                <p className="mt-4 text-lg text-muted-foreground">
+                <p className="mt-4 text-lg text-white/60">
                   Çocuğunuzun güvenliği bizim önceliğimiz
                 </p>
               </div>
@@ -507,18 +530,24 @@ export default function HomePage() {
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.4, delay: index * 0.1 }}
-                    className="flex items-center gap-3 rounded-xl bg-background p-4 shadow-sm transition-shadow hover:shadow-md"
+                    className="flex items-center gap-3 rounded-xl bg-white/5 border border-white/10 p-4 transition-colors hover:bg-white/10"
                   >
-                    <CheckCircle2 className="h-5 w-5 shrink-0 text-emerald-500" />
-                    <span className="font-medium">{point}</span>
+                    <CheckCircle2 className="h-5 w-5 shrink-0 text-brand-lime" />
+                    <span className="font-medium text-white/90">{point}</span>
                   </motion.div>
                 ))}
               </div>
             </div>
           </div>
+          {/* Alt dalga */}
+          <div className="absolute bottom-0 left-0 right-0">
+            <svg viewBox="0 0 1440 60" className="w-full" preserveAspectRatio="none">
+              <path d="M0,30 C480,0 960,60 1440,30 L1440,60 L0,60 Z" className="fill-background" />
+            </svg>
+          </div>
         </section>
 
-        {/* Son CTA */}
+        {/* ===== SON CTA — Yeşil gradient bant ===== */}
         <section className="py-24">
           <div className="container">
             <div className="relative overflow-hidden rounded-3xl bg-gradient-to-r from-brand-dark via-brand-teal to-brand-green px-8 py-16 text-center text-white">
