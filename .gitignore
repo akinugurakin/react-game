@@ -1,0 +1,51 @@
+# Dependencies
+node_modules/
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Environment
+.env
+.env.local
+.env.production
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Next.js
+web/.next/
+web/out/
+
+# Python
+*.egg-info/
+dist/
+build/
+.pytest_cache/
+htmlcov/
+.coverage
+
+# Flutter
+mobile/.dart_tool/
+mobile/.packages
+mobile/build/
+
+# Docker
+docker-compose.override.yml
+
+# Alembic
+backend/alembic/versions/__pycache__/
+
+# Logs
+*.log
+backend/.env
+backend/.env.save
+*.pyc
+__pycache__/

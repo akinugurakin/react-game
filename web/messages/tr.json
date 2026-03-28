@@ -1,0 +1,23 @@
+{
+  "home": {
+    "title": "React Game",
+    "subtitle": "Eğlenerek öğrenmenin en güzel yolu!"
+  },
+  "auth": {
+    "login": "Giriş Yap",
+    "register": "Kayıt Ol",
+    "email": "E-posta",
+    "password": "Şifre",
+    "username": "Kullanıcı Adı",
+    "forgotPassword": "Şifremi Unuttum",
+    "noAccount": "Hesabın yok mu?",
+    "hasAccount": "Zaten hesabın var mı?"
+  },
+  "common": {
+    "loading": "Yükleniyor...",
+    "error": "Bir hata oluştu",
+    "save": "Kaydet",
+    "cancel": "İptal",
+    "back": "Geri"
+  }
+}
