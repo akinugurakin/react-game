@@ -108,7 +108,7 @@ export function AvatarPicker({
                 <img
                   src={selectedAvatar}
                   alt="Se&#231;ilen avatar"
-                  className="h-24 w-24 rounded-full object-cover"
+                  className="h-32 w-32 -mb-4 object-cover object-top"
                 />
               </div>
             </div>
@@ -172,7 +172,7 @@ export function AvatarPicker({
                     <img
                       src={avatar.src}
                       alt={avatar.label}
-                      className="h-[90%] w-[90%] rounded-xl object-cover"
+                      className="h-[115%] w-[115%] -mb-[15%] object-cover object-top"
                     />
                     {isSelected && (
                       <div className="absolute bottom-0.5 right-0.5 flex h-5 w-5 items-center justify-center rounded-full bg-[#9FC131]">

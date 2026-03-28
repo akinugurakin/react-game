@@ -97,7 +97,7 @@ export function Sidebar() {
           >
             {avatarUrl ? (
               <div className="flex h-9 w-9 items-center justify-center overflow-hidden rounded-full" style={{ backgroundColor: avatarBg }}>
-                <img src={avatarUrl} alt="Avatar" className="h-8 w-8" />
+                <img src={avatarUrl} alt="Avatar" className="h-11 w-11 -mb-2 object-cover object-top" />
               </div>
             ) : (
               <HexAvatar initials={initials} size="sm" gradient="from-brand-green to-brand-lime" />
