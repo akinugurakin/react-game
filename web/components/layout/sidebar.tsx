@@ -29,10 +29,9 @@ const oyunAltMenusu = [
 ];
 
 const menuItems = [
-  { href: "/dashboard", icon: LayoutDashboard, label: "Dashboard" },
+  { href: "/dashboard", icon: User, label: "Profil" },
   { href: "/games", icon: Gamepad2, label: "Oyunlar", hasSubmenu: true },
   { href: "/leaderboard", icon: Trophy, label: "Liderlik" },
-  { href: "/profile", icon: User, label: "Profil" },
 ];
 
 export function Sidebar() {
