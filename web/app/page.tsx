@@ -22,10 +22,13 @@ import { Card, CardContent } from "@/components/ui/card";
 import { HexAvatar } from "@/components/ui/hex-avatar";
 import { BadgeIcon, ALL_BADGES } from "@/components/ui/badge-icon";
 import { FloatingIcons } from "@/components/ui/floating-icons";
-import { WaveDivider, GlowOrb, GameIllustration } from "@/components/ui/decorative";
+import { GameIllustration } from "@/components/ui/decorative";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 import { PageLines } from "@/components/ui/page-lines";
+import { useAuthStore, useAuthHydrated } from "@/lib/auth";
+import { Sidebar } from "@/components/layout/sidebar";
+import { useRouter } from "next/navigation";
 
 const features = [
   {
@@ -134,6 +137,18 @@ const trustPoints = [
 ];
 
 export default function HomePage() {
+  const { isAuthenticated } = useAuthStore();
+  const hydrated = useAuthHydrated();
+  const router = useRouter();
+
+  // Giriş yapmışsa dashboard'a yönlendir
+  if (hydrated && isAuthenticated) {
+    router.replace("/dashboard");
+    return null;
+  }
+
+  if (!hydrated) return null;
+
   return (
     <div className="relative flex min-h-screen flex-col">
       <PageLines />
@@ -151,78 +166,132 @@ export default function HomePage() {
             <div className="absolute -left-20 bottom-0 h-72 w-72 rounded-full bg-brand-green/10 blur-3xl" />
           </div>
 
-          <div className="container relative py-24 md:py-32">
-            <div className="flex flex-col items-center text-center">
+          <div className="container relative py-20 md:py-28">
+            <div className="grid items-center gap-12 lg:grid-cols-2">
+              {/* Sol — Metin */}
+              <div>
+                <motion.div
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6 }}
+                  className="mb-6 inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-1.5 backdrop-blur-sm"
+                >
+                  <Star className="h-4 w-4 text-brand-lime" />
+                  <span className="text-sm font-medium text-white/90">
+                    6-12 yaş arası çocuklar için
+                  </span>
+                </motion.div>
+
+                <motion.h1
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: 0.15 }}
+                  className="text-4xl font-extrabold leading-tight tracking-tight md:text-5xl lg:text-6xl"
+                >
+                  Eğlenerek{" "}
+                  <span className="text-brand-lime">Öğrenmenin</span>{" "}
+                  En Güzel Yolu
+                </motion.h1>
+
+                <motion.p
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: 0.3 }}
+                  className="mt-6 max-w-lg text-lg text-white/70"
+                >
+                  Eğitici mini oyunlarla çocuğunuzun matematik, dil ve problem
+                  çözme becerilerini geliştirin.
+                </motion.p>
+
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: 0.45 }}
+                  className="mt-8 flex flex-col gap-4 sm:flex-row"
+                >
+                  <Button asChild size="lg" className="bg-brand-lime text-brand-dark text-lg px-8 shadow-lg shadow-brand-lime/25 hover:bg-brand-lime/90 font-bold">
+                    <Link href="/register">
+                      Hemen Başla <ArrowRight className="ml-2 h-5 w-5" />
+                    </Link>
+                  </Button>
+                  <Button asChild variant="outline" size="lg" className="text-lg px-8 border-white/30 text-white hover:bg-white/10">
+                    <Link href="/login">Giriş Yap</Link>
+                  </Button>
+                </motion.div>
+
+                {/* Mini stats */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: 0.6 }}
+                  className="mt-10 flex gap-8"
+                >
+                  <div>
+                    <p className="text-2xl font-extrabold text-brand-lime">3.2K+</p>
+                    <p className="text-xs text-white/50">Aktif Oyuncu</p>
+                  </div>
+                  <div>
+                    <p className="text-2xl font-extrabold text-brand-green">4</p>
+                    <p className="text-xs text-white/50">Eğitici Oyun</p>
+                  </div>
+                  <div>
+                    <p className="text-2xl font-extrabold text-brand-sand">50K+</p>
+                    <p className="text-xs text-white/50">Oynanan Oyun</p>
+                  </div>
+                </motion.div>
+              </div>
+
+              {/* Sağ — Fotoğraflar */}
               <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6 }}
-                className="mb-6 flex items-center gap-2 rounded-full bg-white/10 px-4 py-1.5 backdrop-blur-sm"
+                initial={{ opacity: 0, x: 40 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.7, delay: 0.3 }}
+                className="relative hidden lg:block"
               >
-                <Star className="h-4 w-4 text-brand-lime" />
-                <span className="text-sm font-medium text-white/90">
-                  6-12 yaş arası çocuklar için
-                </span>
-              </motion.div>
+                {/* Ana fotoğraf */}
+                <div className="relative">
+                  <div className="overflow-hidden rounded-3xl border-2 border-white/10 shadow-2xl">
+                    <img
+                      src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=600&h=400&fit=crop"
+                      alt="Çocuklar öğreniyor"
+                      className="h-[350px] w-full object-cover"
+                    />
+                  </div>
 
-              <motion.h1
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.15 }}
-                className="max-w-4xl text-5xl font-extrabold leading-tight tracking-tight md:text-6xl lg:text-7xl"
-              >
-                Eğlenerek{" "}
-                <span className="text-brand-lime">Öğrenmenin</span>{" "}
-                En Güzel Yolu
-              </motion.h1>
+                  {/* Küçük kart — sol üst */}
+                  <div className="absolute -left-6 top-6 rounded-2xl bg-white p-3 shadow-xl -rotate-3">
+                    <div className="flex items-center gap-2">
+                      <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-brand-lime/20">
+                        <Calculator className="h-5 w-5 text-brand-teal" />
+                      </div>
+                      <div>
+                        <p className="text-xs font-bold text-brand-dark">Matematik</p>
+                        <p className="text-[10px] text-gray-500">1.2K oyuncu</p>
+                      </div>
+                    </div>
+                  </div>
 
-              <motion.p
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.3 }}
-                className="mt-6 max-w-2xl text-xl text-white/70"
-              >
-                Eğitici mini oyunlarla çocuğunuzun matematik, dil ve problem
-                çözme becerilerini geliştirin. Liderlik tablosuyla motivasyonu
-                artırın.
-              </motion.p>
+                  {/* Küçük kart — sağ alt */}
+                  <div className="absolute -right-4 bottom-8 rounded-2xl bg-white p-3 shadow-xl rotate-2">
+                    <div className="flex items-center gap-2">
+                      <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-brand-teal/10">
+                        <Trophy className="h-5 w-5 text-brand-teal" />
+                      </div>
+                      <div>
+                        <p className="text-xs font-bold text-brand-dark">Liderlik</p>
+                        <p className="text-[10px] text-gray-500">Sıralamaya gir!</p>
+                      </div>
+                    </div>
+                  </div>
 
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.45 }}
-                className="mt-10 flex flex-col gap-4 sm:flex-row"
-              >
-                <Button asChild size="lg" className="bg-brand-lime text-brand-dark text-lg px-8 shadow-lg shadow-brand-lime/25 hover:bg-brand-lime/90 font-bold">
-                  <Link href="/register">
-                    Hemen Başla <ArrowRight className="ml-2 h-5 w-5" />
-                  </Link>
-                </Button>
-                <Button asChild variant="outline" size="lg" className="text-lg px-8 border-white/30 text-white hover:bg-white/10">
-                  <Link href="/login">Giriş Yap</Link>
-                </Button>
-              </motion.div>
-
-              {/* Mini stats */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.6 }}
-                className="mt-16 flex flex-wrap justify-center gap-8 rounded-2xl bg-white/5 border border-white/10 px-8 py-5 backdrop-blur-sm"
-              >
-                <div>
-                  <p className="text-3xl font-extrabold text-brand-lime">3.2K+</p>
-                  <p className="text-sm text-white/60">Aktif Oyuncu</p>
-                </div>
-                <div className="h-12 w-px bg-white/10" />
-                <div>
-                  <p className="text-3xl font-extrabold text-brand-green">4</p>
-                  <p className="text-sm text-white/60">Eğitici Oyun</p>
-                </div>
-                <div className="h-12 w-px bg-white/10" />
-                <div>
-                  <p className="text-3xl font-extrabold text-brand-sand">50K+</p>
-                  <p className="text-sm text-white/60">Oynanan Oyun</p>
+                  {/* İkinci küçük fotoğraf — sağ üst */}
+                  <div className="absolute -right-8 -top-4 h-20 w-20 overflow-hidden rounded-2xl border-2 border-white/20 shadow-lg rotate-6">
+                    <img
+                      src="https://images.unsplash.com/photo-1588072432836-e10032774350?w=200&h=200&fit=crop"
+                      alt="Çocuk tablet kullanıyor"
+                      className="h-full w-full object-cover"
+                    />
+                  </div>
                 </div>
               </motion.div>
             </div>
@@ -547,48 +616,6 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* ===== SON CTA — Yeşil gradient bant ===== */}
-        <section className="py-24">
-          <div className="container">
-            <div className="relative overflow-hidden rounded-3xl bg-gradient-to-r from-brand-dark via-brand-teal to-brand-green px-8 py-16 text-center text-white">
-              <div className="absolute inset-0 overflow-hidden">
-                <div className="absolute left-1/2 top-1/2 h-80 w-80 -translate-x-1/2 -translate-y-1/2 rounded-full bg-white/5 blur-3xl" />
-                <div className="absolute right-1/4 top-0 h-full w-[1px] rotate-[25deg] bg-white/10" />
-                <div className="absolute left-1/3 top-0 h-full w-[1px] rotate-[-15deg] bg-white/10" />
-                <div className="absolute left-1/4 top-0 h-full w-[1px] rotate-[40deg] bg-white/5" />
-                <div className="absolute right-1/3 top-0 h-full w-[1px] rotate-[-30deg] bg-white/5" />
-              </div>
-
-              <div className="relative">
-                <motion.div
-                  initial={{ scale: 0 }}
-                  whileInView={{ scale: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ type: "spring", stiffness: 200, damping: 15 }}
-                  className="mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-full bg-white/10 backdrop-blur-sm"
-                >
-                  <Gamepad2 className="h-10 w-10" />
-                </motion.div>
-                <h2 className="text-3xl font-extrabold md:text-4xl">
-                  Öğrenme macerasına hazır mısın?
-                </h2>
-                <p className="mx-auto mt-4 max-w-xl text-lg text-white/80">
-                  Hemen kayıt ol ve eğitici oyunlarla dolu dünyamızı keşfet.
-                  Binlerce çocuk seni bekliyor!
-                </p>
-                <Button
-                  asChild
-                  size="lg"
-                  className="mt-8 bg-white text-lg px-8 text-brand-dark shadow-xl hover:bg-white/90"
-                >
-                  <Link href="/register">
-                    Ücretsiz Başla <ArrowRight className="ml-2 h-5 w-5" />
-                  </Link>
-                </Button>
-              </div>
-            </div>
-          </div>
-        </section>
       </main>
 
       <Footer />

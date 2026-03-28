@@ -1,7 +1,6 @@
 "use client";
 
-import { Header } from "@/components/layout/header";
-import { Footer } from "@/components/layout/footer";
+import { Sidebar } from "@/components/layout/sidebar";
 import { AuthGuard } from "@/components/layout/auth-guard";
 
 export default function DashboardLayout({
@@ -11,10 +10,9 @@ export default function DashboardLayout({
 }) {
   return (
     <AuthGuard>
-      <div className="flex min-h-screen flex-col">
-        <Header />
-        <main className="flex-1">{children}</main>
-        <Footer />
+      <div className="flex min-h-screen">
+        <Sidebar />
+        <main className="flex-1 overflow-auto">{children}</main>
       </div>
     </AuthGuard>
   );
