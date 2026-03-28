@@ -433,6 +433,9 @@ type PlacedItem = {
   opacity: number;
   rotation: number;
   parallax: number;
+  floatDuration: number;
+  floatDelay: number;
+  floatDistance: number;
   key: string;
 };
 
@@ -447,21 +450,30 @@ function generateBlocks(): PlacedItem[][] {
       const symbol = allSymbols[idx];
 
       const isSvg = symbol.type === "svg";
-      // SVG'ler daha buyuk: 50-130px, metinler: 18-48px
-      const baseSize = isSvg ? 50 : 18;
-      const sizeRange = isSvg ? 80 : 30;
-      // Globe ve buyuk cizimler icin ekstra buyuk sans
+      // SVG'ler buyuk: 60-180px, metinler: 20-56px
+      const baseSize = isSvg ? 60 : 20;
+      const sizeRange = isSvg ? 120 : 36;
+      // Globe ve buyuk cizimler icin ekstra buyuk
       const isGlobe = symbol.Component === GlobeSvg;
-      const extraSize = isGlobe ? 40 : 0;
+      const isTurkey = symbol.Component === TurkeySvg;
+      const isAtaturk = symbol.Component === AtaturkSignSvg;
+      const extraSize = isGlobe ? 60 : (isTurkey || isAtaturk) ? 30 : 0;
+      // Her elemana ucusma animasyonu: sure ve gecikme
+      const floatDuration = 4 + seededRandom(seed * 59 + 41) * 6; // 4-10s
+      const floatDelay = seededRandom(seed * 61 + 43) * -10; // -10 - 0s (negatif = offset baslangic)
+      const floatDistance = 6 + Math.floor(seededRandom(seed * 67 + 47) * 12); // 6-18px
 
       blockItems.push({
         symbol,
         x: seededRandom(seed * 17 + 3) * 90 + 5,
         y: seededRandom(seed * 23 + 11) * 86 + 7,
         size: baseSize + Math.floor(seededRandom(seed * 31 + 5) * sizeRange) + extraSize,
-        opacity: 0.025 + seededRandom(seed * 37 + 19) * 0.045,
+        opacity: 0.04 + seededRandom(seed * 37 + 19) * 0.06,
         rotation: Math.floor(seededRandom(seed * 41 + 29) * 30) - 15,
-        parallax: seededRandom(seed * 47 + 31) > 0.45 ? 0.015 + seededRandom(seed * 53 + 37) * 0.04 : 0,
+        parallax: seededRandom(seed * 47 + 31) > 0.3 ? 0.02 + seededRandom(seed * 53 + 37) * 0.05 : 0,
+        floatDuration,
+        floatDelay,
+        floatDistance,
         key: `${b}-${i}`,
       });
     }
@@ -508,6 +520,8 @@ export function BackgroundSymbols() {
         >
           {blockItems.map((el) => {
             const offsetY = el.parallax > 0 ? scrollY * el.parallax : 0;
+            // 8 farkli ucusma varyasyonu arasinda dagit
+            const floatVariant = Math.floor(seededRandom(parseInt(el.key.replace("-", "")) * 7 + 3) * 8);
             return (
               <div
                 key={el.key}
@@ -519,11 +533,12 @@ export function BackgroundSymbols() {
                   height: el.symbol.type === "svg" ? `${el.size}px` : undefined,
                   fontSize: el.symbol.type === "text" ? `${el.size}px` : undefined,
                   opacity: el.opacity,
-                  transform: `rotate(${el.rotation}deg) translateY(${-offsetY}px)`,
                   color: "#042940",
                   fontFamily: "'Nunito', sans-serif",
                   fontWeight: 700,
                   lineHeight: 1,
+                  transform: `rotate(${el.rotation}deg) translateY(${-offsetY}px)`,
+                  animation: `float-${floatVariant} ${el.floatDuration}s ease-in-out ${el.floatDelay}s infinite alternate`,
                   willChange: el.parallax > 0 ? "transform" : undefined,
                 }}
               >
@@ -533,6 +548,41 @@ export function BackgroundSymbols() {
           })}
         </div>
       ))}
+
+      <style jsx>{`
+        @keyframes float-0 {
+          0% { transform: translate(0, 0) rotate(0deg); }
+          100% { transform: translate(4px, -10px) rotate(2deg); }
+        }
+        @keyframes float-1 {
+          0% { transform: translate(0, 0) rotate(0deg); }
+          100% { transform: translate(-5px, -14px) rotate(-2deg); }
+        }
+        @keyframes float-2 {
+          0% { transform: translate(0, 0) rotate(0deg); }
+          100% { transform: translate(8px, -8px) rotate(3deg); }
+        }
+        @keyframes float-3 {
+          0% { transform: translate(0, 0) rotate(0deg); }
+          100% { transform: translate(-3px, -16px) rotate(-1deg); }
+        }
+        @keyframes float-4 {
+          0% { transform: translate(0, 0) rotate(0deg); }
+          100% { transform: translate(6px, -12px) rotate(1deg); }
+        }
+        @keyframes float-5 {
+          0% { transform: translate(0, 0) rotate(0deg); }
+          100% { transform: translate(-7px, -6px) rotate(-3deg); }
+        }
+        @keyframes float-6 {
+          0% { transform: translate(0, 0) rotate(0deg); }
+          100% { transform: translate(3px, -18px) rotate(2deg); }
+        }
+        @keyframes float-7 {
+          0% { transform: translate(0, 0) rotate(0deg); }
+          100% { transform: translate(-4px, -11px) rotate(-2deg); }
+        }
+      `}</style>
     </div>
   );
 }
