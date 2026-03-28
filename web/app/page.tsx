@@ -26,9 +26,43 @@ import { GameIllustration } from "@/components/ui/decorative";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 import { PageLines } from "@/components/ui/page-lines";
+import { TestimonialCarousel } from "@/components/ui/testimonial";
 import { useAuthStore, useAuthHydrated } from "@/lib/auth";
 import { Sidebar } from "@/components/layout/sidebar";
 import { useRouter } from "next/navigation";
+
+const testimonials = [
+  {
+    id: 1,
+    name: "Ayşe Yılmaz",
+    avatar: "https://i.pravatar.cc/150?img=44",
+    description: "Kızım bu platformu çok seviyor! Matematik oyunuyla çarpım tablosunu öğrenmesi çok kolaylaştı. Her gün oynamak istiyor.",
+  },
+  {
+    id: 2,
+    name: "Mehmet Kaya",
+    avatar: "https://i.pravatar.cc/150?img=68",
+    description: "Oğlum için güvenli bir eğitim ortamı arıyordum. React Game tam aradığım şey oldu. Ebeveyn kontrolü harika.",
+  },
+  {
+    id: 3,
+    name: "Zeynep Demir",
+    avatar: "https://i.pravatar.cc/150?img=47",
+    description: "Öğretmen olarak sınıfımda kullanıyorum. Çocuklar liderlik tablosunda yarışmayı çok seviyor, motivasyonları arttı!",
+  },
+  {
+    id: 4,
+    name: "Ali Öztürk",
+    avatar: "https://i.pravatar.cc/150?img=59",
+    description: "İki çocuğum da bu platformda oynuyor. Ekran başında geçirdikleri sürenin verimli olduğunu bilmek beni mutlu ediyor.",
+  },
+  {
+    id: 5,
+    name: "Fatma Arslan",
+    avatar: "https://i.pravatar.cc/150?img=45",
+    description: "Reklamsız ve güvenli bir ortam. Çocuğumun verilerinin korunduğunu bilmek çok değerli. Kesinlikle tavsiye ediyorum.",
+  },
+];
 
 const features = [
   {
@@ -506,6 +540,47 @@ export default function HomePage() {
                 </Link>
               </Button>
             </div>
+          </div>
+        </section>
+
+        {/* ===== TESTIMONIALS — Kullanıcı yorumları ===== */}
+        <section className="relative py-24 bg-brand-teal text-white overflow-hidden">
+          {/* Üst dalga */}
+          <div className="absolute top-0 left-0 right-0 rotate-180">
+            <svg viewBox="0 0 1440 60" className="w-full" preserveAspectRatio="none">
+              <path d="M0,30 C480,60 960,0 1440,30 L1440,60 L0,60 Z" className="fill-background" />
+            </svg>
+          </div>
+
+          <div className="container relative">
+            <div className="mb-12 text-center">
+              <motion.span
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true }}
+                className="mb-2 inline-block rounded-full bg-brand-lime/20 px-4 py-1 text-sm font-semibold text-brand-lime"
+              >
+                Kullanıcı Yorumları
+              </motion.span>
+              <h2 className="mt-2 text-3xl font-extrabold md:text-4xl text-white">
+                Ebeveynler Ne Diyor?
+              </h2>
+              <p className="mt-4 text-lg text-white/60">
+                Platformumuzu kullanan ailelerden geri bildirimler
+              </p>
+            </div>
+
+            <TestimonialCarousel
+              testimonials={testimonials}
+              className="max-w-2xl mx-auto"
+            />
+          </div>
+
+          {/* Alt dalga */}
+          <div className="absolute bottom-0 left-0 right-0">
+            <svg viewBox="0 0 1440 60" className="w-full" preserveAspectRatio="none">
+              <path d="M0,30 C480,0 960,60 1440,30 L1440,60 L0,60 Z" className="fill-background" />
+            </svg>
           </div>
         </section>
 
