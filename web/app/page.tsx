@@ -3,77 +3,141 @@
 import Link from "next/link";
 import { motion } from "framer-motion";
 import {
-  Gamepad2,
-  Trophy,
   Brain,
-  Star,
-  ArrowRight,
-  Shield,
+  Trophy,
   BarChart3,
-  Calculator,
-  BookOpen,
-  Puzzle,
-  Users,
-  Play,
+  Shield,
+  ArrowRight,
   CheckCircle2,
+  Sparkles,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
-import { HexAvatar } from "@/components/ui/hex-avatar";
-import { BadgeIcon, ALL_BADGES } from "@/components/ui/badge-icon";
-import { FloatingIcons } from "@/components/ui/floating-icons";
-import { GameIllustration } from "@/components/ui/decorative";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 import { PageLines } from "@/components/ui/page-lines";
 import { TestimonialCarousel } from "@/components/ui/testimonial";
 import { useAuthStore, useAuthHydrated } from "@/lib/auth";
-import { Sidebar } from "@/components/layout/sidebar";
 import { useRouter } from "next/navigation";
 
+/* ------------------------------------------------------------------ */
+/*  DATA                                                               */
+/* ------------------------------------------------------------------ */
+
 const testimonials = [
-  { id: 1, name: "Ayşe Yılmaz", avatar: "https://i.pravatar.cc/150?img=44", description: "Kızım bu platformu çok seviyor! Matematik oyunuyla çarpım tablosunu öğrenmesi çok kolaylaştı. Her gün oynamak istiyor." },
-  { id: 2, name: "Mehmet Kaya", avatar: "https://i.pravatar.cc/150?img=68", description: "Oğlum için güvenli bir eğitim ortamı arıyordum. React Game tam aradığım şey oldu. Ebeveyn kontrolü harika." },
-  { id: 3, name: "Zeynep Demir", avatar: "https://i.pravatar.cc/150?img=47", description: "Öğretmen olarak sınıfımda kullanıyorum. Çocuklar liderlik tablosunda yarışmayı çok seviyor, motivasyonları arttı!" },
-  { id: 4, name: "Ali Öztürk", avatar: "https://i.pravatar.cc/150?img=59", description: "İki çocuğum da bu platformda oynuyor. Ekran başında geçirdikleri sürenin verimli olduğunu bilmek beni mutlu ediyor." },
-  { id: 5, name: "Fatma Arslan", avatar: "https://i.pravatar.cc/150?img=45", description: "Reklamsız ve güvenli bir ortam. Çocuğumun verilerinin korunduğunu bilmek çok değerli. Kesinlikle tavsiye ediyorum." },
+  {
+    id: 1,
+    name: "Ay\u015fe Y\u0131lmaz",
+    avatar: "https://i.pravatar.cc/150?img=44",
+    description:
+      "K\u0131z\u0131m bu platformu \u00e7ok seviyor! Matematik oyunuyla \u00e7arp\u0131m tablosunu \u00f6\u011frenmesi \u00e7ok kolayla\u015ft\u0131. Her g\u00fcn oynamak istiyor.",
+  },
+  {
+    id: 2,
+    name: "Mehmet Kaya",
+    avatar: "https://i.pravatar.cc/150?img=68",
+    description:
+      "O\u011flum i\u00e7in g\u00fcvenli bir e\u011fitim ortam\u0131 ar\u0131yordum. React Game tam arad\u0131\u011f\u0131m \u015fey oldu. Ebeveyn kontrol\u00fc harika.",
+  },
+  {
+    id: 3,
+    name: "Zeynep Demir",
+    avatar: "https://i.pravatar.cc/150?img=47",
+    description:
+      "\u00d6\u011fretmen olarak s\u0131n\u0131f\u0131mda kullan\u0131yorum. \u00c7ocuklar liderlik tablosunda yar\u0131\u015fmay\u0131 \u00e7ok seviyor, motivasyonlar\u0131 artt\u0131!",
+  },
+  {
+    id: 4,
+    name: "Ali \u00d6zt\u00fcrk",
+    avatar: "https://i.pravatar.cc/150?img=59",
+    description:
+      "\u0130ki \u00e7ocu\u011fum da bu platformda oynuyor. Ekran ba\u015f\u0131nda ge\u00e7irdikleri s\u00fcrenin verimli oldu\u011funu bilmek beni mutlu ediyor.",
+  },
+  {
+    id: 5,
+    name: "Fatma Arslan",
+    avatar: "https://i.pravatar.cc/150?img=45",
+    description:
+      "Reklams\u0131z ve g\u00fcvenli bir ortam. \u00c7ocu\u011fumun verilerinin korundu\u011funu bilmek \u00e7ok de\u011ferli. Kesinlikle tavsiye ediyorum.",
+  },
+];
+
+const gameCards = [
+  {
+    title: "Matematik Yar\u0131\u015fmas\u0131",
+    category: "Matematik",
+    image:
+      "https://images.unsplash.com/photo-1596495578065-6e0763fa1178?w=400&h=500&fit=crop",
+  },
+  {
+    title: "Kelime Av\u0131",
+    category: "Kelime",
+    image:
+      "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=400&h=500&fit=crop",
+  },
+  {
+    title: "Haf\u0131za Kartlar\u0131",
+    category: "Haf\u0131za",
+    image:
+      "https://images.unsplash.com/photo-1588072432836-e10032774350?w=400&h=500&fit=crop",
+  },
+  {
+    title: "Bulmaca D\u00fcnyas\u0131",
+    category: "Bulmaca",
+    image:
+      "https://images.unsplash.com/photo-1509228468518-180dd4864904?w=400&h=500&fit=crop",
+  },
+  {
+    title: "Say\u0131lar Oyunu",
+    category: "Matematik",
+    image:
+      "https://images.unsplash.com/photo-1580582932707-520aed937b7b?w=400&h=500&fit=crop",
+  },
 ];
 
 const features = [
-  { icon: Brain, title: "Eğitici Oyunlar", description: "Matematik, kelime ve hafıza oyunlarıyla eğlenerek öğrenme deneyimi.", gradient: "from-brand-teal to-brand-dark" },
-  { icon: Trophy, title: "Liderlik Tablosu", description: "Haftalık ve tüm zamanlar sıralamalarıyla motivasyonu artır.", gradient: "from-brand-green to-brand-teal" },
-  { icon: BarChart3, title: "İlerleme Takibi", description: "Çocuğunuzun gelişimini detaylı istatistiklerle takip edin.", gradient: "from-brand-dark to-brand-teal" },
-  { icon: Shield, title: "Güvenli Ortam", description: "Ebeveyn kontrolü ve yaşa uygun içeriklerle güvenli bir platform.", gradient: "from-brand-teal to-brand-green" },
-];
-
-const popularGames = [
-  { id: 1, title: "Matematik Yarışması", description: "Toplama ve çıkarma ile hızını test et", icon: Calculator, illustration: "math" as const, players: "1.2K" },
-  { id: 2, title: "Kelime Avı", description: "Harflerden anlamlı kelimeler oluştur", icon: BookOpen, illustration: "words" as const, players: "890" },
-  { id: 3, title: "Hafıza Kartları", description: "Eşleşen kartları bul ve hafızanı güçlendir", icon: Brain, illustration: "memory" as const, players: "1.1K" },
-  { id: 4, title: "Bulmaca Dünyası", description: "Şekilleri doğru yere yerleştir", icon: Puzzle, illustration: "puzzle" as const, players: "670" },
-];
-
-const topPlayers = [
-  { username: "matKral42", initials: "MK", score: 12850, games: 156, rank: 1, gradient: "from-brand-lime to-brand-green", avatar: "https://i.pravatar.cc/150?img=11" },
-  { username: "zeynepOyun", initials: "ZO", score: 11200, games: 134, rank: 2, gradient: "from-brand-green to-brand-teal", avatar: "https://i.pravatar.cc/150?img=5" },
-  { username: "aliCoder", initials: "AC", score: 10750, games: 128, rank: 3, gradient: "from-brand-teal to-brand-dark", avatar: "https://i.pravatar.cc/150?img=8" },
-  { username: "elifStar", initials: "ES", score: 9800, games: 115, rank: 4, gradient: "from-brand-dark to-brand-teal", avatar: "https://i.pravatar.cc/150?img=9" },
-  { username: "canBey", initials: "CB", score: 9350, games: 108, rank: 5, gradient: "from-brand-teal to-brand-green", avatar: "https://i.pravatar.cc/150?img=12" },
-];
-
-const steps = [
-  { step: "1", title: "Kayıt Ol", description: "Ücretsiz hesap oluştur, sadece birkaç saniye sürer.", icon: Users, gradient: "from-brand-dark to-brand-teal" },
-  { step: "2", title: "Oyun Seç", description: "Yaşına uygun eğitici oyunlar arasından birini seç.", icon: Gamepad2, gradient: "from-brand-teal to-brand-green" },
-  { step: "3", title: "Öğren & Kazan", description: "Oyna, puan topla ve liderlik tablosunda yüksel!", icon: Trophy, gradient: "from-brand-green to-brand-lime" },
+  {
+    icon: Brain,
+    title: "E\u011fitici Oyunlar",
+    description:
+      "Matematik, kelime ve haf\u0131za oyunlar\u0131yla e\u011flenerek \u00f6\u011frenme deneyimi.",
+  },
+  {
+    icon: Trophy,
+    title: "Liderlik Tablosu",
+    description:
+      "Haftal\u0131k ve t\u00fcm zamanlar s\u0131ralamalar\u0131yla motivasyonu art\u0131r.",
+  },
+  {
+    icon: BarChart3,
+    title: "\u0130lerleme Takibi",
+    description:
+      "\u00c7ocu\u011funuzun geli\u015fimini detayl\u0131 istatistiklerle takip edin.",
+  },
+  {
+    icon: Shield,
+    title: "G\u00fcvenli Ortam",
+    description:
+      "Ebeveyn kontrol\u00fc ve ya\u015fa uygun i\u00e7eriklerle g\u00fcvenli bir platform.",
+  },
 ];
 
 const trustPoints = [
-  "Yaşa uygun, pedagojik açıdan onaylanmış içerikler",
-  "13 yaş altı için ebeveyn onayı zorunluluğu",
-  "Kişisel veri güvenliği ve KVKK uyumu",
-  "Reklamsız, dikkat dağıtmayan arayüz",
-  "Oyun süresi takibi ve ebeveyn bildirimleri",
+  "Ya\u015fa uygun, pedagojik a\u00e7\u0131dan onaylanm\u0131\u015f i\u00e7erikler",
+  "13 ya\u015f alt\u0131 i\u00e7in ebeveyn onay\u0131 zorunlulu\u011fu",
+  "Ki\u015fisel veri g\u00fcvenli\u011fi ve KVKK uyumu",
+  "Reklams\u0131z, dikkat da\u011f\u0131tmayan aray\u00fcz",
+  "Oyun s\u00fcresi takibi ve ebeveyn bildirimleri",
 ];
+
+const collageImages = [
+  "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=600&h=300&fit=crop",
+  "https://images.unsplash.com/photo-1588072432836-e10032774350?w=400&h=300&fit=crop",
+  "https://images.unsplash.com/photo-1580582932707-520aed937b7b?w=400&h=300&fit=crop",
+];
+
+/* ------------------------------------------------------------------ */
+/*  PAGE                                                               */
+/* ------------------------------------------------------------------ */
 
 export default function HomePage() {
   const { isAuthenticated } = useAuthStore();
@@ -92,222 +156,438 @@ export default function HomePage() {
       <Header />
 
       <main className="flex-1">
-
-        {/* ===== 1. HERO — #042940 koyu lacivert ===== */}
-        <section className="relative overflow-hidden bg-brand-dark text-white">
-          <FloatingIcons />
-          <div className="absolute inset-0 pointer-events-none overflow-hidden">
-            <svg className="absolute -left-20 top-20 w-[400px] opacity-[0.08]" viewBox="0 0 200 200"><path d="M 0 100 Q 50 50 100 100 Q 150 150 200 100" fill="none" stroke="#9FC131" strokeWidth="2"/></svg>
-            <svg className="absolute right-10 bottom-20 w-[350px] opacity-[0.08]" viewBox="0 0 200 200"><path d="M 0 100 Q 50 150 100 100 Q 150 50 200 100" fill="none" stroke="#DBF227" strokeWidth="2"/></svg>
-            <div className="absolute right-0 top-0 h-96 w-96 rounded-full bg-brand-teal/15 blur-3xl" />
-            <div className="absolute -left-20 bottom-0 h-72 w-72 rounded-full bg-brand-green/10 blur-3xl" />
+        {/* ===== SECTION 1: HERO (PulseFitHero style) ===== */}
+        <section className="relative overflow-hidden bg-[#FAF8F5]">
+          {/* Subtle gradient overlay */}
+          <div className="pointer-events-none absolute inset-0">
+            <div className="absolute -right-40 -top-40 h-[500px] w-[500px] rounded-full bg-[#DBF227]/10 blur-3xl" />
+            <div className="absolute -left-40 bottom-0 h-[400px] w-[400px] rounded-full bg-[#005C53]/5 blur-3xl" />
           </div>
 
-          <div className="container relative py-20 md:py-28">
-            <div className="grid items-center gap-12 lg:grid-cols-2">
-              <div>
-                <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} className="mb-6 inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-1.5 backdrop-blur-sm">
-                  <Star className="h-4 w-4 text-brand-lime" />
-                  <span className="text-sm font-medium text-white/90">6-12 yaş arası çocuklar için</span>
-                </motion.div>
-                <motion.h1 initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.15 }} className="text-4xl font-extrabold leading-tight tracking-tight md:text-5xl lg:text-6xl">
-                  Eğlenerek <span className="text-brand-lime">Öğrenmenin</span> En Güzel Yolu
-                </motion.h1>
-                <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.3 }} className="mt-6 max-w-lg text-lg text-white/70">
-                  Eğitici mini oyunlarla çocuğunuzun matematik, dil ve problem çözme becerilerini geliştirin.
-                </motion.p>
-                <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.45 }} className="mt-8 flex flex-col gap-4 sm:flex-row">
-                  <Button asChild size="lg" className="bg-brand-lime text-brand-dark text-lg px-8 shadow-lg shadow-brand-lime/25 hover:bg-brand-lime/90 font-bold">
-                    <Link href="/register">Hemen Başla <ArrowRight className="ml-2 h-5 w-5" /></Link>
-                  </Button>
-                  <Button asChild variant="outline" size="lg" className="text-lg px-8 border-white/30 text-white hover:bg-white/10">
-                    <Link href="/login">Giriş Yap</Link>
-                  </Button>
-                </motion.div>
-                <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.6 }} className="mt-10 flex gap-8">
-                  <div><p className="text-2xl font-extrabold text-brand-lime">3.2K+</p><p className="text-xs text-white/50">Aktif Oyuncu</p></div>
-                  <div><p className="text-2xl font-extrabold text-brand-green">4</p><p className="text-xs text-white/50">Eğitici Oyun</p></div>
-                  <div><p className="text-2xl font-extrabold text-brand-sand">50K+</p><p className="text-xs text-white/50">Oynanan Oyun</p></div>
-                </motion.div>
+          <div className="container relative pb-8 pt-24 md:pt-32 lg:pt-36">
+            {/* Badge */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              className="mb-8 flex justify-center"
+            >
+              <span className="inline-flex items-center gap-2 rounded-full border border-[#005C53]/15 bg-white px-4 py-1.5 text-sm font-medium text-[#005C53] shadow-sm">
+                <Sparkles className="h-4 w-4" />
+                {"6-12 ya\u015f aras\u0131 \u00e7ocuklar i\u00e7in"}
+              </span>
+            </motion.div>
+
+            {/* Title */}
+            <motion.h1
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              className="mx-auto max-w-3xl text-center text-4xl font-extrabold leading-tight tracking-tight text-[#042940] md:text-5xl lg:text-6xl"
+            >
+              {"E\u011flenerek \u00d6\u011frenmenin "}
+              <span className="text-[#005C53]">{"En G\u00fczel Yolu"}</span>
+            </motion.h1>
+
+            {/* Subtitle */}
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.25 }}
+              className="mx-auto mt-6 max-w-2xl text-center text-lg text-[#6B7280]"
+            >
+              {"E\u011fitici mini oyunlarla \u00e7ocu\u011funuzun matematik, dil ve problem \u00e7\u00f6zme becerilerini geli\u015ftirin. G\u00fcvenli, reklams\u0131z ve e\u011fitim odakl\u0131 bir platform."}
+            </motion.p>
+
+            {/* CTA Buttons */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+              className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row"
+            >
+              <Button
+                asChild
+                size="lg"
+                className="bg-[#042940] px-8 text-base font-bold text-white shadow-lg hover:bg-[#042940]/90"
+              >
+                <Link href="/register">
+                  {"\u00dccretsiz Ba\u015fla"}
+                  <ArrowRight className="ml-2 h-5 w-5" />
+                </Link>
+              </Button>
+              <Button
+                asChild
+                variant="outline"
+                size="lg"
+                className="border-[#042940]/20 px-8 text-base font-semibold text-[#042940] hover:bg-[#042940]/5"
+              >
+                <Link href="#features">{"Oyunlar\u0131 Ke\u015ffet"}</Link>
+              </Button>
+            </motion.div>
+
+            {/* Social proof */}
+            <motion.div
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.55 }}
+              className="mt-10 flex items-center justify-center gap-3"
+            >
+              <div className="flex -space-x-2">
+                {[44, 68, 47, 59].map((imgId) => (
+                  <img
+                    key={imgId}
+                    src={`https://i.pravatar.cc/40?img=${imgId}`}
+                    alt=""
+                    className="h-8 w-8 rounded-full border-2 border-white object-cover"
+                  />
+                ))}
               </div>
-              <motion.div initial={{ opacity: 0, x: 40 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.7, delay: 0.3 }} className="relative hidden lg:block">
-                <div className="relative">
-                  <div className="overflow-hidden rounded-3xl border-2 border-white/10 shadow-2xl">
-                    <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=600&h=400&fit=crop" alt="Çocuklar öğreniyor" className="h-[350px] w-full object-cover" />
-                  </div>
-                  <div className="absolute -left-6 top-6 rounded-2xl bg-white p-3 shadow-xl -rotate-3">
-                    <div className="flex items-center gap-2">
-                      <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-brand-lime/20"><Calculator className="h-5 w-5 text-brand-teal" /></div>
-                      <div><p className="text-xs font-bold text-brand-dark">Matematik</p><p className="text-[10px] text-brand-dark/50">1.2K oyuncu</p></div>
-                    </div>
-                  </div>
-                  <div className="absolute -right-4 bottom-8 rounded-2xl bg-white p-3 shadow-xl rotate-2">
-                    <div className="flex items-center gap-2">
-                      <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-brand-teal/10"><Trophy className="h-5 w-5 text-brand-teal" /></div>
-                      <div><p className="text-xs font-bold text-brand-dark">Liderlik</p><p className="text-[10px] text-brand-dark/50">Sıralamaya gir!</p></div>
-                    </div>
-                  </div>
-                  <div className="absolute -right-8 -top-4 h-20 w-20 overflow-hidden rounded-2xl border-2 border-white/20 shadow-lg rotate-6">
-                    <img src="https://images.unsplash.com/photo-1588072432836-e10032774350?w=200&h=200&fit=crop" alt="Çocuk tablet kullanıyor" className="h-full w-full object-cover" />
+              <span className="text-sm text-[#6B7280]">
+                <span className="font-bold text-[#042940]">3,200+</span>{" "}
+                {"aile g\u00fcveniyor"}
+              </span>
+            </motion.div>
+
+            {/* Horizontal scrolling game cards */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.65 }}
+              className="mt-14 flex gap-5 overflow-x-auto pb-6 scrollbar-hide"
+            >
+              {gameCards.map((card, index) => (
+                <div
+                  key={index}
+                  className="group relative min-w-[200px] flex-shrink-0 cursor-pointer overflow-hidden rounded-2xl shadow-md transition-shadow duration-300 hover:shadow-xl"
+                >
+                  <img
+                    src={card.image}
+                    alt={card.title}
+                    className="h-60 w-52 object-cover transition-transform duration-500 group-hover:scale-110"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/15 to-transparent" />
+                  <div className="absolute bottom-0 left-0 right-0 p-4">
+                    <span className="mb-1 inline-block rounded-full bg-white/20 px-2.5 py-0.5 text-xs font-medium text-white backdrop-blur-sm">
+                      {card.category}
+                    </span>
+                    <h3 className="text-sm font-bold text-white">
+                      {card.title}
+                    </h3>
                   </div>
                 </div>
-              </motion.div>
-            </div>
-          </div>
-          <div className="absolute bottom-0 left-0 right-0">
-            <svg viewBox="0 0 1440 100" className="w-full" preserveAspectRatio="none">
-              <path d="M0,60 C360,100 720,20 1080,60 C1260,80 1380,70 1440,60 L1440,100 L0,100 Z" className="fill-background" />
-            </svg>
+              ))}
+            </motion.div>
           </div>
         </section>
 
-        {/* ===== 2. NASIL ÇALIŞIR — Beyaz ===== */}
-        <section className="relative py-14">
+        {/* ===== SECTION 2: HOW IT WORKS (FeatureHighlight style) ===== */}
+        <section className="relative bg-[#F5F0EB] py-20 md:py-28">
           <div className="container">
-            <div className="mb-10 text-center">
-              <motion.span initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} className="mb-2 inline-block rounded-full bg-brand-teal/10 px-4 py-1 text-sm font-semibold text-brand-teal">Kolay Başlangıç</motion.span>
-              <h2 className="mt-2 text-3xl font-extrabold md:text-4xl">Nasıl Çalışır?</h2>
-              <p className="mt-4 text-lg text-muted-foreground">3 kolay adımda öğrenmeye başla</p>
-            </div>
-            <div className="mx-auto grid max-w-4xl gap-6 md:grid-cols-3">
-              {steps.map((item, index) => (
-                <motion.div key={item.step} initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: index * 0.15 }} className="relative flex flex-col items-center text-center">
-                  <div className={`mb-4 flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br ${item.gradient} text-white shadow-lg`}><item.icon className="h-8 w-8" /></div>
-                  <div className="mb-2 text-xs font-bold uppercase tracking-widest text-brand-teal">Adım {item.step}</div>
-                  <h3 className="mb-2 text-xl font-bold">{item.title}</h3>
-                  <p className="text-muted-foreground">{item.description}</p>
-                </motion.div>
-              ))}
+            <div className="mx-auto max-w-2xl">
+              <motion.span
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true }}
+                className="mb-3 inline-block rounded-full bg-[#005C53]/10 px-4 py-1 text-sm font-semibold text-[#005C53]"
+              >
+                {"Kolay Ba\u015flang\u0131\u00e7"}
+              </motion.span>
+
+              <motion.h2
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5 }}
+                className="text-3xl font-extrabold text-[#042940] md:text-4xl"
+              >
+                {"Her \u015eey \u00c7ok Kolay"}
+              </motion.h2>
+
+              <div className="mt-8 space-y-5">
+                {[
+                  "Kay\u0131t ol \uD83D\uDCDD ve hemen ba\u015fla.",
+                  "Oyun se\u00e7 \uD83C\uDFAE ya\u015f\u0131na uygun.",
+                  "\u00d6\u011fren \uD83E\uDDE0 ve liderlik tablosunda y\u00fcksel \uD83C\uDFC6",
+                  "\u0130lerleme raporlar\u0131n\u0131 takip et \uD83D\uDCCA her an.",
+                  "G\u00fcvenli ortamda \uD83D\uDD12 reklams\u0131z oyna.",
+                ].map((line, index) => (
+                  <motion.p
+                    key={index}
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.4, delay: index * 0.1 }}
+                    className="text-lg leading-relaxed text-[#042940]/75"
+                  >
+                    {line}
+                  </motion.p>
+                ))}
+              </div>
             </div>
           </div>
         </section>
 
-        {/* ===== 3. POPÜLER OYUNLAR — #005C53 teal ===== */}
-        <section className="relative py-24 bg-brand-teal text-white overflow-hidden">
-          <div className="absolute top-0 left-0 right-0 rotate-180">
-            <svg viewBox="0 0 1440 80" className="w-full" preserveAspectRatio="none"><path d="M0,40 C360,80 720,0 1080,40 C1260,60 1380,50 1440,40 L1440,80 L0,80 Z" className="fill-background" /></svg>
+        {/* ===== SECTION 3: STATS + IMAGES (HeroSection9 style) ===== */}
+        <section className="relative overflow-hidden bg-white py-20 md:py-28">
+          {/* Decorative shapes */}
+          <div className="pointer-events-none absolute inset-0">
+            <div className="absolute left-10 top-20 h-24 w-24 rounded-full bg-[#9FC131]/10" />
+            <div className="absolute bottom-16 right-20 h-32 w-32 rounded-3xl bg-[#005C53]/5 rotate-12" />
+            <div className="absolute right-1/3 top-10 h-16 w-16 rounded-full bg-[#DBF227]/15" />
           </div>
+
           <div className="container relative">
-            <div className="mb-16 text-center">
-              <motion.span initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} className="mb-2 inline-block rounded-full bg-brand-lime/20 px-4 py-1 text-sm font-semibold text-brand-lime">Keşfet</motion.span>
-              <h2 className="mt-2 text-3xl font-extrabold md:text-4xl">Popüler Oyunlar</h2>
-              <p className="mt-4 text-lg text-white/60">En çok oynanan eğitici oyunlarımız</p>
+            <div className="grid items-center gap-12 lg:grid-cols-2">
+              {/* Left -- text + stats */}
+              <div>
+                <motion.span
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
+                  viewport={{ once: true }}
+                  className="mb-3 inline-block rounded-full bg-[#005C53]/10 px-4 py-1 text-sm font-semibold text-[#005C53]"
+                >
+                  Rakamlarla Biz
+                </motion.span>
+
+                <motion.h2
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5 }}
+                  className="text-3xl font-extrabold text-[#042940] md:text-4xl"
+                >
+                  {"Binlerce \u00c7ocuk E\u011flenerek \u00d6\u011freniyor"}
+                </motion.h2>
+
+                <motion.p
+                  initial={{ opacity: 0, y: 15 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: 0.1 }}
+                  className="mt-4 text-lg text-[#6B7280]"
+                >
+                  {"Platformumuz her g\u00fcn b\u00fcy\u00fcyor. Aileler ve \u00e7ocuklar i\u00e7in g\u00fcvenli bir \u00f6\u011frenme alan\u0131 sunuyoruz."}
+                </motion.p>
+
+                <div className="mt-10 grid grid-cols-3 gap-6">
+                  {[
+                    { value: "3.2K+", label: "Aktif Oyuncu" },
+                    { value: "4", label: "E\u011fitici Oyun" },
+                    { value: "50K+", label: "Oynanan Oyun" },
+                  ].map((stat, index) => (
+                    <motion.div
+                      key={index}
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.4, delay: 0.2 + index * 0.1 }}
+                    >
+                      <p className="text-3xl font-extrabold text-[#005C53]">
+                        {stat.value}
+                      </p>
+                      <p className="mt-1 text-sm text-[#6B7280]">
+                        {stat.label}
+                      </p>
+                    </motion.div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Right -- image collage */}
+              <div className="relative hidden lg:block">
+                <div className="grid grid-cols-2 gap-4">
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5 }}
+                    className="col-span-2 overflow-hidden rounded-2xl shadow-lg"
+                  >
+                    <img
+                      src={collageImages[0]}
+                      alt={"\u00c7ocuklar \u00f6\u011freniyor"}
+                      className="h-48 w-full object-cover"
+                    />
+                  </motion.div>
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5, delay: 0.15 }}
+                    className="overflow-hidden rounded-2xl shadow-lg"
+                  >
+                    <img
+                      src={collageImages[1]}
+                      alt={"E\u011fitim"}
+                      className="h-40 w-full object-cover"
+                    />
+                  </motion.div>
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5, delay: 0.3 }}
+                    className="overflow-hidden rounded-2xl shadow-lg"
+                  >
+                    <img
+                      src={collageImages[2]}
+                      alt={"\u00c7ocuklar"}
+                      className="h-40 w-full object-cover"
+                    />
+                  </motion.div>
+                </div>
+
+                {/* Floating decorative shapes */}
+                <div className="absolute -left-6 -top-6 h-16 w-16 rounded-full bg-[#9FC131]/20" />
+                <div className="absolute -bottom-4 -right-4 h-20 w-20 rounded-2xl bg-[#DBF227]/25 rotate-12" />
+              </div>
             </div>
-            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-              {popularGames.map((game, index) => (
-                <motion.div key={game.id} initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: index * 0.1 }}>
-                  <Card className="group cursor-pointer overflow-hidden transition-all duration-300 hover:-translate-y-2 hover:shadow-xl">
-                    <div className="relative overflow-hidden"><GameIllustration type={game.illustration} /><div className="absolute bottom-3 right-3 rounded-full bg-white/90 p-2 shadow-sm opacity-0 transition-all group-hover:opacity-100 group-hover:scale-110"><Play className="h-4 w-4 text-brand-dark" /></div></div>
-                    <CardContent className="p-5">
-                      <h3 className="font-bold">{game.title}</h3>
-                      <p className="mt-1 text-sm text-muted-foreground">{game.description}</p>
-                      <div className="mt-4 flex items-center justify-between">
-                        <span className="flex items-center gap-1 text-xs text-muted-foreground"><Users className="h-3.5 w-3.5" />{game.players} oyuncu</span>
-                        <Button size="sm" variant="ghost" className="h-8 gap-1 text-brand-teal">Oyna <ArrowRight className="h-3.5 w-3.5" /></Button>
-                      </div>
-                    </CardContent>
-                  </Card>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-          <div className="absolute bottom-0 left-0 right-0">
-            <svg viewBox="0 0 1440 80" className="w-full" preserveAspectRatio="none"><path d="M0,40 C360,80 720,0 1080,40 C1260,60 1380,50 1440,40 L1440,80 L0,80 Z" className="fill-background" /></svg>
           </div>
         </section>
 
-        {/* ===== 4. NEDEN REACT GAME — Beyaz ===== */}
-        <section className="relative py-14">
-          <div className="container relative">
-            <div className="mb-10 text-center">
-              <motion.span initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} className="mb-2 inline-block rounded-full bg-brand-teal/10 px-4 py-1 text-sm font-semibold text-brand-teal">Özellikler</motion.span>
-              <h2 className="mt-2 text-3xl font-extrabold md:text-4xl">Neden React Game?</h2>
-              <p className="mt-4 text-lg text-muted-foreground">Çocuğunuzun gelişimini destekleyen güçlü özellikler</p>
-            </div>
-            <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
-              {features.map((feature, index) => (
-                <motion.div key={feature.title} initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: index * 0.1 }} className="group flex flex-col items-center rounded-2xl border bg-background p-6 text-center shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md">
-                  <div className={`mb-4 rounded-2xl bg-gradient-to-br ${feature.gradient} p-4 text-white shadow-lg transition-transform duration-300 group-hover:scale-110`}><feature.icon className="h-8 w-8" /></div>
-                  <h3 className="mb-2 text-xl font-bold">{feature.title}</h3>
-                  <p className="text-muted-foreground">{feature.description}</p>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* ===== 5. EN İYİ OYUNCULAR — Sand bant ===== */}
-        <section className="relative overflow-hidden py-24 bg-brand-sand/15">
-          <div className="container relative">
-            <div className="mb-16 text-center">
-              <motion.span initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} className="mb-2 inline-block rounded-full bg-brand-dark/10 px-4 py-1 text-sm font-semibold text-brand-dark">🏆 Sıralama</motion.span>
-              <h2 className="mt-2 text-3xl font-extrabold md:text-4xl">En İyi Oyuncular</h2>
-              <p className="mt-4 text-lg text-muted-foreground">Bu haftanın yıldızları</p>
-            </div>
-            <div className="mx-auto grid max-w-5xl gap-6 sm:grid-cols-3 md:grid-cols-5">
-              {topPlayers.map((player, index) => (
-                <motion.div key={player.username} initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: index * 0.1 }}>
-                  <Card className="group overflow-hidden text-center transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
-                    <div className={`h-14 bg-gradient-to-r ${player.gradient} relative`}>
-                      <div className="absolute inset-0 overflow-hidden"><div className="absolute left-1/2 top-0 h-10 w-[1px] rotate-[20deg] bg-white/20" /></div>
-                    </div>
-                    <CardContent className="relative px-3 pb-5">
-                      <div className="-mt-7 mb-3 flex justify-center"><HexAvatar initials={player.initials} size="md" borderColor="ring-background" online={index < 3} gradient={player.gradient} image={player.avatar} /></div>
-                      {player.rank <= 3 && (
-                        <div className="mb-1 flex justify-center">
-                          <span className={`rounded-full px-2 py-0.5 text-[10px] font-bold ${player.rank === 1 ? "bg-brand-lime/20 text-brand-dark" : player.rank === 2 ? "bg-brand-sand/30 text-brand-dark" : "bg-brand-green/20 text-brand-dark"}`}>
-                            {player.rank === 1 ? "🥇" : player.rank === 2 ? "🥈" : "🥉"} {player.rank}.
-                          </span>
-                        </div>
-                      )}
-                      <h3 className="text-sm font-bold truncate">{player.username}</h3>
-                      <p className="text-lg font-extrabold text-brand-teal">{player.score.toLocaleString("tr-TR")}</p>
-                      <p className="text-[11px] text-muted-foreground">{player.games} oyun</p>
-                    </CardContent>
-                  </Card>
-                </motion.div>
-              ))}
-            </div>
-            <div className="mt-10 text-center">
-              <Button asChild variant="outline" className="shadow-sm border-brand-dark/20"><Link href="/leaderboard">Tüm Sıralamayı Gör <ArrowRight className="ml-2 h-4 w-4" /></Link></Button>
-            </div>
-          </div>
-        </section>
-
-        {/* ===== 6. TESTIMONIALS — #042940 koyu ===== */}
-        <section className="relative py-24 bg-brand-dark text-white overflow-hidden">
-          <div className="absolute top-0 left-0 right-0 rotate-180">
-            <svg viewBox="0 0 1440 60" className="w-full" preserveAspectRatio="none"><path d="M0,30 C480,60 960,0 1440,30 L1440,60 L0,60 Z" fill="#D6D58E" fillOpacity="0.15" /></svg>
-          </div>
-          <div className="container relative">
+        {/* ===== SECTION 4: FEATURES ===== */}
+        <section id="features" className="relative bg-white py-20 md:py-28">
+          <div className="container">
             <div className="mb-12 text-center">
-              <motion.span initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} className="mb-2 inline-block rounded-full bg-brand-lime/15 px-4 py-1 text-sm font-semibold text-brand-lime">Kullanıcı Yorumları</motion.span>
-              <h2 className="mt-2 text-3xl font-extrabold md:text-4xl">Ebeveynler Ne Diyor?</h2>
-              <p className="mt-4 text-lg text-white/50">Platformumuzu kullanan ailelerden geri bildirimler</p>
+              <motion.span
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true }}
+                className="mb-3 inline-block rounded-full bg-[#005C53]/10 px-4 py-1 text-sm font-semibold text-[#005C53]"
+              >
+                {"\u00d6zellikler"}
+              </motion.span>
+              <motion.h2
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5 }}
+                className="text-3xl font-extrabold text-[#042940] md:text-4xl"
+              >
+                Neden React Game?
+              </motion.h2>
+              <motion.p
+                initial={{ opacity: 0, y: 15 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.1 }}
+                className="mt-4 text-lg text-[#6B7280]"
+              >
+                {"\u00c7ocu\u011funuzun geli\u015fimini destekleyen g\u00fc\u00e7l\u00fc \u00f6zellikler"}
+              </motion.p>
             </div>
-            <TestimonialCarousel testimonials={testimonials} className="max-w-2xl mx-auto" />
-          </div>
-          <div className="absolute bottom-0 left-0 right-0">
-            <svg viewBox="0 0 1440 60" className="w-full" preserveAspectRatio="none"><path d="M0,30 C480,0 960,60 1440,30 L1440,60 L0,60 Z" className="fill-background" /></svg>
+
+            <div className="mx-auto grid max-w-4xl gap-6 md:grid-cols-2 lg:grid-cols-4">
+              {features.map((feature, index) => (
+                <motion.div
+                  key={feature.title}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  className="group flex flex-col items-center rounded-2xl border border-[#D6D58E]/30 bg-white p-6 text-center transition-all duration-300 hover:-translate-y-1 hover:shadow-md"
+                >
+                  <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-[#005C53]/10 transition-colors duration-300 group-hover:bg-[#005C53]/15">
+                    <feature.icon className="h-7 w-7 text-[#005C53]" />
+                  </div>
+                  <h3 className="mb-2 text-lg font-bold text-[#042940]">
+                    {feature.title}
+                  </h3>
+                  <p className="text-sm text-[#6B7280]">
+                    {feature.description}
+                  </p>
+                </motion.div>
+              ))}
+            </div>
           </div>
         </section>
 
-        {/* ===== 7. EBEVEYN GÜVENLİĞİ — Beyaz ===== */}
-        <section className="relative py-24">
+        {/* ===== SECTION 5: TESTIMONIALS ===== */}
+        <section className="relative bg-[#F5F0EB] py-20 md:py-28">
+          <div className="container">
+            <div className="mb-12 text-center">
+              <motion.span
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true }}
+                className="mb-3 inline-block rounded-full bg-[#005C53]/10 px-4 py-1 text-sm font-semibold text-[#005C53]"
+              >
+                {"Kullan\u0131c\u0131 Yorumlar\u0131"}
+              </motion.span>
+              <motion.h2
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5 }}
+                className="text-3xl font-extrabold text-[#042940] md:text-4xl"
+              >
+                Aileler Ne Diyor?
+              </motion.h2>
+              <motion.p
+                initial={{ opacity: 0, y: 15 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.1 }}
+                className="mt-4 text-lg text-[#6B7280]"
+              >
+                Platformumuzu kullanan ailelerden geri bildirimler
+              </motion.p>
+            </div>
+
+            <TestimonialCarousel
+              testimonials={testimonials}
+              className="mx-auto max-w-2xl"
+            />
+          </div>
+        </section>
+
+        {/* ===== SECTION 6: TRUST / SAFETY ===== */}
+        <section className="relative bg-white py-20 md:py-28">
           <div className="container">
             <div className="mx-auto max-w-3xl">
               <div className="text-center">
-                <div className="mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-full bg-brand-teal/10">
-                  <Shield className="h-10 w-10 text-brand-teal" />
-                </div>
-                <h2 className="text-3xl font-extrabold md:text-4xl">Ebeveynler İçin Güvenli</h2>
-                <p className="mt-4 text-lg text-muted-foreground">Çocuğunuzun güvenliği bizim önceliğimiz</p>
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.4 }}
+                  className="mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-full bg-[#005C53]/10"
+                >
+                  <Shield className="h-10 w-10 text-[#005C53]" />
+                </motion.div>
+                <motion.h2
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5 }}
+                  className="text-3xl font-extrabold text-[#042940] md:text-4xl"
+                >
+                  {"Ebeveynler \u0130\u00e7in G\u00fcvenli"}
+                </motion.h2>
+                <motion.p
+                  initial={{ opacity: 0, y: 15 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: 0.1 }}
+                  className="mt-4 text-lg text-[#6B7280]"
+                >
+                  {"\u00c7ocu\u011funuzun g\u00fcvenli\u011fi bizim \u00f6nceli\u011fimiz"}
+                </motion.p>
               </div>
+
               <div className="mt-10 space-y-3">
                 {trustPoints.map((point, index) => (
-                  <motion.div key={index} initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.4, delay: index * 0.1 }} className="flex items-center gap-3 rounded-xl border border-brand-sand/30 bg-white p-4 shadow-sm transition-shadow hover:shadow-md">
-                    <CheckCircle2 className="h-5 w-5 shrink-0 text-brand-green" />
-                    <span className="font-medium">{point}</span>
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.4, delay: index * 0.08 }}
+                    className="flex items-center gap-3 rounded-xl border border-[#D6D58E]/30 bg-white p-4 transition-shadow hover:shadow-sm"
+                  >
+                    <CheckCircle2 className="h-5 w-5 shrink-0 text-[#9FC131]" />
+                    <span className="font-medium text-[#042940]">{point}</span>
                   </motion.div>
                 ))}
               </div>
@@ -315,6 +595,47 @@ export default function HomePage() {
           </div>
         </section>
 
+        {/* ===== SECTION 7: FINAL CTA ===== */}
+        <section className="relative bg-[#042940] py-20 md:py-28">
+          <div className="container text-center">
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+              className="text-3xl font-extrabold text-white md:text-4xl"
+            >
+              {"Hemen Ba\u015fla"}
+            </motion.h2>
+            <motion.p
+              initial={{ opacity: 0, y: 15 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+              className="mt-4 text-lg text-white/60"
+            >
+              {"\u00c7ocu\u011funuzun e\u011fitim yolculu\u011funa bug\u00fcn ba\u015flay\u0131n."}
+            </motion.p>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              className="mt-8"
+            >
+              <Button
+                asChild
+                size="lg"
+                className="bg-[#DBF227] px-10 text-base font-bold text-[#042940] shadow-lg hover:bg-[#DBF227]/90"
+              >
+                <Link href="/register">
+                  {"\u00dccretsiz Kay\u0131t Ol"}
+                  <ArrowRight className="ml-2 h-5 w-5" />
+                </Link>
+              </Button>
+            </motion.div>
+          </div>
+        </section>
       </main>
 
       <Footer />
