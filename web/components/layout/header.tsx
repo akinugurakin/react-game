@@ -26,7 +26,7 @@ import {
 } from "@/components/ui/sheet";
 import MegaMenu, { type MegaMenuItem } from "@/components/ui/mega-menu";
 import { HexAvatar } from "@/components/ui/hex-avatar";
-import { useAuthStore } from "@/lib/auth";
+import { useAuthStore, useAuthHydrated } from "@/lib/auth";
 
 const NAV_ITEMS: MegaMenuItem[] = [
   {
@@ -143,6 +143,7 @@ const NAV_ITEMS: MegaMenuItem[] = [
 export function Header() {
   const t = useTranslations("auth");
   const { isAuthenticated, user, logout } = useAuthStore();
+  const hydrated = useAuthHydrated();
   const username = user?.username || "Oyuncu";
   const initials = username.slice(0, 2).toUpperCase();
 
@@ -164,7 +165,9 @@ export function Header() {
         </div>
 
         <nav className="hidden items-center gap-3 md:flex">
-          {isAuthenticated ? (
+          {!hydrated ? (
+            <div className="h-9 w-32" /> /* Hydration placeholder */
+          ) : isAuthenticated ? (
             <>
               <Link
                 href="/dashboard"

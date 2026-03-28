@@ -1,13 +1,13 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { Gamepad2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { useAuthStore } from "@/lib/auth";
+import { useAuthStore, useAuthHydrated } from "@/lib/auth";
 import { api } from "@/lib/api";
 
 interface RegisterResponse {
@@ -26,7 +26,8 @@ interface RegisterResponse {
 
 export default function RegisterPage() {
   const router = useRouter();
-  const { setAuth } = useAuthStore();
+  const { isAuthenticated, setAuth } = useAuthStore();
+  const hydrated = useAuthHydrated();
   const [formData, setFormData] = useState({
     email: "",
     username: "",
@@ -39,6 +40,13 @@ export default function RegisterPage() {
 
   const age = parseInt(formData.age) || 0;
   const needsParent = age > 0 && age < 13;
+
+  // Giriş yapmışsa dashboard'a yönlendir
+  useEffect(() => {
+    if (hydrated && isAuthenticated) {
+      router.replace("/dashboard");
+    }
+  }, [hydrated, isAuthenticated, router]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
@@ -69,6 +77,9 @@ export default function RegisterPage() {
       setLoading(false);
     }
   };
+
+  if (!hydrated) return null;
+  if (isAuthenticated) return null;
 
   return (
     <div className="w-full max-w-md space-y-8">

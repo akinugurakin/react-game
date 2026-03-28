@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 
@@ -33,3 +34,15 @@ export const useAuthStore = create<AuthState>()(
     { name: "auth-storage" }
   )
 );
+
+// Hydration hook — SSR'de false döner, client'ta localStorage'dan yüklendikten sonra true
+export function useAuthHydrated() {
+  const [hydrated, setHydrated] = useState(false);
+  useEffect(() => {
+    const unsub = useAuthStore.persist.onFinishHydration(() => setHydrated(true));
+    // Zaten hydrate olmuşsa
+    if (useAuthStore.persist.hasHydrated()) setHydrated(true);
+    return () => unsub();
+  }, []);
+  return hydrated;
+}

@@ -4,6 +4,8 @@ import { useState, useEffect, useCallback, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Trophy, Brain, CheckCircle, XCircle, Delete, Check, Star, RotateCcw } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { useAuthStore } from "@/lib/auth";
+import { api } from "@/lib/api";
 
 // --- Types ---
 type GamePhase = "name" | "countdown" | "playing" | "result";
@@ -161,8 +163,9 @@ function ChampionsPanel({ champions }: { champions: Champion[] }) {
 
 // --- Main Component ---
 export function MathQuiz() {
+  const authUser = useAuthStore((s) => s.user);
   const [phase, setPhase] = useState<GamePhase>("name");
-  const [playerName, setPlayerName] = useState("");
+  const [playerName, setPlayerName] = useState(authUser?.username || "");
   const [countdown, setCountdown] = useState(COUNTDOWN_FROM);
   const [questions, setQuestions] = useState<Question[]>([]);
   const [currentQ, setCurrentQ] = useState(0);
@@ -175,21 +178,54 @@ export function MathQuiz() {
   const [lastAnswer, setLastAnswer] = useState<{ correct: boolean; value: string } | null>(null);
   const [champions, setChampions] = useState<Champion[]>([]);
   const timerRef = useRef<NodeJS.Timeout | null>(null);
+  const { isAuthenticated, accessToken } = useAuthStore();
 
-  // Load champions from localStorage
+  // Load champions — API'den veya localStorage'dan
   useEffect(() => {
-    const saved = localStorage.getItem("math-champions");
-    if (saved) setChampions(JSON.parse(saved));
+    async function loadLeaderboard() {
+      try {
+        const data = await api.get<Champion[]>("/games/1/leaderboard");
+        if (data.length > 0) {
+          setChampions(data.map((d: any) => ({
+            name: d.username,
+            score: d.score,
+            correct: d.correct_count,
+            time: d.duration_seconds,
+          })));
+          return;
+        }
+      } catch {}
+      // Fallback: localStorage
+      const saved = localStorage.getItem("math-champions");
+      if (saved) setChampions(JSON.parse(saved));
+    }
+    loadLeaderboard();
   }, []);
 
-  // Save champions
-  const saveChampion = useCallback((entry: Champion) => {
+  // Save champion — API + localStorage
+  const saveChampion = useCallback(async (entry: Champion) => {
+    // localStorage'a kaydet
     setChampions((prev) => {
       const next = [...prev, entry].sort((a, b) => b.score - a.score).slice(0, 10);
       localStorage.setItem("math-champions", JSON.stringify(next));
       return next;
     });
-  }, []);
+
+    // Giriş yapmışsa API'ye de kaydet
+    if (isAuthenticated && accessToken) {
+      try {
+        await api.post("/games/1/session", {
+          game_id: 1,
+          score: entry.score,
+          correct_count: entry.correct,
+          wrong_count: TOTAL_QUESTIONS - entry.correct,
+          duration_seconds: entry.time,
+        }, accessToken);
+      } catch (err) {
+        // Sessizce geç — localStorage'da zaten kaydedildi
+      }
+    }
+  }, [isAuthenticated, accessToken]);
 
   // Timer
   useEffect(() => {
