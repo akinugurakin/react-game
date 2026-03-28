@@ -1,4 +1,4 @@
-const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
+const API_URL = process.env.NEXT_PUBLIC_API_URL || "https://react-game-api.onrender.com";
 
 interface FetchOptions extends RequestInit {
   token?: string;
