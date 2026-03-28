@@ -198,20 +198,22 @@ export function Sidebar() {
                 {!collapsed && (
                   <div className={cn("overflow-hidden transition-all duration-300 ease-in-out", subMenuOpen ? "mt-1 max-h-[250px] opacity-100" : "max-h-0 opacity-0")}>
                     <div className="ml-3 space-y-0.5 border-l border-white/10 pl-3">
-                      {/* T&#252;m / Genel */}
-                      <Link
-                        href={basePath}
-                        onClick={() => setTimeout(() => setCurrentSearch(""), 0)}
-                        className={cn(
-                          "flex items-center gap-2.5 rounded-lg px-3 py-2 text-xs font-medium transition-colors",
-                          pathname === basePath && !currentSearch.includes(paramKey)
-                            ? "bg-white/10 text-white"
-                            : "text-white/50 hover:bg-white/5 hover:text-white/80"
-                        )}
-                      >
-                        <AllIcon className="h-4 w-4 shrink-0" />
-                        <span>{allLabel}</span>
-                      </Link>
+                      {/* T&#252;m Oyunlar - sadece Oyunlar men&#252;s&#252;nde */}
+                      {isOyunlar && (
+                        <Link
+                          href={basePath}
+                          onClick={() => setTimeout(() => setCurrentSearch(""), 0)}
+                          className={cn(
+                            "flex items-center gap-2.5 rounded-lg px-3 py-2 text-xs font-medium transition-colors",
+                            pathname === basePath && !currentSearch.includes(paramKey)
+                              ? "bg-white/10 text-white"
+                              : "text-white/50 hover:bg-white/5 hover:text-white/80"
+                          )}
+                        >
+                          <AllIcon className="h-4 w-4 shrink-0" />
+                          <span>{allLabel}</span>
+                        </Link>
+                      )}
 
                       {subItems.map((sub) => {
                         const paramValue = sub.href.split("=")[1];
