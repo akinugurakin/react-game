@@ -110,9 +110,9 @@ export function Sidebar() {
               className="shrink-0 transition-transform hover:scale-110"
               title="Avatar de&#287;i&#351;tir"
             >
-              {avatarUrl ? (
+              {avatarId ? (
                 <div className="flex h-9 w-9 items-center justify-center overflow-hidden rounded-full" style={{ backgroundColor: avatarBg }}>
-                  <img src={avatarUrl} alt="Avatar" className="h-8 w-8" />
+                  <BeanHeadAvatar avatarId={avatarId} size={36} />
                 </div>
               ) : (
                 <HexAvatar initials={initials} size="sm" gradient="from-brand-green to-brand-lime" />
