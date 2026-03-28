@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname, useSearchParams } from "next/navigation";
+import { usePathname } from "next/navigation";
 import {
   Gamepad2,
   LayoutDashboard,
@@ -37,7 +37,6 @@ const menuItems = [
 
 export function Sidebar() {
   const pathname = usePathname();
-  const searchParams = useSearchParams();
   const { user, logout } = useAuthStore();
   const [collapsed, setCollapsed] = useState(false);
   const [oyunlarAcik, setOyunlarAcik] = useState(
@@ -174,9 +173,8 @@ export function Sidebar() {
                       </Link>
 
                       {oyunAltMenusu.map((sub) => {
-                        const subjectParam = searchParams.get("subject");
                         const subjectValue = sub.href.split("=")[1];
-                        const isSubActive = pathname === "/games" && subjectParam === subjectValue;
+                        const isSubActive = typeof window !== "undefined" && pathname === "/games" && window.location.search.includes(`subject=${subjectValue}`);
                         return (
                           <Link
                             key={sub.href}
