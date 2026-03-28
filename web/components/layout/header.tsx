@@ -6,15 +6,15 @@ import {
   Gamepad2,
   Menu,
   Calculator,
-  BookOpen,
-  Brain,
-  Puzzle,
-  Trophy,
-  BarChart3,
-  Star,
+  FlaskConical,
+  Globe,
+  HelpCircle,
   Users,
   Shield,
-  HelpCircle,
+  GraduationCap,
+  Phone,
+  CreditCard,
+  MessageCircleQuestion,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
@@ -34,48 +34,25 @@ const NAV_ITEMS: MegaMenuItem[] = [
     label: "Oyunlar",
     subMenus: [
       {
-        title: "Kategoriler",
+        title: "Dersler",
         items: [
           {
-            label: "Matematik Yarışması",
-            description: "Toplama, çıkarma ile hızını test et",
+            label: "Matematik",
+            description: "Sayılar, işlemler, geometri ve daha fazlası",
             icon: Calculator,
-            href: "/games",
+            href: "/games?subject=matematik",
           },
           {
-            label: "Kelime Avı",
-            description: "Harflerden anlamlı kelimeler oluştur",
-            icon: BookOpen,
-            href: "/games",
+            label: "Fen Bilimleri",
+            description: "Canlılar, madde, fiziksel olaylar",
+            icon: FlaskConical,
+            href: "/games?subject=fen",
           },
           {
-            label: "Hafıza Kartları",
-            description: "Eşleşen kartları bul",
-            icon: Brain,
-            href: "/games",
-          },
-          {
-            label: "Bulmaca Dünyası",
-            description: "Şekilleri doğru yere yerleştir",
-            icon: Puzzle,
-            href: "/games",
-          },
-        ],
-      },
-      {
-        title: "Keşfet",
-        items: [
-          {
-            label: "Tüm Oyunlar",
-            description: "Eğitici oyun kataloğunu keşfet",
-            icon: Gamepad2,
-            href: "/games",
-          },
-          {
-            label: "Popüler",
-            description: "En çok oynanan oyunlar",
-            icon: Star,
-            href: "/games",
+            label: "Sosyal Bilgiler",
+            description: "Tarih, coğrafya, vatandaşlık",
+            icon: Globe,
+            href: "/games?subject=sosyal",
           },
         ],
       },
@@ -83,33 +60,28 @@ const NAV_ITEMS: MegaMenuItem[] = [
   },
   {
     id: 2,
-    label: "Topluluk",
+    label: "Platform",
     subMenus: [
       {
-        title: "Sıralama",
+        title: "Keşfet",
         items: [
           {
-            label: "Liderlik Tablosu",
-            description: "Bu haftanın en iyileri",
-            icon: Trophy,
-            href: "/leaderboard",
+            label: "Nasıl Çalışır?",
+            description: "LUMO platformunu tanıyın",
+            icon: HelpCircle,
+            href: "#nasil-calisir",
           },
           {
-            label: "Tüm Zamanlar",
-            description: "Tarih boyunca en yüksek skorlar",
-            icon: BarChart3,
-            href: "/leaderboard",
+            label: "Öğretmenler İçin",
+            description: "Sınıfınızı oluşturun, ilerlemeyi takip edin",
+            icon: GraduationCap,
+            href: "#ogretmenler",
           },
-        ],
-      },
-      {
-        title: "Oyuncular",
-        items: [
           {
-            label: "Aktif Oyuncular",
-            description: "Şu an online olan oyuncular",
+            label: "Veliler İçin",
+            description: "Güvenli ortam, ebeveyn kontrolü",
             icon: Users,
-            href: "/leaderboard",
+            href: "#veliler",
           },
         ],
       },
@@ -120,19 +92,25 @@ const NAV_ITEMS: MegaMenuItem[] = [
     label: "Hakkımızda",
     subMenus: [
       {
-        title: "Platform",
+        title: "Bilgi",
         items: [
           {
-            label: "Güvenlik",
-            description: "Çocuklar için güvenli ortam",
-            icon: Shield,
-            href: "#",
+            label: "Fiyatlandırma",
+            description: "Basit ve şeffaf planlar",
+            icon: CreditCard,
+            href: "#fiyatlandirma",
           },
           {
-            label: "Yardım",
+            label: "SSS",
             description: "Sıkça sorulan sorular",
-            icon: HelpCircle,
-            href: "#",
+            icon: MessageCircleQuestion,
+            href: "#sss",
+          },
+          {
+            label: "İletişim",
+            description: "Bize ulaşın",
+            icon: Phone,
+            href: "#iletisim",
           },
         ],
       },
@@ -154,7 +132,7 @@ export function Header() {
           <Link href="/" className="flex items-center gap-2">
             <Gamepad2 className="h-8 w-8 text-brand-dark" />
             <span className="text-xl font-extrabold text-brand-dark">
-              React Game
+              LUMO
             </span>
           </Link>
 
@@ -207,7 +185,7 @@ export function Header() {
               <SheetTitle>
                 <Link href="/" className="flex items-center gap-2">
                   <Gamepad2 className="h-6 w-6 text-brand-dark" />
-                  <span className="font-extrabold text-brand-dark">React Game</span>
+                  <span className="font-extrabold text-brand-dark">LUMO</span>
                 </Link>
               </SheetTitle>
             </SheetHeader>

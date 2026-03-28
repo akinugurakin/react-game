@@ -44,7 +44,7 @@ export function Sidebar() {
         {!collapsed && (
           <Link href="/" className="flex items-center gap-2">
             <Gamepad2 className="h-7 w-7 text-brand-lime" />
-            <span className="text-lg font-extrabold text-white">React Game</span>
+            <span className="text-lg font-extrabold text-white">LUMO</span>
           </Link>
         )}
         {collapsed && (

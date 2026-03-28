@@ -86,7 +86,7 @@ export default function RegisterPage() {
       <div className="flex flex-col items-center">
         <Link href="/" className="flex items-center gap-2 mb-8">
           <Gamepad2 className="h-10 w-10 text-brand-dark" />
-          <span className="text-2xl font-extrabold text-brand-dark">React Game</span>
+          <span className="text-2xl font-extrabold text-brand-dark">LUMO</span>
         </Link>
         <h1 className="text-3xl font-extrabold">Kayıt Ol</h1>
         <p className="mt-2 text-muted-foreground">

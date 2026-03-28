@@ -4,8 +4,8 @@ import { getLocale, getMessages } from "next-intl/server";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "React Game - Eğitici Oyun Platformu",
-  description: "6-12 yaş çocuklar için eğitici mini oyunlar platformu",
+  title: "LUMO - MEB Müfredatına Uygun Eğitsel Oyun Platformu",
+  description: "1-8. sınıf öğrencileri için Matematik, Fen Bilimleri ve Sosyal Bilgiler derslerinde oyunlaştırılmış öğrenme deneyimi.",
 };
 
 export default async function RootLayout({
