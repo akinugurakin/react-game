@@ -276,7 +276,7 @@ export default function DashboardPage() {
             {/* Oyunlar */}
             <div className="lg:col-span-2">
               <div className="mb-4 flex items-center justify-between">
-                <h2 className="text-xl font-bold">Oyunlar</h2>
+                <h2 className="text-xl font-bold">En Sevdi&#287;in Oyunlar</h2>
                 <Button asChild variant="ghost" size="sm">
                   <Link href="/games">Tümünü Gör</Link>
                 </Button>

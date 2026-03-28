@@ -16,17 +16,17 @@ import {
   ChevronRight,
   ChevronDown,
 } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
 import { useAuthStore } from "@/lib/auth";
 import { HexAvatar } from "@/components/ui/hex-avatar";
 import { AvatarPicker, BeanHeadAvatar } from "@/components/ui/avatar-picker";
 
 const oyunAltMenusu = [
-  { href: "/games?subject=turkce", icon: BookOpen, label: "T\u00fcrk\u00e7e" },
-  { href: "/games?subject=matematik", icon: Calculator, label: "Matematik" },
-  { href: "/games?subject=fen", icon: FlaskConical, label: "Fen Bilimleri" },
-  { href: "/games?subject=sosyal", icon: Globe, label: "Sosyal Bilgiler" },
+  { href: "/games?subject=turkce", icon: BookOpen, label: "T\u00fcrk\u00e7e", labelEn: "Turkish" },
+  { href: "/games?subject=matematik", icon: Calculator, label: "Matematik", labelEn: "Mathematics" },
+  { href: "/games?subject=fen", icon: FlaskConical, label: "Fen Bilimleri", labelEn: "Science" },
+  { href: "/games?subject=sosyal", icon: Globe, label: "Sosyal Bilgiler", labelEn: "Social Studies" },
 ];
 
 const menuItems = [
@@ -42,6 +42,23 @@ export function Sidebar() {
   const [oyunlarAcik, setOyunlarAcik] = useState(
     pathname.startsWith("/games")
   );
+  // URL search params'i takip et (client-side navigation icin)
+  const [currentSearch, setCurrentSearch] = useState("");
+  useEffect(() => {
+    setCurrentSearch(window.location.search);
+  }, [pathname]);
+  // pathname degistiginde URL'yi de kontrol et
+  useEffect(() => {
+    const checkSearch = () => setCurrentSearch(window.location.search);
+    // popstate ve pushstate'i dinle
+    window.addEventListener("popstate", checkSearch);
+    // Next.js client navigation icin kisa bir gecikme
+    const timer = setTimeout(checkSearch, 50);
+    return () => {
+      window.removeEventListener("popstate", checkSearch);
+      clearTimeout(timer);
+    };
+  }, [pathname]);
   const [avatarPickerOpen, setAvatarPickerOpen] = useState(false);
   const [avatarId, setAvatarId] = useState<string | null>(() => {
     if (typeof window !== "undefined") return localStorage.getItem("lumo-avatar-id") || null;
@@ -73,7 +90,10 @@ export function Sidebar() {
         {!collapsed && (
           <Link href="/" className="flex items-center gap-2">
             <Gamepad2 className="h-7 w-7 text-brand-lime" />
-            <span className="text-lg font-extrabold text-white">LUMO</span>
+            <div>
+              <span className="text-lg font-extrabold text-white">LUMO</span>
+              <p className="text-[10px] font-normal leading-tight text-white/40">E&#287;itsel Oyun Platformu</p>
+            </div>
           </Link>
         )}
         {collapsed && (
@@ -202,8 +222,7 @@ export function Sidebar() {
                         href="/games"
                         className={cn(
                           "flex items-center gap-2.5 rounded-lg px-3 py-2 text-xs font-medium transition-colors",
-                          pathname === "/games" &&
-                            !pathname.includes("subject")
+                          pathname === "/games" && !currentSearch.includes("subject")
                             ? "bg-white/10 text-white"
                             : "text-white/50 hover:bg-white/5 hover:text-white/80"
                         )}
@@ -214,11 +233,12 @@ export function Sidebar() {
 
                       {oyunAltMenusu.map((sub) => {
                         const subjectValue = sub.href.split("=")[1];
-                        const isSubActive = typeof window !== "undefined" && pathname === "/games" && window.location.search.includes(`subject=${subjectValue}`);
+                        const isSubActive = pathname === "/games" && currentSearch.includes(`subject=${subjectValue}`);
                         return (
                           <Link
                             key={sub.href}
                             href={sub.href}
+                            onClick={() => setTimeout(() => setCurrentSearch(`?subject=${subjectValue}`), 0)}
                             className={cn(
                               "flex items-center gap-2.5 rounded-lg px-3 py-2 text-xs font-medium transition-colors",
                               isSubActive
@@ -227,7 +247,10 @@ export function Sidebar() {
                             )}
                           >
                             <sub.icon className="h-4 w-4 shrink-0" />
-                            <span>{sub.label}</span>
+                            <div className="flex flex-col">
+                              <span>{sub.label}</span>
+                              <span className="text-[10px] text-white/30">{sub.labelEn}</span>
+                            </div>
                           </Link>
                         );
                       })}
