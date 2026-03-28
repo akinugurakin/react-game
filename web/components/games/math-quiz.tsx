@@ -204,7 +204,7 @@ export function MathQuiz() {
   }, []);
 
   // Save champion — API + localStorage
-  const saveChampion = useCallback(async (entry: Champion) => {
+  const saveChampion = async (entry: Champion) => {
     // localStorage'a kaydet
     setChampions((prev) => {
       const next = [...prev, entry].sort((a, b) => b.score - a.score).slice(0, 10);
@@ -213,7 +213,9 @@ export function MathQuiz() {
     });
 
     // Giriş yapmışsa API'ye de kaydet
-    if (isAuthenticated && accessToken) {
+    const token = useAuthStore.getState().accessToken;
+    const authed = useAuthStore.getState().isAuthenticated;
+    if (authed && token) {
       try {
         await api.post("/games/1/session", {
           game_id: 1,
@@ -221,12 +223,12 @@ export function MathQuiz() {
           correct_count: entry.correct,
           wrong_count: TOTAL_QUESTIONS - entry.correct,
           duration_seconds: entry.time,
-        }, accessToken);
+        }, token);
       } catch (err) {
-        // Sessizce geç — localStorage'da zaten kaydedildi
+        console.error("Skor kaydedilemedi:", err);
       }
     }
-  }, [isAuthenticated, accessToken]);
+  };
 
   // Timer
   useEffect(() => {
