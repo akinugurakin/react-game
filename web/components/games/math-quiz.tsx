@@ -164,6 +164,7 @@ function ChampionsPanel({ champions }: { champions: Champion[] }) {
 // --- Main Component ---
 export function MathQuiz() {
   const authUser = useAuthStore((s) => s.user);
+  const isLoggedIn = !!authUser;
   const [phase, setPhase] = useState<GamePhase>("name");
   const [playerName, setPlayerName] = useState(authUser?.username || "");
   const [countdown, setCountdown] = useState(COUNTDOWN_FROM);
@@ -264,7 +265,9 @@ export function MathQuiz() {
   });
 
   const startGame = () => {
-    if (!playerName.trim()) return;
+    const name = playerName.trim() || authUser?.username || "";
+    if (!name) return;
+    setPlayerName(name);
     setQuestions(generateQuestions());
     setCurrentQ(0);
     setCorrectCount(0);
@@ -276,6 +279,18 @@ export function MathQuiz() {
     setCountdown(COUNTDOWN_FROM);
     setPhase("countdown");
   };
+
+  // Giriş yapmış kullanıcı için otomatik başlat
+  const autoStarted = useRef(false);
+  useEffect(() => {
+    if (isLoggedIn && !autoStarted.current && phase === "name") {
+      autoStarted.current = true;
+      setPlayerName(authUser!.username);
+      setQuestions(generateQuestions());
+      setCountdown(COUNTDOWN_FROM);
+      setPhase("countdown");
+    }
+  }, [isLoggedIn, phase, authUser]);
 
   const handleNumber = (n: number) => {
     if (input.length >= 3) return;
@@ -340,8 +355,20 @@ export function MathQuiz() {
   };
 
   const playAgain = () => {
-    setPhase("name");
     setInput("");
+    if (isLoggedIn) {
+      // Giriş yapmışsa direkt yeniden başla
+      setQuestions(generateQuestions());
+      setCorrectCount(0);
+      setWrongCount(0);
+      setElapsed(0);
+      setResult(null);
+      setLastAnswer(null);
+      setCountdown(COUNTDOWN_FROM);
+      setPhase("countdown");
+    } else {
+      setPhase("name");
+    }
   };
 
   // Current question
