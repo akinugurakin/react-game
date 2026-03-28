@@ -20,6 +20,7 @@ import { useState } from "react";
 import { cn } from "@/lib/utils";
 import { useAuthStore } from "@/lib/auth";
 import { HexAvatar } from "@/components/ui/hex-avatar";
+import { AvatarPicker } from "@/components/ui/avatar-picker";
 
 const oyunAltMenusu = [
   { href: "/games?subject=turkce", icon: BookOpen, label: "T\u00fcrk\u00e7e" },
@@ -41,8 +42,22 @@ export function Sidebar() {
   const [oyunlarAcik, setOyunlarAcik] = useState(
     pathname.startsWith("/games")
   );
+  const [avatarPickerOpen, setAvatarPickerOpen] = useState(false);
+  const [avatarUrl, setAvatarUrl] = useState<string | null>(
+    () => {
+      if (typeof window !== "undefined") {
+        return localStorage.getItem("lumo-avatar") || null;
+      }
+      return null;
+    }
+  );
   const username = user?.username || "Oyuncu";
   const initials = username.slice(0, 2).toUpperCase();
+
+  const handleAvatarSelect = (url: string) => {
+    setAvatarUrl(url);
+    localStorage.setItem("lumo-avatar", url);
+  };
 
   return (
     <aside
@@ -74,18 +89,29 @@ export function Sidebar() {
         )}
       >
         {collapsed ? (
-          <HexAvatar
-            initials={initials}
-            size="sm"
-            gradient="from-brand-green to-brand-lime"
-          />
+          <button
+            onClick={() => setAvatarPickerOpen(true)}
+            className="transition-transform hover:scale-110"
+          >
+            {avatarUrl ? (
+              <img src={avatarUrl} alt="Avatar" className="h-9 w-9 rounded-full" />
+            ) : (
+              <HexAvatar initials={initials} size="sm" gradient="from-brand-green to-brand-lime" />
+            )}
+          </button>
         ) : (
           <div className="flex items-center gap-3">
-            <HexAvatar
-              initials={initials}
-              size="sm"
-              gradient="from-brand-green to-brand-lime"
-            />
+            <button
+              onClick={() => setAvatarPickerOpen(true)}
+              className="shrink-0 transition-transform hover:scale-110"
+              title="Avatar de&#287;i&#351;tir"
+            >
+              {avatarUrl ? (
+                <img src={avatarUrl} alt="Avatar" className="h-9 w-9 rounded-full" />
+              ) : (
+                <HexAvatar initials={initials} size="sm" gradient="from-brand-green to-brand-lime" />
+              )}
+            </button>
             <div className="min-w-0">
               <p className="truncate text-sm font-bold">{username}</p>
               <p className="text-xs text-white/50">
@@ -95,6 +121,14 @@ export function Sidebar() {
           </div>
         )}
       </div>
+
+      {/* Avatar Se&#231;ici */}
+      <AvatarPicker
+        isOpen={avatarPickerOpen}
+        onClose={() => setAvatarPickerOpen(false)}
+        onSelect={handleAvatarSelect}
+        currentAvatar={avatarUrl || undefined}
+      />
 
       {/* Men&#252; */}
       <nav className="flex-1 space-y-1 overflow-y-auto p-3">
