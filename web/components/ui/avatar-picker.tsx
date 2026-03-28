@@ -6,38 +6,22 @@ import { X, Check } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 /* ------------------------------------------------------------------ */
-/*  50 avatar - DiceBear "lorelei" stili (anime/ghibli tarz\u0131)     */
-/*  Skin tone kontroll\u00fc seed'ler                                  */
+/*  Avatarlar                                                          */
 /* ------------------------------------------------------------------ */
 
-const avatarSeeds = [
-  // Karakterler
-  "luna", "hana", "yuki", "sora", "mei",
-  "kiki", "momo", "rin", "nana", "aoi",
-  "sakura", "kaede", "haru", "aki", "suzu",
-  "hinata", "miku", "riko", "yui", "emi",
-  "taro", "ken", "ryu", "shin", "kai",
-  "yuto", "hiro", "sho", "ren", "leo",
-  "akira", "takumi", "sota", "haruto", "minato",
-  // Fantezi
-  "kodama", "kitsune", "tanuki", "usagi", "tsubame",
-  "fuji", "tsuki", "kumo", "niji", "kaze",
-  // Ekstra
-  "sensei", "gakusei", "tomodachi", "hikari", "yume",
+const avatars = [
+  { id: "avatar-1", src: "/avatars/avatar-1.png", label: "Karakter 1" },
+  { id: "avatar-2", src: "/avatars/avatar-2.png", label: "Karakter 2" },
+  { id: "avatar-3", src: "/avatars/avatar-3.png", label: "Karakter 3" },
+  { id: "avatar-4", src: "/avatars/avatar-4.png", label: "Karakter 4" },
+  { id: "avatar-5", src: "/avatars/avatar-5.png", label: "Karakter 5" },
 ];
 
-const AVATAR_BASE = "https://api.dicebear.com/9.x/lorelei/svg";
-
-function getAvatarUrl(seed: string): string {
-  return `${AVATAR_BASE}?seed=${seed}&backgroundColor=transparent`;
-}
-
 /* ------------------------------------------------------------------ */
-/*  Arka plan renk paleti                                              */
+/*  Arka plan renkleri                                                 */
 /* ------------------------------------------------------------------ */
 
 const bgColors = [
-  // Pastel tonlar
   { name: "Buz Mavisi", value: "#DBEAFE" },
   { name: "Lavanta", value: "#E9D5FF" },
   { name: "G\u00fcl", value: "#FECDD3" },
@@ -46,12 +30,10 @@ const bgColors = [
   { name: "Nane", value: "#A7F3D0" },
   { name: "G\u00f6ky\u00fcz\u00fc", value: "#BAE6FD" },
   { name: "Leylak", value: "#DDD6FE" },
-  // Canl\u0131 tonlar
   { name: "Teal", value: "#99F6E4" },
   { name: "Lime", value: "#D9F99D" },
   { name: "Mercan", value: "#FECACA" },
   { name: "Amber", value: "#FDE68A" },
-  // N\u00f6tr tonlar
   { name: "Krem", value: "#F5F4EF" },
   { name: "Gri", value: "#E5E7EB" },
   { name: "Beyaz", value: "#FFFFFF" },
@@ -95,7 +77,7 @@ export function AvatarPicker({
       />
 
       {/* Modal */}
-      <div className="relative mx-4 flex max-h-[90vh] w-full max-w-2xl flex-col overflow-hidden rounded-2xl bg-white shadow-2xl">
+      <div className="relative mx-4 flex max-h-[85vh] w-full max-w-md flex-col overflow-hidden rounded-2xl bg-white shadow-2xl">
         {/* Header */}
         <div className="flex items-center justify-between border-b px-6 py-4">
           <div>
@@ -116,23 +98,23 @@ export function AvatarPicker({
 
         {/* Content */}
         <div className="flex-1 overflow-y-auto">
-          {/* \u00d6nizleme */}
+          {/* &#214;nizleme */}
           {selectedAvatar && (
             <div className="flex justify-center border-b bg-[#FAFAFA] py-6">
               <div
-                className="flex h-24 w-24 items-center justify-center overflow-hidden rounded-full shadow-lg"
+                className="flex h-28 w-28 items-center justify-center overflow-hidden rounded-full shadow-lg"
                 style={{ backgroundColor: selectedBg }}
               >
                 <img
                   src={selectedAvatar}
-                  alt="Se\u00e7ilen avatar"
-                  className="h-20 w-20"
+                  alt="Se&#231;ilen avatar"
+                  className="h-24 w-24 rounded-full object-cover"
                 />
               </div>
             </div>
           )}
 
-          {/* Arka plan rengi se\u00e7imi */}
+          {/* Arka plan rengi */}
           <div className="border-b px-6 py-4">
             <p className="mb-3 text-sm font-bold text-[#042940]">
               Arka Plan Rengi
@@ -157,9 +139,7 @@ export function AvatarPicker({
                       <Check
                         className={cn(
                           "mx-auto h-4 w-4",
-                          color.value === "#042940"
-                            ? "text-white"
-                            : "text-[#042940]"
+                          color.value === "#042940" ? "text-white" : "text-[#042940]"
                         )}
                       />
                     )}
@@ -174,14 +154,13 @@ export function AvatarPicker({
             <p className="mb-3 text-sm font-bold text-[#042940]">
               Karakter Se&#231;
             </p>
-            <div className="grid grid-cols-6 gap-3 sm:grid-cols-8">
-              {avatarSeeds.map((seed) => {
-                const url = getAvatarUrl(seed);
-                const isSelected = selectedAvatar === url;
+            <div className="grid grid-cols-5 gap-3">
+              {avatars.map((avatar) => {
+                const isSelected = selectedAvatar === avatar.src;
                 return (
                   <button
-                    key={seed}
-                    onClick={() => setSelectedAvatar(url)}
+                    key={avatar.id}
+                    onClick={() => setSelectedAvatar(avatar.src)}
                     className={cn(
                       "group relative flex aspect-square items-center justify-center overflow-hidden rounded-2xl border-2 transition-all duration-200",
                       isSelected
@@ -191,13 +170,12 @@ export function AvatarPicker({
                     style={{ backgroundColor: selectedBg }}
                   >
                     <img
-                      src={url}
-                      alt={seed}
-                      className="h-[85%] w-[85%]"
-                      loading="lazy"
+                      src={avatar.src}
+                      alt={avatar.label}
+                      className="h-[90%] w-[90%] rounded-xl object-cover"
                     />
                     {isSelected && (
-                      <div className="absolute bottom-0.5 right-0.5 flex h-4 w-4 items-center justify-center rounded-full bg-[#9FC131]">
+                      <div className="absolute bottom-0.5 right-0.5 flex h-5 w-5 items-center justify-center rounded-full bg-[#9FC131]">
                         <Check className="h-3 w-3 text-white" />
                       </div>
                     )}
