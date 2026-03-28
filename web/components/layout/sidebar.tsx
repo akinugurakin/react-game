@@ -20,7 +20,7 @@ import { useState } from "react";
 import { cn } from "@/lib/utils";
 import { useAuthStore } from "@/lib/auth";
 import { HexAvatar } from "@/components/ui/hex-avatar";
-import { AvatarPicker } from "@/components/ui/avatar-picker";
+import { AvatarPicker, BeanHeadAvatar } from "@/components/ui/avatar-picker";
 
 const oyunAltMenusu = [
   { href: "/games?subject=turkce", icon: BookOpen, label: "T\u00fcrk\u00e7e" },
@@ -43,8 +43,8 @@ export function Sidebar() {
     pathname.startsWith("/games")
   );
   const [avatarPickerOpen, setAvatarPickerOpen] = useState(false);
-  const [avatarUrl, setAvatarUrl] = useState<string | null>(() => {
-    if (typeof window !== "undefined") return localStorage.getItem("lumo-avatar") || null;
+  const [avatarId, setAvatarId] = useState<string | null>(() => {
+    if (typeof window !== "undefined") return localStorage.getItem("lumo-avatar-id") || null;
     return null;
   });
   const [avatarBg, setAvatarBg] = useState<string>(() => {
@@ -54,10 +54,10 @@ export function Sidebar() {
   const username = user?.username || "Oyuncu";
   const initials = username.slice(0, 2).toUpperCase();
 
-  const handleAvatarSelect = (url: string, bgColor: string) => {
-    setAvatarUrl(url);
+  const handleAvatarSelect = (id: string, bgColor: string) => {
+    setAvatarId(id);
     setAvatarBg(bgColor);
-    localStorage.setItem("lumo-avatar", url);
+    localStorage.setItem("lumo-avatar-id", id);
     localStorage.setItem("lumo-avatar-bg", bgColor);
   };
 
@@ -95,9 +95,9 @@ export function Sidebar() {
             onClick={() => setAvatarPickerOpen(true)}
             className="transition-transform hover:scale-110"
           >
-            {avatarUrl ? (
+            {avatarId ? (
               <div className="flex h-9 w-9 items-center justify-center overflow-hidden rounded-full" style={{ backgroundColor: avatarBg }}>
-                <img src={avatarUrl} alt="Avatar" className="h-11 w-11 -mb-2 object-cover object-top" />
+                <BeanHeadAvatar avatarId={avatarId} size={36} />
               </div>
             ) : (
               <HexAvatar initials={initials} size="sm" gradient="from-brand-green to-brand-lime" />
@@ -133,7 +133,7 @@ export function Sidebar() {
         isOpen={avatarPickerOpen}
         onClose={() => setAvatarPickerOpen(false)}
         onSelect={handleAvatarSelect}
-        currentAvatar={avatarUrl || undefined}
+        currentAvatar={avatarId || undefined}
         currentBgColor={avatarBg}
       />
 
