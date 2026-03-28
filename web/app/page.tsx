@@ -160,8 +160,8 @@ export default function HomePage() {
           <FloatingIcons />
           {/* Dekoratif dalgalı çizgi */}
           <div className="absolute inset-0 pointer-events-none overflow-hidden">
-            <svg className="absolute -left-20 top-20 w-[400px] opacity-10" viewBox="0 0 200 200"><path d="M 0 100 Q 50 50 100 100 Q 150 150 200 100" fill="none" stroke="#F2CB05" strokeWidth="2"/></svg>
-            <svg className="absolute right-10 bottom-20 w-[350px] opacity-10" viewBox="0 0 200 200"><path d="M 0 100 Q 50 150 100 100 Q 150 50 200 100" fill="none" stroke="#F2B705" strokeWidth="2"/></svg>
+            <svg className="absolute -left-20 top-20 w-[400px] opacity-10" viewBox="0 0 200 200"><path d="M 0 100 Q 50 50 100 100 Q 150 150 200 100" fill="none" stroke="#F29F05" strokeWidth="2"/></svg>
+            <svg className="absolute right-10 bottom-20 w-[350px] opacity-10" viewBox="0 0 200 200"><path d="M 0 100 Q 50 150 100 100 Q 150 50 200 100" fill="none" stroke="#F29F05" strokeWidth="2"/></svg>
             <div className="absolute right-0 top-0 h-96 w-96 rounded-full bg-brand-dark/10 blur-3xl" />
             <div className="absolute -left-20 bottom-0 h-72 w-72 rounded-full bg-brand-green/15 blur-3xl" />
           </div>
@@ -357,7 +357,7 @@ export default function HomePage() {
             </svg>
           </div>
           <div className="absolute inset-0 pointer-events-none">
-            <svg className="absolute right-10 top-20 w-[300px] opacity-10" viewBox="0 0 200 200"><path d="M 0 100 Q 50 50 100 100 Q 150 150 200 100" fill="none" stroke="#F2B705" strokeWidth="2"/></svg>
+            <svg className="absolute right-10 top-20 w-[300px] opacity-10" viewBox="0 0 200 200"><path d="M 0 100 Q 50 50 100 100 Q 150 150 200 100" fill="none" stroke="#F29F05" strokeWidth="2"/></svg>
           </div>
           <div className="container relative">
             <div className="mb-16 text-center">
