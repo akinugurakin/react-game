@@ -232,12 +232,13 @@ export default function HomePage() {
                   custom={0.05}
                   className="text-4xl font-extrabold leading-[1.1] tracking-tight text-[#042940] md:text-5xl lg:text-6xl"
                 >
-                  Oyun Oyna,
+                  &#214;&#287;renmenin
                   <br />
-                  M&#252;fredat{" "}
+                  En{" "}
                   <span className="inline-block rounded-full bg-[#DBF227] px-5 py-1">
-                    &#214;&#287;ren!
+                    E&#287;lenceli
                   </span>
+                  {" "}Hali
                 </motion.h1>
 
                 <motion.p
