@@ -14,68 +14,75 @@ import type { AvatarProps } from "beanheads";
 
 type AvatarConfig = AvatarProps & { id: string };
 
+// Varsayilan degerler - BeanHead'in random uretmesini engeller
+const D: Partial<AvatarProps> = {
+  hat: "none", facialHair: "none", accessory: "none", graphic: "none",
+  eyebrows: "raised", mask: false, faceMask: false, lashes: false,
+  lipColor: "red", hatColor: "white", faceMaskColor: "white",
+};
+
 const avatarConfigs: AvatarConfig[] = [
-  // ── K\u0131z karakterler (a\u00e7\u0131k ten) ──
-  { id: "g1", skinTone: "light", hair: "long", hairColor: "brown", eyes: "happy", mouth: "openSmile", clothing: "dress", clothingColor: "red", body: "breasts", lashes: true },
-  { id: "g2", skinTone: "light", hair: "bun", hairColor: "blonde", eyes: "content", mouth: "lips", lipColor: "pink", clothing: "vneck", clothingColor: "blue", body: "breasts", lashes: true },
-  { id: "g3", skinTone: "yellow", hair: "pixie", hairColor: "black", eyes: "normal", mouth: "grin", clothing: "shirt", clothingColor: "green", body: "breasts", lashes: true },
-  { id: "g4", skinTone: "light", hair: "bob", hairColor: "orange", eyes: "wink", mouth: "openSmile", clothing: "dress", clothingColor: "blue", body: "breasts", lashes: true },
-  { id: "g5", skinTone: "yellow", hair: "long", hairColor: "brown", eyes: "squint", mouth: "lips", lipColor: "red", clothing: "tankTop", clothingColor: "red", body: "breasts", lashes: true },
-  { id: "g6", skinTone: "light", hair: "pixie", hairColor: "pink", eyes: "heart", mouth: "openSmile", clothing: "shirt", clothingColor: "white", body: "breasts", lashes: true },
-  { id: "g7", skinTone: "red", hair: "long", hairColor: "black", eyes: "normal", mouth: "grin", clothing: "dress", clothingColor: "green", body: "breasts", lashes: true },
-  { id: "g8", skinTone: "light", hair: "bob", hairColor: "blue", eyes: "happy", mouth: "tongue", clothing: "vneck", clothingColor: "white", body: "breasts", lashes: true },
-  { id: "g9", skinTone: "yellow", hair: "bun", hairColor: "brown", eyes: "content", mouth: "openSmile", clothing: "dressShirt", clothingColor: "blue", body: "breasts", lashes: true },
-  { id: "g10", skinTone: "light", hair: "long", hairColor: "blonde", eyes: "normal", mouth: "lips", lipColor: "purple", clothing: "dress", clothingColor: "red", body: "breasts", lashes: true },
-  { id: "g11", skinTone: "light", hair: "pixie", hairColor: "brown", eyes: "wink", mouth: "grin", clothing: "shirt", clothingColor: "red", body: "breasts", lashes: true, accessory: "roundGlasses" },
-  { id: "g12", skinTone: "yellow", hair: "bob", hairColor: "black", eyes: "happy", mouth: "openSmile", clothing: "tankTop", clothingColor: "green", body: "breasts", lashes: true },
+  // ── Kiz karakterler (acik ten) ──
+  { ...D, id: "g1", skinTone: "light", hair: "long", hairColor: "brown", eyes: "happy", eyebrows: "raised", mouth: "openSmile", clothing: "dress", clothingColor: "red", body: "breasts", lashes: true },
+  { ...D, id: "g2", skinTone: "light", hair: "bun", hairColor: "blonde", eyes: "content", eyebrows: "raised", mouth: "lips", lipColor: "pink", clothing: "vneck", clothingColor: "blue", body: "breasts", lashes: true },
+  { ...D, id: "g3", skinTone: "yellow", hair: "pixie", hairColor: "black", eyes: "normal", eyebrows: "raised", mouth: "grin", clothing: "shirt", clothingColor: "green", body: "breasts", lashes: true },
+  { ...D, id: "g4", skinTone: "light", hair: "bob", hairColor: "orange", eyes: "wink", eyebrows: "raised", mouth: "openSmile", clothing: "dress", clothingColor: "blue", body: "breasts", lashes: true },
+  { ...D, id: "g5", skinTone: "yellow", hair: "long", hairColor: "brown", eyes: "squint", eyebrows: "concerned", mouth: "lips", lipColor: "red", clothing: "tankTop", clothingColor: "red", body: "breasts", lashes: true },
+  { ...D, id: "g6", skinTone: "light", hair: "pixie", hairColor: "pink", eyes: "heart", eyebrows: "raised", mouth: "openSmile", clothing: "shirt", clothingColor: "white", body: "breasts", lashes: true },
+  { ...D, id: "g7", skinTone: "red", hair: "long", hairColor: "black", eyes: "normal", eyebrows: "raised", mouth: "grin", clothing: "dress", clothingColor: "green", body: "breasts", lashes: true },
+  { ...D, id: "g8", skinTone: "light", hair: "bob", hairColor: "blue", eyes: "happy", eyebrows: "raised", mouth: "tongue", clothing: "vneck", clothingColor: "white", body: "breasts", lashes: true },
+  { ...D, id: "g9", skinTone: "yellow", hair: "bun", hairColor: "brown", eyes: "content", eyebrows: "raised", mouth: "openSmile", clothing: "dressShirt", clothingColor: "blue", body: "breasts", lashes: true },
+  { ...D, id: "g10", skinTone: "light", hair: "long", hairColor: "blonde", eyes: "normal", eyebrows: "raised", mouth: "lips", lipColor: "purple", clothing: "dress", clothingColor: "red", body: "breasts", lashes: true },
+  { ...D, id: "g11", skinTone: "light", hair: "pixie", hairColor: "brown", eyes: "wink", eyebrows: "raised", mouth: "grin", clothing: "shirt", clothingColor: "red", body: "breasts", lashes: true, accessory: "roundGlasses" },
+  { ...D, id: "g12", skinTone: "yellow", hair: "bob", hairColor: "black", eyes: "happy", eyebrows: "raised", mouth: "openSmile", clothing: "tankTop", clothingColor: "green", body: "breasts", lashes: true },
 
-  // ── Erkek karakterler (a\u00e7\u0131k ten) ──
-  { id: "b1", skinTone: "light", hair: "short", hairColor: "brown", eyes: "normal", mouth: "grin", clothing: "shirt", clothingColor: "blue", body: "chest" },
-  { id: "b2", skinTone: "light", hair: "buzz", hairColor: "black", eyes: "happy", mouth: "openSmile", clothing: "dressShirt", clothingColor: "white", body: "chest" },
-  { id: "b3", skinTone: "yellow", hair: "short", hairColor: "blonde", eyes: "squint", mouth: "serious", clothing: "vneck", clothingColor: "green", body: "chest" },
-  { id: "b4", skinTone: "light", hair: "short", hairColor: "orange", eyes: "normal", mouth: "grin", clothing: "shirt", clothingColor: "red", body: "chest", accessory: "roundGlasses" },
-  { id: "b5", skinTone: "yellow", hair: "buzz", hairColor: "brown", eyes: "content", mouth: "openSmile", clothing: "tankTop", clothingColor: "blue", body: "chest" },
-  { id: "b6", skinTone: "light", hair: "short", hairColor: "black", eyes: "happy", mouth: "tongue", clothing: "shirt", clothingColor: "white", body: "chest" },
-  { id: "b7", skinTone: "red", hair: "short", hairColor: "brown", eyes: "normal", mouth: "grin", clothing: "dressShirt", clothingColor: "blue", body: "chest", facialHair: "stubble" },
-  { id: "b8", skinTone: "light", hair: "buzz", hairColor: "blonde", eyes: "wink", mouth: "openSmile", clothing: "vneck", clothingColor: "red", body: "chest" },
-  { id: "b9", skinTone: "yellow", hair: "short", hairColor: "black", eyes: "leftTwitch", mouth: "open", clothing: "shirt", clothingColor: "green", body: "chest" },
-  { id: "b10", skinTone: "light", hair: "short", hairColor: "brown", eyes: "happy", mouth: "grin", clothing: "tankTop", clothingColor: "white", body: "chest" },
-  { id: "b11", skinTone: "light", hair: "buzz", hairColor: "brown", eyes: "normal", mouth: "openSmile", clothing: "shirt", clothingColor: "blue", body: "chest", accessory: "tinyGlasses" },
-  { id: "b12", skinTone: "yellow", hair: "short", hairColor: "orange", eyes: "content", mouth: "grin", clothing: "dressShirt", clothingColor: "green", body: "chest" },
+  // ── Erkek karakterler (acik ten) ──
+  { ...D, id: "b1", skinTone: "light", hair: "short", hairColor: "brown", eyes: "normal", eyebrows: "raised", mouth: "grin", clothing: "shirt", clothingColor: "blue", body: "chest" },
+  { ...D, id: "b2", skinTone: "light", hair: "buzz", hairColor: "black", eyes: "happy", eyebrows: "raised", mouth: "openSmile", clothing: "dressShirt", clothingColor: "white", body: "chest" },
+  { ...D, id: "b3", skinTone: "yellow", hair: "short", hairColor: "blonde", eyes: "squint", eyebrows: "serious", mouth: "serious", clothing: "vneck", clothingColor: "green", body: "chest" },
+  { ...D, id: "b4", skinTone: "light", hair: "short", hairColor: "orange", eyes: "normal", eyebrows: "raised", mouth: "grin", clothing: "shirt", clothingColor: "red", body: "chest", accessory: "roundGlasses" },
+  { ...D, id: "b5", skinTone: "yellow", hair: "buzz", hairColor: "brown", eyes: "content", eyebrows: "raised", mouth: "openSmile", clothing: "tankTop", clothingColor: "blue", body: "chest" },
+  { ...D, id: "b6", skinTone: "light", hair: "short", hairColor: "black", eyes: "happy", eyebrows: "raised", mouth: "tongue", clothing: "shirt", clothingColor: "white", body: "chest" },
+  { ...D, id: "b7", skinTone: "red", hair: "short", hairColor: "brown", eyes: "normal", eyebrows: "serious", mouth: "grin", clothing: "dressShirt", clothingColor: "blue", body: "chest", facialHair: "stubble" },
+  { ...D, id: "b8", skinTone: "light", hair: "buzz", hairColor: "blonde", eyes: "wink", eyebrows: "raised", mouth: "openSmile", clothing: "vneck", clothingColor: "red", body: "chest" },
+  { ...D, id: "b9", skinTone: "yellow", hair: "short", hairColor: "black", eyes: "leftTwitch", eyebrows: "leftLowered", mouth: "open", clothing: "shirt", clothingColor: "green", body: "chest" },
+  { ...D, id: "b10", skinTone: "light", hair: "short", hairColor: "brown", eyes: "happy", eyebrows: "raised", mouth: "grin", clothing: "tankTop", clothingColor: "white", body: "chest" },
+  { ...D, id: "b11", skinTone: "light", hair: "buzz", hairColor: "brown", eyes: "normal", eyebrows: "raised", mouth: "openSmile", clothing: "shirt", clothingColor: "blue", body: "chest", accessory: "tinyGlasses" },
+  { ...D, id: "b12", skinTone: "yellow", hair: "short", hairColor: "orange", eyes: "content", eyebrows: "raised", mouth: "grin", clothing: "dressShirt", clothingColor: "green", body: "chest" },
 
-  // ── \u015Eapkal\u0131 / aksesuarl\u0131 karakterler ──
-  { id: "h1", skinTone: "light", hair: "none", hat: "beanie", hatColor: "red", eyes: "happy", mouth: "grin", clothing: "shirt", clothingColor: "blue", body: "chest" },
-  { id: "h2", skinTone: "yellow", hair: "none", hat: "turban", hatColor: "blue", eyes: "normal", mouth: "openSmile", clothing: "dressShirt", clothingColor: "white", body: "chest" },
-  { id: "h3", skinTone: "light", hair: "long", hairColor: "blonde", eyes: "content", mouth: "lips", lipColor: "pink", clothing: "dress", clothingColor: "green", body: "breasts", lashes: true, accessory: "shades" },
-  { id: "h4", skinTone: "light", hair: "none", hat: "beanie", hatColor: "green", eyes: "squint", mouth: "serious", clothing: "vneck", clothingColor: "black", body: "chest" },
-  { id: "h5", skinTone: "yellow", hair: "bob", hairColor: "brown", eyes: "happy", mouth: "openSmile", clothing: "shirt", clothingColor: "red", body: "breasts", lashes: true, accessory: "roundGlasses" },
+  // ── Sapkali / aksesuarli karakterler ──
+  { ...D, id: "h1", skinTone: "light", hair: "none", hat: "beanie", hatColor: "red", eyes: "happy", eyebrows: "raised", mouth: "grin", clothing: "shirt", clothingColor: "blue", body: "chest" },
+  { ...D, id: "h2", skinTone: "yellow", hair: "none", hat: "turban", hatColor: "blue", eyes: "normal", eyebrows: "raised", mouth: "openSmile", clothing: "dressShirt", clothingColor: "white", body: "chest" },
+  { ...D, id: "h3", skinTone: "light", hair: "long", hairColor: "blonde", eyes: "content", eyebrows: "raised", mouth: "lips", lipColor: "pink", clothing: "dress", clothingColor: "green", body: "breasts", lashes: true, accessory: "shades" },
+  { ...D, id: "h4", skinTone: "light", hair: "none", hat: "beanie", hatColor: "green", eyes: "squint", eyebrows: "serious", mouth: "serious", clothing: "vneck", clothingColor: "black", body: "chest" },
+  { ...D, id: "h5", skinTone: "yellow", hair: "bob", hairColor: "brown", eyes: "happy", eyebrows: "raised", mouth: "openSmile", clothing: "shirt", clothingColor: "red", body: "breasts", lashes: true, accessory: "roundGlasses" },
 
-  // ── Farkl\u0131 sa\u00e7 renkleri ──
-  { id: "c1", skinTone: "light", hair: "long", hairColor: "white", eyes: "normal", mouth: "lips", lipColor: "turqoise", clothing: "dress", clothingColor: "white", body: "breasts", lashes: true },
-  { id: "c2", skinTone: "light", hair: "pixie", hairColor: "blue", eyes: "happy", mouth: "grin", clothing: "shirt", clothingColor: "blue", body: "chest" },
-  { id: "c3", skinTone: "yellow", hair: "short", hairColor: "pink", eyes: "heart", mouth: "tongue", clothing: "tankTop", clothingColor: "red", body: "chest" },
-  { id: "c4", skinTone: "light", hair: "bob", hairColor: "white", eyes: "wink", mouth: "openSmile", clothing: "vneck", clothingColor: "green", body: "breasts", lashes: true },
+  // ── Farkli sac renkleri ──
+  { ...D, id: "c1", skinTone: "light", hair: "long", hairColor: "white", eyes: "normal", eyebrows: "raised", mouth: "lips", lipColor: "turqoise", clothing: "dress", clothingColor: "white", body: "breasts", lashes: true },
+  { ...D, id: "c2", skinTone: "light", hair: "pixie", hairColor: "blue", eyes: "happy", eyebrows: "raised", mouth: "grin", clothing: "shirt", clothingColor: "blue", body: "chest" },
+  { ...D, id: "c3", skinTone: "yellow", hair: "short", hairColor: "pink", eyes: "heart", eyebrows: "raised", mouth: "tongue", clothing: "tankTop", clothingColor: "red", body: "chest" },
+  { ...D, id: "c4", skinTone: "light", hair: "bob", hairColor: "white", eyes: "wink", eyebrows: "raised", mouth: "openSmile", clothing: "vneck", clothingColor: "green", body: "breasts", lashes: true },
 
-  // ── Koyu ten (az say\u0131da) ──
-  { id: "d1", skinTone: "brown", hair: "short", hairColor: "black", eyes: "happy", mouth: "grin", clothing: "shirt", clothingColor: "blue", body: "chest" },
-  { id: "d2", skinTone: "brown", hair: "long", hairColor: "black", eyes: "normal", mouth: "openSmile", clothing: "dress", clothingColor: "red", body: "breasts", lashes: true },
-  { id: "d3", skinTone: "dark", hair: "buzz", hairColor: "black", eyes: "content", mouth: "openSmile", clothing: "dressShirt", clothingColor: "white", body: "chest" },
+  // ── Koyu ten (az sayida) ──
+  { ...D, id: "d1", skinTone: "brown", hair: "short", hairColor: "black", eyes: "happy", eyebrows: "raised", mouth: "grin", clothing: "shirt", clothingColor: "blue", body: "chest" },
+  { ...D, id: "d2", skinTone: "brown", hair: "long", hairColor: "black", eyes: "normal", eyebrows: "raised", mouth: "openSmile", clothing: "dress", clothingColor: "red", body: "breasts", lashes: true },
+  { ...D, id: "d3", skinTone: "dark", hair: "buzz", hairColor: "black", eyes: "content", eyebrows: "raised", mouth: "openSmile", clothing: "dressShirt", clothingColor: "white", body: "chest" },
 
-  // ── E\u011flenceli karakterler ──
-  { id: "f1", skinTone: "light", hair: "balding", hairColor: "white", eyes: "dizzy", mouth: "open", clothing: "dressShirt", clothingColor: "white", body: "chest", accessory: "tinyGlasses" },
-  { id: "f2", skinTone: "yellow", hair: "short", hairColor: "brown", eyes: "dizzy", mouth: "sad", clothing: "shirt", clothingColor: "blue", body: "chest" },
-  { id: "f3", skinTone: "light", hair: "long", hairColor: "pink", eyes: "heart", mouth: "tongue", clothing: "tankTop", clothingColor: "red", body: "breasts", lashes: true },
-  { id: "f4", skinTone: "light", hair: "buzz", hairColor: "blonde", eyes: "simple", mouth: "tongue", clothing: "shirt", clothingColor: "green", body: "chest" },
-  { id: "f5", skinTone: "yellow", hair: "bob", hairColor: "orange", eyes: "wink", mouth: "grin", clothing: "vneck", clothingColor: "blue", body: "breasts", lashes: true },
-  { id: "f6", skinTone: "light", hair: "short", hairColor: "black", eyes: "squint", mouth: "serious", clothing: "dressShirt", clothingColor: "black", body: "chest", facialHair: "mediumBeard" },
+  // ── Eglenceli karakterler ──
+  { ...D, id: "f1", skinTone: "light", hair: "balding", hairColor: "white", eyes: "dizzy", eyebrows: "concerned", mouth: "open", clothing: "dressShirt", clothingColor: "white", body: "chest", accessory: "tinyGlasses" },
+  { ...D, id: "f2", skinTone: "yellow", hair: "short", hairColor: "brown", eyes: "dizzy", eyebrows: "concerned", mouth: "sad", clothing: "shirt", clothingColor: "blue", body: "chest" },
+  { ...D, id: "f3", skinTone: "light", hair: "long", hairColor: "pink", eyes: "heart", eyebrows: "raised", mouth: "tongue", clothing: "tankTop", clothingColor: "red", body: "breasts", lashes: true },
+  { ...D, id: "f4", skinTone: "light", hair: "buzz", hairColor: "blonde", eyes: "simple", eyebrows: "raised", mouth: "tongue", clothing: "shirt", clothingColor: "green", body: "chest" },
+  { ...D, id: "f5", skinTone: "yellow", hair: "bob", hairColor: "orange", eyes: "wink", eyebrows: "raised", mouth: "grin", clothing: "vneck", clothingColor: "blue", body: "breasts", lashes: true },
+  { ...D, id: "f6", skinTone: "light", hair: "short", hairColor: "black", eyes: "squint", eyebrows: "angry", mouth: "serious", clothing: "dressShirt", clothingColor: "black", body: "chest", facialHair: "mediumBeard" },
 
-  // ── Ekstra \u00e7e\u015fitlilik ──
-  { id: "e1", skinTone: "red", hair: "pixie", hairColor: "brown", eyes: "normal", mouth: "openSmile", clothing: "shirt", clothingColor: "white", body: "breasts", lashes: true },
-  { id: "e2", skinTone: "light", hair: "short", hairColor: "brown", eyes: "content", mouth: "grin", clothing: "shirt", clothingColor: "red", body: "chest", hat: "beanie", hatColor: "blue" },
-  { id: "e3", skinTone: "yellow", hair: "long", hairColor: "blonde", eyes: "happy", mouth: "openSmile", clothing: "dress", clothingColor: "blue", body: "breasts", lashes: true, hat: "none" },
-  { id: "e4", skinTone: "light", hair: "afro", hairColor: "brown", eyes: "happy", mouth: "grin", clothing: "shirt", clothingColor: "green", body: "chest" },
-  { id: "e5", skinTone: "light", hair: "afro", hairColor: "black", eyes: "normal", mouth: "openSmile", clothing: "vneck", clothingColor: "red", body: "breasts", lashes: true },
-  { id: "e6", skinTone: "yellow", hair: "balding", hairColor: "brown", eyes: "normal", mouth: "grin", clothing: "dressShirt", clothingColor: "blue", body: "chest", accessory: "roundGlasses" },
+  // ── Ekstra cesitlilik ──
+  { ...D, id: "e1", skinTone: "red", hair: "pixie", hairColor: "brown", eyes: "normal", eyebrows: "raised", mouth: "openSmile", clothing: "shirt", clothingColor: "white", body: "breasts", lashes: true },
+  { ...D, id: "e2", skinTone: "light", hair: "short", hairColor: "brown", eyes: "content", eyebrows: "raised", mouth: "grin", clothing: "shirt", clothingColor: "red", body: "chest", hat: "beanie", hatColor: "blue" },
+  { ...D, id: "e3", skinTone: "yellow", hair: "long", hairColor: "blonde", eyes: "happy", eyebrows: "raised", mouth: "openSmile", clothing: "dress", clothingColor: "blue", body: "breasts", lashes: true },
+  { ...D, id: "e4", skinTone: "light", hair: "afro", hairColor: "brown", eyes: "happy", eyebrows: "raised", mouth: "grin", clothing: "shirt", clothingColor: "green", body: "chest" },
+  { ...D, id: "e5", skinTone: "light", hair: "afro", hairColor: "black", eyes: "normal", eyebrows: "raised", mouth: "openSmile", clothing: "vneck", clothingColor: "red", body: "breasts", lashes: true },
+  { ...D, id: "e6", skinTone: "yellow", hair: "balding", hairColor: "brown", eyes: "normal", eyebrows: "raised", mouth: "grin", clothing: "dressShirt", clothingColor: "blue", body: "chest", accessory: "roundGlasses" },
 ];
 
 /* ------------------------------------------------------------------ */

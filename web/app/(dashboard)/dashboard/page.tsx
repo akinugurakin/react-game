@@ -19,8 +19,10 @@ import {
 import { Card, CardContent } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { Button } from "@/components/ui/button";
+import { Pencil } from "lucide-react";
 import { HexAvatar } from "@/components/ui/hex-avatar";
 import { BadgeIcon, ALL_BADGES } from "@/components/ui/badge-icon";
+import { AvatarPicker, BeanHeadAvatar } from "@/components/ui/avatar-picker";
 import { useAuthStore } from "@/lib/auth";
 import { api } from "@/lib/api";
 
@@ -97,6 +99,23 @@ export default function DashboardPage() {
 
   const username = user?.username || "Oyuncu";
   const initials = username.slice(0, 2).toUpperCase();
+
+  const [avatarPickerOpen, setAvatarPickerOpen] = useState(false);
+  const [avatarId, setAvatarId] = useState<string | null>(() => {
+    if (typeof window !== "undefined") return localStorage.getItem("lumo-avatar-id") || null;
+    return null;
+  });
+  const [avatarBg, setAvatarBg] = useState<string>(() => {
+    if (typeof window !== "undefined") return localStorage.getItem("lumo-avatar-bg") || "#DBEAFE";
+    return "#DBEAFE";
+  });
+
+  const handleAvatarSelect = (id: string, bgColor: string) => {
+    setAvatarId(id);
+    setAvatarBg(bgColor);
+    localStorage.setItem("lumo-avatar-id", id);
+    localStorage.setItem("lumo-avatar-bg", bgColor);
+  };
 
   useEffect(() => {
     async function fetchStats() {
@@ -181,7 +200,25 @@ export default function DashboardPage() {
         <div className="relative border-x border-b rounded-b-2xl bg-background px-6 pb-6">
           <div className="-mt-10 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
             <div className="flex items-end gap-4">
-              <HexAvatar initials={initials} size="xl" online={true} borderColor="ring-background" />
+              <button
+                onClick={() => setAvatarPickerOpen(true)}
+                className="group relative shrink-0"
+              >
+                <div
+                  className="flex h-24 w-24 items-center justify-center overflow-hidden rounded-full ring-4 ring-background"
+                  style={{ backgroundColor: avatarId ? avatarBg : undefined }}
+                >
+                  {avatarId ? (
+                    <BeanHeadAvatar avatarId={avatarId} size={88} />
+                  ) : (
+                    <HexAvatar initials={initials} size="xl" online={true} borderColor="ring-background" />
+                  )}
+                </div>
+                {/* D&#252;zenleme ikonu */}
+                <div className="absolute bottom-0 right-0 flex h-7 w-7 items-center justify-center rounded-full bg-[#005C53] text-white shadow-md transition-transform group-hover:scale-110">
+                  <Pencil className="h-3.5 w-3.5" />
+                </div>
+              </button>
               <div className="mb-1">
                 <h1 className="text-2xl font-extrabold">{username}</h1>
                 <p className="text-sm text-muted-foreground">
@@ -334,6 +371,14 @@ export default function DashboardPage() {
           </div>
         </>
       )}
+
+      <AvatarPicker
+        isOpen={avatarPickerOpen}
+        onClose={() => setAvatarPickerOpen(false)}
+        onSelect={handleAvatarSelect}
+        currentAvatar={avatarId || undefined}
+        currentBgColor={avatarBg}
+      />
     </div>
   );
 }
