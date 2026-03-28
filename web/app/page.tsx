@@ -174,11 +174,11 @@ export default function HomePage() {
 
       <main className="flex-1">
         {/* ===== SECTION 1: HERO ===== */}
-        <section className="relative overflow-hidden bg-gradient-to-b from-[#FAF8F5] to-white">
+        <section className="relative overflow-hidden bg-brand-dark text-white">
           {/* Subtle gradient blobs */}
           <div className="pointer-events-none absolute inset-0">
-            <div className="absolute -right-40 -top-40 h-[500px] w-[500px] rounded-full bg-[#DBF227]/10 blur-3xl" />
-            <div className="absolute -left-40 bottom-0 h-[400px] w-[400px] rounded-full bg-[#005C53]/5 blur-3xl" />
+            <div className="absolute -right-40 -top-40 h-[500px] w-[500px] rounded-full bg-brand-teal/15 blur-3xl" />
+            <div className="absolute -left-40 bottom-0 h-[400px] w-[400px] rounded-full bg-brand-green/10 blur-3xl" />
           </div>
 
           <div className="container relative pb-8 pt-24 md:pt-32 lg:pt-36">
@@ -189,7 +189,7 @@ export default function HomePage() {
               transition={{ duration: 0.5 }}
               className="mb-8 flex justify-center"
             >
-              <span className="inline-flex items-center gap-2 rounded-full border border-[#005C53]/15 bg-white px-4 py-1.5 text-sm font-medium text-[#005C53] shadow-sm">
+              <span className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-4 py-1.5 text-sm font-medium text-white/90 backdrop-blur-sm shadow-sm">
                 <CheckCircle2 className="h-4 w-4 text-[#9FC131]" />
                 MEB Müfredatına Uygun
               </span>
@@ -200,7 +200,7 @@ export default function HomePage() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.1 }}
-              className="mx-auto max-w-3xl text-center text-4xl font-extrabold leading-tight tracking-tight text-[#042940] md:text-5xl lg:text-6xl"
+              className="mx-auto max-w-3xl text-center text-4xl font-extrabold leading-tight tracking-tight text-white md:text-5xl lg:text-6xl"
             >
               Çocuklar Oyun Oynarken
               <br />
@@ -215,7 +215,7 @@ export default function HomePage() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.25 }}
-              className="mx-auto mt-6 max-w-2xl text-center text-lg text-[#6B7280]"
+              className="mx-auto mt-6 max-w-2xl text-center text-lg text-white/70"
             >
               1-8. sınıf öğrencileri için Matematik, Fen Bilimleri ve Sosyal
               Bilgiler derslerinde oyunlaştırılmış öğrenme deneyimi.
@@ -231,7 +231,7 @@ export default function HomePage() {
               <Button
                 asChild
                 size="lg"
-                className="bg-[#042940] px-8 text-base font-bold text-white shadow-lg hover:bg-[#042940]/90"
+                className="bg-brand-lime px-8 text-base font-bold text-brand-dark shadow-lg hover:bg-[#042940]/90"
               >
                 <Link href="/register">
                   Ücretsiz Dene
@@ -242,7 +242,7 @@ export default function HomePage() {
                 asChild
                 variant="outline"
                 size="lg"
-                className="border-[#042940]/20 px-8 text-base font-semibold text-[#042940] hover:bg-[#042940]/5"
+                className="border-white/30 px-8 text-base font-semibold text-white hover:bg-white/10"
               >
                 <Link href="#nasil-calisir">Nasıl Çalışır?</Link>
               </Button>
@@ -265,8 +265,8 @@ export default function HomePage() {
                   />
                 ))}
               </div>
-              <span className="text-sm text-[#6B7280]">
-                <span className="font-bold text-[#042940]">3,200+</span>{" "}
+              <span className="text-sm text-white/60">
+                <span className="font-bold text-brand-lime">3,200+</span>{" "}
                 aile güveniyor
               </span>
             </motion.div>
@@ -301,10 +301,17 @@ export default function HomePage() {
               ))}
             </motion.div>
           </div>
+
+          {/* Hero alt dalga */}
+          <div className="absolute bottom-0 left-0 right-0">
+            <svg viewBox="0 0 1440 100" className="w-full" preserveAspectRatio="none">
+              <path d="M0,60 C360,100 720,20 1080,60 C1260,80 1380,70 1440,60 L1440,100 L0,100 Z" fill="#F5F0EB" />
+            </svg>
+          </div>
         </section>
 
         {/* ===== SECTION 2: HOW IT WORKS ===== */}
-        <section id="nasil-calisir" className="relative bg-[#F5F0EB] py-20 md:py-28">
+        <section id="nasil-calisir" className="relative bg-[#F5F0EB] py-16">
           <div className="container">
             <div className="mb-12 text-center">
               <motion.h2
@@ -337,7 +344,7 @@ export default function HomePage() {
                   <h3 className="mb-2 text-lg font-bold text-[#042940]">
                     {step.title}
                   </h3>
-                  <p className="text-sm text-[#6B7280]">{step.description}</p>
+                  <p className="text-sm text-white/60">{step.description}</p>
                 </motion.div>
               ))}
             </div>
@@ -384,7 +391,7 @@ export default function HomePage() {
                   <h3 className="mb-2 text-lg font-bold text-[#042940]">
                     {feature.title}
                   </h3>
-                  <p className="text-sm text-[#6B7280]">
+                  <p className="text-sm text-white/60">
                     {feature.description}
                   </p>
                 </motion.div>
@@ -393,8 +400,14 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* ===== SECTION 4: SUBJECTS ===== */}
-        <section className="relative bg-[#FAF8F5] py-20 md:py-28">
+        {/* ===== SECTION 4: SUBJECTS — Teal bant ===== */}
+        <section className="relative bg-brand-teal py-20 md:py-28 text-white overflow-hidden">
+          {/* Üst dalga */}
+          <div className="absolute top-0 left-0 right-0 rotate-180">
+            <svg viewBox="0 0 1440 80" className="w-full" preserveAspectRatio="none">
+              <path d="M0,40 C360,80 720,0 1080,40 C1260,60 1380,50 1440,40 L1440,80 L0,80 Z" className="fill-white" />
+            </svg>
+          </div>
           <div className="container">
             <div className="mb-12 text-center">
               <motion.h2
@@ -402,7 +415,7 @@ export default function HomePage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5 }}
-                className="text-3xl font-extrabold text-[#042940] md:text-4xl"
+                className="text-3xl font-extrabold text-white md:text-4xl"
               >
                 Ders Bazlı Öğrenme
               </motion.h2>
@@ -411,7 +424,7 @@ export default function HomePage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: 0.1 }}
-                className="mt-4 text-lg text-[#6B7280]"
+                className="mt-4 text-lg text-white/60"
               >
                 Her ders için müfredata uygun oyunlar
               </motion.p>
@@ -468,13 +481,21 @@ export default function HomePage() {
                         {subject.title}
                       </h3>
                     </div>
-                    <p className="text-sm text-[#6B7280]">
+                    <p className="text-sm text-white/60">
                       {subject.description}
                     </p>
                   </div>
                 </motion.div>
               ))}
             </div>
+          </div>
+        
+
+          {/* Alt dalga */}
+          <div className="absolute bottom-0 left-0 right-0">
+            <svg viewBox="0 0 1440 80" className="w-full" preserveAspectRatio="none">
+              <path d="M0,40 C360,80 720,0 1080,40 C1260,60 1380,50 1440,40 L1440,80 L0,80 Z" className="fill-white" />
+            </svg>
           </div>
         </section>
 
@@ -509,8 +530,14 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* ===== SECTION 6: FOR TEACHERS ===== */}
-        <section id="ogretmenler" className="relative bg-[#042940] py-20 md:py-28">
+        {/* ===== SECTION 6: FOR TEACHERS — Koyu bant ===== */}
+        <section id="ogretmenler" className="relative bg-brand-dark py-20 md:py-28 overflow-hidden">
+          {/* Üst dalga */}
+          <div className="absolute top-0 left-0 right-0 rotate-180">
+            <svg viewBox="0 0 1440 60" className="w-full" preserveAspectRatio="none">
+              <path d="M0,30 C480,60 960,0 1440,30 L1440,60 L0,60 Z" className="fill-white" />
+            </svg>
+          </div>
           <div className="container">
             <div className="mb-12 text-center">
               <motion.h2
@@ -570,6 +597,14 @@ export default function HomePage() {
               </Button>
             </motion.div>
           </div>
+        
+
+          {/* Alt dalga */}
+          <div className="absolute bottom-0 left-0 right-0">
+            <svg viewBox="0 0 1440 60" className="w-full" preserveAspectRatio="none">
+              <path d="M0,30 C480,0 960,60 1440,30 L1440,60 L0,60 Z" className="fill-white" />
+            </svg>
+          </div>
         </section>
 
         {/* ===== SECTION 7: TRUST & SAFETY ===== */}
@@ -617,7 +652,7 @@ export default function HomePage() {
         </section>
 
         {/* ===== SECTION 8: PRICING TEASER ===== */}
-        <section id="fiyatlandirma" className="relative bg-[#FAF8F5] py-20 md:py-28">
+        <section id="fiyatlandirma" className="relative bg-brand-sand/15 py-16">
           <div className="container">
             <div className="mb-12 text-center">
               <motion.h2
@@ -657,7 +692,7 @@ export default function HomePage() {
                   </span>
                   <span className="text-lg text-[#6B7280]">/ay</span>
                 </div>
-                <p className="mt-2 text-sm text-[#6B7280]">
+                <p className="mt-2 text-sm text-white/60">
                   Tüm dersler ve oyunlara sınırsız erişim
                 </p>
                 <Button
@@ -676,7 +711,12 @@ export default function HomePage() {
         </section>
 
         {/* ===== SECTION 9: FINAL CTA ===== */}
-        <section className="relative bg-[#042940] py-20 md:py-28">
+        <section className="relative bg-brand-dark py-20 md:py-28 overflow-hidden">
+          <div className="absolute top-0 left-0 right-0 rotate-180">
+            <svg viewBox="0 0 1440 60" className="w-full" preserveAspectRatio="none">
+              <path d="M0,30 C480,60 960,0 1440,30 L1440,60 L0,60 Z" fill="#FAF8F5" />
+            </svg>
+          </div>
           <div className="container text-center">
             <motion.h2
               initial={{ opacity: 0, y: 20 }}
