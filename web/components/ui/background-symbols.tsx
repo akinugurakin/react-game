@@ -312,6 +312,85 @@ const ScrollSvg = () => (
   </svg>
 );
 
+// Kilicli kalkan (Osmanli/Selcuklu)
+const SwordShieldSvg = () => (
+  <svg viewBox="0 0 60 70" fill="none" className="w-full h-full">
+    {/* Kalkan */}
+    <path d="M30 8 C15 8, 8 20, 8 35 C8 50, 20 62, 30 65 C40 62, 52 50, 52 35 C52 20, 45 8, 30 8Z" stroke="currentColor" strokeWidth="1.5" fill="currentColor" opacity="0.06" />
+    <path d="M30 15 L30 58" stroke="currentColor" strokeWidth="0.8" opacity="0.2" />
+    <path d="M14 30 L46 30" stroke="currentColor" strokeWidth="0.8" opacity="0.2" />
+    {/* Kiliclar */}
+    <line x1="2" y1="60" x2="22" y2="20" stroke="currentColor" strokeWidth="1.5" opacity="0.35" strokeLinecap="round" />
+    <line x1="58" y1="60" x2="38" y2="20" stroke="currentColor" strokeWidth="1.5" opacity="0.35" strokeLinecap="round" />
+  </svg>
+);
+
+// Hilal ve yildiz
+const CrescentSvg = () => (
+  <svg viewBox="0 0 60 60" fill="none" className="w-full h-full">
+    <path d="M35 5 A25 25 0 1 0 35 55 A18 18 0 1 1 35 5Z" fill="currentColor" opacity="0.08" stroke="currentColor" strokeWidth="1.2" />
+    <polygon points="48,22 50,28 56,28 51,32 53,38 48,34 43,38 45,32 40,28 46,28" fill="currentColor" opacity="0.25" />
+  </svg>
+);
+
+// Cami/minare silueti
+const MosqueSvg = () => (
+  <svg viewBox="0 0 80 60" fill="none" className="w-full h-full">
+    {/* Ana kubbe */}
+    <path d="M25 35 Q40 8, 55 35" stroke="currentColor" strokeWidth="1.5" fill="currentColor" opacity="0.06" />
+    <rect x="25" y="35" width="30" height="18" fill="currentColor" opacity="0.06" stroke="currentColor" strokeWidth="1" />
+    {/* Minareler */}
+    <rect x="12" y="18" width="4" height="35" fill="currentColor" opacity="0.1" />
+    <rect x="64" y="18" width="4" height="35" fill="currentColor" opacity="0.1" />
+    <circle cx="14" cy="16" r="3" fill="currentColor" opacity="0.12" />
+    <circle cx="66" cy="16" r="3" fill="currentColor" opacity="0.12" />
+    {/* Alem */}
+    <line x1="40" y1="8" x2="40" y2="2" stroke="currentColor" strokeWidth="1" opacity="0.3" />
+    <circle cx="40" cy="1" r="1.5" fill="currentColor" opacity="0.2" />
+    {/* Kapi */}
+    <path d="M36 53 L36 43 Q40 38, 44 43 L44 53" stroke="currentColor" strokeWidth="0.8" fill="none" opacity="0.2" />
+  </svg>
+);
+
+// Saat kulesi
+const ClockTowerSvg = () => (
+  <svg viewBox="0 0 40 80" fill="none" className="w-full h-full">
+    <rect x="10" y="25" width="20" height="50" fill="currentColor" opacity="0.06" stroke="currentColor" strokeWidth="1.2" />
+    <polygon points="8,25 20,8 32,25" fill="currentColor" opacity="0.06" stroke="currentColor" strokeWidth="1.2" />
+    {/* Saat kadrani */}
+    <circle cx="20" cy="40" r="7" stroke="currentColor" strokeWidth="1" fill="none" opacity="0.4" />
+    <line x1="20" y1="40" x2="20" y2="35" stroke="currentColor" strokeWidth="1" opacity="0.4" />
+    <line x1="20" y1="40" x2="24" y2="42" stroke="currentColor" strokeWidth="0.8" opacity="0.3" />
+    {/* Pencereler */}
+    <rect x="15" y="52" width="4" height="6" rx="1" fill="currentColor" opacity="0.1" />
+    <rect x="22" y="52" width="4" height="6" rx="1" fill="currentColor" opacity="0.1" />
+  </svg>
+);
+
+// Roma/Bizans kemeri
+const ArchSvg = () => (
+  <svg viewBox="0 0 60 55" fill="none" className="w-full h-full">
+    <rect x="5" y="5" width="8" height="45" fill="currentColor" opacity="0.08" stroke="currentColor" strokeWidth="1" />
+    <rect x="47" y="5" width="8" height="45" fill="currentColor" opacity="0.08" stroke="currentColor" strokeWidth="1" />
+    <path d="M5 5 Q30 -15, 55 5" stroke="currentColor" strokeWidth="1.5" fill="currentColor" opacity="0.05" />
+    <path d="M13 50 Q30 25, 47 50" stroke="currentColor" strokeWidth="1.2" fill="none" opacity="0.3" />
+  </svg>
+);
+
+// Seramik/cini motif
+const TileMotifSvg = () => (
+  <svg viewBox="0 0 50 50" fill="none" className="w-full h-full">
+    <rect x="3" y="3" width="44" height="44" rx="3" stroke="currentColor" strokeWidth="1.2" fill="none" opacity="0.3" />
+    <circle cx="25" cy="25" r="12" stroke="currentColor" strokeWidth="1" fill="none" opacity="0.25" />
+    <circle cx="25" cy="25" r="5" fill="currentColor" opacity="0.1" />
+    {/* Kose motifleri */}
+    <path d="M8 8 Q15 15, 8 22" stroke="currentColor" strokeWidth="0.8" fill="none" opacity="0.2" />
+    <path d="M42 8 Q35 15, 42 22" stroke="currentColor" strokeWidth="0.8" fill="none" opacity="0.2" />
+    <path d="M8 42 Q15 35, 8 28" stroke="currentColor" strokeWidth="0.8" fill="none" opacity="0.2" />
+    <path d="M42 42 Q35 35, 42 28" stroke="currentColor" strokeWidth="0.8" fill="none" opacity="0.2" />
+  </svg>
+);
+
 /* ================================================================== */
 /*  SEMBOL LISTESI                                                     */
 /* ================================================================== */
@@ -324,16 +403,11 @@ type SymbolItem = {
 };
 
 const allSymbols: SymbolItem[] = [
-  // Matematik - metin (cok cesit)
-  { type: "text", content: "+" },
+  // ── Matematik metin ──
   { type: "text", content: "+" },
   { type: "text", content: "\u2212" },
-  { type: "text", content: "\u2212" },
-  { type: "text", content: "\u00D7" },
   { type: "text", content: "\u00D7" },
   { type: "text", content: "\u00F7" },
-  { type: "text", content: "\u00F7" },
-  { type: "text", content: "=" },
   { type: "text", content: "=" },
   { type: "text", content: "<" },
   { type: "text", content: ">" },
@@ -348,69 +422,50 @@ const allSymbols: SymbolItem[] = [
   { type: "text", content: "2n" },
   { type: "text", content: "3x" },
   { type: "text", content: "a+b" },
-  // Matematik - SVG
-  { type: "svg", Component: PieChartSvg },
+  // ── Matematik SVG ──
   { type: "svg", Component: PieChartSvg },
   { type: "svg", Component: BarChartSvg },
-  { type: "svg", Component: BarChartSvg },
   { type: "svg", Component: SqrtSvg },
-  { type: "svg", Component: SqrtSvg },
-  { type: "svg", Component: FractionSvg },
   { type: "svg", Component: FractionSvg },
   { type: "svg", Component: ExponentSvg },
   { type: "svg", Component: TriangleSvg },
   { type: "svg", Component: CompassSvg },
   { type: "svg", Component: AngleSvg },
-  // Fizik
+  // ── Fizik ──
   { type: "svg", Component: CircuitSvg },
-  { type: "svg", Component: CircuitSvg },
-  { type: "svg", Component: AtomSvg },
-  { type: "svg", Component: AtomSvg },
   { type: "svg", Component: AtomSvg },
   { type: "svg", Component: MagnetSvg },
   { type: "svg", Component: LensSvg },
-  // Kimya
+  // ── Kimya ──
   { type: "text", content: "H\u2082O" },
-  { type: "text", content: "H\u2082O" },
-  { type: "text", content: "pH" },
   { type: "text", content: "pH" },
   { type: "text", content: "CO\u2082" },
   { type: "text", content: "O\u2082" },
   { type: "text", content: "NaCl" },
   { type: "svg", Component: TestTubeSvg },
-  { type: "svg", Component: TestTubeSvg },
   { type: "svg", Component: BeakerSvg },
-  // Biyoloji
+  // ── Biyoloji ──
   { type: "svg", Component: MicrobeSvg },
-  { type: "svg", Component: MicrobeSvg },
-  { type: "svg", Component: MicrobeSvg },
-  { type: "svg", Component: DnaSvg },
-  { type: "svg", Component: DnaSvg },
   { type: "svg", Component: DnaSvg },
   { type: "svg", Component: CellSvg },
-  { type: "svg", Component: CellSvg },
-  { type: "svg", Component: FoodPyramidSvg },
   { type: "svg", Component: FoodPyramidSvg },
   { type: "svg", Component: LeafSvg },
-  // Cografya - DUNYA EN COK
+  // ── Cografya ──
   { type: "svg", Component: GlobeSvg },
-  { type: "svg", Component: GlobeSvg },
-  { type: "svg", Component: GlobeSvg },
-  { type: "svg", Component: GlobeSvg },
-  { type: "svg", Component: GlobeSvg },
-  { type: "svg", Component: TurkeySvg },
-  { type: "svg", Component: TurkeySvg },
   { type: "svg", Component: TurkeySvg },
   { type: "svg", Component: MountainSvg },
-  // Tarih
-  { type: "svg", Component: AtaturkSignSvg },
+  // ── Tarih ──
   { type: "svg", Component: AtaturkSignSvg },
   { type: "svg", Component: TugraSvg },
-  { type: "svg", Component: TugraSvg },
-  { type: "svg", Component: HittiteSvg },
   { type: "svg", Component: HittiteSvg },
   { type: "svg", Component: ColumnsSvg },
   { type: "svg", Component: ScrollSvg },
+  { type: "svg", Component: SwordShieldSvg },
+  { type: "svg", Component: CrescentSvg },
+  { type: "svg", Component: MosqueSvg },
+  { type: "svg", Component: ClockTowerSvg },
+  { type: "svg", Component: ArchSvg },
+  { type: "svg", Component: TileMotifSvg },
 ];
 
 /* ================================================================== */
@@ -438,14 +493,28 @@ type PlacedItem = {
   key: string;
 };
 
+// Fisher-Yates shuffle
+function shuffle<T>(arr: T[]): T[] {
+  const a = [...arr];
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(rand() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
 function generateBlocks(): PlacedItem[][] {
   const blocks: PlacedItem[][] = [];
 
   for (let b = 0; b < BLOCK_COUNT; b++) {
     const blockItems: PlacedItem[] = [];
+    // Listeyi karistir, gerekirse tekrarla ama ayni blok icinde ardisik tekrar yok
+    const shuffled = shuffle(allSymbols);
+    // 40 eleman lazim, liste ~58 eleman — 1 tur yeter, kalanini ikinci shuffle'dan al
+    const pool = [...shuffled, ...shuffle(allSymbols)].slice(0, ITEMS_PER_BLOCK);
+
     for (let i = 0; i < ITEMS_PER_BLOCK; i++) {
-      const idx = Math.floor(rand() * allSymbols.length);
-      const symbol = allSymbols[idx];
+      const symbol = pool[i];
 
       const isSvg = symbol.type === "svg";
       const baseSize = isSvg ? 60 : 20;
