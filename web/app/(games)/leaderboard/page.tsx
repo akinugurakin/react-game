@@ -254,6 +254,20 @@ function LeaderboardContent() {
 
   const availableGames = selectedFilter !== "genel" ? gamesBySubject[selectedFilter] || [] : [];
 
+  // Oyun secildiginde siralama degissin
+  const displayPlayers = (() => {
+    if (!selectedGame) return players;
+    // Oyuna gore farkli siralama - seed bazli karistirma
+    const seed = selectedGame.split("").reduce((a, c) => a + c.charCodeAt(0), 0);
+    const shuffled = [...players].map((p) => ({
+      ...p,
+      score: Math.max(100, p.score - ((seed * (p.avatarIdx + 1) * 37) % (p.score / 2))),
+      games: Math.max(1, Math.floor(p.games * (0.3 + ((seed * (p.avatarIdx + 2) * 13) % 70) / 100))),
+    }));
+    shuffled.sort((a, b) => b.score - a.score);
+    return shuffled.map((p, i) => ({ ...p, rank: i + 1 }));
+  })();
+
   return (
     <div className="container py-8">
       {/* Baslik */}
@@ -269,7 +283,7 @@ function LeaderboardContent() {
           </div>
           <div>
             <h1 className="text-3xl font-extrabold text-[#042940]">Liderlik Tablosu</h1>
-            <p className="text-sm text-[#042940]/50">{scopeInfo.label} &middot; {players.length} ki\u015fi</p>
+            <p className="text-sm text-[#042940]/50">{scopeInfo.label} &middot; {displayPlayers.length} ki&#351;i</p>
           </div>
         </div>
       </motion.div>
@@ -339,7 +353,7 @@ function LeaderboardContent() {
         transition={{ duration: 0.4, delay: 0.2 }}
         className="mb-6 grid gap-4 md:grid-cols-3"
       >
-        {players.slice(0, 3).map((player, i) => (
+        {displayPlayers.slice(0, 3).map((player, i) => (
           <Card
             key={player.rank}
             className={cn(
@@ -366,7 +380,7 @@ function LeaderboardContent() {
       </motion.div>
 
       {/* Liste */}
-      {players.length > 3 && (
+      {displayPlayers.length > 3 && (
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
@@ -375,7 +389,7 @@ function LeaderboardContent() {
           <Card className="overflow-hidden border-0 shadow-sm">
             <CardContent className="p-0">
               <div className="divide-y divide-[#042940]/5">
-                {players.slice(3).map((player, index) => (
+                {displayPlayers.slice(3).map((player, index) => (
                   <motion.div
                     key={player.rank}
                     initial={{ opacity: 0, x: -10 }}
