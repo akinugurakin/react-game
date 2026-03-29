@@ -35,10 +35,15 @@ const oyunAltMenusu = [
 
 import { MapPin, School, UsersRound } from "lucide-react";
 
-const liderlikAltMenusu = [
+const liderlikAltMenusuOgrenci = [
   { href: "/leaderboard?scope=turkiye", icon: MapPin, label: "T\u00fcrkiye Geneli" },
   { href: "/leaderboard?scope=okul", icon: School, label: "Okulum" },
   { href: "/leaderboard?scope=sinif", icon: UsersRound, label: "S\u0131n\u0131f\u0131m" },
+];
+
+const liderlikAltMenusuOgretmen = [
+  { href: "/leaderboard?scope=turkiye", icon: MapPin, label: "T\u00fcrkiye Geneli" },
+  { href: "/leaderboard?scope=okul", icon: School, label: "Okulum" },
 ];
 
 const studentMenuItems = [
@@ -154,7 +159,7 @@ export function Sidebar() {
             <div className="min-w-0">
               <p className="truncate text-sm font-bold">{username}</p>
               <p className="text-xs text-white/50">
-                {isGuest ? "Giri\u015f yap\u0131lmad\u0131" : "\u00c7evrimi\u00e7i"}
+                {isGuest ? "Giri\u015f yap\u0131lmad\u0131" : isTeacher ? "\u00d6\u011fretmen" : "\u00c7evrimi\u00e7i"}
               </p>
             </div>
           </div>
@@ -173,7 +178,7 @@ export function Sidebar() {
             const isLiderlik = item.href === "/leaderboard";
             const subMenuOpen = isOyunlar ? oyunlarAcik : liderlikAcik;
             const setSubMenuOpen = isOyunlar ? setOyunlarAcik : setLiderlikAcik;
-            const subItems = isOyunlar ? oyunAltMenusu : liderlikAltMenusu;
+            const subItems = isOyunlar ? oyunAltMenusu : (isTeacher ? liderlikAltMenusuOgretmen : liderlikAltMenusuOgrenci);
             const paramKey = isOyunlar ? "subject" : "scope";
             const allLabel = isOyunlar ? "T\u00fcm Oyunlar" : "Genel";
             const AllIcon = isOyunlar ? Gamepad2 : Trophy;

@@ -5,24 +5,9 @@ import { useParams } from "next/navigation";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import {
-  ArrowLeft,
-  Users,
-  Trophy,
-  BarChart3,
-  Gamepad2,
-  TrendingUp,
-  Clock,
-  Plus,
-  X,
-  Crown,
-  Medal,
-  Star,
-  BookOpen,
-  Calculator,
-  FlaskConical,
-  Globe,
-  SpellCheck,
-  ChevronDown,
+  ArrowLeft, Users, Trophy, BarChart3, Gamepad2, TrendingUp,
+  Plus, X, Crown, Medal, Star, BookOpen, Calculator,
+  FlaskConical, Globe, SpellCheck, ChevronDown,
 } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -32,13 +17,10 @@ import { cn } from "@/lib/utils";
 import { BeanHead } from "beanheads";
 
 /* ------------------------------------------------------------------ */
-/*  AVATAR HELPER                                                      */
+/*  AVATAR                                                             */
 /* ------------------------------------------------------------------ */
 
-type AvatarDef = {
-  skinTone: string; hair: string; hairColor: string;
-  eyes: string; mouth: string; body: string; lashes?: boolean;
-};
+type AvatarDef = { skinTone: string; hair: string; hairColor: string; eyes: string; mouth: string; body: string; lashes?: boolean };
 
 const avatarPool: AvatarDef[] = [
   { skinTone: "light", hair: "short", hairColor: "brown", eyes: "happy", mouth: "grin", body: "chest" },
@@ -60,17 +42,11 @@ const avatarPool: AvatarDef[] = [
 ];
 
 function PlayerAvatar({ idx, size = 36 }: { idx: number; size?: number }) {
-  const def = avatarPool[idx % avatarPool.length];
+  const d = avatarPool[idx % avatarPool.length];
   return (
     <div className="flex items-center justify-center overflow-hidden rounded-full bg-[#DBEAFE]" style={{ width: size, height: size }}>
       <div style={{ width: size, height: size }}>
-        <BeanHead
-          skinTone={def.skinTone as any} hair={def.hair as any} hairColor={def.hairColor as any}
-          eyes={def.eyes as any} eyebrows="raised" mouth={def.mouth as any} body={def.body as any}
-          clothing="shirt" clothingColor="blue" accessory="none" hat="none" hatColor="white"
-          facialHair="none" graphic="none" lashes={def.lashes || false} lipColor="red"
-          faceMaskColor="white" mask={false} faceMask={false}
-        />
+        <BeanHead skinTone={d.skinTone as any} hair={d.hair as any} hairColor={d.hairColor as any} eyes={d.eyes as any} eyebrows="raised" mouth={d.mouth as any} body={d.body as any} clothing="shirt" clothingColor="blue" accessory="none" hat="none" hatColor="white" facialHair="none" graphic="none" lashes={d.lashes || false} lipColor="red" faceMaskColor="white" mask={false} faceMask={false} />
       </div>
     </div>
   );
@@ -81,16 +57,9 @@ function PlayerAvatar({ idx, size = 36 }: { idx: number; size?: number }) {
 /* ------------------------------------------------------------------ */
 
 type StudentData = {
-  id: number;
-  ad: string;
-  avatarIdx: number;
-  haftalikPuan: number;
-  aylikPuan: number;
-  toplamPuan: number;
-  oyunSayisi: number;
-  rozetSayisi: number;
-  enIyiDers: string;
-  sonAktivite: string;
+  id: number; ad: string; avatarIdx: number;
+  haftalikPuan: number; aylikPuan: number; toplamPuan: number;
+  oyunSayisi: number; rozetSayisi: number; enIyiDers: string; sonAktivite: string;
 };
 
 const siniflarData: Record<string, { ad: string; ogrenciler: StudentData[] }> = {
@@ -148,11 +117,8 @@ const siniflarData: Record<string, { ad: string; ogrenciler: StudentData[] }> = 
 };
 
 const dersIkonlari: Record<string, React.ElementType> = {
-  "Matematik": Calculator,
-  "T\u00fcrk\u00e7e": BookOpen,
-  "Fen Bilimleri": FlaskConical,
-  "Sosyal Bilgiler": Globe,
-  "\u0130ngilizce": SpellCheck,
+  "Matematik": Calculator, "T\u00fcrk\u00e7e": BookOpen, "Fen Bilimleri": FlaskConical,
+  "Sosyal Bilgiler": Globe, "\u0130ngilizce": SpellCheck,
 };
 
 /* ------------------------------------------------------------------ */
@@ -160,25 +126,34 @@ const dersIkonlari: Record<string, React.ElementType> = {
 /* ------------------------------------------------------------------ */
 
 type Period = "haftalik" | "aylik" | "toplam";
+const periodLabels: Record<Period, string> = { haftalik: "Haftal\u0131k", aylik: "Ayl\u0131k", toplam: "T\u00fcm Zamanlar" };
 
-const periodLabels: Record<Period, string> = {
-  haftalik: "Haftal\u0131k",
-  aylik: "Ayl\u0131k",
-  toplam: "T\u00fcm Zamanlar",
-};
-
-function getScore(s: StudentData, period: Period): number {
-  if (period === "haftalik") return s.haftalikPuan;
-  if (period === "aylik") return s.aylikPuan;
-  return s.toplamPuan;
+function getScore(s: StudentData, p: Period): number {
+  return p === "haftalik" ? s.haftalikPuan : p === "aylik" ? s.aylikPuan : s.toplamPuan;
 }
-
 function getRankIcon(rank: number) {
   if (rank === 1) return <Crown className="h-5 w-5 text-amber-400" />;
   if (rank === 2) return <Medal className="h-5 w-5 text-gray-400" />;
   if (rank === 3) return <Medal className="h-5 w-5 text-amber-600" />;
   return <span className="text-sm font-bold text-[#042940]/40">#{rank}</span>;
 }
+
+const filterOptions = [
+  { value: "genel", label: "Genel S\u0131ralama", icon: Trophy },
+  { value: "turkce", label: "T\u00fcrk\u00e7e", icon: BookOpen },
+  { value: "matematik", label: "Matematik", icon: Calculator },
+  { value: "fen", label: "Fen Bilimleri", icon: FlaskConical },
+  { value: "sosyal", label: "Sosyal Bilgiler", icon: Globe },
+  { value: "ingilizce", label: "\u0130ngilizce", icon: SpellCheck },
+];
+
+const gamesBySubject: Record<string, { value: string; label: string }[]> = {
+  turkce: [{ value: "kelime-avi", label: "Kelime Av\u0131" }, { value: "hafiza-kartlari", label: "Haf\u0131za Kartlar\u0131" }, { value: "cumle-kurma", label: "C\u00fcmle Kurma" }],
+  matematik: [{ value: "matematik-yarismasi", label: "Matematik Yar\u0131\u015fmas\u0131" }, { value: "bulmaca-dunyasi", label: "Bulmaca D\u00fcnyas\u0131" }, { value: "kesir-ustasi", label: "Kesir Ustas\u0131" }],
+  fen: [{ value: "atom-kesfi", label: "Atom Ke\u015ffi" }, { value: "canlilar-alemi", label: "Canl\u0131lar Alemi" }, { value: "deney-labi", label: "Deney Lab\u0131" }],
+  sosyal: [{ value: "tarih-yolculugu", label: "Tarih Yolculu\u011fu" }, { value: "harita-ustasi", label: "Harita Ustas\u0131" }],
+  ingilizce: [{ value: "vocabulary-builder", label: "Vocabulary Builder" }, { value: "grammar-quest", label: "Grammar Quest" }],
+};
 
 /* ------------------------------------------------------------------ */
 /*  SAYFA                                                              */
@@ -190,7 +165,9 @@ export default function ClassDetailPage() {
   const sinif = siniflarData[classId];
 
   const [period, setPeriod] = useState<Period>("haftalik");
-  const [tab, setTab] = useState<"ogrenciler" | "liderlik">("ogrenciler");
+  const [selectedFilter, setSelectedFilter] = useState("genel");
+  const [selectedGame, setSelectedGame] = useState<string | null>(null);
+  const [showGameDropdown, setShowGameDropdown] = useState(false);
   const [showAddModal, setShowAddModal] = useState(false);
   const [newStudent, setNewStudent] = useState({ ad: "", email: "" });
 
@@ -210,12 +187,7 @@ export default function ClassDetailPage() {
   const ortPuan = Math.round(toplamPuan / sinif.ogrenciler.length);
   const toplamOyun = sinif.ogrenciler.reduce((a, s) => a + s.oyunSayisi, 0);
   const toplamRozet = sinif.ogrenciler.reduce((a, s) => a + s.rozetSayisi, 0);
-
-  // Ders da\u011f\u0131l\u0131m\u0131
-  const dersler = sinif.ogrenciler.reduce<Record<string, number>>((acc, s) => {
-    acc[s.enIyiDers] = (acc[s.enIyiDers] || 0) + 1;
-    return acc;
-  }, {});
+  const availableGames = selectedFilter !== "genel" ? gamesBySubject[selectedFilter] || [] : [];
 
   return (
     <div className="container py-8">
@@ -239,14 +211,7 @@ export default function ClassDetailPage() {
       <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4, delay: 0.1 }} className="mb-6">
         <div className="inline-flex rounded-xl bg-white p-1 shadow-sm">
           {(["haftalik", "aylik", "toplam"] as Period[]).map((p) => (
-            <button
-              key={p}
-              onClick={() => setPeriod(p)}
-              className={cn(
-                "rounded-lg px-4 py-2 text-sm font-medium transition-all",
-                period === p ? "bg-[#005C53] text-white shadow" : "text-[#042940]/60 hover:text-[#042940]"
-              )}
-            >
+            <button key={p} onClick={() => setPeriod(p)} className={cn("rounded-lg px-4 py-2 text-sm font-medium transition-all", period === p ? "bg-[#005C53] text-white shadow" : "text-[#042940]/60 hover:text-[#042940]")}>
               {periodLabels[p]}
             </button>
           ))}
@@ -277,148 +242,77 @@ export default function ClassDetailPage() {
         ))}
       </div>
 
-      {/* Tab se\u00e7imi */}
-      <div className="mb-6 flex gap-2">
-        {[
-          { key: "ogrenciler" as const, label: "\u00d6\u011frenci Listesi", icon: Users },
-          { key: "liderlik" as const, label: "Liderlik Tablosu", icon: Trophy },
-        ].map((t) => (
-          <button
-            key={t.key}
-            onClick={() => setTab(t.key)}
-            className={cn(
-              "flex items-center gap-2 rounded-xl px-4 py-2 text-sm font-medium transition-all",
-              tab === t.key ? "bg-[#005C53] text-white shadow" : "bg-white text-[#042940]/60 shadow-sm hover:text-[#042940]"
-            )}
-          >
-            <t.icon className="h-4 w-4" />
-            {t.label}
-          </button>
-        ))}
-      </div>
-
-      {tab === "ogrenciler" ? (
-        /* ── \u00d6\u011frenci Listesi ── */
-        <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4 }}>
-          <Card className="border-0 shadow-sm">
-            <CardContent className="p-0">
-              {/* Tablo ba\u015fl\u0131\u011f\u0131 */}
-              <div className="hidden items-center gap-4 border-b px-5 py-3 text-xs font-bold uppercase text-muted-foreground sm:flex">
-                <span className="w-8">#</span>
-                <span className="w-10" />
-                <span className="flex-1">\u00d6\u011frenci</span>
-                <span className="w-24 text-right">{periodLabels[period]}</span>
-                <span className="w-16 text-right">Oyun</span>
-                <span className="w-16 text-right">Rozet</span>
-                <span className="w-24 text-right">En \u0130yi Ders</span>
-                <span className="w-24 text-right">Son Aktivite</span>
-              </div>
-              <div className="divide-y">
-                {sorted.map((ogrenci, index) => {
-                  const DersIcon = dersIkonlari[ogrenci.enIyiDers] || BookOpen;
-                  return (
-                    <motion.div
-                      key={ogrenci.id}
-                      initial={{ opacity: 0, x: -10 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ duration: 0.3, delay: index * 0.02 }}
-                      className="flex items-center gap-4 px-5 py-3.5 hover:bg-muted/30"
-                    >
-                      <div className="flex h-8 w-8 items-center justify-center">
-                        {getRankIcon(index + 1)}
-                      </div>
-                      <PlayerAvatar idx={ogrenci.avatarIdx} size={36} />
-                      <div className="flex-1 min-w-0">
-                        <p className="truncate text-sm font-bold">{ogrenci.ad}</p>
-                        <p className="text-xs text-muted-foreground sm:hidden">
-                          {getScore(ogrenci, period).toLocaleString("tr-TR")} puan &middot; {ogrenci.oyunSayisi} oyun
-                        </p>
-                      </div>
-                      <span className="hidden w-24 text-right text-sm font-extrabold text-[#005C53] sm:block">
-                        {getScore(ogrenci, period).toLocaleString("tr-TR")}
-                      </span>
-                      <span className="hidden w-16 text-right text-sm text-muted-foreground sm:block">{ogrenci.oyunSayisi}</span>
-                      <span className="hidden w-16 text-right text-sm sm:block">
-                        <span className="inline-flex items-center gap-1">
-                          <Star className="h-3.5 w-3.5 text-[#DBF227]" /> {ogrenci.rozetSayisi}
-                        </span>
-                      </span>
-                      <span className="hidden w-24 text-right sm:block">
-                        <span className="inline-flex items-center gap-1 text-xs text-muted-foreground">
-                          <DersIcon className="h-3.5 w-3.5" /> {ogrenci.enIyiDers}
-                        </span>
-                      </span>
-                      <span className="hidden w-24 text-right text-xs text-muted-foreground sm:block">{ogrenci.sonAktivite}</span>
-                    </motion.div>
-                  );
-                })}
-              </div>
-            </CardContent>
-          </Card>
-        </motion.div>
-      ) : (
-        /* ── Liderlik Tablosu ── */
-        <div className="space-y-6">
-          {/* Top 3 */}
-          <div className="grid gap-4 md:grid-cols-3">
-            {sorted.slice(0, 3).map((s, i) => (
-              <motion.div key={s.id} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4, delay: i * 0.1 }}>
-                <Card className={cn("border-0 shadow-sm", i === 0 && "md:order-2", i === 1 && "md:order-1", i === 2 && "md:order-3")}>
-                  <CardContent className={cn("p-5 text-center", i === 0 && "bg-amber-50/50", i === 1 && "bg-gray-50/50", i === 2 && "bg-orange-50/50")}>
-                    <div className="mb-3 flex justify-center">{getRankIcon(i + 1)}</div>
-                    <div className="mx-auto mb-3 flex justify-center"><PlayerAvatar idx={s.avatarIdx} size={56} /></div>
-                    <p className="text-sm font-bold text-[#042940]">{s.ad}</p>
-                    <p className="mt-1 text-2xl font-extrabold text-[#005C53]">{getScore(s, period).toLocaleString("tr-TR")}</p>
-                    <p className="text-xs text-muted-foreground">{s.oyunSayisi} oyun &middot; {s.rozetSayisi} rozet</p>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            ))}
-          </div>
-
-          {/* Geri kalan */}
-          <Card className="border-0 shadow-sm">
-            <CardContent className="p-0">
-              <div className="divide-y">
-                {sorted.slice(3).map((s, i) => (
-                  <div key={s.id} className="flex items-center gap-4 px-5 py-3.5">
-                    <div className="flex h-8 w-8 items-center justify-center">{getRankIcon(i + 4)}</div>
-                    <PlayerAvatar idx={s.avatarIdx} size={36} />
-                    <div className="flex-1">
-                      <p className="text-sm font-bold">{s.ad}</p>
-                      <p className="text-xs text-muted-foreground">{s.oyunSayisi} oyun</p>
-                    </div>
-                    <p className="text-sm font-extrabold text-[#005C53]">{getScore(s, period).toLocaleString("tr-TR")}</p>
-                  </div>
+      {/* Disiplin + Oyun filtreleri */}
+      <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4, delay: 0.3 }} className="mb-6 space-y-4">
+        <div className="flex flex-wrap gap-2">
+          {filterOptions.map((opt) => (
+            <button key={opt.value} onClick={() => { setSelectedFilter(opt.value); setSelectedGame(null); setShowGameDropdown(false); }}
+              className={cn("flex items-center gap-2 rounded-xl px-4 py-2 text-sm font-medium transition-all", selectedFilter === opt.value ? "bg-[#005C53] text-white shadow-md" : "bg-white text-[#042940]/60 hover:bg-[#042940]/5 hover:text-[#042940]")}>
+              <opt.icon className="h-4 w-4" /> {opt.label}
+            </button>
+          ))}
+        </div>
+        {selectedFilter !== "genel" && availableGames.length > 0 && (
+          <div className="relative inline-block">
+            <button onClick={() => setShowGameDropdown(!showGameDropdown)} className="flex items-center gap-2 rounded-xl border border-[#042940]/10 bg-white px-4 py-2 text-sm font-medium text-[#042940] hover:bg-[#042940]/5">
+              <Gamepad2 className="h-4 w-4 text-[#042940]/40" />
+              {selectedGame ? availableGames.find((g) => g.value === selectedGame)?.label : "T\u00fcm Oyunlar"}
+              <ChevronDown className={cn("h-4 w-4 text-[#042940]/40 transition-transform", showGameDropdown && "rotate-180")} />
+            </button>
+            {showGameDropdown && (
+              <div className="absolute left-0 top-full z-20 mt-1 w-56 rounded-xl border border-[#042940]/10 bg-white py-1 shadow-lg">
+                <button onClick={() => { setSelectedGame(null); setShowGameDropdown(false); }} className={cn("w-full px-4 py-2 text-left text-sm", !selectedGame ? "bg-[#005C53]/10 font-medium text-[#005C53]" : "text-[#042940]/60 hover:bg-[#042940]/5")}>T\u00fcm Oyunlar</button>
+                {availableGames.map((g) => (
+                  <button key={g.value} onClick={() => { setSelectedGame(g.value); setShowGameDropdown(false); }} className={cn("w-full px-4 py-2 text-left text-sm", selectedGame === g.value ? "bg-[#005C53]/10 font-medium text-[#005C53]" : "text-[#042940]/60 hover:bg-[#042940]/5")}>{g.label}</button>
                 ))}
               </div>
-            </CardContent>
-          </Card>
+            )}
+          </div>
+        )}
+      </motion.div>
 
-          {/* Ders da\u011f\u0131l\u0131m\u0131 */}
-          <div>
-            <h3 className="mb-4 text-lg font-bold">En \u0130yi Ders Da\u011f\u0131l\u0131m\u0131</h3>
-            <div className="grid gap-3 sm:grid-cols-5">
-              {Object.entries(dersler).sort((a, b) => b[1] - a[1]).map(([ders, count]) => {
-                const Icon = dersIkonlari[ders] || BookOpen;
+      {/* \u00d6\u011frenci Listesi */}
+      <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4, delay: 0.4 }}>
+        <Card className="border-0 shadow-sm">
+          <CardContent className="p-0">
+            <div className="hidden items-center gap-4 border-b px-5 py-3 text-xs font-bold uppercase text-muted-foreground sm:flex">
+              <span className="w-8">#</span>
+              <span className="w-10" />
+              <span className="flex-1">\u00d6\u011frenci</span>
+              <span className="w-24 text-right">{periodLabels[period]}</span>
+              <span className="w-16 text-right">Oyun</span>
+              <span className="w-16 text-right">Rozet</span>
+              <span className="w-24 text-right">En \u0130yi Ders</span>
+              <span className="w-24 text-right">Son Aktivite</span>
+            </div>
+            <div className="divide-y">
+              {sorted.map((ogrenci, index) => {
+                const DersIcon = dersIkonlari[ogrenci.enIyiDers] || BookOpen;
                 return (
-                  <Card key={ders} className="border-0 shadow-sm">
-                    <CardContent className="flex items-center gap-3 p-4">
-                      <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-[#005C53]/10">
-                        <Icon className="h-5 w-5 text-[#005C53]" />
-                      </div>
-                      <div>
-                        <p className="text-xs text-muted-foreground">{ders}</p>
-                        <p className="text-lg font-bold">{count}</p>
-                      </div>
-                    </CardContent>
-                  </Card>
+                  <motion.div key={ogrenci.id} initial={{ opacity: 0, x: -10 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.3, delay: index * 0.02 }}
+                    className="flex items-center gap-4 px-5 py-3.5 hover:bg-muted/30">
+                    <div className="flex h-8 w-8 items-center justify-center">{getRankIcon(index + 1)}</div>
+                    <PlayerAvatar idx={ogrenci.avatarIdx} size={36} />
+                    <div className="min-w-0 flex-1">
+                      <Link href={`/teacher/class/${classId}/student/${ogrenci.id}`} className="truncate text-sm font-bold text-[#005C53] hover:underline">
+                        {ogrenci.ad}
+                      </Link>
+                      <p className="text-xs text-muted-foreground sm:hidden">
+                        {getScore(ogrenci, period).toLocaleString("tr-TR")} puan &middot; {ogrenci.oyunSayisi} oyun
+                      </p>
+                    </div>
+                    <span className="hidden w-24 text-right text-sm font-extrabold text-[#005C53] sm:block">{getScore(ogrenci, period).toLocaleString("tr-TR")}</span>
+                    <span className="hidden w-16 text-right text-sm text-muted-foreground sm:block">{ogrenci.oyunSayisi}</span>
+                    <span className="hidden w-16 text-right text-sm sm:block"><span className="inline-flex items-center gap-1"><Star className="h-3.5 w-3.5 text-[#DBF227]" /> {ogrenci.rozetSayisi}</span></span>
+                    <span className="hidden w-24 text-right sm:block"><span className="inline-flex items-center gap-1 text-xs text-muted-foreground"><DersIcon className="h-3.5 w-3.5" /> {ogrenci.enIyiDers}</span></span>
+                    <span className="hidden w-24 text-right text-xs text-muted-foreground sm:block">{ogrenci.sonAktivite}</span>
+                  </motion.div>
                 );
               })}
             </div>
-          </div>
-        </div>
-      )}
+          </CardContent>
+        </Card>
+      </motion.div>
 
       {/* \u00d6\u011frenci Ekleme Modal\u0131 */}
       {showAddModal && (
@@ -427,9 +321,7 @@ export default function ClassDetailPage() {
           <div className="relative mx-4 w-full max-w-md rounded-2xl bg-white p-8 shadow-2xl">
             <div className="mb-6 flex items-center justify-between">
               <h2 className="text-lg font-extrabold text-[#042940]">\u00d6\u011frenci Ekle</h2>
-              <button onClick={() => setShowAddModal(false)} className="flex h-8 w-8 items-center justify-center rounded-full text-[#042940]/40 hover:bg-[#042940]/5">
-                <X className="h-5 w-5" />
-              </button>
+              <button onClick={() => setShowAddModal(false)} className="flex h-8 w-8 items-center justify-center rounded-full text-[#042940]/40 hover:bg-[#042940]/5"><X className="h-5 w-5" /></button>
             </div>
             <div className="space-y-4">
               <div className="space-y-2">
@@ -440,16 +332,10 @@ export default function ClassDetailPage() {
                 <Label htmlFor="studentEmail">\u00d6\u011frenci veya Veli E-postas\u0131</Label>
                 <Input id="studentEmail" type="email" placeholder="veli@email.com" value={newStudent.email} onChange={(e) => setNewStudent({ ...newStudent, email: e.target.value })} />
               </div>
-              <p className="text-xs text-muted-foreground">
-                \u00d6\u011frenciye davet e-postas\u0131 g\u00f6nderilecektir.
-              </p>
+              <p className="text-xs text-muted-foreground">\u00d6\u011frenciye davet e-postas\u0131 g\u00f6nderilecektir.</p>
               <div className="flex gap-3 pt-2">
-                <Button variant="outline" className="flex-1" onClick={() => setShowAddModal(false)}>
-                  \u0130ptal
-                </Button>
-                <Button className="flex-1 bg-[#005C53] text-white hover:bg-[#005C53]/90" onClick={() => { setShowAddModal(false); setNewStudent({ ad: "", email: "" }); }}>
-                  Davet G\u00f6nder
-                </Button>
+                <Button variant="outline" className="flex-1" onClick={() => setShowAddModal(false)}>\u0130ptal</Button>
+                <Button className="flex-1 bg-[#005C53] text-white hover:bg-[#005C53]/90" onClick={() => { setShowAddModal(false); setNewStudent({ ad: "", email: "" }); }}>Davet G\u00f6nder</Button>
               </div>
             </div>
           </div>
