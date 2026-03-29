@@ -210,7 +210,7 @@ export default function HomePage() {
         {/* ═══════════════════════════════════════════════════════════ */}
         <section className="relative overflow-hidden pb-16 pt-24 md:pb-24 md:pt-32">
           <div className="container">
-            <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
+            <div className="grid items-center gap-10 lg:grid-cols-[1.2fr_0.8fr] lg:gap-10">
               {/* Sol \u2014 Metin */}
               <motion.div
                 initial="hidden"
@@ -231,7 +231,7 @@ export default function HomePage() {
                 <motion.h1
                   variants={fadeUp}
                   custom={0.05}
-                  className="text-4xl font-extrabold leading-[1.1] tracking-tight text-[#042940] md:text-5xl lg:text-6xl"
+                  className="text-5xl font-extrabold leading-[1.1] tracking-tight text-[#042940] md:text-6xl lg:text-7xl"
                 >
                   &#214;&#287;renmenin
                   <br />
@@ -245,7 +245,7 @@ export default function HomePage() {
                 <motion.p
                   variants={fadeUp}
                   custom={0.15}
-                  className="mt-6 max-w-lg text-lg leading-relaxed text-[#042940]/60"
+                  className="mt-6 max-w-xl text-xl leading-relaxed text-[#042940]/60"
                 >
                   &#199;ocu&#287;unuz e&#287;lenceli oyunlarla dersleri peki&#351;tirsin.
                   Matematik, Fen Bilimleri ve Sosyal Bilgiler &#8212; hepsi bir
@@ -262,8 +262,8 @@ export default function HomePage() {
                     size="lg"
                     className="rounded-full bg-[#005C53] px-8 text-base font-bold text-white hover:bg-[#005C53]/90"
                   >
-                    <Link href="/register">
-                      &#220;cretsiz Dene
+                    <Link href="/oyunlar">
+                      &#220;cretsiz Oyunlar
                       <ArrowRight className="ml-2 h-5 w-5" />
                     </Link>
                   </Button>

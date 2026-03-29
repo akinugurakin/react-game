@@ -147,9 +147,10 @@ export function Header() {
         <div className="flex items-center gap-4">
           <Link href="/" className="flex items-center gap-2">
             <Lightbulb className="h-8 w-8 text-brand-dark" />
-            <span className="text-xl font-extrabold text-brand-dark">
-              LUMO
-            </span>
+            <div>
+              <span className="text-xl font-extrabold text-brand-dark">LUMO</span>
+              <p className="text-[9px] font-normal leading-tight text-brand-dark/40">E&#287;itsel Oyun Platformu</p>
+            </div>
           </Link>
 
           {/* Mega Menu — Desktop */}
