@@ -47,49 +47,39 @@ const MegaMenu = React.forwardRef<HTMLUListElement, MegaMenuProps>(
             onMouseEnter={() => handleHover(navItem.label)}
             onMouseLeave={() => handleHover(null)}
           >
-            {navItem.href && !navItem.subMenus ? (
-              <a
-                href={navItem.href}
-                className="relative flex cursor-pointer items-center justify-center gap-1 rounded-full py-1.5 px-4 text-sm font-medium text-muted-foreground transition-colors duration-200 hover:text-foreground"
-                onMouseEnter={() => setIsHover(navItem.id)}
-                onMouseLeave={() => setIsHover(null)}
-              >
-                <span>{navItem.label}</span>
-                {(isHover === navItem.id) && (
-                  <motion.div
-                    layoutId="nav-hover-bg"
-                    className="absolute inset-0 size-full bg-muted/80"
-                    style={{ borderRadius: 99 }}
-                    transition={{ type: "spring", stiffness: 400, damping: 30 }}
-                  />
-                )}
-                <span className="relative z-10">{navItem.label}</span>
-              </a>
-            ) : (
-              <button
-                className="relative flex cursor-pointer items-center justify-center gap-1 rounded-full py-1.5 px-4 text-sm font-medium text-muted-foreground transition-colors duration-200 hover:text-foreground group"
-                onMouseEnter={() => setIsHover(navItem.id)}
-                onMouseLeave={() => setIsHover(null)}
-              >
-                {(isHover === navItem.id || openMenu === navItem.label) && (
-                  <motion.div
-                    layoutId="nav-hover-bg"
-                    className="absolute inset-0 size-full bg-muted/80"
-                    style={{ borderRadius: 99 }}
-                    transition={{ type: "spring", stiffness: 400, damping: 30 }}
-                  />
-                )}
-                <span className="relative z-10">{navItem.label}</span>
-                {navItem.subMenus && (
-                  <ChevronDown
-                    className={cn(
-                      "relative z-10 h-3.5 w-3.5 transition-transform duration-200",
-                      openMenu === navItem.label && "rotate-180"
-                    )}
-                  />
-                )}
-              </button>
-            )}
+            {(() => {
+              const hasSubmenu = !!navItem.subMenus;
+              const isActive = isHover === navItem.id || openMenu === navItem.label;
+              const Tag = navItem.href ? "a" : "button";
+              const tagProps = navItem.href ? { href: navItem.href } : {};
+
+              return (
+                <Tag
+                  {...tagProps}
+                  className="relative flex cursor-pointer items-center justify-center gap-1 rounded-full py-1.5 px-4 text-sm font-medium text-muted-foreground transition-colors duration-200 hover:text-foreground group"
+                  onMouseEnter={() => setIsHover(navItem.id)}
+                  onMouseLeave={() => setIsHover(null)}
+                >
+                  {isActive && (
+                    <motion.div
+                      layoutId="nav-hover-bg"
+                      className="absolute inset-0 size-full bg-muted/80"
+                      style={{ borderRadius: 99 }}
+                      transition={{ type: "spring", stiffness: 400, damping: 30 }}
+                    />
+                  )}
+                  <span className="relative z-10">{navItem.label}</span>
+                  {hasSubmenu && (
+                    <ChevronDown
+                      className={cn(
+                        "relative z-10 h-3.5 w-3.5 transition-transform duration-200",
+                        openMenu === navItem.label && "rotate-180"
+                      )}
+                    />
+                  )}
+                </Tag>
+              );
+            })()}
 
             <AnimatePresence>
               {openMenu === navItem.label && navItem.subMenus && (

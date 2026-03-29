@@ -28,31 +28,46 @@ import MegaMenu, { type MegaMenuItem } from "@/components/ui/mega-menu";
 import { HexAvatar } from "@/components/ui/hex-avatar";
 import { useAuthStore, useAuthHydrated } from "@/lib/auth";
 
+import { BookOpen, Languages } from "lucide-react";
+
 const NAV_ITEMS: MegaMenuItem[] = [
   {
     id: 1,
     label: "Oyunlar",
+    href: "/games",
     subMenus: [
       {
         title: "Dersler",
         items: [
           {
+            label: "T\u00fcrk\u00e7e",
+            description: "Kelime, dilbilgisi ve yaz\u0131m oyunlar\u0131",
+            icon: BookOpen,
+            href: "/games?subject=turkce",
+          },
+          {
             label: "Matematik",
-            description: "Sayılar, işlemler, geometri ve daha fazlası",
+            description: "Say\u0131lar, i\u015flemler, geometri ve daha fazlas\u0131",
             icon: Calculator,
             href: "/games?subject=matematik",
           },
           {
             label: "Fen Bilimleri",
-            description: "Canlılar, madde, fiziksel olaylar",
+            description: "Canl\u0131lar, madde, fiziksel olaylar",
             icon: FlaskConical,
             href: "/games?subject=fen",
           },
           {
             label: "Sosyal Bilgiler",
-            description: "Tarih, coğrafya, vatandaşlık",
+            description: "Tarih, co\u011frafya, vatanda\u015fl\u0131k",
             icon: Globe,
             href: "/games?subject=sosyal",
+          },
+          {
+            label: "\u0130ngilizce",
+            description: "Kelime, dilbilgisi ve dinleme",
+            icon: Languages,
+            href: "/games?subject=ingilizce",
           },
         ],
       },
