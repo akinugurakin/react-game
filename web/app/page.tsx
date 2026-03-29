@@ -21,6 +21,7 @@ import {
   Play,
   Clock,
   Puzzle,
+  Languages,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -626,11 +627,13 @@ export default function HomePage() {
               </p>
             </motion.div>
 
-            <div className="grid gap-6 md:grid-cols-3">
+            <div className="grid gap-6 md:grid-cols-3 lg:grid-cols-5">
               {[
-                { baslik: "Matematik", icon: Calculator, aciklama: "Say\u0131lar, i\u015flemler, geometri ve daha fazlas\u0131", renk: "bg-[#005C53]", oyun: 12 },
-                { baslik: "Fen Bilimleri", icon: FlaskConical, aciklama: "Canl\u0131lar, madde, fiziksel olaylar", renk: "bg-[#9FC131]", oyun: 8 },
-                { baslik: "Sosyal Bilgiler", icon: Globe, aciklama: "Tarih, co\u011frafya, vatanda\u015fl\u0131k", renk: "bg-[#042940]", oyun: 6 },
+                { baslik: "T\u00fcrk\u00e7e", icon: BookOpen, aciklama: "Kelime, dilbilgisi ve yaz\u0131m oyunlar\u0131", renk: "bg-[#005C53]", oyun: 4 },
+                { baslik: "Matematik", icon: Calculator, aciklama: "Say\u0131lar, i\u015flemler, geometri ve daha fazlas\u0131", renk: "bg-[#9FC131]", oyun: 3 },
+                { baslik: "Fen Bilimleri", icon: FlaskConical, aciklama: "Canl\u0131lar, madde, fiziksel olaylar", renk: "bg-[#042940]", oyun: 3 },
+                { baslik: "Sosyal Bilgiler", icon: Globe, aciklama: "Tarih, co\u011frafya, vatanda\u015fl\u0131k", renk: "bg-[#005C53]", oyun: 3 },
+                { baslik: "\u0130ngilizce", icon: Languages, aciklama: "Kelime, dilbilgisi ve dinleme", renk: "bg-[#9FC131]", oyun: 3 },
               ].map((ders, index) => (
                 <motion.div
                   key={ders.baslik}
