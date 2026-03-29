@@ -200,7 +200,7 @@ export default function HomePage() {
   if (!hydrated) return null;
 
   return (
-    <div className="relative flex min-h-screen flex-col bg-[#F5F4EF]">
+    <div className="relative flex min-h-screen flex-col overflow-hidden bg-[#F5F4EF]">
       <BackgroundSymbols />
       <Header />
 
