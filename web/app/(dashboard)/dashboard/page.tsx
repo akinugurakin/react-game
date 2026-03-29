@@ -97,7 +97,7 @@ export default function DashboardPage() {
   const [stats, setStats] = useState<UserStats | null>(null);
   const [loading, setLoading] = useState(true);
 
-  const username = user?.username || "Oyuncu";
+  const username = user?.username || "Misafir";
   const initials = username.slice(0, 2).toUpperCase();
 
   const [avatarPickerOpen, setAvatarPickerOpen] = useState(false);
@@ -115,6 +115,8 @@ export default function DashboardPage() {
     setAvatarBg(bgColor);
     localStorage.setItem("lumo-avatar-id", id);
     localStorage.setItem("lumo-avatar-bg", bgColor);
+    // Sidebar'ı bilgilendir (aynı tab'da storage event tetiklenmez)
+    window.dispatchEvent(new StorageEvent("storage", { key: "lumo-avatar-id", newValue: id }));
   };
 
   useEffect(() => {

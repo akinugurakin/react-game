@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import {
   Gamepad2,
   Lightbulb,
@@ -60,6 +60,7 @@ const teacherMenuItems = [
 
 export function Sidebar() {
   const pathname = usePathname();
+  const router = useRouter();
   const { user, logout, isAuthenticated } = useAuthStore();
   const [collapsed, setCollapsed] = useState(false);
   const [oyunlarAcik, setOyunlarAcik] = useState(pathname.startsWith("/games"));
@@ -89,11 +90,42 @@ export function Sidebar() {
     if (typeof window !== "undefined") return localStorage.getItem("lumo-avatar-bg") || "#DBEAFE";
     return "#DBEAFE";
   });
+  // Avatar değişikliklerini sync et (dashboard'dan değiştirildiğinde)
+  useEffect(() => {
+    const sync = () => {
+      const newId = localStorage.getItem("lumo-avatar-id");
+      const newBg = localStorage.getItem("lumo-avatar-bg") || "#DBEAFE";
+      if (newId !== avatarId) setAvatarId(newId);
+      if (newBg !== avatarBg) setAvatarBg(newBg);
+    };
+    // Her sayfa değişiminde kontrol et
+    sync();
+    // Storage event (farklı tab'lardan)
+    window.addEventListener("storage", sync);
+    return () => window.removeEventListener("storage", sync);
+  }, [pathname, avatarId, avatarBg]);
   const isGuest = !isAuthenticated;
-  // Öğretmen sayfasındaysa (giriş yapmamış olsa bile) öğretmen menüsü göster
-  const isTeacherPath = pathname.startsWith("/teacher");
-  const isTeacher = user?.role === "teacher" || isTeacherPath;
-  const username = isGuest ? (isTeacherPath ? "Öğretmen" : "Misafir") : (user?.username || "Oyuncu");
+  // Öğretmen modunu localStorage'da persist et
+  const [teacherMode, setTeacherMode] = useState(() => {
+    if (typeof window !== "undefined") {
+      if (user?.role === "teacher") return true;
+      if (window.location.pathname.startsWith("/teacher")) {
+        localStorage.setItem("lumo-teacher-mode", "true");
+        return true;
+      }
+      return localStorage.getItem("lumo-teacher-mode") === "true";
+    }
+    return false;
+  });
+  // Öğretmen sayfasına girdiğinde modu aktifle
+  useEffect(() => {
+    if (pathname.startsWith("/teacher")) {
+      setTeacherMode(true);
+      localStorage.setItem("lumo-teacher-mode", "true");
+    }
+  }, [pathname]);
+  const isTeacher = user?.role === "teacher" || teacherMode;
+  const username = isGuest ? (isTeacher ? "Öğretmen" : "Misafir") : (user?.username || "Misafir");
   const initials = username.slice(0, 2).toUpperCase();
   const menuItems = isTeacher ? teacherMenuItems : studentMenuItems;
 
@@ -297,7 +329,14 @@ export function Sidebar() {
           </Link>
         ) : (
           <button
-            onClick={logout}
+            onClick={() => {
+              logout();
+              localStorage.removeItem("lumo-teacher-mode");
+              localStorage.removeItem("lumo-avatar-id");
+              localStorage.removeItem("lumo-avatar-bg");
+              setTeacherMode(false);
+              router.push("/");
+            }}
             className={cn(
               "flex w-full items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-white/60 transition-colors hover:bg-white/10 hover:text-white",
               collapsed && "justify-center px-2"
