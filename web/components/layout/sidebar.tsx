@@ -41,8 +41,16 @@ const liderlikAltMenusu = [
   { href: "/leaderboard?scope=sinif", icon: UsersRound, label: "S\u0131n\u0131f\u0131m" },
 ];
 
-const menuItems = [
+import { LayoutDashboard } from "lucide-react";
+
+const studentMenuItems = [
   { href: "/dashboard", icon: User, label: "Profil" },
+  { href: "/games", icon: Gamepad2, label: "Oyunlar", hasSubmenu: true },
+  { href: "/leaderboard", icon: Trophy, label: "Liderlik", hasSubmenu: true },
+];
+
+const teacherMenuItems = [
+  { href: "/teacher", icon: LayoutDashboard, label: "\u00d6\u011fretmen Paneli" },
   { href: "/games", icon: Gamepad2, label: "Oyunlar", hasSubmenu: true },
   { href: "/leaderboard", icon: Trophy, label: "Liderlik", hasSubmenu: true },
 ];
@@ -79,8 +87,10 @@ export function Sidebar() {
     return "#DBEAFE";
   });
   const isGuest = !isAuthenticated;
+  const isTeacher = user?.role === "teacher";
   const username = isGuest ? "Misafir" : (user?.username || "Oyuncu");
   const initials = username.slice(0, 2).toUpperCase();
+  const menuItems = isTeacher ? teacherMenuItems : studentMenuItems;
 
 
   return (

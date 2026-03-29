@@ -2,13 +2,15 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
-import { Gamepad2 } from "lucide-react";
+import { useRouter, useSearchParams } from "next/navigation";
+import { Lightbulb, GraduationCap, Users, ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useAuthStore, useAuthHydrated } from "@/lib/auth";
 import { api } from "@/lib/api";
+import { cn } from "@/lib/utils";
+import { Suspense } from "react";
 
 interface RegisterResponse {
   access_token: string;
@@ -21,27 +23,32 @@ interface RegisterResponse {
     avatar_url: string | null;
     is_active: boolean;
     created_at: string;
+    role?: "student" | "teacher";
   };
 }
 
-export default function RegisterPage() {
+function RegisterContent() {
   const router = useRouter();
+  const searchParams = useSearchParams();
   const { isAuthenticated, setAuth } = useAuthStore();
   const hydrated = useAuthHydrated();
+  const initialRole = searchParams.get("role") === "teacher" ? "teacher" : "student";
+  const [step, setStep] = useState<"role" | "form">(searchParams.get("role") ? "form" : "role");
+  const [role, setRole] = useState<"student" | "teacher">(initialRole as "student" | "teacher");
   const [formData, setFormData] = useState({
     email: "",
     username: "",
     password: "",
     age: "",
     parent_email: "",
+    school_name: "",
   });
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
   const age = parseInt(formData.age) || 0;
-  const needsParent = age > 0 && age < 13;
+  const needsParent = role === "student" && age > 0 && age < 13;
 
-  // Giriş yapmışsa dashboard'a yönlendir
   useEffect(() => {
     if (hydrated && isAuthenticated) {
       router.replace("/dashboard");
@@ -62,17 +69,27 @@ export default function RegisterPage() {
         email: formData.email,
         username: formData.username,
         password: formData.password,
-        age: parseInt(formData.age),
+        role,
       };
-      if (needsParent && formData.parent_email) {
-        payload.parent_email = formData.parent_email;
+      if (role === "student") {
+        payload.age = parseInt(formData.age);
+        if (needsParent && formData.parent_email) {
+          payload.parent_email = formData.parent_email;
+        }
+      }
+      if (role === "teacher" && formData.school_name) {
+        payload.school_name = formData.school_name;
       }
 
       const data = await api.post<RegisterResponse>("/auth/register", payload);
-      setAuth(data.user, data.access_token, data.refresh_token);
-      router.push("/dashboard");
+      setAuth(
+        { ...data.user, role: data.user.role || role },
+        data.access_token,
+        data.refresh_token
+      );
+      router.push(role === "teacher" ? "/teacher" : "/dashboard");
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Bir hata oluştu");
+      setError(err instanceof Error ? err.message : "Bir hata olu\u015ftu");
     } finally {
       setLoading(false);
     }
@@ -84,108 +101,151 @@ export default function RegisterPage() {
   return (
     <div className="w-full max-w-md space-y-8">
       <div className="flex flex-col items-center">
-        <Link href="/" className="flex items-center gap-2 mb-8">
-          <Gamepad2 className="h-10 w-10 text-brand-dark" />
-          <span className="text-2xl font-extrabold text-brand-dark">LUMO</span>
+        <Link href="/" className="mb-8 flex items-center gap-2">
+          <Lightbulb className="h-10 w-10 text-brand-dark" />
+          <div>
+            <span className="text-2xl font-extrabold text-brand-dark">LUMO</span>
+            <p className="text-[9px] font-normal text-brand-dark/40">E&#287;itsel Oyun Platformu</p>
+          </div>
         </Link>
-        <h1 className="text-3xl font-extrabold">Kayıt Ol</h1>
+        <h1 className="text-3xl font-extrabold">Kay\u0131t Ol</h1>
         <p className="mt-2 text-muted-foreground">
-          Yeni bir hesap oluştur ve oynamaya başla
+          {step === "role"
+            ? "Nas\u0131l kay\u0131t olmak istiyorsun?"
+            : role === "teacher"
+              ? "\u00d6\u011fretmen hesab\u0131 olu\u015ftur"
+              : "Yeni bir hesap olu\u015ftur ve oynamaya ba\u015fla"}
         </p>
       </div>
 
-      <form onSubmit={handleSubmit} className="space-y-5 rounded-2xl border bg-background p-8 shadow-sm">
-        {error && (
-          <div className="rounded-lg bg-destructive/10 p-3 text-sm text-destructive">
-            {error}
+      {step === "role" ? (
+        <div className="space-y-4">
+          <div className="grid grid-cols-2 gap-4">
+            <button
+              onClick={() => { setRole("student"); setStep("form"); }}
+              className="group flex flex-col items-center gap-3 rounded-2xl border-2 border-transparent bg-background p-8 shadow-sm transition-all hover:border-[#005C53] hover:shadow-md"
+            >
+              <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-[#005C53]/10 transition-colors group-hover:bg-[#005C53] group-hover:text-white">
+                <GraduationCap className="h-8 w-8 text-[#005C53] group-hover:text-white" />
+              </div>
+              <div className="text-center">
+                <p className="font-bold text-[#042940]">&#214;&#287;renci</p>
+                <p className="mt-1 text-xs text-muted-foreground">Oyun oyna, &#246;&#287;ren</p>
+              </div>
+            </button>
+
+            <button
+              onClick={() => { setRole("teacher"); setStep("form"); }}
+              className="group flex flex-col items-center gap-3 rounded-2xl border-2 border-transparent bg-background p-8 shadow-sm transition-all hover:border-[#9FC131] hover:shadow-md"
+            >
+              <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-[#9FC131]/10 transition-colors group-hover:bg-[#9FC131] group-hover:text-white">
+                <Users className="h-8 w-8 text-[#9FC131] group-hover:text-white" />
+              </div>
+              <div className="text-center">
+                <p className="font-bold text-[#042940]">&#214;&#287;retmen</p>
+                <p className="mt-1 text-xs text-muted-foreground">S\u0131n\u0131f y&#246;net, takip et</p>
+              </div>
+            </button>
           </div>
-        )}
 
-        <div className="space-y-2">
-          <Label htmlFor="email">E-posta</Label>
-          <Input
-            id="email"
-            name="email"
-            type="email"
-            placeholder="ornek@email.com"
-            value={formData.email}
-            onChange={handleChange}
-            required
-          />
+          <p className="text-center text-sm text-muted-foreground">
+            Zaten hesab\u0131n var m\u0131?{" "}
+            <Link href="/login" className="font-semibold text-brand-dark hover:underline">
+              Giri\u015f Yap
+            </Link>
+          </p>
         </div>
+      ) : (
+        <div className="space-y-4">
+          <button
+            onClick={() => { setStep("role"); setError(""); }}
+            className="flex items-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground"
+          >
+            <ArrowLeft className="h-4 w-4" />
+            Rol se&#231;imine d&#246;n
+          </button>
 
-        <div className="space-y-2">
-          <Label htmlFor="username">Kullanıcı Adı</Label>
-          <Input
-            id="username"
-            name="username"
-            placeholder="oyuncu123"
-            value={formData.username}
-            onChange={handleChange}
-            required
-            minLength={3}
-            maxLength={50}
-          />
-        </div>
+          <div className={cn(
+            "flex items-center gap-3 rounded-xl p-3",
+            role === "teacher" ? "bg-[#9FC131]/10" : "bg-[#005C53]/10"
+          )}>
+            {role === "teacher" ? (
+              <Users className="h-5 w-5 text-[#9FC131]" />
+            ) : (
+              <GraduationCap className="h-5 w-5 text-[#005C53]" />
+            )}
+            <span className="text-sm font-semibold text-[#042940]">
+              {role === "teacher" ? "\u00d6\u011fretmen Kay\u0131t" : "\u00d6\u011frenci Kay\u0131t"}
+            </span>
+          </div>
 
-        <div className="space-y-2">
-          <Label htmlFor="password">Şifre</Label>
-          <Input
-            id="password"
-            name="password"
-            type="password"
-            placeholder="••••••"
-            value={formData.password}
-            onChange={handleChange}
-            required
-            minLength={6}
-          />
-        </div>
+          <form onSubmit={handleSubmit} className="space-y-5 rounded-2xl border bg-background p-8 shadow-sm">
+            {error && (
+              <div className="rounded-lg bg-destructive/10 p-3 text-sm text-destructive">
+                {error}
+              </div>
+            )}
 
-        <div className="space-y-2">
-          <Label htmlFor="age">Yaş</Label>
-          <Input
-            id="age"
-            name="age"
-            type="number"
-            placeholder="8"
-            min={4}
-            max={100}
-            value={formData.age}
-            onChange={handleChange}
-            required
-          />
-        </div>
+            <div className="space-y-2">
+              <Label htmlFor="email">E-posta</Label>
+              <Input id="email" name="email" type="email" placeholder="ornek@email.com" value={formData.email} onChange={handleChange} required />
+            </div>
 
-        {needsParent && (
-          <div className="space-y-2 rounded-lg bg-muted/50 p-4">
-            <p className="text-sm text-muted-foreground">
-              13 yaş altı kullanıcılar için ebeveyn e-postası gereklidir.
+            <div className="space-y-2">
+              <Label htmlFor="username">{role === "teacher" ? "Ad Soyad" : "Kullan\u0131c\u0131 Ad\u0131"}</Label>
+              <Input id="username" name="username" placeholder={role === "teacher" ? "Ay\u015fe Y\u0131lmaz" : "oyuncu123"} value={formData.username} onChange={handleChange} required minLength={3} maxLength={50} />
+            </div>
+
+            <div className="space-y-2">
+              <Label htmlFor="password">&#350;ifre</Label>
+              <Input id="password" name="password" type="password" placeholder="&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;" value={formData.password} onChange={handleChange} required minLength={6} />
+            </div>
+
+            {role === "student" && (
+              <div className="space-y-2">
+                <Label htmlFor="age">Ya\u015f</Label>
+                <Input id="age" name="age" type="number" placeholder="8" min={4} max={100} value={formData.age} onChange={handleChange} required />
+              </div>
+            )}
+
+            {needsParent && (
+              <div className="space-y-2 rounded-lg bg-muted/50 p-4">
+                <p className="text-sm text-muted-foreground">
+                  13 ya\u015f alt\u0131 kullan\u0131c\u0131lar i\u00e7in ebeveyn e-postas\u0131 gereklidir.
+                </p>
+                <Label htmlFor="parent_email">Ebeveyn E-postas\u0131</Label>
+                <Input id="parent_email" name="parent_email" type="email" placeholder="ebeveyn@email.com" value={formData.parent_email} onChange={handleChange} required />
+              </div>
+            )}
+
+            {role === "teacher" && (
+              <div className="space-y-2">
+                <Label htmlFor="school_name">Okul Ad\u0131 (Opsiyonel)</Label>
+                <Input id="school_name" name="school_name" placeholder="Atat\u00fcrk \u0130lkokulu" value={formData.school_name} onChange={handleChange} />
+              </div>
+            )}
+
+            <Button type="submit" className="w-full" size="lg" disabled={loading}>
+              {loading ? "Kay\u0131t yap\u0131l\u0131yor..." : "Kay\u0131t Ol"}
+            </Button>
+
+            <p className="text-center text-sm text-muted-foreground">
+              Zaten hesab\u0131n var m\u0131?{" "}
+              <Link href="/login" className="font-semibold text-brand-dark hover:underline">
+                Giri\u015f Yap
+              </Link>
             </p>
-            <Label htmlFor="parent_email">Ebeveyn E-postası</Label>
-            <Input
-              id="parent_email"
-              name="parent_email"
-              type="email"
-              placeholder="ebeveyn@email.com"
-              value={formData.parent_email}
-              onChange={handleChange}
-              required
-            />
-          </div>
-        )}
-
-        <Button type="submit" className="w-full" size="lg" disabled={loading}>
-          {loading ? "Kayıt yapılıyor..." : "Kayıt Ol"}
-        </Button>
-
-        <p className="text-center text-sm text-muted-foreground">
-          Zaten hesabın var mı?{" "}
-          <Link href="/login" className="font-semibold text-brand-dark hover:underline">
-            Giriş Yap
-          </Link>
-        </p>
-      </form>
+          </form>
+        </div>
+      )}
     </div>
+  );
+}
+
+export default function RegisterPage() {
+  return (
+    <Suspense fallback={<div className="flex min-h-[50vh] items-center justify-center"><p className="text-muted-foreground">Y\u00fckleniyor...</p></div>}>
+      <RegisterContent />
+    </Suspense>
   );
 }

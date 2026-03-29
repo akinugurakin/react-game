@@ -8,6 +8,7 @@ interface User {
   username: string;
   age: number;
   avatar_url: string | null;
+  role: "student" | "teacher";
 }
 
 interface AuthState {
