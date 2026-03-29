@@ -210,8 +210,8 @@ export function Sidebar() {
           const isActive = pathname === basePath || pathname.startsWith(basePath + "/");
 
           if (item.hasSubmenu) {
-            const isOyunlar = item.href === "/games";
-            const isLiderlik = item.href === "/leaderboard";
+            const isOyunlar = item.href.endsWith("/games");
+            const isLiderlik = item.href.endsWith("/leaderboard");
             const subMenuOpen = isOyunlar ? oyunlarAcik : liderlikAcik;
             const setSubMenuOpen = isOyunlar ? setOyunlarAcik : setLiderlikAcik;
             const gamesPrefix = isTeacher ? "/teacher/games" : "/games";
