@@ -66,59 +66,59 @@ const siniflarData: Record<string, { ad: string; ogrenciler: StudentData[] }> = 
   "1": {
     ad: "5-A",
     ogrenciler: [
-      { id: 1, ad: "Efe Y\u0131ld\u0131z", avatarIdx: 0, haftalikPuan: 850, aylikPuan: 3200, toplamPuan: 9850, oyunSayisi: 142, rozetSayisi: 12, enIyiDers: "Matematik", sonAktivite: "Bug\u00fcn" },
-      { id: 2, ad: "Zeynep Kaya", avatarIdx: 1, haftalikPuan: 720, aylikPuan: 2900, toplamPuan: 9420, oyunSayisi: 138, rozetSayisi: 11, enIyiDers: "T\u00fcrk\u00e7e", sonAktivite: "Bug\u00fcn" },
-      { id: 3, ad: "Ali Demir", avatarIdx: 2, haftalikPuan: 680, aylikPuan: 2750, toplamPuan: 9100, oyunSayisi: 131, rozetSayisi: 10, enIyiDers: "Fen Bilimleri", sonAktivite: "D\u00fcn" },
-      { id: 4, ad: "Ece Arslan", avatarIdx: 3, haftalikPuan: 640, aylikPuan: 2600, toplamPuan: 8750, oyunSayisi: 125, rozetSayisi: 9, enIyiDers: "Matematik", sonAktivite: "Bug\u00fcn" },
-      { id: 5, ad: "Can Y\u0131lmaz", avatarIdx: 4, haftalikPuan: 590, aylikPuan: 2400, toplamPuan: 8500, oyunSayisi: 119, rozetSayisi: 8, enIyiDers: "\u0130ngilizce", sonAktivite: "2 g\u00fcn \u00f6nce" },
-      { id: 6, ad: "Defne Ko\u00e7", avatarIdx: 5, haftalikPuan: 560, aylikPuan: 2200, toplamPuan: 8200, oyunSayisi: 115, rozetSayisi: 8, enIyiDers: "T\u00fcrk\u00e7e", sonAktivite: "Bug\u00fcn" },
-      { id: 7, ad: "Emre Ak\u0131n", avatarIdx: 6, haftalikPuan: 480, aylikPuan: 1900, toplamPuan: 7900, oyunSayisi: 108, rozetSayisi: 7, enIyiDers: "Sosyal Bilgiler", sonAktivite: "D\u00fcn" },
-      { id: 8, ad: "Ay\u015fe G\u00fcl", avatarIdx: 7, haftalikPuan: 450, aylikPuan: 1800, toplamPuan: 7650, oyunSayisi: 102, rozetSayisi: 7, enIyiDers: "Matematik", sonAktivite: "Bug\u00fcn" },
-      { id: 9, ad: "Mert Can", avatarIdx: 8, haftalikPuan: 420, aylikPuan: 1700, toplamPuan: 7400, oyunSayisi: 98, rozetSayisi: 6, enIyiDers: "Fen Bilimleri", sonAktivite: "3 g\u00fcn \u00f6nce" },
-      { id: 10, ad: "\u0130rem Su", avatarIdx: 9, haftalikPuan: 390, aylikPuan: 1600, toplamPuan: 7100, oyunSayisi: 95, rozetSayisi: 6, enIyiDers: "\u0130ngilizce", sonAktivite: "Bug\u00fcn" },
-      { id: 11, ad: "Burak Ay", avatarIdx: 10, haftalikPuan: 350, aylikPuan: 1400, toplamPuan: 6800, oyunSayisi: 90, rozetSayisi: 5, enIyiDers: "Matematik", sonAktivite: "D\u00fcn" },
-      { id: 12, ad: "Seda T\u00fcrk", avatarIdx: 11, haftalikPuan: 320, aylikPuan: 1300, toplamPuan: 6500, oyunSayisi: 87, rozetSayisi: 5, enIyiDers: "T\u00fcrk\u00e7e", sonAktivite: "2 g\u00fcn \u00f6nce" },
-      { id: 13, ad: "Y\u0131ld\u0131z Ela", avatarIdx: 12, haftalikPuan: 280, aylikPuan: 1100, toplamPuan: 6200, oyunSayisi: 82, rozetSayisi: 4, enIyiDers: "Sosyal Bilgiler", sonAktivite: "Bug\u00fcn" },
-      { id: 14, ad: "Onur Bey", avatarIdx: 13, haftalikPuan: 250, aylikPuan: 1000, toplamPuan: 5900, oyunSayisi: 78, rozetSayisi: 4, enIyiDers: "Fen Bilimleri", sonAktivite: "4 g\u00fcn \u00f6nce" },
-      { id: 15, ad: "Nilay G\u00fcn", avatarIdx: 14, haftalikPuan: 220, aylikPuan: 900, toplamPuan: 5600, oyunSayisi: 74, rozetSayisi: 3, enIyiDers: "\u0130ngilizce", sonAktivite: "D\u00fcn" },
-      { id: 16, ad: "Kaan De\u011fer", avatarIdx: 15, haftalikPuan: 200, aylikPuan: 800, toplamPuan: 5300, oyunSayisi: 70, rozetSayisi: 3, enIyiDers: "Matematik", sonAktivite: "Bug\u00fcn" },
-      { id: 17, ad: "Tu\u011f\u00e7e Ak", avatarIdx: 0, haftalikPuan: 180, aylikPuan: 720, toplamPuan: 4900, oyunSayisi: 65, rozetSayisi: 3, enIyiDers: "T\u00fcrk\u00e7e", sonAktivite: "3 g\u00fcn \u00f6nce" },
-      { id: 18, ad: "Umut \u015een", avatarIdx: 1, haftalikPuan: 160, aylikPuan: 640, toplamPuan: 4600, oyunSayisi: 60, rozetSayisi: 2, enIyiDers: "Fen Bilimleri", sonAktivite: "D\u00fcn" },
-      { id: 19, ad: "Pelin Ay", avatarIdx: 2, haftalikPuan: 140, aylikPuan: 560, toplamPuan: 4300, oyunSayisi: 55, rozetSayisi: 2, enIyiDers: "Sosyal Bilgiler", sonAktivite: "5 g\u00fcn \u00f6nce" },
-      { id: 20, ad: "Bet\u00fcl \u00d6z", avatarIdx: 3, haftalikPuan: 120, aylikPuan: 480, toplamPuan: 4000, oyunSayisi: 50, rozetSayisi: 2, enIyiDers: "Matematik", sonAktivite: "2 g\u00fcn \u00f6nce" },
-      { id: 21, ad: "Ahmet Can", avatarIdx: 4, haftalikPuan: 100, aylikPuan: 400, toplamPuan: 3700, oyunSayisi: 45, rozetSayisi: 1, enIyiDers: "\u0130ngilizce", sonAktivite: "Bug\u00fcn" },
-      { id: 22, ad: "Elif Nur", avatarIdx: 5, haftalikPuan: 90, aylikPuan: 360, toplamPuan: 3400, oyunSayisi: 40, rozetSayisi: 1, enIyiDers: "T\u00fcrk\u00e7e", sonAktivite: "D\u00fcn" },
-      { id: 23, ad: "Kerem Y\u0131l", avatarIdx: 6, haftalikPuan: 80, aylikPuan: 320, toplamPuan: 3100, oyunSayisi: 38, rozetSayisi: 1, enIyiDers: "Matematik", sonAktivite: "3 g\u00fcn \u00f6nce" },
-      { id: 24, ad: "Ceren G\u00fcl", avatarIdx: 7, haftalikPuan: 70, aylikPuan: 280, toplamPuan: 2800, oyunSayisi: 35, rozetSayisi: 1, enIyiDers: "Fen Bilimleri", sonAktivite: "Bug\u00fcn" },
-      { id: 25, ad: "Bar\u0131\u015f Efe", avatarIdx: 8, haftalikPuan: 60, aylikPuan: 240, toplamPuan: 2500, oyunSayisi: 30, rozetSayisi: 0, enIyiDers: "Sosyal Bilgiler", sonAktivite: "1 hafta \u00f6nce" },
-      { id: 26, ad: "Melis Ada", avatarIdx: 9, haftalikPuan: 50, aylikPuan: 200, toplamPuan: 2200, oyunSayisi: 25, rozetSayisi: 0, enIyiDers: "\u0130ngilizce", sonAktivite: "4 g\u00fcn \u00f6nce" },
-      { id: 27, ad: "Arda \u00c7elik", avatarIdx: 10, haftalikPuan: 40, aylikPuan: 160, toplamPuan: 1900, oyunSayisi: 20, rozetSayisi: 0, enIyiDers: "T\u00fcrk\u00e7e", sonAktivite: "D\u00fcn" },
-      { id: 28, ad: "Su Deniz", avatarIdx: 11, haftalikPuan: 30, aylikPuan: 120, toplamPuan: 1600, oyunSayisi: 15, rozetSayisi: 0, enIyiDers: "Matematik", sonAktivite: "1 hafta \u00f6nce" },
+      { id: 1, ad: "Efe Yıldız", avatarIdx: 0, haftalikPuan: 850, aylikPuan: 3200, toplamPuan: 9850, oyunSayisi: 142, rozetSayisi: 12, enIyiDers: "Matematik", sonAktivite: "Bugün" },
+      { id: 2, ad: "Zeynep Kaya", avatarIdx: 1, haftalikPuan: 720, aylikPuan: 2900, toplamPuan: 9420, oyunSayisi: 138, rozetSayisi: 11, enIyiDers: "Türkçe", sonAktivite: "Bugün" },
+      { id: 3, ad: "Ali Demir", avatarIdx: 2, haftalikPuan: 680, aylikPuan: 2750, toplamPuan: 9100, oyunSayisi: 131, rozetSayisi: 10, enIyiDers: "Fen Bilimleri", sonAktivite: "Dün" },
+      { id: 4, ad: "Ece Arslan", avatarIdx: 3, haftalikPuan: 640, aylikPuan: 2600, toplamPuan: 8750, oyunSayisi: 125, rozetSayisi: 9, enIyiDers: "Matematik", sonAktivite: "Bugün" },
+      { id: 5, ad: "Can Yılmaz", avatarIdx: 4, haftalikPuan: 590, aylikPuan: 2400, toplamPuan: 8500, oyunSayisi: 119, rozetSayisi: 8, enIyiDers: "İngilizce", sonAktivite: "2 gün önce" },
+      { id: 6, ad: "Defne Koç", avatarIdx: 5, haftalikPuan: 560, aylikPuan: 2200, toplamPuan: 8200, oyunSayisi: 115, rozetSayisi: 8, enIyiDers: "Türkçe", sonAktivite: "Bugün" },
+      { id: 7, ad: "Emre Akın", avatarIdx: 6, haftalikPuan: 480, aylikPuan: 1900, toplamPuan: 7900, oyunSayisi: 108, rozetSayisi: 7, enIyiDers: "Sosyal Bilgiler", sonAktivite: "Dün" },
+      { id: 8, ad: "Ayşe Gül", avatarIdx: 7, haftalikPuan: 450, aylikPuan: 1800, toplamPuan: 7650, oyunSayisi: 102, rozetSayisi: 7, enIyiDers: "Matematik", sonAktivite: "Bugün" },
+      { id: 9, ad: "Mert Can", avatarIdx: 8, haftalikPuan: 420, aylikPuan: 1700, toplamPuan: 7400, oyunSayisi: 98, rozetSayisi: 6, enIyiDers: "Fen Bilimleri", sonAktivite: "3 gün önce" },
+      { id: 10, ad: "İrem Su", avatarIdx: 9, haftalikPuan: 390, aylikPuan: 1600, toplamPuan: 7100, oyunSayisi: 95, rozetSayisi: 6, enIyiDers: "İngilizce", sonAktivite: "Bugün" },
+      { id: 11, ad: "Burak Ay", avatarIdx: 10, haftalikPuan: 350, aylikPuan: 1400, toplamPuan: 6800, oyunSayisi: 90, rozetSayisi: 5, enIyiDers: "Matematik", sonAktivite: "Dün" },
+      { id: 12, ad: "Seda Türk", avatarIdx: 11, haftalikPuan: 320, aylikPuan: 1300, toplamPuan: 6500, oyunSayisi: 87, rozetSayisi: 5, enIyiDers: "Türkçe", sonAktivite: "2 gün önce" },
+      { id: 13, ad: "Yıldız Ela", avatarIdx: 12, haftalikPuan: 280, aylikPuan: 1100, toplamPuan: 6200, oyunSayisi: 82, rozetSayisi: 4, enIyiDers: "Sosyal Bilgiler", sonAktivite: "Bugün" },
+      { id: 14, ad: "Onur Bey", avatarIdx: 13, haftalikPuan: 250, aylikPuan: 1000, toplamPuan: 5900, oyunSayisi: 78, rozetSayisi: 4, enIyiDers: "Fen Bilimleri", sonAktivite: "4 gün önce" },
+      { id: 15, ad: "Nilay Gün", avatarIdx: 14, haftalikPuan: 220, aylikPuan: 900, toplamPuan: 5600, oyunSayisi: 74, rozetSayisi: 3, enIyiDers: "İngilizce", sonAktivite: "Dün" },
+      { id: 16, ad: "Kaan Değer", avatarIdx: 15, haftalikPuan: 200, aylikPuan: 800, toplamPuan: 5300, oyunSayisi: 70, rozetSayisi: 3, enIyiDers: "Matematik", sonAktivite: "Bugün" },
+      { id: 17, ad: "Tuğçe Ak", avatarIdx: 0, haftalikPuan: 180, aylikPuan: 720, toplamPuan: 4900, oyunSayisi: 65, rozetSayisi: 3, enIyiDers: "Türkçe", sonAktivite: "3 gün önce" },
+      { id: 18, ad: "Umut Şen", avatarIdx: 1, haftalikPuan: 160, aylikPuan: 640, toplamPuan: 4600, oyunSayisi: 60, rozetSayisi: 2, enIyiDers: "Fen Bilimleri", sonAktivite: "Dün" },
+      { id: 19, ad: "Pelin Ay", avatarIdx: 2, haftalikPuan: 140, aylikPuan: 560, toplamPuan: 4300, oyunSayisi: 55, rozetSayisi: 2, enIyiDers: "Sosyal Bilgiler", sonAktivite: "5 gün önce" },
+      { id: 20, ad: "Betül Öz", avatarIdx: 3, haftalikPuan: 120, aylikPuan: 480, toplamPuan: 4000, oyunSayisi: 50, rozetSayisi: 2, enIyiDers: "Matematik", sonAktivite: "2 gün önce" },
+      { id: 21, ad: "Ahmet Can", avatarIdx: 4, haftalikPuan: 100, aylikPuan: 400, toplamPuan: 3700, oyunSayisi: 45, rozetSayisi: 1, enIyiDers: "İngilizce", sonAktivite: "Bugün" },
+      { id: 22, ad: "Elif Nur", avatarIdx: 5, haftalikPuan: 90, aylikPuan: 360, toplamPuan: 3400, oyunSayisi: 40, rozetSayisi: 1, enIyiDers: "Türkçe", sonAktivite: "Dün" },
+      { id: 23, ad: "Kerem Yıl", avatarIdx: 6, haftalikPuan: 80, aylikPuan: 320, toplamPuan: 3100, oyunSayisi: 38, rozetSayisi: 1, enIyiDers: "Matematik", sonAktivite: "3 gün önce" },
+      { id: 24, ad: "Ceren Gül", avatarIdx: 7, haftalikPuan: 70, aylikPuan: 280, toplamPuan: 2800, oyunSayisi: 35, rozetSayisi: 1, enIyiDers: "Fen Bilimleri", sonAktivite: "Bugün" },
+      { id: 25, ad: "Barış Efe", avatarIdx: 8, haftalikPuan: 60, aylikPuan: 240, toplamPuan: 2500, oyunSayisi: 30, rozetSayisi: 0, enIyiDers: "Sosyal Bilgiler", sonAktivite: "1 hafta önce" },
+      { id: 26, ad: "Melis Ada", avatarIdx: 9, haftalikPuan: 50, aylikPuan: 200, toplamPuan: 2200, oyunSayisi: 25, rozetSayisi: 0, enIyiDers: "İngilizce", sonAktivite: "4 gün önce" },
+      { id: 27, ad: "Arda Çelik", avatarIdx: 10, haftalikPuan: 40, aylikPuan: 160, toplamPuan: 1900, oyunSayisi: 20, rozetSayisi: 0, enIyiDers: "Türkçe", sonAktivite: "Dün" },
+      { id: 28, ad: "Su Deniz", avatarIdx: 11, haftalikPuan: 30, aylikPuan: 120, toplamPuan: 1600, oyunSayisi: 15, rozetSayisi: 0, enIyiDers: "Matematik", sonAktivite: "1 hafta önce" },
     ],
   },
   "2": {
     ad: "5-B",
     ogrenciler: Array.from({ length: 25 }, (_, i) => ({
-      id: i + 1, ad: `\u00d6\u011frenci ${i + 1}`, avatarIdx: i % 16,
+      id: i + 1, ad: `Öğrenci ${i + 1}`, avatarIdx: i % 16,
       haftalikPuan: 800 - i * 30, aylikPuan: 3000 - i * 100, toplamPuan: 9000 - i * 300,
-      oyunSayisi: 140 - i * 5, rozetSayisi: Math.max(0, 12 - i), enIyiDers: ["Matematik", "T\u00fcrk\u00e7e", "Fen Bilimleri", "Sosyal Bilgiler", "\u0130ngilizce"][i % 5],
-      sonAktivite: ["Bug\u00fcn", "D\u00fcn", "2 g\u00fcn \u00f6nce"][i % 3],
+      oyunSayisi: 140 - i * 5, rozetSayisi: Math.max(0, 12 - i), enIyiDers: ["Matematik", "Türkçe", "Fen Bilimleri", "Sosyal Bilgiler", "İngilizce"][i % 5],
+      sonAktivite: ["Bugün", "Dün", "2 gün önce"][i % 3],
     })),
   },
   "3": {
     ad: "6-A",
     ogrenciler: Array.from({ length: 30 }, (_, i) => ({
-      id: i + 1, ad: `\u00d6\u011frenci ${i + 1}`, avatarIdx: i % 16,
+      id: i + 1, ad: `Öğrenci ${i + 1}`, avatarIdx: i % 16,
       haftalikPuan: 750 - i * 25, aylikPuan: 2800 - i * 80, toplamPuan: 8500 - i * 250,
-      oyunSayisi: 130 - i * 4, rozetSayisi: Math.max(0, 11 - i), enIyiDers: ["Matematik", "T\u00fcrk\u00e7e", "Fen Bilimleri", "Sosyal Bilgiler", "\u0130ngilizce"][i % 5],
-      sonAktivite: ["Bug\u00fcn", "D\u00fcn", "3 g\u00fcn \u00f6nce"][i % 3],
+      oyunSayisi: 130 - i * 4, rozetSayisi: Math.max(0, 11 - i), enIyiDers: ["Matematik", "Türkçe", "Fen Bilimleri", "Sosyal Bilgiler", "İngilizce"][i % 5],
+      sonAktivite: ["Bugün", "Dün", "3 gün önce"][i % 3],
     })),
   },
 };
 
 const dersIkonlari: Record<string, React.ElementType> = {
-  "Matematik": Calculator, "T\u00fcrk\u00e7e": BookOpen, "Fen Bilimleri": FlaskConical,
-  "Sosyal Bilgiler": Globe, "\u0130ngilizce": SpellCheck,
+  "Matematik": Calculator, "Türkçe": BookOpen, "Fen Bilimleri": FlaskConical,
+  "Sosyal Bilgiler": Globe, "İngilizce": SpellCheck,
 };
 
 /* ------------------------------------------------------------------ */
@@ -126,7 +126,7 @@ const dersIkonlari: Record<string, React.ElementType> = {
 /* ------------------------------------------------------------------ */
 
 type Period = "haftalik" | "aylik" | "toplam";
-const periodLabels: Record<Period, string> = { haftalik: "Haftal\u0131k", aylik: "Ayl\u0131k", toplam: "T\u00fcm Zamanlar" };
+const periodLabels: Record<Period, string> = { haftalik: "Haftalık", aylik: "Aylık", toplam: "Tüm Zamanlar" };
 
 function getScore(s: StudentData, p: Period): number {
   return p === "haftalik" ? s.haftalikPuan : p === "aylik" ? s.aylikPuan : s.toplamPuan;
@@ -139,19 +139,19 @@ function getRankIcon(rank: number) {
 }
 
 const filterOptions = [
-  { value: "genel", label: "Genel S\u0131ralama", icon: Trophy },
-  { value: "turkce", label: "T\u00fcrk\u00e7e", icon: BookOpen },
+  { value: "genel", label: "Genel Sıralama", icon: Trophy },
+  { value: "turkce", label: "Türkçe", icon: BookOpen },
   { value: "matematik", label: "Matematik", icon: Calculator },
   { value: "fen", label: "Fen Bilimleri", icon: FlaskConical },
   { value: "sosyal", label: "Sosyal Bilgiler", icon: Globe },
-  { value: "ingilizce", label: "\u0130ngilizce", icon: SpellCheck },
+  { value: "ingilizce", label: "İngilizce", icon: SpellCheck },
 ];
 
 const gamesBySubject: Record<string, { value: string; label: string }[]> = {
-  turkce: [{ value: "kelime-avi", label: "Kelime Av\u0131" }, { value: "hafiza-kartlari", label: "Haf\u0131za Kartlar\u0131" }, { value: "cumle-kurma", label: "C\u00fcmle Kurma" }],
-  matematik: [{ value: "matematik-yarismasi", label: "Matematik Yar\u0131\u015fmas\u0131" }, { value: "bulmaca-dunyasi", label: "Bulmaca D\u00fcnyas\u0131" }, { value: "kesir-ustasi", label: "Kesir Ustas\u0131" }],
-  fen: [{ value: "atom-kesfi", label: "Atom Ke\u015ffi" }, { value: "canlilar-alemi", label: "Canl\u0131lar Alemi" }, { value: "deney-labi", label: "Deney Lab\u0131" }],
-  sosyal: [{ value: "tarih-yolculugu", label: "Tarih Yolculu\u011fu" }, { value: "harita-ustasi", label: "Harita Ustas\u0131" }],
+  turkce: [{ value: "kelime-avi", label: "Kelime Avı" }, { value: "hafiza-kartlari", label: "Hafıza Kartları" }, { value: "cumle-kurma", label: "Cümle Kurma" }],
+  matematik: [{ value: "matematik-yarismasi", label: "Matematik Yarışması" }, { value: "bulmaca-dunyasi", label: "Bulmaca Dünyası" }, { value: "kesir-ustasi", label: "Kesir Ustası" }],
+  fen: [{ value: "atom-kesfi", label: "Atom Keşfi" }, { value: "canlilar-alemi", label: "Canlılar Alemi" }, { value: "deney-labi", label: "Deney Labı" }],
+  sosyal: [{ value: "tarih-yolculugu", label: "Tarih Yolculuğu" }, { value: "harita-ustasi", label: "Harita Ustası" }],
   ingilizce: [{ value: "vocabulary-builder", label: "Vocabulary Builder" }, { value: "grammar-quest", label: "Grammar Quest" }],
 };
 
@@ -174,9 +174,9 @@ export default function ClassDetailPage() {
   if (!sinif) {
     return (
       <div className="container py-8">
-        <p className="text-muted-foreground">S\u0131n\u0131f bulunamad\u0131.</p>
+        <p className="text-muted-foreground">Sınıf bulunamadı.</p>
         <Link href="/teacher" className="mt-4 inline-flex items-center gap-1 text-sm text-[#005C53] hover:underline">
-          <ArrowLeft className="h-4 w-4" /> Geri d\u00f6n
+          <ArrowLeft className="h-4 w-4" /> Geri dön
         </Link>
       </div>
     );
@@ -191,18 +191,18 @@ export default function ClassDetailPage() {
 
   return (
     <div className="container py-8">
-      {/* Ba\u015fl\u0131k */}
+      {/* Başlık */}
       <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4 }} className="mb-8">
         <Link href="/teacher" className="mb-4 inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground">
-          <ArrowLeft className="h-4 w-4" /> \u00d6\u011fretmen Paneli
+          <ArrowLeft className="h-4 w-4" /> Öğretmen Paneli
         </Link>
         <div className="flex items-center justify-between">
           <div>
-            <h1 className="text-3xl font-extrabold">{sinif.ad} S\u0131n\u0131f\u0131</h1>
-            <p className="mt-1 text-muted-foreground">{sinif.ogrenciler.length} \u00f6\u011frenci</p>
+            <h1 className="text-3xl font-extrabold">{sinif.ad} Sınıfı</h1>
+            <p className="mt-1 text-muted-foreground">{sinif.ogrenciler.length} öğrenci</p>
           </div>
           <Button onClick={() => setShowAddModal(true)} className="bg-[#005C53] text-white hover:bg-[#005C53]/90">
-            <Plus className="mr-1 h-4 w-4" /> \u00d6\u011frenci Ekle
+            <Plus className="mr-1 h-4 w-4" /> Öğrenci Ekle
           </Button>
         </div>
       </motion.div>
@@ -218,13 +218,13 @@ export default function ClassDetailPage() {
         </div>
       </motion.div>
 
-      {/* \u0130statistikler */}
+      {/* İstatistikler */}
       <div className="mb-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         {[
           { title: "Ortalama Puan", value: ortPuan.toLocaleString("tr-TR"), icon: TrendingUp, color: "bg-[#005C53]/10", iconColor: "text-[#005C53]" },
           { title: "Toplam Oyun", value: toplamOyun.toLocaleString("tr-TR"), icon: Gamepad2, color: "bg-[#9FC131]/10", iconColor: "text-[#9FC131]" },
-          { title: "Kazan\u0131lan Rozet", value: toplamRozet.toString(), icon: Trophy, color: "bg-[#DBF227]/10", iconColor: "text-[#9FC131]" },
-          { title: "\u00d6\u011frenci Say\u0131s\u0131", value: sinif.ogrenciler.length.toString(), icon: Users, color: "bg-[#042940]/10", iconColor: "text-[#042940]" },
+          { title: "Kazanılan Rozet", value: toplamRozet.toString(), icon: Trophy, color: "bg-[#DBF227]/10", iconColor: "text-[#9FC131]" },
+          { title: "Öğrenci Sayısı", value: sinif.ogrenciler.length.toString(), icon: Users, color: "bg-[#042940]/10", iconColor: "text-[#042940]" },
         ].map((stat, i) => (
           <motion.div key={stat.title} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4, delay: 0.15 + i * 0.06 }}>
             <Card className="border-0 shadow-sm">
@@ -256,12 +256,12 @@ export default function ClassDetailPage() {
           <div className="relative inline-block">
             <button onClick={() => setShowGameDropdown(!showGameDropdown)} className="flex items-center gap-2 rounded-xl border border-[#042940]/10 bg-white px-4 py-2 text-sm font-medium text-[#042940] hover:bg-[#042940]/5">
               <Gamepad2 className="h-4 w-4 text-[#042940]/40" />
-              {selectedGame ? availableGames.find((g) => g.value === selectedGame)?.label : "T\u00fcm Oyunlar"}
+              {selectedGame ? availableGames.find((g) => g.value === selectedGame)?.label : "Tüm Oyunlar"}
               <ChevronDown className={cn("h-4 w-4 text-[#042940]/40 transition-transform", showGameDropdown && "rotate-180")} />
             </button>
             {showGameDropdown && (
               <div className="absolute left-0 top-full z-20 mt-1 w-56 rounded-xl border border-[#042940]/10 bg-white py-1 shadow-lg">
-                <button onClick={() => { setSelectedGame(null); setShowGameDropdown(false); }} className={cn("w-full px-4 py-2 text-left text-sm", !selectedGame ? "bg-[#005C53]/10 font-medium text-[#005C53]" : "text-[#042940]/60 hover:bg-[#042940]/5")}>T\u00fcm Oyunlar</button>
+                <button onClick={() => { setSelectedGame(null); setShowGameDropdown(false); }} className={cn("w-full px-4 py-2 text-left text-sm", !selectedGame ? "bg-[#005C53]/10 font-medium text-[#005C53]" : "text-[#042940]/60 hover:bg-[#042940]/5")}>Tüm Oyunlar</button>
                 {availableGames.map((g) => (
                   <button key={g.value} onClick={() => { setSelectedGame(g.value); setShowGameDropdown(false); }} className={cn("w-full px-4 py-2 text-left text-sm", selectedGame === g.value ? "bg-[#005C53]/10 font-medium text-[#005C53]" : "text-[#042940]/60 hover:bg-[#042940]/5")}>{g.label}</button>
                 ))}
@@ -271,18 +271,18 @@ export default function ClassDetailPage() {
         )}
       </motion.div>
 
-      {/* \u00d6\u011frenci Listesi */}
+      {/* Öğrenci Listesi */}
       <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4, delay: 0.4 }}>
         <Card className="border-0 shadow-sm">
           <CardContent className="p-0">
             <div className="hidden items-center gap-4 border-b px-5 py-3 text-xs font-bold uppercase text-muted-foreground sm:flex">
               <span className="w-8">#</span>
               <span className="w-10" />
-              <span className="flex-1">\u00d6\u011frenci</span>
+              <span className="flex-1">Öğrenci</span>
               <span className="w-24 text-right">{periodLabels[period]}</span>
               <span className="w-16 text-right">Oyun</span>
               <span className="w-16 text-right">Rozet</span>
-              <span className="w-24 text-right">En \u0130yi Ders</span>
+              <span className="w-24 text-right">En İyi Ders</span>
               <span className="w-24 text-right">Son Aktivite</span>
             </div>
             <div className="divide-y">
@@ -314,28 +314,28 @@ export default function ClassDetailPage() {
         </Card>
       </motion.div>
 
-      {/* \u00d6\u011frenci Ekleme Modal\u0131 */}
+      {/* Öğrenci Ekleme Modalı */}
       {showAddModal && (
         <div className="fixed inset-0 z-[100] flex items-center justify-center">
           <div className="absolute inset-0 bg-black/50 backdrop-blur-sm" onClick={() => setShowAddModal(false)} />
           <div className="relative mx-4 w-full max-w-md rounded-2xl bg-white p-8 shadow-2xl">
             <div className="mb-6 flex items-center justify-between">
-              <h2 className="text-lg font-extrabold text-[#042940]">\u00d6\u011frenci Ekle</h2>
+              <h2 className="text-lg font-extrabold text-[#042940]">Öğrenci Ekle</h2>
               <button onClick={() => setShowAddModal(false)} className="flex h-8 w-8 items-center justify-center rounded-full text-[#042940]/40 hover:bg-[#042940]/5"><X className="h-5 w-5" /></button>
             </div>
             <div className="space-y-4">
               <div className="space-y-2">
                 <Label htmlFor="studentName">Ad Soyad</Label>
-                <Input id="studentName" placeholder="Ahmet Y\u0131lmaz" value={newStudent.ad} onChange={(e) => setNewStudent({ ...newStudent, ad: e.target.value })} />
+                <Input id="studentName" placeholder="Ahmet Yılmaz" value={newStudent.ad} onChange={(e) => setNewStudent({ ...newStudent, ad: e.target.value })} />
               </div>
               <div className="space-y-2">
-                <Label htmlFor="studentEmail">\u00d6\u011frenci veya Veli E-postas\u0131</Label>
+                <Label htmlFor="studentEmail">Öğrenci veya Veli E-postası</Label>
                 <Input id="studentEmail" type="email" placeholder="veli@email.com" value={newStudent.email} onChange={(e) => setNewStudent({ ...newStudent, email: e.target.value })} />
               </div>
-              <p className="text-xs text-muted-foreground">\u00d6\u011frenciye davet e-postas\u0131 g\u00f6nderilecektir.</p>
+              <p className="text-xs text-muted-foreground">Öğrenciye davet e-postası gönderilecektir.</p>
               <div className="flex gap-3 pt-2">
-                <Button variant="outline" className="flex-1" onClick={() => setShowAddModal(false)}>\u0130ptal</Button>
-                <Button className="flex-1 bg-[#005C53] text-white hover:bg-[#005C53]/90" onClick={() => { setShowAddModal(false); setNewStudent({ ad: "", email: "" }); }}>Davet G\u00f6nder</Button>
+                <Button variant="outline" className="flex-1" onClick={() => setShowAddModal(false)}>İptal</Button>
+                <Button className="flex-1 bg-[#005C53] text-white hover:bg-[#005C53]/90" onClick={() => { setShowAddModal(false); setNewStudent({ ad: "", email: "" }); }}>Davet Gönder</Button>
               </div>
             </div>
           </div>

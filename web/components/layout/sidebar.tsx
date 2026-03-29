@@ -90,8 +90,10 @@ export function Sidebar() {
     return "#DBEAFE";
   });
   const isGuest = !isAuthenticated;
-  const isTeacher = user?.role === "teacher";
-  const username = isGuest ? "Misafir" : (user?.username || "Oyuncu");
+  // Öğretmen sayfasındaysa (giriş yapmamış olsa bile) öğretmen menüsü göster
+  const isTeacherPath = pathname.startsWith("/teacher");
+  const isTeacher = user?.role === "teacher" || isTeacherPath;
+  const username = isGuest ? (isTeacherPath ? "Öğretmen" : "Misafir") : (user?.username || "Oyuncu");
   const initials = username.slice(0, 2).toUpperCase();
   const menuItems = isTeacher ? teacherMenuItems : studentMenuItems;
 

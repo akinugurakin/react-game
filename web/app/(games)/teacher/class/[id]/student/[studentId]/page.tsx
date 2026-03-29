@@ -37,36 +37,36 @@ const ogrenciler: Record<string, Record<string, {
 }>> = {
   "1": {
     "1": {
-      ad: "Efe Y\u0131ld\u0131z", avatarIdx: 0, sinif: "5-A",
+      ad: "Efe Yıldız", avatarIdx: 0, sinif: "5-A",
       haftalikPuan: 850, aylikPuan: 3200, toplamPuan: 9850,
       oyunSayisi: 142, rozetSayisi: 12, enIyiDers: "Matematik",
       dersler: [
         { ders: "Matematik", puan: 3200, oyun: 45 },
-        { ders: "T\u00fcrk\u00e7e", puan: 2100, oyun: 30 },
+        { ders: "Türkçe", puan: 2100, oyun: 30 },
         { ders: "Fen Bilimleri", puan: 1800, oyun: 28 },
         { ders: "Sosyal Bilgiler", puan: 1500, oyun: 22 },
-        { ders: "\u0130ngilizce", puan: 1250, oyun: 17 },
+        { ders: "İngilizce", puan: 1250, oyun: 17 },
       ],
       sonOyunlar: [
-        { oyun: "Matematik Yar\u0131\u015fmas\u0131", puan: 920, tarih: "Bug\u00fcn", sure: "3 dk" },
-        { oyun: "Kelime Av\u0131", puan: 780, tarih: "Bug\u00fcn", sure: "5 dk" },
-        { oyun: "Atom Ke\u015ffi", puan: 650, tarih: "D\u00fcn", sure: "4 dk" },
-        { oyun: "Harita Ustas\u0131", puan: 720, tarih: "D\u00fcn", sure: "3 dk" },
-        { oyun: "Vocabulary Builder", puan: 580, tarih: "2 g\u00fcn \u00f6nce", sure: "4 dk" },
-        { oyun: "Kesir Ustas\u0131", puan: 690, tarih: "3 g\u00fcn \u00f6nce", sure: "5 dk" },
+        { oyun: "Matematik Yarışması", puan: 920, tarih: "Bugün", sure: "3 dk" },
+        { oyun: "Kelime Avı", puan: 780, tarih: "Bugün", sure: "5 dk" },
+        { oyun: "Atom Keşfi", puan: 650, tarih: "Dün", sure: "4 dk" },
+        { oyun: "Harita Ustası", puan: 720, tarih: "Dün", sure: "3 dk" },
+        { oyun: "Vocabulary Builder", puan: 580, tarih: "2 gün önce", sure: "4 dk" },
+        { oyun: "Kesir Ustası", puan: 690, tarih: "3 gün önce", sure: "5 dk" },
       ],
     },
   },
 };
 
 const dersIkonlari: Record<string, React.ElementType> = {
-  "Matematik": Calculator, "T\u00fcrk\u00e7e": BookOpen, "Fen Bilimleri": FlaskConical,
-  "Sosyal Bilgiler": Globe, "\u0130ngilizce": SpellCheck,
+  "Matematik": Calculator, "Türkçe": BookOpen, "Fen Bilimleri": FlaskConical,
+  "Sosyal Bilgiler": Globe, "İngilizce": SpellCheck,
 };
 
 const dersRenkleri: Record<string, string> = {
-  "Matematik": "bg-[#005C53]", "T\u00fcrk\u00e7e": "bg-[#9FC131]", "Fen Bilimleri": "bg-[#042940]",
-  "Sosyal Bilgiler": "bg-[#005C53]", "\u0130ngilizce": "bg-[#9FC131]",
+  "Matematik": "bg-[#005C53]", "Türkçe": "bg-[#9FC131]", "Fen Bilimleri": "bg-[#042940]",
+  "Sosyal Bilgiler": "bg-[#005C53]", "İngilizce": "bg-[#9FC131]",
 };
 
 /* ------------------------------------------------------------------ */
@@ -80,17 +80,17 @@ export default function StudentDetailPage() {
 
   // Fallback data
   const data = ogrenciler[classId]?.[studentId] || {
-    ad: `\u00d6\u011frenci ${studentId}`, avatarIdx: (parseInt(studentId) - 1) % 6, sinif: classId === "1" ? "5-A" : classId === "2" ? "5-B" : "6-A",
+    ad: `Öğrenci ${studentId}`, avatarIdx: (parseInt(studentId) - 1) % 6, sinif: classId === "1" ? "5-A" : classId === "2" ? "5-B" : "6-A",
     haftalikPuan: 500, aylikPuan: 2000, toplamPuan: 6000, oyunSayisi: 80, rozetSayisi: 5, enIyiDers: "Matematik",
     dersler: [
-      { ders: "Matematik", puan: 2000, oyun: 25 }, { ders: "T\u00fcrk\u00e7e", puan: 1500, oyun: 20 },
+      { ders: "Matematik", puan: 2000, oyun: 25 }, { ders: "Türkçe", puan: 1500, oyun: 20 },
       { ders: "Fen Bilimleri", puan: 1200, oyun: 15 }, { ders: "Sosyal Bilgiler", puan: 800, oyun: 12 },
-      { ders: "\u0130ngilizce", puan: 500, oyun: 8 },
+      { ders: "İngilizce", puan: 500, oyun: 8 },
     ],
     sonOyunlar: [
-      { oyun: "Matematik Yar\u0131\u015fmas\u0131", puan: 700, tarih: "Bug\u00fcn", sure: "3 dk" },
-      { oyun: "Kelime Av\u0131", puan: 550, tarih: "D\u00fcn", sure: "4 dk" },
-      { oyun: "Atom Ke\u015ffi", puan: 480, tarih: "2 g\u00fcn \u00f6nce", sure: "5 dk" },
+      { oyun: "Matematik Yarışması", puan: 700, tarih: "Bugün", sure: "3 dk" },
+      { oyun: "Kelime Avı", puan: 550, tarih: "Dün", sure: "4 dk" },
+      { oyun: "Atom Keşfi", puan: 480, tarih: "2 gün önce", sure: "5 dk" },
     ],
   };
 
@@ -102,7 +102,7 @@ export default function StudentDetailPage() {
       {/* Geri */}
       <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4 }}>
         <Link href={`/teacher/class/${classId}`} className="mb-6 inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground">
-          <ArrowLeft className="h-4 w-4" /> {data.sinif} S\u0131n\u0131f\u0131
+          <ArrowLeft className="h-4 w-4" /> {data.sinif} Sınıfı
         </Link>
       </motion.div>
 
@@ -126,11 +126,11 @@ export default function StudentDetailPage() {
         </Card>
       </motion.div>
 
-      {/* \u0130statistikler */}
+      {/* İstatistikler */}
       <div className="mb-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         {[
-          { title: "Haftal\u0131k Puan", value: data.haftalikPuan.toLocaleString("tr-TR"), icon: TrendingUp, color: "bg-[#005C53]/10", iconColor: "text-[#005C53]" },
-          { title: "Ayl\u0131k Puan", value: data.aylikPuan.toLocaleString("tr-TR"), icon: BarChart3, color: "bg-[#9FC131]/10", iconColor: "text-[#9FC131]" },
+          { title: "Haftalık Puan", value: data.haftalikPuan.toLocaleString("tr-TR"), icon: TrendingUp, color: "bg-[#005C53]/10", iconColor: "text-[#005C53]" },
+          { title: "Aylık Puan", value: data.aylikPuan.toLocaleString("tr-TR"), icon: BarChart3, color: "bg-[#9FC131]/10", iconColor: "text-[#9FC131]" },
           { title: "Toplam Puan", value: data.toplamPuan.toLocaleString("tr-TR"), icon: Trophy, color: "bg-[#DBF227]/10", iconColor: "text-[#9FC131]" },
           { title: "Toplam Oyun", value: data.oyunSayisi.toString(), icon: Gamepad2, color: "bg-[#042940]/10", iconColor: "text-[#042940]" },
         ].map((stat, i) => (
@@ -149,9 +149,9 @@ export default function StudentDetailPage() {
       </div>
 
       <div className="grid gap-8 lg:grid-cols-3">
-        {/* Sol — Ders bazl\u0131 ilerleme */}
+        {/* Sol — Ders bazlı ilerleme */}
         <div className="lg:col-span-2">
-          <h2 className="mb-4 text-xl font-bold">Ders Bazl\u0131 \u0130lerleme</h2>
+          <h2 className="mb-4 text-xl font-bold">Ders Bazlı İlerleme</h2>
           <Card className="border-0 shadow-sm">
             <CardContent className="p-5">
               <div className="space-y-4">
@@ -187,7 +187,7 @@ export default function StudentDetailPage() {
           </Card>
         </div>
 
-        {/* Sa\u011f — Son Oyunlar */}
+        {/* Sağ — Son Oyunlar */}
         <div>
           <h2 className="mb-4 text-xl font-bold">Son Oyunlar</h2>
           <Card className="border-0 shadow-sm">
