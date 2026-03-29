@@ -12,7 +12,7 @@ import {
   BookOpen,
   FlaskConical,
   Globe,
-  Languages,
+  SpellCheck,
   ExternalLink,
 } from "lucide-react";
 
@@ -49,7 +49,7 @@ const footerLinks: FooterSection[] = [
       { title: "Matematik", href: "/games?subject=matematik", icon: Calculator },
       { title: "Fen Bilimleri", href: "/games?subject=fen", icon: FlaskConical },
       { title: "Sosyal Bilgiler", href: "/games?subject=sosyal", icon: Globe },
-      { title: "\u0130ngilizce", href: "/games?subject=ingilizce", icon: Languages },
+      { title: "\u0130ngilizce", href: "/games?subject=ingilizce", icon: SpellCheck },
     ],
   },
   {

@@ -23,14 +23,14 @@ import { useAuthStore } from "@/lib/auth";
 import { HexAvatar } from "@/components/ui/hex-avatar";
 import { BeanHeadAvatar } from "@/components/ui/avatar-picker";
 
-import { Languages } from "lucide-react";
+import { SpellCheck } from "lucide-react";
 
 const oyunAltMenusu = [
   { href: "/games?subject=turkce", icon: BookOpen, label: "T\u00fcrk\u00e7e" },
   { href: "/games?subject=matematik", icon: Calculator, label: "Matematik" },
   { href: "/games?subject=fen", icon: FlaskConical, label: "Fen Bilimleri" },
   { href: "/games?subject=sosyal", icon: Globe, label: "Sosyal Bilgiler" },
-  { href: "/games?subject=ingilizce", icon: Languages, label: "\u0130ngilizce" },
+  { href: "/games?subject=ingilizce", icon: SpellCheck, label: "\u0130ngilizce" },
 ];
 
 import { MapPin, School, UsersRound } from "lucide-react";

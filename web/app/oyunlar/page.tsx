@@ -12,7 +12,7 @@ import {
   Clock,
   FlaskConical,
   Globe,
-  Languages,
+  SpellCheck,
   Atom,
   TreePine,
   Landmark,
@@ -69,7 +69,7 @@ const freeGames: GameItem[] = [
     id: 4,
     title: "Vocabulary Builder",
     description: "Resimlerle e\u015fle\u015ftirerek \u0130ngilizce kelime \u00f6\u011fren.",
-    icon: Languages, color: "bg-[#DBF227]", category: "\u0130ngilizce", age: "7\u201312 ya\u015f", players: 780, duration: "3\u20135 dk", free: true,
+    icon: SpellCheck, color: "bg-[#DBF227]", category: "\u0130ngilizce", age: "7\u201312 ya\u015f", players: 780, duration: "3\u20135 dk", free: true,
   },
 ];
 

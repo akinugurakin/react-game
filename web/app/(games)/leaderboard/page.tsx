@@ -14,7 +14,7 @@ import {
   BookOpen,
   FlaskConical,
   Globe,
-  Languages,
+  SpellCheck,
   Gamepad2,
   ChevronDown,
 } from "lucide-react";
@@ -180,7 +180,7 @@ const filterOptions: FilterOption[] = [
   { value: "matematik", label: "Matematik", icon: Calculator },
   { value: "fen", label: "Fen Bilimleri", icon: FlaskConical },
   { value: "sosyal", label: "Sosyal Bilgiler", icon: Globe },
-  { value: "ingilizce", label: "\u0130ngilizce", icon: Languages },
+  { value: "ingilizce", label: "\u0130ngilizce", icon: SpellCheck },
 ];
 
 const gamesBySubject: Record<string, { value: string; label: string }[]> = {

@@ -29,7 +29,7 @@ import MegaMenu, { type MegaMenuItem } from "@/components/ui/mega-menu";
 import { HexAvatar } from "@/components/ui/hex-avatar";
 import { useAuthStore, useAuthHydrated } from "@/lib/auth";
 
-import { BookOpen, Languages } from "lucide-react";
+import { BookOpen, SpellCheck } from "lucide-react";
 
 const NAV_ITEMS: MegaMenuItem[] = [
   {
@@ -67,7 +67,7 @@ const NAV_ITEMS: MegaMenuItem[] = [
           {
             label: "\u0130ngilizce",
             description: "Kelime, dilbilgisi ve dinleme",
-            icon: Languages,
+            icon: SpellCheck,
             href: "/games?subject=ingilizce",
           },
         ],

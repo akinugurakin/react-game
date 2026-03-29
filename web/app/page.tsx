@@ -21,7 +21,7 @@ import {
   Play,
   Clock,
   Puzzle,
-  Languages,
+  SpellCheck,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -229,31 +229,30 @@ export default function HomePage() {
                 initial={{ filter: "blur(10px)", opacity: 0 }}
                 animate={{ filter: "blur(0px)", opacity: 1 }}
                 transition={{ duration: 0.6 }}
-                className="relative text-5xl font-extrabold leading-[1.15] tracking-tight text-[#042940] sm:text-6xl md:text-7xl lg:text-8xl"
+                className="relative text-5xl font-extrabold leading-[1.2] tracking-tight text-[#042940] sm:text-6xl md:text-7xl lg:text-8xl"
               >
-                {["&#214;&#287;renmenin", "En"].map((word, i) => (
-                  <motion.span
-                    key={i}
-                    initial={{ opacity: 0, y: 20, filter: "blur(8px)" }}
-                    animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-                    transition={{ delay: 0.2 + i * 0.15, duration: 0.5 }}
-                    className="inline-block mx-2"
-                    dangerouslySetInnerHTML={{ __html: word }}
-                  />
-                ))}
                 <motion.span
                   initial={{ opacity: 0, y: 20, filter: "blur(8px)" }}
                   animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-                  transition={{ delay: 0.5, duration: 0.5 }}
-                  className="inline-block mx-2 rounded-full bg-[#DBF227] px-6 py-1"
+                  transition={{ delay: 0.2, duration: 0.5 }}
+                  className="inline-block"
+                >
+                  &#214;&#287;renmenin En
+                </motion.span>
+                <br />
+                <motion.span
+                  initial={{ opacity: 0, y: 20, filter: "blur(8px)" }}
+                  animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                  transition={{ delay: 0.45, duration: 0.5 }}
+                  className="inline-block rounded-lg bg-[#DBF227] px-5 py-1"
                 >
                   E&#287;lenceli
                 </motion.span>
                 <motion.span
                   initial={{ opacity: 0, y: 20, filter: "blur(8px)" }}
                   animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-                  transition={{ delay: 0.65, duration: 0.5 }}
-                  className="inline-block mx-2"
+                  transition={{ delay: 0.6, duration: 0.5 }}
+                  className="inline-block ml-3"
                 >
                   Hali
                 </motion.span>
@@ -283,7 +282,7 @@ export default function HomePage() {
                   { icon: Calculator, label: "Matematik" },
                   { icon: FlaskConical, label: "Fen Bilimleri" },
                   { icon: Globe, label: "Sosyal Bilgiler" },
-                  { icon: Languages, label: "\u0130ngilizce" },
+                  { icon: SpellCheck, label: "\u0130ngilizce" },
                 ].map((item, index) => (
                   <motion.div
                     key={item.label}
@@ -598,7 +597,7 @@ export default function HomePage() {
                 { baslik: "Matematik", icon: Calculator, aciklama: "Say\u0131lar, i\u015flemler, geometri ve daha fazlas\u0131", renk: "bg-[#9FC131]", oyun: 3 },
                 { baslik: "Fen Bilimleri", icon: FlaskConical, aciklama: "Canl\u0131lar, madde, fiziksel olaylar", renk: "bg-[#042940]", oyun: 3 },
                 { baslik: "Sosyal Bilgiler", icon: Globe, aciklama: "Tarih, co\u011frafya, vatanda\u015fl\u0131k", renk: "bg-[#005C53]", oyun: 3 },
-                { baslik: "\u0130ngilizce", icon: Languages, aciklama: "Kelime, dilbilgisi ve dinleme", renk: "bg-[#9FC131]", oyun: 3 },
+                { baslik: "\u0130ngilizce", icon: SpellCheck, aciklama: "Kelime, dilbilgisi ve dinleme", renk: "bg-[#9FC131]", oyun: 3 },
               ].map((ders, index) => (
                 <motion.div
                   key={ders.baslik}

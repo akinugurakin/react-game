@@ -20,7 +20,7 @@ import {
   Pen,
   MessageSquare,
   Layers,
-  Languages,
+  SpellCheck,
   Lock,
 } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
@@ -63,7 +63,7 @@ const allGames: GameItem[] = [
   { id: 12, title: "C\u00fcmle Kurma", description: "Kar\u0131\u015f\u0131k kelimeleri do\u011fru s\u0131raya koy.", icon: MessageSquare, color: "bg-brand-dark", minAge: 7, maxAge: 12, category: "Dilbilgisi", subject: "turkce", players: 620, avgDuration: "3-5 dk", href: "#", free: false },
   { id: 13, title: "Yaz\u0131m K\u0131lavuzu", description: "Do\u011fru yaz\u0131m kurallar\u0131n\u0131 \u00f6\u011fren.", icon: Pen, color: "bg-brand-lime", minAge: 8, maxAge: 12, category: "Yaz\u0131m", subject: "turkce", players: 340, avgDuration: "4-6 dk", href: "#", free: false },
   // ── \u0130ngilizce ──
-  { id: 14, title: "Vocabulary Builder", description: "Resimlerle e\u015fle\u015ftirerek \u0130ngilizce kelime \u00f6\u011fren.", icon: Languages, color: "bg-brand-teal", minAge: 7, maxAge: 12, category: "Kelime", subject: "ingilizce", players: 780, avgDuration: "3-5 dk", href: "#", free: true },
+  { id: 14, title: "Vocabulary Builder", description: "Resimlerle e\u015fle\u015ftirerek \u0130ngilizce kelime \u00f6\u011fren.", icon: SpellCheck, color: "bg-brand-teal", minAge: 7, maxAge: 12, category: "Kelime", subject: "ingilizce", players: 780, avgDuration: "3-5 dk", href: "#", free: true },
   { id: 15, title: "Grammar Quest", description: "\u0130ngilizce dilbilgisi kurallar\u0131n\u0131 peki\u015ftir!", icon: BookOpen, color: "bg-brand-green", minAge: 8, maxAge: 12, category: "Dilbilgisi", subject: "ingilizce", players: 520, avgDuration: "4-6 dk", href: "#", free: false },
   { id: 16, title: "Listening Lab", description: "Dinledi\u011fini anla, sorular\u0131 yan\u0131tla.", icon: MessageSquare, color: "bg-brand-dark", minAge: 8, maxAge: 12, category: "Dinleme", subject: "ingilizce", players: 390, avgDuration: "5-7 dk", href: "#", free: false },
 ];
