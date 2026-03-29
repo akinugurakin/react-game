@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useState } from "react";
 import { motion } from "framer-motion";
 import {
@@ -116,6 +117,7 @@ export default function TeacherDashboard() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.4, delay: 0.3 + index * 0.1 }}
                 >
+                  <Link href={`/teacher/class/${sinif.id}`}>
                   <Card className="group cursor-pointer border-0 shadow-sm transition-all hover:shadow-md">
                     <CardContent className="p-5">
                       <div className="mb-3 flex items-center justify-between">
@@ -134,6 +136,7 @@ export default function TeacherDashboard() {
                       </div>
                     </CardContent>
                   </Card>
+                  </Link>
                 </motion.div>
               ))}
             </div>
