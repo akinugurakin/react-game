@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import {
   Gamepad2,
+  Lightbulb,
   LayoutDashboard,
   Trophy,
   Calculator,
@@ -92,7 +93,7 @@ export function Sidebar() {
       <div className="flex h-16 items-center justify-between border-b border-white/10 px-4">
         {!collapsed && (
           <Link href="/" className="flex items-center gap-2">
-            <Gamepad2 className="h-7 w-7 text-brand-lime" />
+            <Lightbulb className="h-7 w-7 text-brand-lime" />
             <div>
               <span className="text-lg font-extrabold text-white">LUMO</span>
               <p className="text-[10px] font-normal leading-tight text-white/40">E&#287;itsel Oyun Platformu</p>
@@ -101,7 +102,7 @@ export function Sidebar() {
         )}
         {collapsed && (
           <Link href="/" className="mx-auto">
-            <Gamepad2 className="h-7 w-7 text-brand-lime" />
+            <Lightbulb className="h-7 w-7 text-brand-lime" />
           </Link>
         )}
       </div>

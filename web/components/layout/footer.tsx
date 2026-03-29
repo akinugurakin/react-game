@@ -4,7 +4,7 @@ import Link from "next/link";
 import type { ComponentProps, ReactNode } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import {
-  Gamepad2,
+  Lightbulb,
   Mail,
   Phone,
   MapPin,
@@ -122,7 +122,7 @@ export function Footer() {
           {/* Sol — Logo & A&#231;\u0131klama */}
           <AnimatedContainer className="space-y-4">
             <Link href="/" className="flex items-center gap-2">
-              <Gamepad2 className="h-8 w-8 text-[#DBF227]" />
+              <Lightbulb className="h-8 w-8 text-[#DBF227]" />
               <div>
                 <span className="text-xl font-extrabold text-white">LUMO</span>
                 <p className="text-[10px] font-normal leading-tight text-white/40">

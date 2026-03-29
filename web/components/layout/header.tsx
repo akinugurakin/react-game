@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useTranslations } from "next-intl";
 import {
   Gamepad2,
+  Lightbulb,
   Menu,
   Calculator,
   FlaskConical,
@@ -145,7 +146,7 @@ export function Header() {
       <div className="container flex h-16 items-center justify-between">
         <div className="flex items-center gap-4">
           <Link href="/" className="flex items-center gap-2">
-            <Gamepad2 className="h-8 w-8 text-brand-dark" />
+            <Lightbulb className="h-8 w-8 text-brand-dark" />
             <span className="text-xl font-extrabold text-brand-dark">
               LUMO
             </span>
@@ -199,7 +200,7 @@ export function Header() {
             <SheetHeader>
               <SheetTitle>
                 <Link href="/" className="flex items-center gap-2">
-                  <Gamepad2 className="h-6 w-6 text-brand-dark" />
+                  <Lightbulb className="h-6 w-6 text-brand-dark" />
                   <span className="font-extrabold text-brand-dark">LUMO</span>
                 </Link>
               </SheetTitle>
