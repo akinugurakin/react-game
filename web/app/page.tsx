@@ -208,197 +208,162 @@ export default function HomePage() {
         {/* ═══════════════════════════════════════════════════════════ */}
         {/*  HERO                                                      */}
         {/* ═══════════════════════════════════════════════════════════ */}
-        <section className="relative overflow-hidden pb-16 pt-24 md:pb-24 md:pt-32">
+        <section className="relative overflow-hidden pb-20 pt-28 md:pb-28 md:pt-36">
           <div className="container">
-            <div className="grid items-center gap-10 lg:grid-cols-[1.2fr_0.8fr] lg:gap-10">
-              {/* Sol \u2014 Metin */}
+            <div className="flex flex-col items-center text-center">
+              {/* Badge */}
               <motion.div
-                initial="hidden"
-                animate="visible"
-                variants={stagger}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+                className="mb-8 inline-flex items-center gap-2 rounded-full bg-[#DBF227]/20 px-5 py-2"
               >
-                <motion.div
-                  variants={fadeUp}
-                  custom={0}
-                  className="mb-5 inline-flex items-center gap-2 rounded-full bg-[#DBF227]/20 px-4 py-1.5"
-                >
-                  <Sparkles className="h-4 w-4 text-[#9FC131]" />
-                  <span className="text-sm font-semibold text-[#042940]">
-                    MEB M&#252;fredat&#305;na %100 Uygun
-                  </span>
-                </motion.div>
+                <Sparkles className="h-4 w-4 text-[#9FC131]" />
+                <span className="text-sm font-semibold text-[#042940]">
+                  MEB M&#252;fredat&#305;na %100 Uygun
+                </span>
+              </motion.div>
 
-                <motion.h1
-                  variants={fadeUp}
-                  custom={0.05}
-                  className="text-5xl font-extrabold leading-[1.1] tracking-tight text-[#042940] md:text-6xl lg:text-7xl"
+              {/* Ana ba&#351;l&#305;k — kelime kelime blur-in */}
+              <motion.h1
+                initial={{ filter: "blur(10px)", opacity: 0 }}
+                animate={{ filter: "blur(0px)", opacity: 1 }}
+                transition={{ duration: 0.6 }}
+                className="relative text-5xl font-extrabold leading-[1.15] tracking-tight text-[#042940] sm:text-6xl md:text-7xl lg:text-8xl"
+              >
+                {["&#214;&#287;renmenin", "En"].map((word, i) => (
+                  <motion.span
+                    key={i}
+                    initial={{ opacity: 0, y: 20, filter: "blur(8px)" }}
+                    animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                    transition={{ delay: 0.2 + i * 0.15, duration: 0.5 }}
+                    className="inline-block mx-2"
+                    dangerouslySetInnerHTML={{ __html: word }}
+                  />
+                ))}
+                <motion.span
+                  initial={{ opacity: 0, y: 20, filter: "blur(8px)" }}
+                  animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                  transition={{ delay: 0.5, duration: 0.5 }}
+                  className="inline-block mx-2 rounded-full bg-[#DBF227] px-6 py-1"
                 >
-                  &#214;&#287;renmenin
-                  <br />
-                  En{" "}
-                  <span className="inline-block rounded-full bg-[#DBF227] px-5 py-1">
-                    E&#287;lenceli
-                  </span>
-                  {" "}Hali
-                </motion.h1>
+                  E&#287;lenceli
+                </motion.span>
+                <motion.span
+                  initial={{ opacity: 0, y: 20, filter: "blur(8px)" }}
+                  animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                  transition={{ delay: 0.65, duration: 0.5 }}
+                  className="inline-block mx-2"
+                >
+                  Hali
+                </motion.span>
+              </motion.h1>
 
-                <motion.p
-                  variants={fadeUp}
-                  custom={0.15}
-                  className="mt-6 max-w-xl text-xl leading-relaxed text-[#042940]/60"
-                >
-                  &#199;ocu&#287;unuz e&#287;lenceli oyunlarla dersleri peki&#351;tirsin.
-                  Matematik, Fen Bilimleri ve Sosyal Bilgiler &#8212; hepsi bir
-                  arada.
-                </motion.p>
+              {/* Alt yaz&#305; */}
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 1.0, duration: 0.6 }}
+                className="mx-auto mt-8 max-w-2xl text-xl leading-relaxed text-[#042940]/60"
+              >
+                &#199;ocu&#287;unuz e&#287;lenceli oyunlarla dersleri peki&#351;tirsin.
+                T&#252;rk&#231;e, Matematik, Fen Bilimleri, Sosyal Bilgiler
+                ve &#304;ngilizce &#8212; hepsi bir arada.
+              </motion.p>
 
-                <motion.div
-                  variants={fadeUp}
-                  custom={0.25}
-                  className="mt-8 flex flex-wrap items-center gap-4"
-                >
-                  <Button
-                    asChild
-                    size="lg"
-                    className="rounded-full bg-[#005C53] px-8 text-base font-bold text-white hover:bg-[#005C53]/90"
+              {/* Ders etiketleri */}
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 1.4, duration: 0.6 }}
+                className="mt-10 flex flex-wrap justify-center gap-6"
+              >
+                {[
+                  { icon: BookOpen, label: "T\u00fcrk\u00e7e" },
+                  { icon: Calculator, label: "Matematik" },
+                  { icon: FlaskConical, label: "Fen Bilimleri" },
+                  { icon: Globe, label: "Sosyal Bilgiler" },
+                  { icon: Languages, label: "\u0130ngilizce" },
+                ].map((item, index) => (
+                  <motion.div
+                    key={item.label}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{
+                      delay: 1.4 + index * 0.12,
+                      duration: 0.5,
+                      type: "spring",
+                      stiffness: 100,
+                      damping: 10,
+                    }}
+                    className="flex items-center gap-2 px-4"
                   >
-                    <Link href="/oyunlar">
-                      &#220;cretsiz Oyunlar
-                      <ArrowRight className="ml-2 h-5 w-5" />
-                    </Link>
-                  </Button>
-                  <Button
-                    asChild
-                    variant="outline"
-                    size="lg"
-                    className="rounded-full border-[#042940]/20 text-base font-semibold text-[#042940] hover:bg-[#042940]/5"
-                  >
-                    <Link href="#nasil-calisir">Nas&#305;l &#199;al&#305;&#351;&#305;r?</Link>
-                  </Button>
-                </motion.div>
+                    <item.icon className="h-5 w-5 text-[#005C53]" />
+                    <span className="text-sm font-semibold text-[#042940]">
+                      {item.label}
+                    </span>
+                  </motion.div>
+                ))}
+              </motion.div>
 
-                {/* Sosyal kan&#305;t */}
-                <motion.div
-                  variants={fadeUp}
-                  custom={0.35}
-                  className="mt-10 flex items-center gap-4"
+              {/* CTA butonlar&#305; */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 2.0, duration: 0.6, type: "spring", stiffness: 100, damping: 10 }}
+                className="mt-10 flex flex-wrap items-center justify-center gap-4"
+              >
+                <Button
+                  asChild
+                  size="lg"
+                  className="rounded-full bg-[#005C53] px-10 py-6 text-lg font-bold text-white shadow-lg hover:bg-[#005C53]/90"
                 >
-                  <div className="flex -space-x-2">
-                    {[44, 68, 47, 59, 45].map((img) => (
-                      <img
-                        key={img}
-                        src={`https://i.pravatar.cc/40?img=${img}`}
-                        alt=""
-                        className="h-9 w-9 rounded-full border-2 border-[#F5F4EF] object-cover"
+                  <Link href="/games">
+                    &#220;cretsiz Oyunlar
+                    <ArrowRight className="ml-2 h-5 w-5" />
+                  </Link>
+                </Button>
+                <Button
+                  asChild
+                  variant="outline"
+                  size="lg"
+                  className="rounded-full border-[#042940]/20 px-8 py-6 text-lg font-semibold text-[#042940] hover:bg-[#042940]/5"
+                >
+                  <Link href="#nasil-calisir">Nas&#305;l &#199;al&#305;&#351;&#305;r?</Link>
+                </Button>
+              </motion.div>
+
+              {/* Sosyal kan&#305;t */}
+              <motion.div
+                initial={{ opacity: 0, y: 16 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 2.4, duration: 0.6 }}
+                className="mt-12 flex items-center gap-4"
+              >
+                <div className="flex -space-x-2">
+                  {[44, 68, 47, 59, 45].map((img) => (
+                    <img
+                      key={img}
+                      src={`https://i.pravatar.cc/40?img=${img}`}
+                      alt=""
+                      className="h-9 w-9 rounded-full border-2 border-[#F5F4EF] object-cover"
+                    />
+                  ))}
+                </div>
+                <div>
+                  <div className="flex items-center gap-0.5">
+                    {[...Array(5)].map((_, i) => (
+                      <Star
+                        key={i}
+                        className="h-4 w-4 fill-[#DBF227] text-[#DBF227]"
                       />
                     ))}
                   </div>
-                  <div>
-                    <div className="flex items-center gap-0.5">
-                      {[...Array(5)].map((_, i) => (
-                        <Star
-                          key={i}
-                          className="h-4 w-4 fill-[#DBF227] text-[#DBF227]"
-                        />
-                      ))}
-                    </div>
-                    <p className="text-sm text-[#042940]/50">
-                      <span className="font-bold text-[#042940]">1.200+</span>{" "}
-                      aile LUMO&apos;yu tercih ediyor
-                    </p>
-                  </div>
-                </motion.div>
-              </motion.div>
-
-              {/* Sa&#287; \u2014 Hero kart */}
-              <motion.div
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.6, delay: 0.2 }}
-                className="relative mx-auto w-full max-w-md lg:max-w-none"
-              >
-                {/* Ana oyun kart&#305; \u2014 ss38 tarz&#305; */}
-                <Card className="overflow-hidden border-0 shadow-xl">
-                  <CardContent className="p-0">
-                    <div className="flex flex-col sm:flex-row">
-                      <div className="flex items-center justify-center bg-[#005C53] p-10 text-white sm:w-48">
-                        <Gamepad2 className="h-20 w-20" />
-                      </div>
-                      <div className="flex flex-1 flex-col justify-between bg-white p-6">
-                        <div>
-                          <div className="mb-2 flex items-center gap-2">
-                            <span className="rounded-full bg-[#F5F4EF] px-3 py-0.5 text-xs font-medium text-[#042940]">
-                              Platform
-                            </span>
-                            <span className="text-xs text-[#042940]/40">
-                              1&#8211;8. s&#305;n&#305;f
-                            </span>
-                          </div>
-                          <h3 className="text-xl font-bold text-[#042940]">
-                            LUMO E&#287;itsel Oyunlar
-                          </h3>
-                          <p className="mt-2 text-sm text-[#042940]/50">
-                            MEB m&#252;fredat&#305;na uygun, oyunla&#351;t&#305;r&#305;lm&#305;&#351; &#246;&#287;renme platformu
-                          </p>
-                        </div>
-                        <div className="mt-4 flex items-center justify-between">
-                          <div className="flex gap-4 text-xs text-[#042940]/40">
-                            <span className="flex items-center gap-1">
-                              <Users className="h-3.5 w-3.5" />
-                              1.200+ &#246;&#287;renci
-                            </span>
-                            <span className="flex items-center gap-1">
-                              <Gamepad2 className="h-3.5 w-3.5" />
-                              20+ oyun
-                            </span>
-                          </div>
-                          <Button asChild size="sm" className="bg-[#005C53] text-white hover:bg-[#005C53]/90">
-                            <Link href="/register">
-                              <Play className="mr-1 h-4 w-4" /> Ba&#351;la
-                            </Link>
-                          </Button>
-                        </div>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-
-                {/* Y&#252;zen mini kartlar */}
-                <motion.div
-                  animate={{ y: [0, -6, 0] }}
-                  transition={{ repeat: Infinity, duration: 3, ease: "easeInOut" }}
-                  className="absolute -left-4 top-4 z-10"
-                >
-                  <Card className="border-0 bg-white shadow-lg">
-                    <CardContent className="flex items-center gap-2 p-3">
-                      <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-[#005C53] text-white">
-                        <Calculator className="h-4 w-4" />
-                      </div>
-                      <div>
-                        <p className="text-xs font-bold text-[#042940]">Matematik</p>
-                        <p className="text-[10px] text-[#042940]/40">12 oyun</p>
-                      </div>
-                    </CardContent>
-                  </Card>
-                </motion.div>
-
-                <motion.div
-                  animate={{ y: [0, -8, 0] }}
-                  transition={{ repeat: Infinity, duration: 3.5, ease: "easeInOut", delay: 0.5 }}
-                  className="absolute -right-4 bottom-20 z-10"
-                >
-                  <Card className="border-0 bg-white shadow-lg">
-                    <CardContent className="flex items-center gap-2 p-3">
-                      <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-[#9FC131] text-white">
-                        <Trophy className="h-4 w-4" />
-                      </div>
-                      <div>
-                        <p className="text-xs font-bold text-[#042940]">Rozet!</p>
-                        <p className="text-[10px] text-[#042940]/40">Matematik Ustas&#305;</p>
-                      </div>
-                    </CardContent>
-                  </Card>
-                </motion.div>
+                  <p className="text-sm text-[#042940]/50">
+                    <span className="font-bold text-[#042940]">1.200+</span>{" "}
+                    aile LUMO&apos;yu tercih ediyor
+                  </p>
+                </div>
               </motion.div>
             </div>
           </div>
