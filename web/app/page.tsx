@@ -229,7 +229,7 @@ export default function HomePage() {
                 initial={{ filter: "blur(10px)", opacity: 0 }}
                 animate={{ filter: "blur(0px)", opacity: 1 }}
                 transition={{ duration: 0.6 }}
-                className="relative text-5xl font-extrabold leading-[1.2] tracking-tight text-[#042940] sm:text-6xl md:text-7xl lg:text-8xl"
+                className="relative text-4xl font-extrabold leading-[1.2] tracking-tight text-[#042940] sm:text-5xl md:text-6xl lg:text-7xl"
               >
                 <motion.span
                   initial={{ opacity: 0, y: 20, filter: "blur(8px)" }}
@@ -339,13 +339,19 @@ export default function HomePage() {
                 transition={{ delay: 2.4, duration: 0.6 }}
                 className="mt-12 flex items-center gap-4"
               >
-                <div className="flex -space-x-2">
-                  {[44, 68, 47, 59, 45].map((img) => (
+                <div className="flex -space-x-3">
+                  {[
+                    "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=80&h=80&fit=crop&crop=face",
+                    "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&h=80&fit=crop&crop=face",
+                    "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=80&h=80&fit=crop&crop=face",
+                    "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=80&h=80&fit=crop&crop=face",
+                    "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=80&h=80&fit=crop&crop=face",
+                  ].map((src, i) => (
                     <img
-                      key={img}
-                      src={`https://i.pravatar.cc/40?img=${img}`}
+                      key={i}
+                      src={src}
                       alt=""
-                      className="h-9 w-9 rounded-full border-2 border-[#F5F4EF] object-cover"
+                      className="h-10 w-10 rounded-full border-2 border-[#F5F4EF] object-cover"
                     />
                   ))}
                 </div>
