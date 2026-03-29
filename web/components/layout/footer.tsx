@@ -5,10 +5,6 @@ import type { ComponentProps, ReactNode } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import {
   Gamepad2,
-  Instagram,
-  Youtube,
-  Twitter,
-  Facebook,
   Mail,
   Phone,
   MapPin,
@@ -17,6 +13,7 @@ import {
   FlaskConical,
   Globe,
   Languages,
+  ExternalLink,
 } from "lucide-react";
 
 /* ------------------------------------------------------------------ */
@@ -68,10 +65,10 @@ const footerLinks: FooterSection[] = [
   {
     label: "Sosyal Medya",
     links: [
-      { title: "Instagram", href: "#", icon: Instagram },
-      { title: "YouTube", href: "#", icon: Youtube },
-      { title: "Twitter", href: "#", icon: Twitter },
-      { title: "Facebook", href: "#", icon: Facebook },
+      { title: "Instagram", href: "#", icon: ExternalLink },
+      { title: "YouTube", href: "#", icon: ExternalLink },
+      { title: "Twitter / X", href: "#", icon: ExternalLink },
+      { title: "Facebook", href: "#", icon: ExternalLink },
     ],
   },
 ];
