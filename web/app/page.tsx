@@ -35,140 +35,140 @@ import { BackgroundSymbols } from "@/components/ui/background-symbols";
 /*  RENK PALETI                                                        */
 /*  #042940 - Koyu lacivert (brand-dark)                               */
 /*  #005C53 - Teal (brand-teal)                                        */
-/*  #9FC131 - Ye\u015Fil (brand-green)                                 */
+/*  #9FC131 - Yeşil (brand-green)                                 */
 /*  #DBF227 - Lime (brand-lime)                                        */
 /*  #D6D58E - Kum (brand-sand)                                         */
 /* ------------------------------------------------------------------ */
 
 /* ------------------------------------------------------------------ */
-/*  VER\u0130                                                          */
+/*  VERİ                                                          */
 /* ------------------------------------------------------------------ */
 
 const adimlar = [
   {
     no: 1,
     icon: GraduationCap,
-    baslik: "S\u0131n\u0131f\u0131n\u0131 Se\u00e7",
-    aciklama: "1\u20138. s\u0131n\u0131f aras\u0131nda \u00e7ocu\u011funun seviyesini belirle",
+    baslik: "Sınıfını Seç",
+    aciklama: "1–8. sınıf arasında çocuğunun seviyesini belirle",
     renk: "bg-[#005C53]",
   },
   {
     no: 2,
     icon: Gamepad2,
     baslik: "Oyun Oyna",
-    aciklama: "MEB m\u00fcfredatina uygun oyunlarla e\u011flenerek \u00f6\u011fren",
+    aciklama: "MEB müfredatina uygun oyunlarla eğlenerek öğren",
     renk: "bg-[#9FC131]",
   },
   {
     no: 3,
     icon: Trophy,
-    baslik: "\u0130lerlemeni Takip Et",
-    aciklama: "Rozet kazan, seviye atla, liderlik tablosunda y\u00fcksel",
+    baslik: "İlerlemeni Takip Et",
+    aciklama: "Rozet kazan, seviye atla, liderlik tablosunda yüksel",
     renk: "bg-[#042940]",
   },
 ];
 
 const oneCikanOyunlar = [
   {
-    baslik: "Matematik Yar\u0131\u015fmas\u0131",
-    aciklama: "Toplama, \u00e7\u0131karma, \u00e7arpma ve b\u00f6lme ile h\u0131z\u0131n\u0131 test et.",
+    baslik: "Matematik Yarışması",
+    aciklama: "Toplama, çıkarma, çarpma ve bölme ile hızını test et.",
     icon: Calculator,
     renk: "bg-[#005C53]",
     kategori: "Matematik",
-    yas: "6\u201312 ya\u015f",
+    yas: "6–12 yaş",
     oyuncu: 1245,
-    sure: "3\u20135 dk",
+    sure: "3–5 dk",
   },
   {
-    baslik: "Kelime Av\u0131",
-    aciklama: "Kar\u0131\u015f\u0131k harflerden anlaml\u0131 kelimeler olu\u015ftur.",
+    baslik: "Kelime Avı",
+    aciklama: "Karışık harflerden anlamlı kelimeler oluştur.",
     icon: BookOpen,
     renk: "bg-[#9FC131]",
     kategori: "Dil",
-    yas: "7\u201312 ya\u015f",
+    yas: "7–12 yaş",
     oyuncu: 890,
-    sure: "4\u20136 dk",
+    sure: "4–6 dk",
   },
   {
-    baslik: "Haf\u0131za Kartlar\u0131",
-    aciklama: "Kartlar\u0131 \u00e7evir ve e\u015fle\u015fen \u00e7iftleri bul.",
+    baslik: "Hafıza Kartları",
+    aciklama: "Kartları çevir ve eşleşen çiftleri bul.",
     icon: Brain,
     renk: "bg-[#042940]",
-    kategori: "Haf\u0131za",
-    yas: "6\u201310 ya\u015f",
+    kategori: "Hafıza",
+    yas: "6–10 yaş",
     oyuncu: 1100,
-    sure: "3\u20134 dk",
+    sure: "3–4 dk",
   },
   {
-    baslik: "Bulmaca D\u00fcnyas\u0131",
-    aciklama: "Geometrik \u015fekilleri do\u011fru yere yerle\u015ftir.",
+    baslik: "Bulmaca Dünyası",
+    aciklama: "Geometrik şekilleri doğru yere yerleştir.",
     icon: Puzzle,
     renk: "bg-[#DBF227]",
-    kategori: "Mant\u0131k",
-    yas: "6\u201312 ya\u015f",
+    kategori: "Mantık",
+    yas: "6–12 yaş",
     oyuncu: 670,
-    sure: "5\u20138 dk",
+    sure: "5–8 dk",
   },
 ];
 
 const ozellikler = [
   {
     icon: Brain,
-    baslik: "MEB M\u00fcfredat\u0131na Uygun",
-    aciklama: "T\u00fcm oyunlar m\u00fcfredat kazan\u0131mlar\u0131na ba\u011fl\u0131 olarak tasarlanm\u0131\u015ft\u0131r.",
+    baslik: "MEB Müfredatına Uygun",
+    aciklama: "Tüm oyunlar müfredat kazanımlarına bağlı olarak tasarlanmıştır.",
     renk: "bg-[#005C53]",
   },
   {
     icon: Trophy,
-    baslik: "Oyunla\u015ft\u0131r\u0131lm\u0131\u015f \u00d6\u011frenme",
-    aciklama: "Rozet, puan ve liderlik tablosuyla s\u00fcrd\u00fcr\u00fclebilir motivasyon.",
+    baslik: "Oyunlaştırılmış Öğrenme",
+    aciklama: "Rozet, puan ve liderlik tablosuyla sürdürülebilir motivasyon.",
     renk: "bg-[#9FC131]",
   },
   {
     icon: BarChart3,
-    baslik: "\u00d6l\u00e7\u00fclebilir \u0130lerleme",
-    aciklama: "Ders bazl\u0131 ilerleme takibi ve detayl\u0131 analiz paneli.",
+    baslik: "Ölçülebilir İlerleme",
+    aciklama: "Ders bazlı ilerleme takibi ve detaylı analiz paneli.",
     renk: "bg-[#042940]",
   },
   {
     icon: Shield,
-    baslik: "G\u00fcvenli ve Reklams\u0131z",
-    aciklama: "Ebeveyn kontrol\u00fc, KVKK uyumlu, tamamen reklams\u0131z.",
+    baslik: "Güvenli ve Reklamsız",
+    aciklama: "Ebeveyn kontrolü, KVKK uyumlu, tamamen reklamsız.",
     renk: "bg-[#DBF227]",
   },
 ];
 
 const yorumlar = [
   {
-    isim: "Ay\u015fe Y\u0131lmaz",
+    isim: "Ayşe Yılmaz",
     rol: "Veli",
     avatar: "https://i.pravatar.cc/150?img=44",
-    yorum: "K\u0131z\u0131m LUMO sayesinde matematik dersinde \u00e7ok ilerledi. M\u00fcfredata uygun olmas\u0131 beni \u00e7ok rahatlatt\u0131.",
+    yorum: "Kızım LUMO sayesinde matematik dersinde çok ilerledi. Müfredata uygun olması beni çok rahatlattı.",
   },
   {
     isim: "Mehmet Kaya",
     rol: "Veli",
     avatar: "https://i.pravatar.cc/150?img=68",
-    yorum: "O\u011flum i\u00e7in g\u00fcvenli bir e\u011fitim ortam\u0131 ar\u0131yordum. LUMO tam arad\u0131\u011f\u0131m \u015fey oldu.",
+    yorum: "Oğlum için güvenli bir eğitim ortamı arıyordum. LUMO tam aradığım şey oldu.",
   },
   {
     isim: "Zeynep Demir",
-    rol: "\u00d6\u011fretmen",
+    rol: "Öğretmen",
     avatar: "https://i.pravatar.cc/150?img=47",
-    yorum: "S\u0131n\u0131f\u0131mda LUMO kullan\u0131yorum. \u00c7ocuklar m\u00fcfredata uygun oyunlarla \u00f6\u011frenirken motivasyonlar\u0131 artt\u0131!",
+    yorum: "Sınıfımda LUMO kullanıyorum. Çocuklar müfredata uygun oyunlarla öğrenirken motivasyonları arttı!",
   },
 ];
 
 const guvenlikMaddeleri = [
-  "MEB m\u00fcfredat\u0131na uygun, pedagojik a\u00e7\u0131dan onaylanm\u0131\u015f i\u00e7erikler",
-  "KVKK uyumlu veri g\u00fcvenli\u011fi ve \u00e7ocuk gizlili\u011fi",
-  "Tamamen reklams\u0131z, dikkat da\u011f\u0131t\u0131c\u0131 i\u00e7erik yok",
-  "Ebeveyn kontrol paneli ile s\u00fcre ve i\u00e7erik y\u00f6netimi",
-  "13 ya\u015f alt\u0131 i\u00e7in ebeveyn onay\u0131 zorunlulu\u011fu",
+  "MEB müfredatına uygun, pedagojik açıdan onaylanmış içerikler",
+  "KVKK uyumlu veri güvenliği ve çocuk gizliliği",
+  "Tamamen reklamsız, dikkat dağıtıcı içerik yok",
+  "Ebeveyn kontrol paneli ile süre ve içerik yönetimi",
+  "13 yaş altı için ebeveyn onayı zorunluluğu",
 ];
 
 /* ------------------------------------------------------------------ */
-/*  AN\u0130MASYON                                                     */
+/*  ANİMASYON                                                     */
 /* ------------------------------------------------------------------ */
 
 const fadeUp = {
@@ -220,11 +220,11 @@ export default function HomePage() {
               >
                 <Sparkles className="h-4 w-4 text-[#9FC131]" />
                 <span className="text-sm font-semibold text-[#042940]">
-                  MEB M&#252;fredat&#305;na %100 Uygun
+                  MEB Müfredatına %100 Uygun
                 </span>
               </motion.div>
 
-              {/* Ana ba&#351;l&#305;k — kelime kelime blur-in */}
+              {/* Ana başlık — kelime kelime blur-in */}
               <motion.h1
                 initial={{ filter: "blur(10px)", opacity: 0 }}
                 animate={{ filter: "blur(0px)", opacity: 1 }}
@@ -237,7 +237,7 @@ export default function HomePage() {
                   transition={{ delay: 0.2, duration: 0.5 }}
                   className="inline-block"
                 >
-                  &#214;&#287;renmenin En
+                  Öğrenmenin En
                 </motion.span>
                 <br />
                 <motion.span
@@ -246,7 +246,7 @@ export default function HomePage() {
                   transition={{ delay: 0.45, duration: 0.5 }}
                   className="inline-block rounded-lg bg-[#DBF227] px-5 py-1"
                 >
-                  E&#287;lenceli
+                  Eğlenceli
                 </motion.span>
                 <motion.span
                   initial={{ opacity: 0, y: 20, filter: "blur(8px)" }}
@@ -258,16 +258,16 @@ export default function HomePage() {
                 </motion.span>
               </motion.h1>
 
-              {/* Alt yaz&#305; */}
+              {/* Alt yazı */}
               <motion.p
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 1.0, duration: 0.6 }}
                 className="mx-auto mt-8 max-w-2xl text-xl leading-relaxed text-[#042940]/60"
               >
-                &#199;ocu&#287;unuz e&#287;lenceli oyunlarla dersleri peki&#351;tirsin.
-                T&#252;rk&#231;e, Matematik, Fen Bilimleri, Sosyal Bilgiler
-                ve &#304;ngilizce &#8212; hepsi bir arada.
+                Çocuğunuz eğlenceli oyunlarla dersleri pekiştirsin.
+                Türkçe, Matematik, Fen Bilimleri, Sosyal Bilgiler
+                ve İngilizce &#8212; hepsi bir arada.
               </motion.p>
 
               {/* Ders etiketleri */}
@@ -278,11 +278,11 @@ export default function HomePage() {
                 className="mt-10 flex flex-wrap justify-center gap-6"
               >
                 {[
-                  { icon: BookOpen, label: "T\u00fcrk\u00e7e" },
+                  { icon: BookOpen, label: "Türkçe" },
                   { icon: Calculator, label: "Matematik" },
                   { icon: FlaskConical, label: "Fen Bilimleri" },
                   { icon: Globe, label: "Sosyal Bilgiler" },
-                  { icon: SpellCheck, label: "\u0130ngilizce" },
+                  { icon: SpellCheck, label: "İngilizce" },
                 ].map((item, index) => (
                   <motion.div
                     key={item.label}
@@ -305,7 +305,7 @@ export default function HomePage() {
                 ))}
               </motion.div>
 
-              {/* CTA butonlar&#305; */}
+              {/* CTA butonları */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -318,7 +318,7 @@ export default function HomePage() {
                   className="rounded-full bg-[#005C53] px-10 py-6 text-lg font-bold text-white shadow-lg hover:bg-[#005C53]/90"
                 >
                   <Link href="/games">
-                    &#220;cretsiz Oyunlar
+                    Ücretsiz Oyunlar
                     <ArrowRight className="ml-2 h-5 w-5" />
                   </Link>
                 </Button>
@@ -328,11 +328,11 @@ export default function HomePage() {
                   size="lg"
                   className="rounded-full border-[#042940]/20 px-8 py-6 text-lg font-semibold text-[#042940] hover:bg-[#042940]/5"
                 >
-                  <Link href="#nasil-calisir">Nas&#305;l &#199;al&#305;&#351;&#305;r?</Link>
+                  <Link href="#nasil-calisir">Nasıl Çalışır?</Link>
                 </Button>
               </motion.div>
 
-              {/* Sosyal kan&#305;t */}
+              {/* Sosyal kanıt */}
               <motion.div
                 initial={{ opacity: 0, y: 16 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -375,7 +375,7 @@ export default function HomePage() {
         </section>
 
         {/* ═══════════════════════════════════════════════════════════ */}
-        {/*  NASIL &#199;ALI&#350;IR                                   */}
+        {/*  NASIL ÇALIŞIR                                   */}
         {/* ═══════════════════════════════════════════════════════════ */}
         <section id="nasil-calisir" className="py-16 md:py-20">
           <div className="container">
@@ -387,10 +387,10 @@ export default function HomePage() {
               className="mb-12"
             >
               <h2 className="text-3xl font-extrabold text-[#042940] md:text-4xl">
-                Nas&#305;l &#199;al&#305;&#351;&#305;r?
+                Nasıl Çalışır?
               </h2>
               <p className="mt-2 text-[#042940]/50">
-                Oyun oyna, &#246;&#287;ren, ilerle. Bu kadar basit!
+                Oyun oyna, öğren, ilerle. Bu kadar basit!
               </p>
             </motion.div>
 
@@ -430,7 +430,7 @@ export default function HomePage() {
         </section>
 
         {/* ═══════════════════════════════════════════════════════════ */}
-        {/*  POP&#220;LER OYUNLAR \u2014 ss38 kart yap&#305;s&#305;    */}
+        {/*  POPÜLER OYUNLAR — ss38 kart yapısı    */}
         {/* ═══════════════════════════════════════════════════════════ */}
         <section className="py-16 md:py-20">
           <div className="container">
@@ -443,15 +443,15 @@ export default function HomePage() {
             >
               <div>
                 <h2 className="text-3xl font-extrabold text-[#042940] md:text-4xl">
-                  Pop&#252;ler Oyunlar
+                  Popüler Oyunlar
                 </h2>
                 <p className="mt-2 text-[#042940]/50">
-                  E&#287;itici oyunlarla e&#287;lenerek &#246;&#287;ren
+                  Eğitici oyunlarla eğlenerek öğren
                 </p>
               </div>
               <Button asChild variant="outline" className="hidden border-[#042940]/20 text-[#042940] hover:bg-[#042940]/5 md:flex">
                 <Link href="/register">
-                  T&#252;m&#252;n&#252; G&#246;r
+                  Tümünü Gör
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </Link>
               </Button>
@@ -517,7 +517,7 @@ export default function HomePage() {
             <div className="mt-6 text-center md:hidden">
               <Button asChild variant="outline" className="border-[#042940]/20 text-[#042940]">
                 <Link href="/register">
-                  T&#252;m&#252;n&#252; G&#246;r
+                  Tümünü Gör
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </Link>
               </Button>
@@ -538,10 +538,10 @@ export default function HomePage() {
               className="mb-12"
             >
               <h2 className="text-3xl font-extrabold text-white md:text-4xl">
-                LUMO&apos;yu &#214;zel Yapan Ne?
+                LUMO&apos;yu Özel Yapan Ne?
               </h2>
               <p className="mt-2 text-white/50">
-                E&#287;itimi e&#287;lenceli, &#246;l&#231;&#252;lebilir ve g&#252;venli hale getiriyoruz
+                Eğitimi eğlenceli, ölçülebilir ve güvenli hale getiriyoruz
               </p>
             </motion.div>
 
@@ -590,20 +590,20 @@ export default function HomePage() {
               className="mb-12"
             >
               <h2 className="text-3xl font-extrabold text-[#042940] md:text-4xl">
-                Ders Bazl&#305; &#214;&#287;renme
+                Ders Bazlı Öğrenme
               </h2>
               <p className="mt-2 text-[#042940]/50">
-                Her ders i&#231;in &#246;zel olarak tasarlanm&#305;&#351; e&#287;itsel oyunlar
+                Her ders için özel olarak tasarlanmış eğitsel oyunlar
               </p>
             </motion.div>
 
             <div className="grid gap-6 md:grid-cols-3 lg:grid-cols-5">
               {[
-                { baslik: "T\u00fcrk\u00e7e", icon: BookOpen, aciklama: "Kelime, dilbilgisi ve yaz\u0131m oyunlar\u0131", renk: "bg-[#005C53]", oyun: 4 },
-                { baslik: "Matematik", icon: Calculator, aciklama: "Say\u0131lar, i\u015flemler, geometri ve daha fazlas\u0131", renk: "bg-[#9FC131]", oyun: 3 },
-                { baslik: "Fen Bilimleri", icon: FlaskConical, aciklama: "Canl\u0131lar, madde, fiziksel olaylar", renk: "bg-[#042940]", oyun: 3 },
-                { baslik: "Sosyal Bilgiler", icon: Globe, aciklama: "Tarih, co\u011frafya, vatanda\u015fl\u0131k", renk: "bg-[#005C53]", oyun: 3 },
-                { baslik: "\u0130ngilizce", icon: SpellCheck, aciklama: "Kelime, dilbilgisi ve dinleme", renk: "bg-[#9FC131]", oyun: 3 },
+                { baslik: "Türkçe", icon: BookOpen, aciklama: "Kelime, dilbilgisi ve yazım oyunları", renk: "bg-[#005C53]", oyun: 4 },
+                { baslik: "Matematik", icon: Calculator, aciklama: "Sayılar, işlemler, geometri ve daha fazlası", renk: "bg-[#9FC131]", oyun: 3 },
+                { baslik: "Fen Bilimleri", icon: FlaskConical, aciklama: "Canlılar, madde, fiziksel olaylar", renk: "bg-[#042940]", oyun: 3 },
+                { baslik: "Sosyal Bilgiler", icon: Globe, aciklama: "Tarih, coğrafya, vatandaşlık", renk: "bg-[#005C53]", oyun: 3 },
+                { baslik: "İngilizce", icon: SpellCheck, aciklama: "Kelime, dilbilgisi ve dinleme", renk: "bg-[#9FC131]", oyun: 3 },
               ].map((ders, index) => (
                 <motion.div
                   key={ders.baslik}
@@ -630,7 +630,7 @@ export default function HomePage() {
                           </span>
                           <Button asChild variant="outline" size="sm" className="border-[#042940]/20 text-[#042940] hover:bg-[#042940]/5">
                             <Link href="/register">
-                              Ke&#351;fet
+                              Keşfet
                               <ArrowRight className="ml-1 h-3.5 w-3.5" />
                             </Link>
                           </Button>
@@ -721,9 +721,9 @@ export default function HomePage() {
               <Card className="overflow-hidden border-0 bg-[#005C53] shadow-xl">
                 <CardContent className="flex flex-col items-center gap-6 p-10 text-center md:p-14">
                   <p className="text-2xl font-extrabold leading-snug text-white md:text-3xl">
-                    &ldquo;Oyun oyna, &#246;&#287;ren &#8212;
+                    &ldquo;Oyun oyna, öğren &#8212;
                     <br />
-                    e&#287;itim az &#246;nce e&#287;lenceli oldu.&rdquo;
+                    eğitim az önce eğlenceli oldu.&rdquo;
                   </p>
                   <Button
                     asChild
@@ -731,7 +731,7 @@ export default function HomePage() {
                     className="rounded-full bg-[#DBF227] px-8 text-base font-bold text-[#042940] hover:bg-[#DBF227]/90"
                   >
                     <Link href="/register">
-                      Hemen Ba&#351;la
+                      Hemen Başla
                       <ArrowRight className="ml-2 h-5 w-5" />
                     </Link>
                   </Button>
@@ -742,12 +742,12 @@ export default function HomePage() {
         </section>
 
         {/* ═══════════════════════════════════════════════════════════ */}
-        {/*  &#214;&#286;RETMENLER                                     */}
+        {/*  ÖĞRETMENLER                                     */}
         {/* ═══════════════════════════════════════════════════════════ */}
         <section className="py-16 md:py-20">
           <div className="container">
             <div className="grid items-center gap-10 md:grid-cols-2">
-              {/* Sol \u2014 Mock dashboard */}
+              {/* Sol — Mock dashboard */}
               <motion.div
                 initial={{ opacity: 0, x: -20 }}
                 whileInView={{ opacity: 1, x: 0 }}
@@ -763,10 +763,10 @@ export default function HomePage() {
                       </div>
                       <div className="flex flex-1 items-center justify-between p-4">
                         <span className="text-sm font-bold text-[#042940]">
-                          5-A S&#305;n&#305;f&#305;
+                          5-A Sınıfı
                         </span>
                         <span className="text-xs text-[#042940]/40">
-                          28 &#246;&#287;renci
+                          28 öğrenci
                         </span>
                       </div>
                     </div>
@@ -777,7 +777,7 @@ export default function HomePage() {
                   <CardContent className="p-4">
                     <div className="flex items-center justify-between">
                       <span className="text-sm font-semibold text-[#042940]">
-                        Ortalama &#304;lerleme
+                        Ortalama İlerleme
                       </span>
                       <span className="text-sm font-bold text-[#9FC131]">
                         %78
@@ -813,7 +813,7 @@ export default function HomePage() {
                 </Card>
               </motion.div>
 
-              {/* Sa&#287; \u2014 Metin */}
+              {/* Sağ — Metin */}
               <motion.div
                 initial={{ opacity: 0, x: 20 }}
                 whileInView={{ opacity: 1, x: 0 }}
@@ -821,17 +821,17 @@ export default function HomePage() {
                 transition={{ duration: 0.5 }}
               >
                 <h2 className="text-3xl font-extrabold text-[#042940] md:text-4xl">
-                  &#214;&#287;retmenler &#304;&#231;in &#220;cretsiz
+                  Öğretmenler İçin Ücretsiz
                 </h2>
                 <p className="mt-4 text-lg leading-relaxed text-[#042940]/50">
-                  S&#305;n&#305;f&#305;n&#305;z&#305; olu&#351;turun, &#246;&#287;renci ilerlemesini kolayca takip
-                  edin. LUMO &#246;&#287;retmenler i&#231;in her zaman &#252;cretsiz.
+                  Sınıfınızı oluşturun, öğrenci ilerlemesini kolayca takip
+                  edin. LUMO öğretmenler için her zaman ücretsiz.
                 </p>
                 <ul className="mt-6 space-y-3">
                   {[
-                    "S\u0131n\u0131f olu\u015fturma ve \u00f6\u011frenci ekleme",
-                    "\u0130lerleme analizi ve raporlama",
-                    "S\u0131n\u0131f liderlik tablosu",
+                    "Sınıf oluşturma ve öğrenci ekleme",
+                    "İlerleme analizi ve raporlama",
+                    "Sınıf liderlik tablosu",
                   ].map((madde) => (
                     <li key={madde} className="flex items-center gap-3">
                       <CheckCircle2 className="h-5 w-5 shrink-0 text-[#9FC131]" />
@@ -847,7 +847,7 @@ export default function HomePage() {
                   className="mt-8 rounded-full bg-[#042940] px-8 text-base font-bold text-white hover:bg-[#042940]/90"
                 >
                   <Link href="/register?role=teacher">
-                    &#214;&#287;retmen Olarak Kaydol
+                    Öğretmen Olarak Kaydol
                     <ArrowRight className="ml-2 h-5 w-5" />
                   </Link>
                 </Button>
@@ -857,7 +857,7 @@ export default function HomePage() {
         </section>
 
         {/* ═══════════════════════════════════════════════════════════ */}
-        {/*  G&#220;VENL&#304;K                                        */}
+        {/*  GÜVENLİK                                        */}
         {/* ═══════════════════════════════════════════════════════════ */}
         <section className="py-16 md:py-20">
           <div className="container">
@@ -869,10 +869,10 @@ export default function HomePage() {
               className="mb-12"
             >
               <h2 className="text-3xl font-extrabold text-[#042940] md:text-4xl">
-                G&#252;venlik ve Gizlilik
+                Güvenlik ve Gizlilik
               </h2>
               <p className="mt-2 text-[#042940]/50">
-                &#199;ocu&#287;unuzun g&#252;venli&#287;i bizim &#246;nceli&#287;imiz
+                Çocuğunuzun güvenliği bizim önceliğimiz
               </p>
             </motion.div>
 
@@ -902,7 +902,7 @@ export default function HomePage() {
         </section>
 
         {/* ═══════════════════════════════════════════════════════════ */}
-        {/*  &#220;CRETS&#304;Z DENEME CTA                            */}
+        {/*  ÜCRETSİZ DENEME CTA                            */}
         {/* ═══════════════════════════════════════════════════════════ */}
         <section className="py-16 md:py-20">
           <div className="container">
@@ -917,10 +917,10 @@ export default function HomePage() {
                 <Sparkles className="h-8 w-8 text-[#9FC131]" />
               </div>
               <h2 className="text-3xl font-extrabold text-[#042940] md:text-4xl">
-                &#304;lk Hafta &#220;cretsiz
+                İlk Hafta Ücretsiz
               </h2>
               <p className="mt-3 text-lg text-[#042940]/50">
-                Kredi kart&#305; gerekmez. Hemen ba&#351;lay&#305;n.
+                Kredi kartı gerekmez. Hemen başlayın.
               </p>
               <Button
                 asChild
@@ -928,12 +928,12 @@ export default function HomePage() {
                 className="mt-8 rounded-full bg-[#9FC131] px-10 text-base font-bold text-white hover:bg-[#9FC131]/90"
               >
                 <Link href="/register">
-                  Hemen Ba&#351;la
+                  Hemen Başla
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </Link>
               </Button>
               <p className="mt-4 text-sm text-[#042940]/40">
-                7 g&#252;n &#252;cretsiz deneme &middot; &#304;stedi&#287;in zaman iptal et
+                7 gün ücretsiz deneme &middot; İstediğin zaman iptal et
               </p>
             </motion.div>
           </div>

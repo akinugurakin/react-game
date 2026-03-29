@@ -106,7 +106,7 @@ function RegisterContent() {
           <Lightbulb className="h-10 w-10 text-brand-dark" />
           <div>
             <span className="text-2xl font-extrabold text-brand-dark">LUMO</span>
-            <p className="text-[9px] font-normal text-brand-dark/40">E&#287;itsel Oyun Platformu</p>
+            <p className="text-[9px] font-normal text-brand-dark/40">Eğitsel Oyun Platformu</p>
           </div>
         </Link>
         <h1 className="text-3xl font-extrabold">Kayıt Ol</h1>
@@ -130,8 +130,8 @@ function RegisterContent() {
                 <GraduationCap className="h-8 w-8 text-[#005C53] group-hover:text-white" />
               </div>
               <div className="text-center">
-                <p className="font-bold text-[#042940]">&#214;&#287;renci</p>
-                <p className="mt-1 text-xs text-muted-foreground">Oyun oyna, &#246;&#287;ren</p>
+                <p className="font-bold text-[#042940]">Öğrenci</p>
+                <p className="mt-1 text-xs text-muted-foreground">Oyun oyna, öğren</p>
               </div>
             </button>
 
@@ -143,8 +143,8 @@ function RegisterContent() {
                 <Users className="h-8 w-8 text-[#9FC131] group-hover:text-white" />
               </div>
               <div className="text-center">
-                <p className="font-bold text-[#042940]">&#214;&#287;retmen</p>
-                <p className="mt-1 text-xs text-muted-foreground">Sınıf y&#246;net, takip et</p>
+                <p className="font-bold text-[#042940]">Öğretmen</p>
+                <p className="mt-1 text-xs text-muted-foreground">Sınıf yönet, takip et</p>
               </div>
             </button>
           </div>
@@ -163,7 +163,7 @@ function RegisterContent() {
             className="flex items-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground"
           >
             <ArrowLeft className="h-4 w-4" />
-            Rol se&#231;imine d&#246;n
+            Rol seçimine dön
           </button>
 
           <div className={cn(
@@ -194,17 +194,17 @@ function RegisterContent() {
 
             <div className="space-y-2">
               <Label htmlFor="username">Ad Soyad</Label>
-              <Input id="username" name="username" placeholder={role === "teacher" ? "Ay\u015fe Y\u0131lmaz" : "Ali Demir"} value={formData.username} onChange={handleChange} required minLength={3} maxLength={50} />
+              <Input id="username" name="username" placeholder={role === "teacher" ? "Ayşe Yılmaz" : "Ali Demir"} value={formData.username} onChange={handleChange} required minLength={3} maxLength={50} />
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="password">&#350;ifre</Label>
+              <Label htmlFor="password">Şifre</Label>
               <Input id="password" name="password" type="password" placeholder="&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;" value={formData.password} onChange={handleChange} required minLength={6} />
             </div>
 
             {role === "student" && (
               <div className="space-y-2">
-                <Label htmlFor="sinif">S\u0131n\u0131f</Label>
+                <Label htmlFor="sinif">Sınıf</Label>
                 <select
                   id="sinif"
                   name="sinif"
@@ -213,9 +213,9 @@ function RegisterContent() {
                   required
                   className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
                 >
-                  <option value="">S\u0131n\u0131f se\u00e7in</option>
+                  <option value="">Sınıf seçin</option>
                   {[1,2,3,4,5,6,7,8].map((s) => (
-                    <option key={s} value={s}>{s}. S\u0131n\u0131f</option>
+                    <option key={s} value={s}>{s}. Sınıf</option>
                   ))}
                 </select>
               </div>
@@ -223,25 +223,25 @@ function RegisterContent() {
 
             {role === "student" && (
               <div className="space-y-2">
-                <Label htmlFor="school_name">Okul Ad\u0131 (Opsiyonel)</Label>
-                <Input id="school_name" name="school_name" placeholder="Atat\u00fcrk \u0130lkokulu" value={formData.school_name} onChange={handleChange} />
+                <Label htmlFor="school_name">Okul Adı (Opsiyonel)</Label>
+                <Input id="school_name" name="school_name" placeholder="Atatürk İlkokulu" value={formData.school_name} onChange={handleChange} />
               </div>
             )}
 
             {needsParent && (
               <div className="space-y-2 rounded-lg bg-muted/50 p-4">
                 <p className="text-sm text-muted-foreground">
-                  1-4. s\u0131n\u0131f \u00f6\u011frencileri i\u00e7in ebeveyn e-postas\u0131 gereklidir.
+                  1-4. sınıf öğrencileri için ebeveyn e-postası gereklidir.
                 </p>
-                <Label htmlFor="parent_email">Ebeveyn E-postas\u0131</Label>
+                <Label htmlFor="parent_email">Ebeveyn E-postası</Label>
                 <Input id="parent_email" name="parent_email" type="email" placeholder="ebeveyn@email.com" value={formData.parent_email} onChange={handleChange} required />
               </div>
             )}
 
             {role === "teacher" && (
               <div className="space-y-2">
-                <Label htmlFor="school_name">Okul Ad\u0131</Label>
-                <Input id="school_name" name="school_name" placeholder="Atat\u00fcrk \u0130lkokulu" value={formData.school_name} onChange={handleChange} required />
+                <Label htmlFor="school_name">Okul Adı</Label>
+                <Input id="school_name" name="school_name" placeholder="Atatürk İlkokulu" value={formData.school_name} onChange={handleChange} required />
               </div>
             )}
 

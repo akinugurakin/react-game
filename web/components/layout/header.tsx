@@ -41,31 +41,31 @@ const NAV_ITEMS: MegaMenuItem[] = [
         title: "Dersler",
         items: [
           {
-            label: "T\u00fcrk\u00e7e",
-            description: "Kelime, dilbilgisi ve yaz\u0131m oyunlar\u0131",
+            label: "Türkçe",
+            description: "Kelime, dilbilgisi ve yazım oyunları",
             icon: BookOpen,
             href: "/games?subject=turkce",
           },
           {
             label: "Matematik",
-            description: "Say\u0131lar, i\u015flemler, geometri ve daha fazlas\u0131",
+            description: "Sayılar, işlemler, geometri ve daha fazlası",
             icon: Calculator,
             href: "/games?subject=matematik",
           },
           {
             label: "Fen Bilimleri",
-            description: "Canl\u0131lar, madde, fiziksel olaylar",
+            description: "Canlılar, madde, fiziksel olaylar",
             icon: FlaskConical,
             href: "/games?subject=fen",
           },
           {
             label: "Sosyal Bilgiler",
-            description: "Tarih, co\u011frafya, vatanda\u015fl\u0131k",
+            description: "Tarih, coğrafya, vatandaşlık",
             icon: Globe,
             href: "/games?subject=sosyal",
           },
           {
-            label: "\u0130ngilizce",
+            label: "İngilizce",
             description: "Kelime, dilbilgisi ve dinleme",
             icon: SpellCheck,
             href: "/games?subject=ingilizce",
@@ -149,7 +149,7 @@ export function Header() {
             <Lightbulb className="h-8 w-8 text-brand-dark" />
             <div>
               <span className="text-xl font-extrabold text-brand-dark">LUMO</span>
-              <p className="text-[9px] font-normal leading-tight text-brand-dark/40">E&#287;itsel Oyun Platformu</p>
+              <p className="text-[9px] font-normal leading-tight text-brand-dark/40">Eğitsel Oyun Platformu</p>
             </div>
           </Link>
 

@@ -237,3 +237,25 @@ NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=pk_...
 - Hata mesajları kullanıcıya Türkçe gösterilmeli
 - Console.log production'da kaldırılmalı — logger kullan
 - Commit mesajları İngilizce, conventional commits formatında
+
+### ⚠️ Türkçe Karakter Kuralı (KRİTİK)
+
+TSX/JSX dosyalarında Türkçe karakterler **her zaman doğrudan UTF-8** olarak yazılmalıdır.
+`\u` escape sequence'leri ASLA kullanılmamalıdır.
+
+**DOĞRU:**
+```tsx
+<p>Öğrenci Ekle</p>
+<span>Sınıfım</span>
+const label = "Türkçe";
+```
+
+**YANLIŞ:**
+```tsx
+<p>\u00d6\u011frenci Ekle</p>
+<span>S\u0131n\u0131f\u0131m</span>
+const label = "T\u00fcrk\u00e7e";
+```
+
+Bu kural tüm TSX/JSX dosyaları, string literal'ler, JSX text content ve değişken atamaları için geçerlidir.
+Dosya encoding'i UTF-8 olmalıdır (Next.js varsayılanı zaten UTF-8'dir).

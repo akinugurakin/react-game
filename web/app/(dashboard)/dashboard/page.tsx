@@ -214,7 +214,7 @@ export default function DashboardPage() {
                     <HexAvatar initials={initials} size="xl" online={true} borderColor="ring-background" />
                   )}
                 </div>
-                {/* D&#252;zenleme ikonu */}
+                {/* Düzenleme ikonu */}
                 <div className="absolute bottom-0 right-0 flex h-7 w-7 items-center justify-center rounded-full bg-[#005C53] text-white shadow-md transition-transform group-hover:scale-110">
                   <Pencil className="h-3.5 w-3.5" />
                 </div>
@@ -276,7 +276,7 @@ export default function DashboardPage() {
             {/* Oyunlar */}
             <div className="lg:col-span-2">
               <div className="mb-4 flex items-center justify-between">
-                <h2 className="text-xl font-bold">En Sevdi&#287;in Oyunlar</h2>
+                <h2 className="text-xl font-bold">En Sevdiğin Oyunlar</h2>
                 <Button asChild variant="ghost" size="sm">
                   <Link href="/games">Tümünü Gör</Link>
                 </Button>

@@ -46,34 +46,34 @@ type GameItem = {
 
 const allGames: GameItem[] = [
   // ── Matematik ──
-  { id: 1, title: "Matematik Yar\u0131\u015fmas\u0131", description: "Toplama, \u00e7\u0131karma, \u00e7arpma ve b\u00f6lme ile h\u0131z\u0131n\u0131 test et.", icon: Calculator, color: "bg-brand-teal", minAge: 6, maxAge: 12, category: "Matematik", subject: "matematik", players: 1245, avgDuration: "3-5 dk", href: "/games/math", free: true },
-  { id: 2, title: "Bulmaca D\u00fcnyas\u0131", description: "Geometrik \u015fekilleri do\u011fru yere yerle\u015ftir.", icon: Puzzle, color: "bg-brand-green", minAge: 6, maxAge: 12, category: "Geometri", subject: "matematik", players: 670, avgDuration: "5-8 dk", href: "#", free: false },
-  { id: 3, title: "Kesir Ustas\u0131", description: "Kesirleri kar\u015f\u0131la\u015ft\u0131r, topla ve \u00e7\u0131kar.", icon: Layers, color: "bg-brand-dark", minAge: 8, maxAge: 12, category: "Kesirler", subject: "matematik", players: 540, avgDuration: "4-6 dk", href: "#", free: false },
+  { id: 1, title: "Matematik Yarışması", description: "Toplama, çıkarma, çarpma ve bölme ile hızını test et.", icon: Calculator, color: "bg-brand-teal", minAge: 6, maxAge: 12, category: "Matematik", subject: "matematik", players: 1245, avgDuration: "3-5 dk", href: "/games/math", free: true },
+  { id: 2, title: "Bulmaca Dünyası", description: "Geometrik şekilleri doğru yere yerleştir.", icon: Puzzle, color: "bg-brand-green", minAge: 6, maxAge: 12, category: "Geometri", subject: "matematik", players: 670, avgDuration: "5-8 dk", href: "#", free: false },
+  { id: 3, title: "Kesir Ustası", description: "Kesirleri karşılaştır, topla ve çıkar.", icon: Layers, color: "bg-brand-dark", minAge: 8, maxAge: 12, category: "Kesirler", subject: "matematik", players: 540, avgDuration: "4-6 dk", href: "#", free: false },
   // ── Fen Bilimleri ──
-  { id: 4, title: "Atom Ke\u015ffi", description: "Atomun yap\u0131s\u0131n\u0131 ke\u015ffet. Proton, n\u00f6tron ve elektronlar\u0131 yerle\u015ftir!", icon: Atom, color: "bg-brand-teal", minAge: 10, maxAge: 12, category: "Fizik", subject: "fen", players: 380, avgDuration: "4-6 dk", href: "#", free: false },
-  { id: 5, title: "Canl\u0131lar Alemi", description: "Canl\u0131lar\u0131 s\u0131n\u0131fland\u0131r, ya\u015fam alanlar\u0131n\u0131 ke\u015ffet.", icon: TreePine, color: "bg-brand-green", minAge: 6, maxAge: 10, category: "Biyoloji", subject: "fen", players: 720, avgDuration: "3-5 dk", href: "#", free: true },
-  { id: 6, title: "Deney Lab\u0131", description: "Sanal laboratuvarda deneyler yap.", icon: FlaskConical, color: "bg-brand-dark", minAge: 8, maxAge: 12, category: "Kimya", subject: "fen", players: 450, avgDuration: "5-7 dk", href: "#", free: false },
+  { id: 4, title: "Atom Keşfi", description: "Atomun yapısını keşfet. Proton, nötron ve elektronları yerleştir!", icon: Atom, color: "bg-brand-teal", minAge: 10, maxAge: 12, category: "Fizik", subject: "fen", players: 380, avgDuration: "4-6 dk", href: "#", free: false },
+  { id: 5, title: "Canlılar Alemi", description: "Canlıları sınıflandır, yaşam alanlarını keşfet.", icon: TreePine, color: "bg-brand-green", minAge: 6, maxAge: 10, category: "Biyoloji", subject: "fen", players: 720, avgDuration: "3-5 dk", href: "#", free: true },
+  { id: 6, title: "Deney Labı", description: "Sanal laboratuvarda deneyler yap.", icon: FlaskConical, color: "bg-brand-dark", minAge: 8, maxAge: 12, category: "Kimya", subject: "fen", players: 450, avgDuration: "5-7 dk", href: "#", free: false },
   // ── Sosyal Bilgiler ──
-  { id: 7, title: "Tarih Yolculu\u011fu", description: "Osmanl\u0131'dan Cumhuriyet'e tarihte yolculuk yap.", icon: Landmark, color: "bg-brand-teal", minAge: 8, maxAge: 12, category: "Tarih", subject: "sosyal", players: 560, avgDuration: "4-6 dk", href: "#", free: false },
-  { id: 8, title: "Harita Ustas\u0131", description: "\u015Eehirleri, da\u011flar\u0131 ve nehirleri harita \u00fczerinde bul.", icon: Map, color: "bg-brand-green", minAge: 8, maxAge: 12, category: "Co\u011frafya", subject: "sosyal", players: 430, avgDuration: "3-5 dk", href: "#", free: true },
-  { id: 9, title: "Vatanda\u015fl\u0131k Bilgisi", description: "Hak ve sorumluluklar\u0131n\u0131 \u00f6\u011fren.", icon: Globe, color: "bg-brand-dark", minAge: 10, maxAge: 12, category: "Vatanda\u015fl\u0131k", subject: "sosyal", players: 310, avgDuration: "3-4 dk", href: "#", free: false },
-  // ── T\u00fcrk\u00e7e ──
-  { id: 10, title: "Kelime Av\u0131", description: "Kar\u0131\u015f\u0131k harflerden anlaml\u0131 kelimeler olu\u015ftur.", icon: BookOpen, color: "bg-brand-teal", minAge: 7, maxAge: 12, category: "Kelime", subject: "turkce", players: 890, avgDuration: "4-6 dk", href: "#", free: true },
-  { id: 11, title: "Haf\u0131za Kartlar\u0131", description: "Kartlar\u0131 \u00e7evir ve e\u015fle\u015fen \u00e7iftleri bul.", icon: Brain, color: "bg-brand-green", minAge: 6, maxAge: 10, category: "Haf\u0131za", subject: "turkce", players: 1100, avgDuration: "3-4 dk", href: "#", free: true },
-  { id: 12, title: "C\u00fcmle Kurma", description: "Kar\u0131\u015f\u0131k kelimeleri do\u011fru s\u0131raya koy.", icon: MessageSquare, color: "bg-brand-dark", minAge: 7, maxAge: 12, category: "Dilbilgisi", subject: "turkce", players: 620, avgDuration: "3-5 dk", href: "#", free: false },
-  { id: 13, title: "Yaz\u0131m K\u0131lavuzu", description: "Do\u011fru yaz\u0131m kurallar\u0131n\u0131 \u00f6\u011fren.", icon: Pen, color: "bg-brand-lime", minAge: 8, maxAge: 12, category: "Yaz\u0131m", subject: "turkce", players: 340, avgDuration: "4-6 dk", href: "#", free: false },
-  // ── \u0130ngilizce ──
-  { id: 14, title: "Vocabulary Builder", description: "Resimlerle e\u015fle\u015ftirerek \u0130ngilizce kelime \u00f6\u011fren.", icon: SpellCheck, color: "bg-brand-teal", minAge: 7, maxAge: 12, category: "Kelime", subject: "ingilizce", players: 780, avgDuration: "3-5 dk", href: "#", free: true },
-  { id: 15, title: "Grammar Quest", description: "\u0130ngilizce dilbilgisi kurallar\u0131n\u0131 peki\u015ftir!", icon: BookOpen, color: "bg-brand-green", minAge: 8, maxAge: 12, category: "Dilbilgisi", subject: "ingilizce", players: 520, avgDuration: "4-6 dk", href: "#", free: false },
-  { id: 16, title: "Listening Lab", description: "Dinledi\u011fini anla, sorular\u0131 yan\u0131tla.", icon: MessageSquare, color: "bg-brand-dark", minAge: 8, maxAge: 12, category: "Dinleme", subject: "ingilizce", players: 390, avgDuration: "5-7 dk", href: "#", free: false },
+  { id: 7, title: "Tarih Yolculuğu", description: "Osmanlı'dan Cumhuriyet'e tarihte yolculuk yap.", icon: Landmark, color: "bg-brand-teal", minAge: 8, maxAge: 12, category: "Tarih", subject: "sosyal", players: 560, avgDuration: "4-6 dk", href: "#", free: false },
+  { id: 8, title: "Harita Ustası", description: "Şehirleri, dağları ve nehirleri harita üzerinde bul.", icon: Map, color: "bg-brand-green", minAge: 8, maxAge: 12, category: "Coğrafya", subject: "sosyal", players: 430, avgDuration: "3-5 dk", href: "#", free: true },
+  { id: 9, title: "Vatandaşlık Bilgisi", description: "Hak ve sorumluluklarını öğren.", icon: Globe, color: "bg-brand-dark", minAge: 10, maxAge: 12, category: "Vatandaşlık", subject: "sosyal", players: 310, avgDuration: "3-4 dk", href: "#", free: false },
+  // ── Türkçe ──
+  { id: 10, title: "Kelime Avı", description: "Karışık harflerden anlamlı kelimeler oluştur.", icon: BookOpen, color: "bg-brand-teal", minAge: 7, maxAge: 12, category: "Kelime", subject: "turkce", players: 890, avgDuration: "4-6 dk", href: "#", free: true },
+  { id: 11, title: "Hafıza Kartları", description: "Kartları çevir ve eşleşen çiftleri bul.", icon: Brain, color: "bg-brand-green", minAge: 6, maxAge: 10, category: "Hafıza", subject: "turkce", players: 1100, avgDuration: "3-4 dk", href: "#", free: true },
+  { id: 12, title: "Cümle Kurma", description: "Karışık kelimeleri doğru sıraya koy.", icon: MessageSquare, color: "bg-brand-dark", minAge: 7, maxAge: 12, category: "Dilbilgisi", subject: "turkce", players: 620, avgDuration: "3-5 dk", href: "#", free: false },
+  { id: 13, title: "Yazım Kılavuzu", description: "Doğru yazım kurallarını öğren.", icon: Pen, color: "bg-brand-lime", minAge: 8, maxAge: 12, category: "Yazım", subject: "turkce", players: 340, avgDuration: "4-6 dk", href: "#", free: false },
+  // ── İngilizce ──
+  { id: 14, title: "Vocabulary Builder", description: "Resimlerle eşleştirerek İngilizce kelime öğren.", icon: SpellCheck, color: "bg-brand-teal", minAge: 7, maxAge: 12, category: "Kelime", subject: "ingilizce", players: 780, avgDuration: "3-5 dk", href: "#", free: true },
+  { id: 15, title: "Grammar Quest", description: "İngilizce dilbilgisi kurallarını pekiştir!", icon: BookOpen, color: "bg-brand-green", minAge: 8, maxAge: 12, category: "Dilbilgisi", subject: "ingilizce", players: 520, avgDuration: "4-6 dk", href: "#", free: false },
+  { id: 16, title: "Listening Lab", description: "Dinlediğini anla, soruları yanıtla.", icon: MessageSquare, color: "bg-brand-dark", minAge: 8, maxAge: 12, category: "Dinleme", subject: "ingilizce", players: 390, avgDuration: "5-7 dk", href: "#", free: false },
 ];
 
 const subjectLabels: Record<string, string> = {
   matematik: "Matematik",
   fen: "Fen Bilimleri",
   sosyal: "Sosyal Bilgiler",
-  turkce: "T\u00fcrk\u00e7e",
-  ingilizce: "\u0130ngilizce",
+  turkce: "Türkçe",
+  ingilizce: "İngilizce",
 };
 
 function GamesContent() {
@@ -92,8 +92,8 @@ function GamesContent() {
 
   const pageTitle = subject ? subjectLabels[subject] || "Oyunlar" : "Oyunlar";
   const pageDesc = subject
-    ? `${subjectLabels[subject]} dersine ait e\u011fitici oyunlar`
-    : "E\u011fitici oyunlarla e\u011flenerek \u00f6\u011fren";
+    ? `${subjectLabels[subject]} dersine ait eğitici oyunlar`
+    : "Eğitici oyunlarla eğlenerek öğren";
 
   return (
     <div className="container py-8">
@@ -109,12 +109,12 @@ function GamesContent() {
 
       {isGuest ? (
         <>
-          {/* \u00dccretsiz oyunlar */}
+          {/* Ücretsiz oyunlar */}
           {freeGames.length > 0 && (
             <>
               <div className="mb-4 flex items-center gap-2">
                 <div className="h-1 w-6 rounded-full bg-brand-green" />
-                <h2 className="text-lg font-bold">&#220;cretsiz Oyunlar</h2>
+                <h2 className="text-lg font-bold">Ücretsiz Oyunlar</h2>
                 <span className="rounded-full bg-brand-green/15 px-2.5 py-0.5 text-xs font-bold text-brand-green">
                   Hemen Oyna
                 </span>
@@ -182,7 +182,7 @@ function GameCard({ game, index, locked }: { game: GameItem; index: number; lock
                     {game.category}
                   </span>
                   <span className="text-xs text-muted-foreground">
-                    {game.minAge}-{game.maxAge} ya\u015f
+                    {game.minAge}-{game.maxAge} yaş
                   </span>
                   {locked && (
                     <span className="rounded-full bg-foreground px-2.5 py-0.5 text-[10px] font-bold text-background">
@@ -228,7 +228,7 @@ function GameCard({ game, index, locked }: { game: GameItem; index: number; lock
 
 export default function GamesPage() {
   return (
-    <Suspense fallback={<div className="container py-8"><p className="text-muted-foreground">Y\u00fckleniyor...</p></div>}>
+    <Suspense fallback={<div className="container py-8"><p className="text-muted-foreground">Yükleniyor...</p></div>}>
       <GamesContent />
     </Suspense>
   );

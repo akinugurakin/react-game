@@ -76,7 +76,7 @@ export default function LoginPage() {
           <Lightbulb className="h-10 w-10 text-brand-dark" />
           <div>
             <span className="text-2xl font-extrabold text-brand-dark">LUMO</span>
-            <p className="text-[9px] font-normal text-brand-dark/40">E&#287;itsel Oyun Platformu</p>
+            <p className="text-[9px] font-normal text-brand-dark/40">Eğitsel Oyun Platformu</p>
           </div>
         </Link>
         {step !== "role" && (
@@ -98,8 +98,8 @@ export default function LoginPage() {
                 <GraduationCap className="h-8 w-8 text-[#005C53] group-hover:text-white" />
               </div>
               <div className="text-center">
-                <p className="font-bold text-[#042940]">&#214;&#287;renci</p>
-                <p className="mt-1 text-xs text-muted-foreground">Oyun oyna, &#246;&#287;ren</p>
+                <p className="font-bold text-[#042940]">Öğrenci</p>
+                <p className="mt-1 text-xs text-muted-foreground">Oyun oyna, öğren</p>
               </div>
             </button>
 
@@ -112,8 +112,8 @@ export default function LoginPage() {
                 <Users className="h-8 w-8 text-[#9FC131] group-hover:text-white" />
               </div>
               <div className="text-center">
-                <p className="font-bold text-[#042940]">&#214;&#287;retmen</p>
-                <p className="mt-1 text-xs text-muted-foreground">Sınıf y&#246;net, takip et</p>
+                <p className="font-bold text-[#042940]">Öğretmen</p>
+                <p className="mt-1 text-xs text-muted-foreground">Sınıf yönet, takip et</p>
               </div>
             </button>
           </div>
@@ -133,10 +133,10 @@ export default function LoginPage() {
             className="flex items-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground"
           >
             <ArrowLeft className="h-4 w-4" />
-            Rol se&#231;imine d&#246;n
+            Rol seçimine dön
           </button>
 
-          {/* Rol g&#246;stergesi */}
+          {/* Rol göstergesi */}
           <div className={cn(
             "flex items-center gap-3 rounded-xl p-3",
             role === "teacher" ? "bg-[#9FC131]/10" : "bg-[#005C53]/10"
@@ -171,7 +171,7 @@ export default function LoginPage() {
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="password">&#350;ifre</Label>
+              <Label htmlFor="password">Şifre</Label>
               <Input
                 id="password"
                 type="password"

@@ -8,8 +8,8 @@ import { BeanHead } from "beanheads";
 import type { AvatarProps } from "beanheads";
 
 /* ------------------------------------------------------------------ */
-/*  50 \u00f6nceden tan\u0131ml\u0131 Beanheads avatar                */
-/*  A\u011f\u0131rl\u0131kl\u0131 olarak a\u00e7\u0131k ten tonlar\u0131 */
+/*  50 önceden tanımlı Beanheads avatar                */
+/*  Ağırlıklı olarak açık ten tonları */
 /* ------------------------------------------------------------------ */
 
 type AvatarConfig = AvatarProps & { id: string };
@@ -92,11 +92,11 @@ const avatarConfigs: AvatarConfig[] = [
 const bgColors = [
   { name: "Buz Mavisi", value: "#DBEAFE" },
   { name: "Lavanta", value: "#E9D5FF" },
-  { name: "G\u00fcl", value: "#FECDD3" },
+  { name: "Gül", value: "#FECDD3" },
   { name: "Seftali", value: "#FED7AA" },
   { name: "Limon", value: "#FEF08A" },
   { name: "Nane", value: "#A7F3D0" },
-  { name: "G\u00f6ky\u00fcz\u00fc", value: "#BAE6FD" },
+  { name: "Gökyüzü", value: "#BAE6FD" },
   { name: "Leylak", value: "#DDD6FE" },
   { name: "Teal", value: "#99F6E4" },
   { name: "Lime", value: "#D9F99D" },
@@ -149,8 +149,8 @@ export function AvatarPicker({
         {/* Header */}
         <div className="flex items-center justify-between border-b px-6 py-4">
           <div>
-            <h2 className="text-lg font-extrabold text-[#042940]">Avatar Se&#231;</h2>
-            <p className="text-sm text-[#042940]/50">Karakterini ve rengini se&#231;</p>
+            <h2 className="text-lg font-extrabold text-[#042940]">Avatar Seç</h2>
+            <p className="text-sm text-[#042940]/50">Karakterini ve rengini seç</p>
           </div>
           <button onClick={onClose} className="flex h-8 w-8 items-center justify-center rounded-full text-[#042940]/40 hover:bg-[#042940]/5 hover:text-[#042940]">
             <X className="h-5 w-5" />
@@ -158,7 +158,7 @@ export function AvatarPicker({
         </div>
 
         <div className="flex-1 overflow-y-auto">
-          {/* &#214;nizleme */}
+          {/* Önizleme */}
           <div className="flex justify-center border-b bg-[#FAFAFA] py-6">
             <div
               className="flex h-28 w-28 items-center justify-center overflow-hidden rounded-full shadow-lg"
@@ -206,7 +206,7 @@ export function AvatarPicker({
 
           {/* Avatar grid */}
           <div className="px-6 py-4">
-            <p className="mb-3 text-sm font-bold text-[#042940]">Karakter Se&#231;</p>
+            <p className="mb-3 text-sm font-bold text-[#042940]">Karakter Seç</p>
             <div className="grid grid-cols-6 gap-2.5 sm:grid-cols-8">
               {avatarConfigs.map((config) => {
                 const isSelected = selectedId === config.id;
@@ -242,7 +242,7 @@ export function AvatarPicker({
         {/* Footer */}
         <div className="flex items-center justify-end gap-3 border-t px-6 py-4">
           <Button variant="outline" onClick={onClose} className="border-[#042940]/20 text-[#042940]">
-            &#304;ptal
+            İptal
           </Button>
           <Button
             onClick={() => {
@@ -263,7 +263,7 @@ export function AvatarPicker({
 }
 
 /* ------------------------------------------------------------------ */
-/*  Sidebar i\u00e7in mini avatar renderlay\u0131c\u0131               */
+/*  Sidebar için mini avatar renderlayıcı               */
 /* ------------------------------------------------------------------ */
 
 export function BeanHeadAvatar({ avatarId, size = 36 }: { avatarId: string; size?: number }) {

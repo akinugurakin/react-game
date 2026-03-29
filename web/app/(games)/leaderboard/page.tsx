@@ -106,60 +106,60 @@ type Player = {
 };
 
 const turkiyeData: Player[] = [
-  { rank: 1, username: "EfeY\u0131ld\u0131z", avatarIdx: 0, score: 9850, games: 142 },
+  { rank: 1, username: "EfeYıldız", avatarIdx: 0, score: 9850, games: 142 },
   { rank: 2, username: "ZeynepKaya", avatarIdx: 1, score: 9420, games: 138 },
   { rank: 3, username: "AliDemir", avatarIdx: 2, score: 9100, games: 131 },
   { rank: 4, username: "EceArslan", avatarIdx: 3, score: 8750, games: 125 },
-  { rank: 5, username: "CanY\u0131lmaz", avatarIdx: 4, score: 8500, games: 119 },
-  { rank: 6, username: "DefneKo\u00e7", avatarIdx: 5, score: 8200, games: 115 },
-  { rank: 7, username: "EmreAk\u0131n", avatarIdx: 6, score: 7900, games: 108 },
+  { rank: 5, username: "CanYılmaz", avatarIdx: 4, score: 8500, games: 119 },
+  { rank: 6, username: "DefneKoç", avatarIdx: 5, score: 8200, games: 115 },
+  { rank: 7, username: "EmreAkın", avatarIdx: 6, score: 7900, games: 108 },
   { rank: 8, username: "MertCan", avatarIdx: 8, score: 7400, games: 98 },
-  { rank: 9, username: "Ay\u015feG\u00fcl", avatarIdx: 7, score: 7100, games: 95 },
-  { rank: 10, username: "\u0130remSu", avatarIdx: 9, score: 6800, games: 90 },
+  { rank: 9, username: "AyşeGül", avatarIdx: 7, score: 7100, games: 95 },
+  { rank: 10, username: "İremSu", avatarIdx: 9, score: 6800, games: 90 },
   { rank: 11, username: "BurakAy", avatarIdx: 10, score: 6500, games: 87 },
-  { rank: 12, username: "SedaT\u00fcrk", avatarIdx: 11, score: 6200, games: 82 },
-  { rank: 13, username: "Y\u0131ld\u0131zEla", avatarIdx: 12, score: 5900, games: 78 },
+  { rank: 12, username: "SedaTürk", avatarIdx: 11, score: 6200, games: 82 },
+  { rank: 13, username: "YıldızEla", avatarIdx: 12, score: 5900, games: 78 },
   { rank: 14, username: "OnurBey", avatarIdx: 13, score: 5600, games: 74 },
-  { rank: 15, username: "NilayG\u00fcn", avatarIdx: 14, score: 5300, games: 70 },
+  { rank: 15, username: "NilayGün", avatarIdx: 14, score: 5300, games: 70 },
   { rank: 16, username: "Oyuncu", avatarIdx: 15, score: 5000, games: 66, isCurrentUser: true },
-  { rank: 17, username: "KaanDe\u011fer", avatarIdx: 16, score: 4700, games: 62 },
-  { rank: 18, username: "Tu\u011f\u00e7eAk", avatarIdx: 17, score: 4400, games: 58 },
-  { rank: 19, username: "Umut\u015Een", avatarIdx: 18, score: 4100, games: 54 },
+  { rank: 17, username: "KaanDeğer", avatarIdx: 16, score: 4700, games: 62 },
+  { rank: 18, username: "TuğçeAk", avatarIdx: 17, score: 4400, games: 58 },
+  { rank: 19, username: "UmutŞen", avatarIdx: 18, score: 4100, games: 54 },
   { rank: 20, username: "PelinAy", avatarIdx: 19, score: 3800, games: 50 },
 ];
 
 const okulData: Player[] = [
   { rank: 1, username: "EceArslan", avatarIdx: 3, score: 4850, games: 65 },
-  { rank: 2, username: "CanY\u0131lmaz", avatarIdx: 4, score: 4620, games: 61 },
-  { rank: 3, username: "EmreAk\u0131n", avatarIdx: 6, score: 4380, games: 58 },
+  { rank: 2, username: "CanYılmaz", avatarIdx: 4, score: 4620, games: 61 },
+  { rank: 3, username: "EmreAkın", avatarIdx: 6, score: 4380, games: 58 },
   { rank: 4, username: "Oyuncu", avatarIdx: 15, score: 4100, games: 55, isCurrentUser: true },
-  { rank: 5, username: "DefneKo\u00e7", avatarIdx: 5, score: 3900, games: 52 },
+  { rank: 5, username: "DefneKoç", avatarIdx: 5, score: 3900, games: 52 },
   { rank: 6, username: "MertCan", avatarIdx: 8, score: 3650, games: 48 },
-  { rank: 7, username: "\u0130remSu", avatarIdx: 9, score: 3400, games: 45 },
+  { rank: 7, username: "İremSu", avatarIdx: 9, score: 3400, games: 45 },
   { rank: 8, username: "BurakAy", avatarIdx: 10, score: 3200, games: 42 },
-  { rank: 9, username: "SedaT\u00fcrk", avatarIdx: 11, score: 2950, games: 39 },
-  { rank: 10, username: "Y\u0131ld\u0131zEla", avatarIdx: 12, score: 2700, games: 36 },
+  { rank: 9, username: "SedaTürk", avatarIdx: 11, score: 2950, games: 39 },
+  { rank: 10, username: "YıldızEla", avatarIdx: 12, score: 2700, games: 36 },
   { rank: 11, username: "OnurBey", avatarIdx: 13, score: 2500, games: 33 },
-  { rank: 12, username: "NilayG\u00fcn", avatarIdx: 14, score: 2300, games: 30 },
-  { rank: 13, username: "KaanDe\u011fer", avatarIdx: 16, score: 2100, games: 28 },
-  { rank: 14, username: "Tu\u011f\u00e7eAk", avatarIdx: 17, score: 1900, games: 25 },
-  { rank: 15, username: "Umut\u015Een", avatarIdx: 18, score: 1700, games: 22 },
+  { rank: 12, username: "NilayGün", avatarIdx: 14, score: 2300, games: 30 },
+  { rank: 13, username: "KaanDeğer", avatarIdx: 16, score: 2100, games: 28 },
+  { rank: 14, username: "TuğçeAk", avatarIdx: 17, score: 1900, games: 25 },
+  { rank: 15, username: "UmutŞen", avatarIdx: 18, score: 1700, games: 22 },
   { rank: 16, username: "PelinAy", avatarIdx: 19, score: 1500, games: 20 },
-  { rank: 17, username: "Ay\u015feG\u00fcl", avatarIdx: 7, score: 1300, games: 17 },
+  { rank: 17, username: "AyşeGül", avatarIdx: 7, score: 1300, games: 17 },
   { rank: 18, username: "ElifNur", avatarIdx: 1, score: 1100, games: 15 },
   { rank: 19, username: "AhmetCan", avatarIdx: 0, score: 900, games: 12 },
-  { rank: 20, username: "Bet\u00fclAy", avatarIdx: 11, score: 700, games: 9 },
+  { rank: 20, username: "BetülAy", avatarIdx: 11, score: 700, games: 9 },
 ];
 
 const sinifData: Player[] = [
-  { rank: 1, username: "CanY\u0131lmaz", avatarIdx: 4, score: 2450, games: 32 },
+  { rank: 1, username: "CanYılmaz", avatarIdx: 4, score: 2450, games: 32 },
   { rank: 2, username: "Oyuncu", avatarIdx: 15, score: 2280, games: 30, isCurrentUser: true },
-  { rank: 3, username: "DefneKo\u00e7", avatarIdx: 5, score: 2100, games: 28 },
+  { rank: 3, username: "DefneKoç", avatarIdx: 5, score: 2100, games: 28 },
   { rank: 4, username: "MertCan", avatarIdx: 8, score: 1920, games: 25 },
-  { rank: 5, username: "\u0130remSu", avatarIdx: 9, score: 1750, games: 23 },
+  { rank: 5, username: "İremSu", avatarIdx: 9, score: 1750, games: 23 },
   { rank: 6, username: "BurakAy", avatarIdx: 10, score: 1580, games: 21 },
-  { rank: 7, username: "SedaT\u00fcrk", avatarIdx: 11, score: 1400, games: 18 },
-  { rank: 8, username: "Y\u0131ld\u0131zEla", avatarIdx: 12, score: 1220, games: 16 },
+  { rank: 7, username: "SedaTürk", avatarIdx: 11, score: 1400, games: 18 },
+  { rank: 8, username: "YıldızEla", avatarIdx: 12, score: 1220, games: 16 },
 ];
 
 const dataByScope: Record<string, Player[]> = {
@@ -175,35 +175,35 @@ const dataByScope: Record<string, Player[]> = {
 type FilterOption = { value: string; label: string; icon: React.ElementType };
 
 const filterOptions: FilterOption[] = [
-  { value: "genel", label: "Genel S\u0131ralama", icon: Trophy },
-  { value: "turkce", label: "T\u00fcrk\u00e7e", icon: BookOpen },
+  { value: "genel", label: "Genel Sıralama", icon: Trophy },
+  { value: "turkce", label: "Türkçe", icon: BookOpen },
   { value: "matematik", label: "Matematik", icon: Calculator },
   { value: "fen", label: "Fen Bilimleri", icon: FlaskConical },
   { value: "sosyal", label: "Sosyal Bilgiler", icon: Globe },
-  { value: "ingilizce", label: "\u0130ngilizce", icon: SpellCheck },
+  { value: "ingilizce", label: "İngilizce", icon: SpellCheck },
 ];
 
 const gamesBySubject: Record<string, { value: string; label: string }[]> = {
   turkce: [
-    { value: "kelime-avi", label: "Kelime Av\u0131" },
-    { value: "hafiza-kartlari", label: "Haf\u0131za Kartlar\u0131" },
-    { value: "cumle-kurma", label: "C\u00fcmle Kurma" },
-    { value: "yazim-kilavuzu", label: "Yaz\u0131m K\u0131lavuzu" },
+    { value: "kelime-avi", label: "Kelime Avı" },
+    { value: "hafiza-kartlari", label: "Hafıza Kartları" },
+    { value: "cumle-kurma", label: "Cümle Kurma" },
+    { value: "yazim-kilavuzu", label: "Yazım Kılavuzu" },
   ],
   matematik: [
-    { value: "matematik-yarismasi", label: "Matematik Yar\u0131\u015fmas\u0131" },
-    { value: "bulmaca-dunyasi", label: "Bulmaca D\u00fcnyas\u0131" },
-    { value: "kesir-ustasi", label: "Kesir Ustas\u0131" },
+    { value: "matematik-yarismasi", label: "Matematik Yarışması" },
+    { value: "bulmaca-dunyasi", label: "Bulmaca Dünyası" },
+    { value: "kesir-ustasi", label: "Kesir Ustası" },
   ],
   fen: [
-    { value: "atom-kesfi", label: "Atom Ke\u015ffi" },
-    { value: "canlilar-alemi", label: "Canl\u0131lar Alemi" },
-    { value: "deney-labi", label: "Deney Lab\u0131" },
+    { value: "atom-kesfi", label: "Atom Keşfi" },
+    { value: "canlilar-alemi", label: "Canlılar Alemi" },
+    { value: "deney-labi", label: "Deney Labı" },
   ],
   sosyal: [
-    { value: "tarih-yolculugu", label: "Tarih Yolculu\u011fu" },
-    { value: "harita-ustasi", label: "Harita Ustas\u0131" },
-    { value: "vatandaslik", label: "Vatanda\u015fl\u0131k Bilgisi" },
+    { value: "tarih-yolculugu", label: "Tarih Yolculuğu" },
+    { value: "harita-ustasi", label: "Harita Ustası" },
+    { value: "vatandaslik", label: "Vatandaşlık Bilgisi" },
   ],
   ingilizce: [
     { value: "vocabulary-builder", label: "Vocabulary Builder" },
@@ -213,9 +213,9 @@ const gamesBySubject: Record<string, { value: string; label: string }[]> = {
 };
 
 const scopeLabels: Record<string, { label: string; icon: React.ElementType }> = {
-  turkiye: { label: "T\u00fcrkiye Geneli", icon: MapPin },
+  turkiye: { label: "Türkiye Geneli", icon: MapPin },
   okul: { label: "Okulum", icon: School },
-  sinif: { label: "S\u0131n\u0131f\u0131m", icon: UsersRound },
+  sinif: { label: "Sınıfım", icon: UsersRound },
 };
 
 /* ------------------------------------------------------------------ */
@@ -283,7 +283,7 @@ function LeaderboardContent() {
           </div>
           <div>
             <h1 className="text-3xl font-extrabold text-[#042940]">Liderlik Tablosu</h1>
-            <p className="text-sm text-[#042940]/50">{scopeInfo.label} &middot; {displayPlayers.length} ki&#351;i</p>
+            <p className="text-sm text-[#042940]/50">{scopeInfo.label} &middot; {displayPlayers.length} kişi</p>
           </div>
         </div>
       </motion.div>
@@ -320,7 +320,7 @@ function LeaderboardContent() {
               className="flex items-center gap-2 rounded-xl border border-[#042940]/10 bg-white px-4 py-2 text-sm font-medium text-[#042940] transition-colors hover:bg-[#042940]/5"
             >
               <Gamepad2 className="h-4 w-4 text-[#042940]/40" />
-              {selectedGame ? availableGames.find((g) => g.value === selectedGame)?.label : "T\u00fcm Oyunlar"}
+              {selectedGame ? availableGames.find((g) => g.value === selectedGame)?.label : "Tüm Oyunlar"}
               <ChevronDown className={cn("h-4 w-4 text-[#042940]/40 transition-transform", showGameDropdown && "rotate-180")} />
             </button>
             {showGameDropdown && (
@@ -329,7 +329,7 @@ function LeaderboardContent() {
                   onClick={() => { setSelectedGame(null); setShowGameDropdown(false); }}
                   className={cn("w-full px-4 py-2 text-left text-sm transition-colors", !selectedGame ? "bg-[#005C53]/10 font-medium text-[#005C53]" : "text-[#042940]/60 hover:bg-[#042940]/5")}
                 >
-                  T\u00fcm Oyunlar
+                  Tüm Oyunlar
                 </button>
                 {availableGames.map((game) => (
                   <button
@@ -421,7 +421,7 @@ function LeaderboardContent() {
 
 export default function LeaderboardPage() {
   return (
-    <Suspense fallback={<div className="container py-8"><p className="text-[#042940]/50">Y\u00fckleniyor...</p></div>}>
+    <Suspense fallback={<div className="container py-8"><p className="text-[#042940]/50">Yükleniyor...</p></div>}>
       <LeaderboardContent />
     </Suspense>
   );

@@ -49,90 +49,90 @@ type GameItem = {
 const freeGames: GameItem[] = [
   {
     id: 1,
-    title: "Matematik Yar\u0131\u015fmas\u0131",
-    description: "Toplama, \u00e7\u0131karma, \u00e7arpma ve b\u00f6lme ile h\u0131z\u0131n\u0131 test et.",
-    icon: Calculator, color: "bg-[#005C53]", category: "Matematik", age: "6\u201312 ya\u015f", players: 1245, duration: "3\u20135 dk", free: true,
+    title: "Matematik Yarışması",
+    description: "Toplama, çıkarma, çarpma ve bölme ile hızını test et.",
+    icon: Calculator, color: "bg-[#005C53]", category: "Matematik", age: "6–12 yaş", players: 1245, duration: "3–5 dk", free: true,
   },
   {
     id: 2,
-    title: "Kelime Av\u0131",
-    description: "Kar\u0131\u015f\u0131k harflerden anlaml\u0131 kelimeler olu\u015ftur.",
-    icon: BookOpen, color: "bg-[#9FC131]", category: "T\u00fcrk\u00e7e", age: "7\u201312 ya\u015f", players: 890, duration: "4\u20136 dk", free: true,
+    title: "Kelime Avı",
+    description: "Karışık harflerden anlamlı kelimeler oluştur.",
+    icon: BookOpen, color: "bg-[#9FC131]", category: "Türkçe", age: "7–12 yaş", players: 890, duration: "4–6 dk", free: true,
   },
   {
     id: 3,
-    title: "Haf\u0131za Kartlar\u0131",
-    description: "Kartlar\u0131 \u00e7evir ve e\u015fle\u015fen \u00e7iftleri bul.",
-    icon: Brain, color: "bg-[#042940]", category: "Haf\u0131za", age: "6\u201310 ya\u015f", players: 1100, duration: "3\u20134 dk", free: true,
+    title: "Hafıza Kartları",
+    description: "Kartları çevir ve eşleşen çiftleri bul.",
+    icon: Brain, color: "bg-[#042940]", category: "Hafıza", age: "6–10 yaş", players: 1100, duration: "3–4 dk", free: true,
   },
   {
     id: 4,
     title: "Vocabulary Builder",
-    description: "Resimlerle e\u015fle\u015ftirerek \u0130ngilizce kelime \u00f6\u011fren.",
-    icon: SpellCheck, color: "bg-[#DBF227]", category: "\u0130ngilizce", age: "7\u201312 ya\u015f", players: 780, duration: "3\u20135 dk", free: true,
+    description: "Resimlerle eşleştirerek İngilizce kelime öğren.",
+    icon: SpellCheck, color: "bg-[#DBF227]", category: "İngilizce", age: "7–12 yaş", players: 780, duration: "3–5 dk", free: true,
   },
 ];
 
 const premiumGames: GameItem[] = [
   {
     id: 5,
-    title: "Bulmaca D\u00fcnyas\u0131",
-    description: "Geometrik \u015fekilleri do\u011fru yere yerle\u015ftir. Uzamsal zek\u00e2n\u0131 geli\u015ftir!",
-    icon: Puzzle, color: "bg-[#9FC131]", category: "Geometri", age: "6\u201312 ya\u015f", players: 670, duration: "5\u20138 dk", free: false,
+    title: "Bulmaca Dünyası",
+    description: "Geometrik şekilleri doğru yere yerleştir. Uzamsal zekânı geliştir!",
+    icon: Puzzle, color: "bg-[#9FC131]", category: "Geometri", age: "6–12 yaş", players: 670, duration: "5–8 dk", free: false,
   },
   {
     id: 6,
-    title: "Kesir Ustas\u0131",
-    description: "Kesirleri kar\u015f\u0131la\u015ft\u0131r, topla ve \u00e7\u0131kar.",
-    icon: Layers, color: "bg-[#042940]", category: "Matematik", age: "8\u201312 ya\u015f", players: 540, duration: "4\u20136 dk", free: false,
+    title: "Kesir Ustası",
+    description: "Kesirleri karşılaştır, topla ve çıkar.",
+    icon: Layers, color: "bg-[#042940]", category: "Matematik", age: "8–12 yaş", players: 540, duration: "4–6 dk", free: false,
   },
   {
     id: 7,
-    title: "Atom Ke\u015ffi",
-    description: "Atomun yap\u0131s\u0131n\u0131 ke\u015ffet. Proton, n\u00f6tron ve elektronlar\u0131 yerle\u015ftir!",
-    icon: Atom, color: "bg-[#005C53]", category: "Fizik", age: "10\u201312 ya\u015f", players: 380, duration: "4\u20136 dk", free: false,
+    title: "Atom Keşfi",
+    description: "Atomun yapısını keşfet. Proton, nötron ve elektronları yerleştir!",
+    icon: Atom, color: "bg-[#005C53]", category: "Fizik", age: "10–12 yaş", players: 380, duration: "4–6 dk", free: false,
   },
   {
     id: 8,
-    title: "Canl\u0131lar Alemi",
-    description: "Canl\u0131lar\u0131 s\u0131n\u0131fland\u0131r, ya\u015fam alanlar\u0131n\u0131 ke\u015ffet.",
-    icon: TreePine, color: "bg-[#9FC131]", category: "Biyoloji", age: "6\u201310 ya\u015f", players: 720, duration: "3\u20135 dk", free: false,
+    title: "Canlılar Alemi",
+    description: "Canlıları sınıflandır, yaşam alanlarını keşfet.",
+    icon: TreePine, color: "bg-[#9FC131]", category: "Biyoloji", age: "6–10 yaş", players: 720, duration: "3–5 dk", free: false,
   },
   {
     id: 9,
-    title: "Deney Lab\u0131",
-    description: "Sanal laboratuvarda deneyler yap. Kimyasal de\u011fi\u015fimleri g\u00f6zlemle!",
-    icon: FlaskConical, color: "bg-[#042940]", category: "Kimya", age: "8\u201312 ya\u015f", players: 450, duration: "5\u20137 dk", free: false,
+    title: "Deney Labı",
+    description: "Sanal laboratuvarda deneyler yap. Kimyasal değişimleri gözlemle!",
+    icon: FlaskConical, color: "bg-[#042940]", category: "Kimya", age: "8–12 yaş", players: 450, duration: "5–7 dk", free: false,
   },
   {
     id: 10,
-    title: "Tarih Yolculu\u011fu",
-    description: "Osmanl\u0131'dan Cumhuriyet'e tarihte yolculuk yap.",
-    icon: Landmark, color: "bg-[#005C53]", category: "Tarih", age: "8\u201312 ya\u015f", players: 560, duration: "4\u20136 dk", free: false,
+    title: "Tarih Yolculuğu",
+    description: "Osmanlı'dan Cumhuriyet'e tarihte yolculuk yap.",
+    icon: Landmark, color: "bg-[#005C53]", category: "Tarih", age: "8–12 yaş", players: 560, duration: "4–6 dk", free: false,
   },
   {
     id: 11,
-    title: "Harita Ustas\u0131",
-    description: "\u015Eehirleri, da\u011flar\u0131 ve nehirleri harita \u00fczerinde bul.",
-    icon: Map, color: "bg-[#9FC131]", category: "Co\u011frafya", age: "8\u201312 ya\u015f", players: 430, duration: "3\u20135 dk", free: false,
+    title: "Harita Ustası",
+    description: "Şehirleri, dağları ve nehirleri harita üzerinde bul.",
+    icon: Map, color: "bg-[#9FC131]", category: "Coğrafya", age: "8–12 yaş", players: 430, duration: "3–5 dk", free: false,
   },
   {
     id: 12,
-    title: "C\u00fcmle Kurma",
-    description: "Kar\u0131\u015f\u0131k kelimeleri do\u011fru s\u0131raya koy.",
-    icon: MessageSquare, color: "bg-[#042940]", category: "Dilbilgisi", age: "7\u201312 ya\u015f", players: 620, duration: "3\u20135 dk", free: false,
+    title: "Cümle Kurma",
+    description: "Karışık kelimeleri doğru sıraya koy.",
+    icon: MessageSquare, color: "bg-[#042940]", category: "Dilbilgisi", age: "7–12 yaş", players: 620, duration: "3–5 dk", free: false,
   },
   {
     id: 13,
-    title: "Yaz\u0131m K\u0131lavuzu",
-    description: "Do\u011fru yaz\u0131m kurallar\u0131n\u0131 \u00f6\u011fren. Hatalar\u0131 bul!",
-    icon: Pen, color: "bg-[#005C53]", category: "Yaz\u0131m", age: "8\u201312 ya\u015f", players: 340, duration: "4\u20136 dk", free: false,
+    title: "Yazım Kılavuzu",
+    description: "Doğru yazım kurallarını öğren. Hataları bul!",
+    icon: Pen, color: "bg-[#005C53]", category: "Yazım", age: "8–12 yaş", players: 340, duration: "4–6 dk", free: false,
   },
   {
     id: 14,
     title: "Grammar Quest",
-    description: "\u0130ngilizce dilbilgisi kurallar\u0131n\u0131 e\u011flenceli sorularla peki\u015ftir!",
-    icon: BookOpen, color: "bg-[#9FC131]", category: "\u0130ngilizce", age: "8\u201312 ya\u015f", players: 520, duration: "4\u20136 dk", free: false,
+    description: "İngilizce dilbilgisi kurallarını eğlenceli sorularla pekiştir!",
+    icon: BookOpen, color: "bg-[#9FC131]", category: "İngilizce", age: "8–12 yaş", players: 520, duration: "4–6 dk", free: false,
   },
 ];
 
@@ -218,7 +218,7 @@ export default function OyunlarPage() {
 
       <main className="flex-1">
         <div className="container py-10 md:py-16">
-          {/* Ba&#351;l&#305;k */}
+          {/* Başlık */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -234,11 +234,11 @@ export default function OyunlarPage() {
               </h1>
             </div>
             <p className="text-[#042940]/50">
-              E&#287;itici oyunlarla e&#287;lenerek &#246;&#287;ren
+              Eğitici oyunlarla eğlenerek öğren
             </p>
           </motion.div>
 
-          {/* &#220;cretsiz Oyunlar */}
+          {/* Ücretsiz Oyunlar */}
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
@@ -248,7 +248,7 @@ export default function OyunlarPage() {
             <div className="mb-6 flex items-center gap-2">
               <div className="h-1 w-6 rounded-full bg-[#9FC131]" />
               <h2 className="text-xl font-bold text-[#042940]">
-                &#220;cretsiz Oyunlar
+                Ücretsiz Oyunlar
               </h2>
               <span className="rounded-full bg-[#9FC131]/15 px-2.5 py-0.5 text-xs font-bold text-[#9FC131]">
                 Hemen Oyna
@@ -262,7 +262,7 @@ export default function OyunlarPage() {
             ))}
           </div>
 
-          {/* &#220;cretli Oyunlar */}
+          {/* Ücretli Oyunlar */}
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -297,10 +297,10 @@ export default function OyunlarPage() {
             <Card className="overflow-hidden border-0 bg-[#005C53] shadow-lg">
               <CardContent className="flex flex-col items-center gap-4 p-10 text-center md:p-14">
                 <h3 className="text-2xl font-extrabold text-white md:text-3xl">
-                  T&#252;m oyunlara eri&#351;mek ister misin?
+                  Tüm oyunlara erişmek ister misin?
                 </h3>
                 <p className="text-white/60">
-                  &#304;lk hafta &#252;cretsiz. Kredi kart&#305; gerekmez.
+                  İlk hafta ücretsiz. Kredi kartı gerekmez.
                 </p>
                 <Button
                   asChild
@@ -308,7 +308,7 @@ export default function OyunlarPage() {
                   className="rounded-full bg-[#DBF227] px-8 text-base font-bold text-[#042940] hover:bg-[#DBF227]/90"
                 >
                   <Link href="/register">
-                    Hemen Ba&#351;la
+                    Hemen Başla
                     <ArrowRight className="ml-2 h-5 w-5" />
                   </Link>
                 </Button>

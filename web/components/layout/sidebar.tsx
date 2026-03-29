@@ -26,23 +26,23 @@ import { BeanHeadAvatar } from "@/components/ui/avatar-picker";
 import { SpellCheck } from "lucide-react";
 
 const oyunAltMenusu = [
-  { href: "/games?subject=turkce", icon: BookOpen, label: "T\u00fcrk\u00e7e" },
+  { href: "/games?subject=turkce", icon: BookOpen, label: "Türkçe" },
   { href: "/games?subject=matematik", icon: Calculator, label: "Matematik" },
   { href: "/games?subject=fen", icon: FlaskConical, label: "Fen Bilimleri" },
   { href: "/games?subject=sosyal", icon: Globe, label: "Sosyal Bilgiler" },
-  { href: "/games?subject=ingilizce", icon: SpellCheck, label: "\u0130ngilizce" },
+  { href: "/games?subject=ingilizce", icon: SpellCheck, label: "İngilizce" },
 ];
 
 import { MapPin, School, UsersRound } from "lucide-react";
 
 const liderlikAltMenusuOgrenci = [
-  { href: "/leaderboard?scope=turkiye", icon: MapPin, label: "T\u00fcrkiye Geneli" },
+  { href: "/leaderboard?scope=turkiye", icon: MapPin, label: "Türkiye Geneli" },
   { href: "/leaderboard?scope=okul", icon: School, label: "Okulum" },
-  { href: "/leaderboard?scope=sinif", icon: UsersRound, label: "S\u0131n\u0131f\u0131m" },
+  { href: "/leaderboard?scope=sinif", icon: UsersRound, label: "Sınıfım" },
 ];
 
 const liderlikAltMenusuOgretmen = [
-  { href: "/leaderboard?scope=turkiye", icon: MapPin, label: "T\u00fcrkiye Geneli" },
+  { href: "/leaderboard?scope=turkiye", icon: MapPin, label: "Türkiye Geneli" },
   { href: "/leaderboard?scope=okul", icon: School, label: "Okulum" },
 ];
 
@@ -53,7 +53,7 @@ const studentMenuItems = [
 ];
 
 const teacherMenuItems = [
-  { href: "/teacher", icon: LayoutDashboard, label: "\u00d6\u011fretmen Paneli" },
+  { href: "/teacher", icon: LayoutDashboard, label: "Öğretmen Paneli" },
   { href: "/games", icon: Gamepad2, label: "Oyunlar", hasSubmenu: true },
   { href: "/leaderboard", icon: Trophy, label: "Liderlik", hasSubmenu: true },
 ];
@@ -112,7 +112,7 @@ export function Sidebar() {
             <Lightbulb className="h-7 w-7 text-brand-lime" />
             <div>
               <span className="text-lg font-extrabold text-white">LUMO</span>
-              <p className="text-[10px] font-normal leading-tight text-white/40">E&#287;itsel Oyun Platformu</p>
+              <p className="text-[10px] font-normal leading-tight text-white/40">Eğitsel Oyun Platformu</p>
             </div>
           </Link>
         )}
@@ -123,7 +123,7 @@ export function Sidebar() {
         )}
       </div>
 
-      {/* Kullan&#305;c&#305; */}
+      {/* Kullanıcı */}
       <div
         className={cn(
           "border-b border-white/10 p-4",
@@ -161,7 +161,7 @@ export function Sidebar() {
             <div className="min-w-0">
               <p className="truncate text-sm font-bold">{username}</p>
               <p className="text-xs text-white/50">
-                {isGuest ? "Giri\u015f yap\u0131lmad\u0131" : isTeacher ? "\u00d6\u011fretmen" : "\u00c7evrimi\u00e7i"}
+                {isGuest ? "Giriş yapılmadı" : isTeacher ? "Öğretmen" : "Çevrimiçi"}
               </p>
             </div>
           </div>
@@ -169,7 +169,7 @@ export function Sidebar() {
       </div>
 
 
-      {/* Men&#252; */}
+      {/* Menü */}
       <nav className="flex-1 space-y-1 overflow-y-auto p-3">
         {menuItems.map((item) => {
           const basePath = item.href.split("?")[0];
@@ -182,7 +182,7 @@ export function Sidebar() {
             const setSubMenuOpen = isOyunlar ? setOyunlarAcik : setLiderlikAcik;
             const subItems = isOyunlar ? oyunAltMenusu : (isTeacher ? liderlikAltMenusuOgretmen : liderlikAltMenusuOgrenci);
             const paramKey = isOyunlar ? "subject" : "scope";
-            const allLabel = isOyunlar ? "T\u00fcm Oyunlar" : "Genel";
+            const allLabel = isOyunlar ? "Tüm Oyunlar" : "Genel";
             const AllIcon = isOyunlar ? Gamepad2 : Trophy;
 
             return (
@@ -215,7 +215,7 @@ export function Sidebar() {
                 {!collapsed && (
                   <div className={cn("overflow-hidden transition-all duration-300 ease-in-out", subMenuOpen ? "mt-1 max-h-[250px] opacity-100" : "max-h-0 opacity-0")}>
                     <div className="ml-3 space-y-0.5 border-l border-white/10 pl-3">
-                      {/* T&#252;m Oyunlar - sadece Oyunlar men&#252;s&#252;nde */}
+                      {/* Tüm Oyunlar - sadece Oyunlar menüsünde */}
                       {isOyunlar && (
                         <Link
                           href={basePath}
@@ -257,7 +257,7 @@ export function Sidebar() {
             );
           }
 
-          // Normal men&#252; &#246;&#287;esi
+          // Normal menü öğesi
           return (
             <Link
               key={item.href}
@@ -282,7 +282,7 @@ export function Sidebar() {
         })}
       </nav>
 
-      {/* Alt k&#305;s&#305;m */}
+      {/* Alt kısım */}
       <div className="border-t border-white/10 p-3 space-y-1">
         {isGuest ? (
           <Link
@@ -293,7 +293,7 @@ export function Sidebar() {
             )}
           >
             <LogOut className="h-5 w-5 shrink-0" />
-            {!collapsed && <span>Giri&#351; Yap</span>}
+            {!collapsed && <span>Giriş Yap</span>}
           </Link>
         ) : (
           <button
@@ -304,7 +304,7 @@ export function Sidebar() {
             )}
           >
             <LogOut className="h-5 w-5 shrink-0" />
-            {!collapsed && <span>&#199;&#305;k&#305;&#351; Yap</span>}
+            {!collapsed && <span>Çıkış Yap</span>}
           </button>
         )}
 
@@ -320,7 +320,7 @@ export function Sidebar() {
           ) : (
             <ChevronLeft className="h-5 w-5" />
           )}
-          {!collapsed && <span>K&#252;&#231;&#252;lt</span>}
+          {!collapsed && <span>Küçült</span>}
         </button>
       </div>
     </aside>
