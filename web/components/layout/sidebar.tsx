@@ -21,7 +21,7 @@ import { useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
 import { useAuthStore } from "@/lib/auth";
 import { HexAvatar } from "@/components/ui/hex-avatar";
-import { BeanHeadAvatar } from "@/components/ui/avatar-picker";
+import { AvatarPicker, BeanHeadAvatar } from "@/components/ui/avatar-picker";
 
 import { SpellCheck } from "lucide-react";
 
@@ -105,29 +105,21 @@ export function Sidebar() {
     return () => window.removeEventListener("storage", sync);
   }, [pathname, avatarId, avatarBg]);
   const isGuest = !isAuthenticated;
-  // Öğretmen modunu localStorage'da persist et
-  const [teacherMode, setTeacherMode] = useState(() => {
-    if (typeof window !== "undefined") {
-      if (user?.role === "teacher") return true;
-      if (window.location.pathname.startsWith("/teacher")) {
-        localStorage.setItem("lumo-teacher-mode", "true");
-        return true;
-      }
-      return localStorage.getItem("lumo-teacher-mode") === "true";
-    }
-    return false;
-  });
-  // Öğretmen sayfasına girdiğinde modu aktifle
-  useEffect(() => {
-    if (pathname.startsWith("/teacher")) {
-      setTeacherMode(true);
-      localStorage.setItem("lumo-teacher-mode", "true");
-    }
-  }, [pathname]);
-  const isTeacher = user?.role === "teacher" || teacherMode;
+  // Öğretmen sayfasındaysa öğretmen modu, değilse öğrenci/misafir
+  const isTeacher = user?.role === "teacher" || pathname.startsWith("/teacher");
   const username = isGuest ? (isTeacher ? "Öğretmen" : "Misafir") : (user?.username || "Misafir");
   const initials = username.slice(0, 2).toUpperCase();
   const menuItems = isTeacher ? teacherMenuItems : studentMenuItems;
+
+  // Avatar picker (öğretmen modda sidebar'dan açılabilir)
+  const [avatarPickerOpen, setAvatarPickerOpen] = useState(false);
+  const handleAvatarSelect = (id: string, bgColor: string) => {
+    setAvatarId(id);
+    setAvatarBg(bgColor);
+    localStorage.setItem("lumo-avatar-id", id);
+    localStorage.setItem("lumo-avatar-bg", bgColor);
+    window.dispatchEvent(new StorageEvent("storage", { key: "lumo-avatar-id", newValue: id }));
+  };
 
 
   return (
@@ -162,43 +154,51 @@ export function Sidebar() {
           collapsed && "flex justify-center"
         )}
       >
-        {collapsed ? (
-          <Link
-            href="/dashboard"
-            className="block transition-transform hover:scale-110"
-          >
-            {avatarId ? (
-              <div className="flex h-9 w-9 items-center justify-center overflow-hidden rounded-full" style={{ backgroundColor: avatarBg }}>
-                <BeanHeadAvatar avatarId={avatarId} size={36} />
-              </div>
-            ) : (
-              <HexAvatar initials={initials} size="sm" gradient="from-brand-green to-brand-lime" />
-            )}
-          </Link>
-        ) : (
-          <div className="flex items-center gap-3">
-            <Link
-              href="/dashboard"
-              className="shrink-0 transition-transform hover:scale-110"
-              title="Profil"
-            >
-              {avatarId ? (
-                <div className="flex h-9 w-9 items-center justify-center overflow-hidden rounded-full" style={{ backgroundColor: avatarBg }}>
-                  <BeanHeadAvatar avatarId={avatarId} size={36} />
-                </div>
-              ) : (
-                <HexAvatar initials={initials} size="sm" gradient="from-brand-green to-brand-lime" />
-              )}
-            </Link>
-            <div className="min-w-0">
-              <p className="truncate text-sm font-bold">{username}</p>
-              <p className="text-xs text-white/50">
-                {isGuest ? "Giriş yapılmadı" : isTeacher ? "Öğretmen" : "Çevrimiçi"}
-              </p>
+        {(() => {
+          // Öğretmen modda: avatar tıklanınca picker açılsın
+          // Misafir/öğrenci modda: avatar tıklanınca dashboard'a gitsin
+          const avatarContent = avatarId ? (
+            <div className="flex h-9 w-9 items-center justify-center overflow-hidden rounded-full" style={{ backgroundColor: avatarBg }}>
+              <BeanHeadAvatar avatarId={avatarId} size={36} />
             </div>
-          </div>
-        )}
+          ) : (
+            <HexAvatar initials={initials} size="sm" gradient="from-brand-green to-brand-lime" />
+          );
+
+          if (collapsed) {
+            return isTeacher ? (
+              <button onClick={() => setAvatarPickerOpen(true)} className="transition-transform hover:scale-110">{avatarContent}</button>
+            ) : (
+              <Link href="/dashboard" className="block transition-transform hover:scale-110">{avatarContent}</Link>
+            );
+          }
+
+          return (
+            <div className="flex items-center gap-3">
+              {isTeacher ? (
+                <button onClick={() => setAvatarPickerOpen(true)} className="shrink-0 transition-transform hover:scale-110" title="Avatar değiştir">{avatarContent}</button>
+              ) : (
+                <Link href="/dashboard" className="shrink-0 transition-transform hover:scale-110" title="Profil">{avatarContent}</Link>
+              )}
+              <div className="min-w-0">
+                <p className="truncate text-sm font-bold">{username}</p>
+                <p className="text-xs text-white/50">
+                  {isGuest ? (isTeacher ? "Öğretmen" : "Giriş yapılmadı") : isTeacher ? "Öğretmen" : "Çevrimiçi"}
+                </p>
+              </div>
+            </div>
+          );
+        })()}
       </div>
+
+      {/* Avatar Seçici (öğretmen modu) */}
+      <AvatarPicker
+        isOpen={avatarPickerOpen}
+        onClose={() => setAvatarPickerOpen(false)}
+        onSelect={handleAvatarSelect}
+        currentAvatar={avatarId || undefined}
+        currentBgColor={avatarBg}
+      />
 
 
       {/* Menü */}
@@ -331,10 +331,8 @@ export function Sidebar() {
           <button
             onClick={() => {
               logout();
-              localStorage.removeItem("lumo-teacher-mode");
               localStorage.removeItem("lumo-avatar-id");
               localStorage.removeItem("lumo-avatar-bg");
-              setTeacherMode(false);
               router.push("/");
             }}
             className={cn(
