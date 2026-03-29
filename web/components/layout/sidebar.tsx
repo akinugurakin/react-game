@@ -25,26 +25,28 @@ import { AvatarPicker, BeanHeadAvatar } from "@/components/ui/avatar-picker";
 
 import { SpellCheck } from "lucide-react";
 
-const oyunAltMenusu = [
-  { href: "/games?subject=turkce", icon: BookOpen, label: "Türkçe" },
-  { href: "/games?subject=matematik", icon: Calculator, label: "Matematik" },
-  { href: "/games?subject=fen", icon: FlaskConical, label: "Fen Bilimleri" },
-  { href: "/games?subject=sosyal", icon: Globe, label: "Sosyal Bilgiler" },
-  { href: "/games?subject=ingilizce", icon: SpellCheck, label: "İngilizce" },
-];
-
 import { MapPin, School, UsersRound } from "lucide-react";
 
-const liderlikAltMenusuOgrenci = [
-  { href: "/leaderboard?scope=turkiye", icon: MapPin, label: "Türkiye Geneli" },
-  { href: "/leaderboard?scope=okul", icon: School, label: "Okulum" },
-  { href: "/leaderboard?scope=sinif", icon: UsersRound, label: "Sınıfım" },
-];
+function getOyunAltMenusu(prefix: string) {
+  return [
+    { href: `${prefix}?subject=turkce`, icon: BookOpen, label: "Türkçe" },
+    { href: `${prefix}?subject=matematik`, icon: Calculator, label: "Matematik" },
+    { href: `${prefix}?subject=fen`, icon: FlaskConical, label: "Fen Bilimleri" },
+    { href: `${prefix}?subject=sosyal`, icon: Globe, label: "Sosyal Bilgiler" },
+    { href: `${prefix}?subject=ingilizce`, icon: SpellCheck, label: "İngilizce" },
+  ];
+}
 
-const liderlikAltMenusuOgretmen = [
-  { href: "/leaderboard?scope=turkiye", icon: MapPin, label: "Türkiye Geneli" },
-  { href: "/leaderboard?scope=okul", icon: School, label: "Okulum" },
-];
+function getLiderlikAltMenusu(prefix: string, showSinif: boolean) {
+  const items = [
+    { href: `${prefix}?scope=turkiye`, icon: MapPin, label: "Türkiye Geneli" },
+    { href: `${prefix}?scope=okul`, icon: School, label: "Okulum" },
+  ];
+  if (showSinif) {
+    items.push({ href: `${prefix}?scope=sinif`, icon: UsersRound, label: "Sınıfım" });
+  }
+  return items;
+}
 
 const studentMenuItems = [
   { href: "/dashboard", icon: User, label: "Profil" },
@@ -54,8 +56,8 @@ const studentMenuItems = [
 
 const teacherMenuItems = [
   { href: "/teacher", icon: LayoutDashboard, label: "Öğretmen Paneli" },
-  { href: "/games", icon: Gamepad2, label: "Oyunlar", hasSubmenu: true },
-  { href: "/leaderboard", icon: Trophy, label: "Liderlik", hasSubmenu: true },
+  { href: "/teacher/games", icon: Gamepad2, label: "Oyunlar", hasSubmenu: true },
+  { href: "/teacher/leaderboard", icon: Trophy, label: "Liderlik", hasSubmenu: true },
 ];
 
 export function Sidebar() {
@@ -212,7 +214,9 @@ export function Sidebar() {
             const isLiderlik = item.href === "/leaderboard";
             const subMenuOpen = isOyunlar ? oyunlarAcik : liderlikAcik;
             const setSubMenuOpen = isOyunlar ? setOyunlarAcik : setLiderlikAcik;
-            const subItems = isOyunlar ? oyunAltMenusu : (isTeacher ? liderlikAltMenusuOgretmen : liderlikAltMenusuOgrenci);
+            const gamesPrefix = isTeacher ? "/teacher/games" : "/games";
+            const leaderboardPrefix = isTeacher ? "/teacher/leaderboard" : "/leaderboard";
+            const subItems = isOyunlar ? getOyunAltMenusu(gamesPrefix) : getLiderlikAltMenusu(leaderboardPrefix, !isTeacher);
             const paramKey = isOyunlar ? "subject" : "scope";
             const allLabel = isOyunlar ? "Tüm Oyunlar" : "Genel";
             const AllIcon = isOyunlar ? Gamepad2 : Trophy;
