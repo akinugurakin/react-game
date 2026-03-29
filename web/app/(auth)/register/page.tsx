@@ -89,7 +89,7 @@ function RegisterContent() {
       );
       router.push(role === "teacher" ? "/teacher" : "/dashboard");
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Bir hata olu\u015ftu");
+      setError(err instanceof Error ? err.message : "Bir hata oluştu");
     } finally {
       setLoading(false);
     }
@@ -108,13 +108,13 @@ function RegisterContent() {
             <p className="text-[9px] font-normal text-brand-dark/40">E&#287;itsel Oyun Platformu</p>
           </div>
         </Link>
-        <h1 className="text-3xl font-extrabold">Kay\u0131t Ol</h1>
+        <h1 className="text-3xl font-extrabold">Kayıt Ol</h1>
         <p className="mt-2 text-muted-foreground">
           {step === "role"
-            ? "Nas\u0131l kay\u0131t olmak istiyorsun?"
+            ? "Nasıl kayıt olmak istiyorsun?"
             : role === "teacher"
-              ? "\u00d6\u011fretmen hesab\u0131 olu\u015ftur"
-              : "Yeni bir hesap olu\u015ftur ve oynamaya ba\u015fla"}
+              ? "Öğretmen hesabı oluştur"
+              : "Yeni bir hesap oluştur ve oynamaya başla"}
         </p>
       </div>
 
@@ -143,15 +143,15 @@ function RegisterContent() {
               </div>
               <div className="text-center">
                 <p className="font-bold text-[#042940]">&#214;&#287;retmen</p>
-                <p className="mt-1 text-xs text-muted-foreground">S\u0131n\u0131f y&#246;net, takip et</p>
+                <p className="mt-1 text-xs text-muted-foreground">Sınıf y&#246;net, takip et</p>
               </div>
             </button>
           </div>
 
           <p className="text-center text-sm text-muted-foreground">
-            Zaten hesab\u0131n var m\u0131?{" "}
+            Zaten hesabın var mı?{" "}
             <Link href="/login" className="font-semibold text-brand-dark hover:underline">
-              Giri\u015f Yap
+              Giriş Yap
             </Link>
           </p>
         </div>
@@ -175,7 +175,7 @@ function RegisterContent() {
               <GraduationCap className="h-5 w-5 text-[#005C53]" />
             )}
             <span className="text-sm font-semibold text-[#042940]">
-              {role === "teacher" ? "\u00d6\u011fretmen Kay\u0131t" : "\u00d6\u011frenci Kay\u0131t"}
+              {role === "teacher" ? "Öğretmen Kayıt" : "Öğrenci Kayıt"}
             </span>
           </div>
 
@@ -192,8 +192,8 @@ function RegisterContent() {
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="username">{role === "teacher" ? "Ad Soyad" : "Kullan\u0131c\u0131 Ad\u0131"}</Label>
-              <Input id="username" name="username" placeholder={role === "teacher" ? "Ay\u015fe Y\u0131lmaz" : "oyuncu123"} value={formData.username} onChange={handleChange} required minLength={3} maxLength={50} />
+              <Label htmlFor="username">{role === "teacher" ? "Ad Soyad" : "Kullanıcı Adı"}</Label>
+              <Input id="username" name="username" placeholder={role === "teacher" ? "Ayşe Yılmaz" : "oyuncu123"} value={formData.username} onChange={handleChange} required minLength={3} maxLength={50} />
             </div>
 
             <div className="space-y-2">
@@ -203,7 +203,7 @@ function RegisterContent() {
 
             {role === "student" && (
               <div className="space-y-2">
-                <Label htmlFor="age">Ya\u015f</Label>
+                <Label htmlFor="age">Yaş</Label>
                 <Input id="age" name="age" type="number" placeholder="8" min={4} max={100} value={formData.age} onChange={handleChange} required />
               </div>
             )}
@@ -211,28 +211,28 @@ function RegisterContent() {
             {needsParent && (
               <div className="space-y-2 rounded-lg bg-muted/50 p-4">
                 <p className="text-sm text-muted-foreground">
-                  13 ya\u015f alt\u0131 kullan\u0131c\u0131lar i\u00e7in ebeveyn e-postas\u0131 gereklidir.
+                  13 yaş altı kullanıcılar için ebeveyn e-postası gereklidir.
                 </p>
-                <Label htmlFor="parent_email">Ebeveyn E-postas\u0131</Label>
+                <Label htmlFor="parent_email">Ebeveyn E-postası</Label>
                 <Input id="parent_email" name="parent_email" type="email" placeholder="ebeveyn@email.com" value={formData.parent_email} onChange={handleChange} required />
               </div>
             )}
 
             {role === "teacher" && (
               <div className="space-y-2">
-                <Label htmlFor="school_name">Okul Ad\u0131 (Opsiyonel)</Label>
-                <Input id="school_name" name="school_name" placeholder="Atat\u00fcrk \u0130lkokulu" value={formData.school_name} onChange={handleChange} />
+                <Label htmlFor="school_name">Okul Adı (Opsiyonel)</Label>
+                <Input id="school_name" name="school_name" placeholder="Atatürk İlkokulu" value={formData.school_name} onChange={handleChange} />
               </div>
             )}
 
             <Button type="submit" className="w-full" size="lg" disabled={loading}>
-              {loading ? "Kay\u0131t yap\u0131l\u0131yor..." : "Kay\u0131t Ol"}
+              {loading ? "Kayıt yapılıyor..." : "Kayıt Ol"}
             </Button>
 
             <p className="text-center text-sm text-muted-foreground">
-              Zaten hesab\u0131n var m\u0131?{" "}
+              Zaten hesabın var mı?{" "}
               <Link href="/login" className="font-semibold text-brand-dark hover:underline">
-                Giri\u015f Yap
+                Giriş Yap
               </Link>
             </p>
           </form>
@@ -244,7 +244,7 @@ function RegisterContent() {
 
 export default function RegisterPage() {
   return (
-    <Suspense fallback={<div className="flex min-h-[50vh] items-center justify-center"><p className="text-muted-foreground">Y\u00fckleniyor...</p></div>}>
+    <Suspense fallback={<div className="flex min-h-[50vh] items-center justify-center"><p className="text-muted-foreground">Yükleniyor...</p></div>}>
       <RegisterContent />
     </Suspense>
   );

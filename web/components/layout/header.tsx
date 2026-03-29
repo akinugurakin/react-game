@@ -91,7 +91,7 @@ const NAV_ITEMS: MegaMenuItem[] = [
             label: "Öğretmenler İçin",
             description: "Sınıfınızı oluşturun, ilerlemeyi takip edin",
             icon: GraduationCap,
-            href: "#ogretmenler",
+            href: "/teacher",
           },
           {
             label: "Veliler İçin",

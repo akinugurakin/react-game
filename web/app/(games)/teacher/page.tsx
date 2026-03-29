@@ -29,19 +29,19 @@ const siniflar = [
 ];
 
 const sonAktiviteler = [
-  { ogrenci: "Efe Y\u0131ld\u0131z", oyun: "Matematik Yar\u0131\u015fmas\u0131", puan: 850, sinif: "5-A", sure: "3 dk" },
-  { ogrenci: "Zeynep Kaya", oyun: "Kelime Av\u0131", puan: 720, sinif: "5-A", sure: "5 dk" },
-  { ogrenci: "Ali Demir", oyun: "Atom Ke\u015ffi", puan: 680, sinif: "5-B", sure: "4 dk" },
-  { ogrenci: "Ece Arslan", oyun: "Harita Ustas\u0131", puan: 640, sinif: "6-A", sure: "3 dk" },
-  { ogrenci: "Can Y\u0131lmaz", oyun: "Vocabulary Builder", puan: 590, sinif: "5-A", sure: "4 dk" },
+  { ogrenci: "Efe Yıldız", oyun: "Matematik Yarışması", puan: 850, sinif: "5-A", sure: "3 dk" },
+  { ogrenci: "Zeynep Kaya", oyun: "Kelime Avı", puan: 720, sinif: "5-A", sure: "5 dk" },
+  { ogrenci: "Ali Demir", oyun: "Atom Keşfi", puan: 680, sinif: "5-B", sure: "4 dk" },
+  { ogrenci: "Ece Arslan", oyun: "Harita Ustası", puan: 640, sinif: "6-A", sure: "3 dk" },
+  { ogrenci: "Can Yılmaz", oyun: "Vocabulary Builder", puan: 590, sinif: "5-A", sure: "4 dk" },
 ];
 
 const enAktifOgrenciler = [
-  { ad: "Efe Y\u0131ld\u0131z", oyunSayisi: 45, sinif: "5-A" },
+  { ad: "Efe Yıldız", oyunSayisi: 45, sinif: "5-A" },
   { ad: "Zeynep Kaya", oyunSayisi: 38, sinif: "5-A" },
   { ad: "Ali Demir", oyunSayisi: 32, sinif: "5-B" },
   { ad: "Ece Arslan", oyunSayisi: 28, sinif: "6-A" },
-  { ad: "Can Y\u0131lmaz", oyunSayisi: 25, sinif: "5-A" },
+  { ad: "Can Yılmaz", oyunSayisi: 25, sinif: "5-A" },
 ];
 
 /* ------------------------------------------------------------------ */
@@ -50,30 +50,30 @@ const enAktifOgrenciler = [
 
 export default function TeacherDashboard() {
   const { user } = useAuthStore();
-  const username = user?.username || "\u00d6\u011fretmen";
+  const username = user?.username || "Öğretmen";
 
   const toplamOgrenci = siniflar.reduce((a, s) => a + s.ogrenciSayisi, 0);
   const ortalamaIlerleme = Math.round(siniflar.reduce((a, s) => a + s.ortalamaIlerleme, 0) / siniflar.length);
 
   return (
     <div className="container py-8">
-      {/* Ba\u015fl\u0131k */}
+      {/* Başlık */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4 }}
         className="mb-8"
       >
-        <h1 className="text-3xl font-extrabold">Ho\u015f geldiniz, {username}</h1>
-        <p className="mt-1 text-muted-foreground">\u00d6\u011fretmen Paneli</p>
+        <h1 className="text-3xl font-extrabold">Hoş geldiniz, {username}</h1>
+        <p className="mt-1 text-muted-foreground">Öğretmen Paneli</p>
       </motion.div>
 
-      {/* \u0130statistik kartlar\u0131 */}
+      {/* İstatistik kartları */}
       <div className="mb-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         {[
-          { title: "Toplam \u00d6\u011frenci", value: toplamOgrenci.toString(), icon: Users, color: "bg-[#005C53]/10", iconColor: "text-[#005C53]" },
-          { title: "S\u0131n\u0131f Say\u0131s\u0131", value: siniflar.length.toString(), icon: BookOpen, color: "bg-[#9FC131]/10", iconColor: "text-[#9FC131]" },
-          { title: "Ortalama \u0130lerleme", value: `%${ortalamaIlerleme}`, icon: TrendingUp, color: "bg-[#DBF227]/10", iconColor: "text-[#9FC131]" },
+          { title: "Toplam Öğrenci", value: toplamOgrenci.toString(), icon: Users, color: "bg-[#005C53]/10", iconColor: "text-[#005C53]" },
+          { title: "Sınıf Sayısı", value: siniflar.length.toString(), icon: BookOpen, color: "bg-[#9FC131]/10", iconColor: "text-[#9FC131]" },
+          { title: "Ortalama İlerleme", value: `%${ortalamaIlerleme}`, icon: TrendingUp, color: "bg-[#DBF227]/10", iconColor: "text-[#9FC131]" },
           { title: "Bu Hafta Oynanan", value: "156", icon: Gamepad2, color: "bg-[#042940]/10", iconColor: "text-[#042940]" },
         ].map((stat, index) => (
           <motion.div
@@ -98,14 +98,14 @@ export default function TeacherDashboard() {
       </div>
 
       <div className="grid gap-8 lg:grid-cols-3">
-        {/* Sol — S\u0131n\u0131flar + Son Aktivite */}
+        {/* Sol — Sınıflar + Son Aktivite */}
         <div className="lg:col-span-2 space-y-8">
-          {/* S\u0131n\u0131flar */}
+          {/* Sınıflar */}
           <div>
             <div className="mb-4 flex items-center justify-between">
-              <h2 className="text-xl font-bold">S\u0131n\u0131flar\u0131m</h2>
+              <h2 className="text-xl font-bold">Sınıflarım</h2>
               <Button size="sm" className="bg-[#005C53] text-white hover:bg-[#005C53]/90">
-                <Plus className="mr-1 h-4 w-4" /> Yeni S\u0131n\u0131f
+                <Plus className="mr-1 h-4 w-4" /> Yeni Sınıf
               </Button>
             </div>
             <div className="grid gap-4 sm:grid-cols-3">
@@ -122,10 +122,10 @@ export default function TeacherDashboard() {
                         <h3 className="text-lg font-bold">{sinif.ad}</h3>
                         <ChevronRight className="h-5 w-5 text-muted-foreground transition-transform group-hover:translate-x-1" />
                       </div>
-                      <p className="text-sm text-muted-foreground">{sinif.ogrenciSayisi} \u00f6\u011frenci</p>
+                      <p className="text-sm text-muted-foreground">{sinif.ogrenciSayisi} öğrenci</p>
                       <div className="mt-3">
                         <div className="flex items-center justify-between text-xs">
-                          <span className="text-muted-foreground">\u0130lerleme</span>
+                          <span className="text-muted-foreground">İlerleme</span>
                           <span className="font-bold text-[#9FC131]">%{sinif.ortalamaIlerleme}</span>
                         </div>
                         <div className="mt-1 h-2 w-full overflow-hidden rounded-full bg-muted">
@@ -176,9 +176,9 @@ export default function TeacherDashboard() {
           </div>
         </div>
 
-        {/* Sa\u011f — En Aktif \u00d6\u011frenciler */}
+        {/* Sağ — En Aktif Öğrenciler */}
         <div>
-          <h2 className="mb-4 text-xl font-bold">En Aktif \u00d6\u011frenciler</h2>
+          <h2 className="mb-4 text-xl font-bold">En Aktif Öğrenciler</h2>
           <Card className="border-0 shadow-sm">
             <CardContent className="p-0">
               <div className="divide-y">
@@ -207,13 +207,13 @@ export default function TeacherDashboard() {
             </CardContent>
           </Card>
 
-          {/* H\u0131zl\u0131 eri\u015fim */}
+          {/* Hızlı erişim */}
           <div className="mt-6 space-y-3">
-            <h2 className="text-xl font-bold">H\u0131zl\u0131 Eri\u015fim</h2>
+            <h2 className="text-xl font-bold">Hızlı Erişim</h2>
             {[
-              { label: "\u00d6\u011frenci Ekle", icon: Users, color: "bg-[#005C53]" },
-              { label: "\u0130lerleme Raporu", icon: BarChart3, color: "bg-[#9FC131]" },
-              { label: "S\u0131n\u0131f Liderlik Tablosu", icon: Trophy, color: "bg-[#042940]" },
+              { label: "Öğrenci Ekle", icon: Users, color: "bg-[#005C53]" },
+              { label: "İlerleme Raporu", icon: BarChart3, color: "bg-[#9FC131]" },
+              { label: "Sınıf Liderlik Tablosu", icon: Trophy, color: "bg-[#042940]" },
             ].map((item, i) => (
               <motion.div
                 key={item.label}

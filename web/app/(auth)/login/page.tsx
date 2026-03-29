@@ -60,7 +60,7 @@ export default function LoginPage() {
       );
       router.push(role === "teacher" ? "/teacher" : "/dashboard");
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Bir hata olu\u015ftu");
+      setError(err instanceof Error ? err.message : "Bir hata oluştu");
     } finally {
       setLoading(false);
     }
@@ -82,17 +82,17 @@ export default function LoginPage() {
         <h1 className="text-3xl font-extrabold">Giri&#351; Yap</h1>
         <p className="mt-2 text-muted-foreground">
           {step === "role"
-            ? "Nas\u0131l giri\u015f yapmak istiyorsun?"
+            ? "Nasıl giriş yapmak istiyorsun?"
             : role === "teacher"
-              ? "\u00d6\u011fretmen hesab\u0131na giri\u015f yap"
-              : "Hesab\u0131na giri\u015f yap ve oynamaya ba\u015fla"}
+              ? "Öğretmen hesabına giriş yap"
+              : "Hesabına giriş yap ve oynamaya başla"}
         </p>
       </div>
 
       {step === "role" ? (
         <div className="space-y-4">
           <div className="grid grid-cols-2 gap-4">
-            {/* \u00d6\u011frenci */}
+            {/* Öğrenci */}
             <button
               onClick={() => { setRole("student"); setStep("form"); }}
               className="group flex flex-col items-center gap-3 rounded-2xl border-2 border-transparent bg-background p-8 shadow-sm transition-all hover:border-[#005C53] hover:shadow-md"
@@ -106,7 +106,7 @@ export default function LoginPage() {
               </div>
             </button>
 
-            {/* \u00d6\u011fretmen */}
+            {/* Öğretmen */}
             <button
               onClick={() => { setRole("teacher"); setStep("form"); }}
               className="group flex flex-col items-center gap-3 rounded-2xl border-2 border-transparent bg-background p-8 shadow-sm transition-all hover:border-[#9FC131] hover:shadow-md"
@@ -116,15 +116,15 @@ export default function LoginPage() {
               </div>
               <div className="text-center">
                 <p className="font-bold text-[#042940]">&#214;&#287;retmen</p>
-                <p className="mt-1 text-xs text-muted-foreground">S\u0131n\u0131f y&#246;net, takip et</p>
+                <p className="mt-1 text-xs text-muted-foreground">Sınıf y&#246;net, takip et</p>
               </div>
             </button>
           </div>
 
           <p className="text-center text-sm text-muted-foreground">
-            Hesab\u0131n yok mu?{" "}
+            Hesabın yok mu?{" "}
             <Link href="/register" className="font-semibold text-brand-dark hover:underline">
-              Kay\u0131t Ol
+              Kayıt Ol
             </Link>
           </p>
         </div>
@@ -150,7 +150,7 @@ export default function LoginPage() {
               <GraduationCap className="h-5 w-5 text-[#005C53]" />
             )}
             <span className="text-sm font-semibold text-[#042940]">
-              {role === "teacher" ? "\u00d6\u011fretmen Giri\u015fi" : "\u00d6\u011frenci Giri\u015fi"}
+              {role === "teacher" ? "Öğretmen Girişi" : "Öğrenci Girişi"}
             </span>
           </div>
 
@@ -186,13 +186,13 @@ export default function LoginPage() {
             </div>
 
             <Button type="submit" className="w-full" size="lg" disabled={loading}>
-              {loading ? "Giri\u015f yap\u0131l\u0131yor..." : "Giri\u015f Yap"}
+              {loading ? "Giriş yapılıyor..." : "Giriş Yap"}
             </Button>
 
             <p className="text-center text-sm text-muted-foreground">
-              Hesab\u0131n yok mu?{" "}
+              Hesabın yok mu?{" "}
               <Link href={`/register${role === "teacher" ? "?role=teacher" : ""}`} className="font-semibold text-brand-dark hover:underline">
-                Kay\u0131t Ol
+                Kayıt Ol
               </Link>
             </p>
           </form>
