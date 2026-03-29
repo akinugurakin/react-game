@@ -208,7 +208,7 @@ export default function HomePage() {
         {/* ═══════════════════════════════════════════════════════════ */}
         {/*  HERO                                                      */}
         {/* ═══════════════════════════════════════════════════════════ */}
-        <section className="relative overflow-hidden pb-20 pt-28 md:pb-28 md:pt-36">
+        <section className="relative overflow-hidden pb-14 pt-16 md:pb-20 md:pt-20">
           <div className="container">
             <div className="flex flex-col items-center text-center">
               {/* Badge */}
@@ -377,7 +377,7 @@ export default function HomePage() {
         {/* ═══════════════════════════════════════════════════════════ */}
         {/*  NASIL &#199;ALI&#350;IR                                   */}
         {/* ═══════════════════════════════════════════════════════════ */}
-        <section id="nasil-calisir" className="py-20 md:py-28">
+        <section id="nasil-calisir" className="py-16 md:py-20">
           <div className="container">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -432,7 +432,7 @@ export default function HomePage() {
         {/* ═══════════════════════════════════════════════════════════ */}
         {/*  POP&#220;LER OYUNLAR \u2014 ss38 kart yap&#305;s&#305;    */}
         {/* ═══════════════════════════════════════════════════════════ */}
-        <section className="py-20 md:py-28">
+        <section className="py-16 md:py-20">
           <div className="container">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -580,7 +580,7 @@ export default function HomePage() {
         {/* ═══════════════════════════════════════════════════════════ */}
         {/*  DERSLER                                                   */}
         {/* ═══════════════════════════════════════════════════════════ */}
-        <section className="py-20 md:py-28">
+        <section className="py-16 md:py-20">
           <div className="container">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -647,7 +647,7 @@ export default function HomePage() {
         {/* ═══════════════════════════════════════════════════════════ */}
         {/*  YORUMLAR                                                  */}
         {/* ═══════════════════════════════════════════════════════════ */}
-        <section className="py-20 md:py-28">
+        <section className="py-16 md:py-20">
           <div className="container">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -744,7 +744,7 @@ export default function HomePage() {
         {/* ═══════════════════════════════════════════════════════════ */}
         {/*  &#214;&#286;RETMENLER                                     */}
         {/* ═══════════════════════════════════════════════════════════ */}
-        <section className="py-20 md:py-28">
+        <section className="py-16 md:py-20">
           <div className="container">
             <div className="grid items-center gap-10 md:grid-cols-2">
               {/* Sol \u2014 Mock dashboard */}
@@ -859,7 +859,7 @@ export default function HomePage() {
         {/* ═══════════════════════════════════════════════════════════ */}
         {/*  G&#220;VENL&#304;K                                        */}
         {/* ═══════════════════════════════════════════════════════════ */}
-        <section className="py-20 md:py-28">
+        <section className="py-16 md:py-20">
           <div className="container">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -904,7 +904,7 @@ export default function HomePage() {
         {/* ═══════════════════════════════════════════════════════════ */}
         {/*  &#220;CRETS&#304;Z DENEME CTA                            */}
         {/* ═══════════════════════════════════════════════════════════ */}
-        <section className="py-20 md:py-28">
+        <section className="py-16 md:py-20">
           <div className="container">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
