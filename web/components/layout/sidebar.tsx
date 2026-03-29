@@ -41,8 +41,6 @@ const liderlikAltMenusu = [
   { href: "/leaderboard?scope=sinif", icon: UsersRound, label: "S\u0131n\u0131f\u0131m" },
 ];
 
-import { LayoutDashboard } from "lucide-react";
-
 const studentMenuItems = [
   { href: "/dashboard", icon: User, label: "Profil" },
   { href: "/games", icon: Gamepad2, label: "Oyunlar", hasSubmenu: true },
