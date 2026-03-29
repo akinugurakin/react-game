@@ -39,15 +39,15 @@ function RegisterContent() {
     email: "",
     username: "",
     password: "",
-    age: "",
+    sinif: "",
     parent_email: "",
     school_name: "",
   });
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
-  const age = parseInt(formData.age) || 0;
-  const needsParent = role === "student" && age > 0 && age < 13;
+  const sinifNum = parseInt(formData.sinif) || 0;
+  const needsParent = role === "student" && sinifNum > 0 && sinifNum <= 4;
 
   useEffect(() => {
     if (hydrated && isAuthenticated) {
@@ -72,12 +72,13 @@ function RegisterContent() {
         role,
       };
       if (role === "student") {
-        payload.age = parseInt(formData.age);
+        payload.sinif = parseInt(formData.sinif);
+        if (formData.school_name) payload.school_name = formData.school_name;
         if (needsParent && formData.parent_email) {
           payload.parent_email = formData.parent_email;
         }
       }
-      if (role === "teacher" && formData.school_name) {
+      if (role === "teacher") {
         payload.school_name = formData.school_name;
       }
 
@@ -192,8 +193,8 @@ function RegisterContent() {
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="username">{role === "teacher" ? "Ad Soyad" : "Kullanıcı Adı"}</Label>
-              <Input id="username" name="username" placeholder={role === "teacher" ? "Ayşe Yılmaz" : "oyuncu123"} value={formData.username} onChange={handleChange} required minLength={3} maxLength={50} />
+              <Label htmlFor="username">Ad Soyad</Label>
+              <Input id="username" name="username" placeholder={role === "teacher" ? "Ay\u015fe Y\u0131lmaz" : "Ali Demir"} value={formData.username} onChange={handleChange} required minLength={3} maxLength={50} />
             </div>
 
             <div className="space-y-2">
@@ -203,25 +204,44 @@ function RegisterContent() {
 
             {role === "student" && (
               <div className="space-y-2">
-                <Label htmlFor="age">Yaş</Label>
-                <Input id="age" name="age" type="number" placeholder="8" min={4} max={100} value={formData.age} onChange={handleChange} required />
+                <Label htmlFor="sinif">S\u0131n\u0131f</Label>
+                <select
+                  id="sinif"
+                  name="sinif"
+                  value={formData.sinif}
+                  onChange={(e) => setFormData((prev) => ({ ...prev, sinif: e.target.value }))}
+                  required
+                  className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                >
+                  <option value="">S\u0131n\u0131f se\u00e7in</option>
+                  {[1,2,3,4,5,6,7,8].map((s) => (
+                    <option key={s} value={s}>{s}. S\u0131n\u0131f</option>
+                  ))}
+                </select>
+              </div>
+            )}
+
+            {role === "student" && (
+              <div className="space-y-2">
+                <Label htmlFor="school_name">Okul Ad\u0131 (Opsiyonel)</Label>
+                <Input id="school_name" name="school_name" placeholder="Atat\u00fcrk \u0130lkokulu" value={formData.school_name} onChange={handleChange} />
               </div>
             )}
 
             {needsParent && (
               <div className="space-y-2 rounded-lg bg-muted/50 p-4">
                 <p className="text-sm text-muted-foreground">
-                  13 yaş altı kullanıcılar için ebeveyn e-postası gereklidir.
+                  1-4. s\u0131n\u0131f \u00f6\u011frencileri i\u00e7in ebeveyn e-postas\u0131 gereklidir.
                 </p>
-                <Label htmlFor="parent_email">Ebeveyn E-postası</Label>
+                <Label htmlFor="parent_email">Ebeveyn E-postas\u0131</Label>
                 <Input id="parent_email" name="parent_email" type="email" placeholder="ebeveyn@email.com" value={formData.parent_email} onChange={handleChange} required />
               </div>
             )}
 
             {role === "teacher" && (
               <div className="space-y-2">
-                <Label htmlFor="school_name">Okul Adı (Opsiyonel)</Label>
-                <Input id="school_name" name="school_name" placeholder="Atatürk İlkokulu" value={formData.school_name} onChange={handleChange} />
+                <Label htmlFor="school_name">Okul Ad\u0131</Label>
+                <Input id="school_name" name="school_name" placeholder="Atat\u00fcrk \u0130lkokulu" value={formData.school_name} onChange={handleChange} required />
               </div>
             )}
 

@@ -79,14 +79,11 @@ export default function LoginPage() {
             <p className="text-[9px] font-normal text-brand-dark/40">E&#287;itsel Oyun Platformu</p>
           </div>
         </Link>
-        <h1 className="text-3xl font-extrabold">Giri&#351; Yap</h1>
-        <p className="mt-2 text-muted-foreground">
-          {step === "role"
-            ? "Nasıl giriş yapmak istiyorsun?"
-            : role === "teacher"
-              ? "Öğretmen hesabına giriş yap"
-              : "Hesabına giriş yap ve oynamaya başla"}
-        </p>
+        {step !== "role" && (
+          <p className="mt-2 text-muted-foreground">
+            {role === "teacher" ? "Öğretmen hesabına giriş yap" : "Hesabına giriş yap ve oynamaya başla"}
+          </p>
+        )}
       </div>
 
       {step === "role" ? (
