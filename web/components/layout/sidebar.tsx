@@ -49,7 +49,7 @@ const menuItems = [
 
 export function Sidebar() {
   const pathname = usePathname();
-  const { user, logout } = useAuthStore();
+  const { user, logout, isAuthenticated } = useAuthStore();
   const [collapsed, setCollapsed] = useState(false);
   const [oyunlarAcik, setOyunlarAcik] = useState(pathname.startsWith("/games"));
   const [liderlikAcik, setLiderlikAcik] = useState(pathname.startsWith("/leaderboard"));
@@ -78,7 +78,8 @@ export function Sidebar() {
     if (typeof window !== "undefined") return localStorage.getItem("lumo-avatar-bg") || "#DBEAFE";
     return "#DBEAFE";
   });
-  const username = user?.username || "Oyuncu";
+  const isGuest = !isAuthenticated;
+  const username = isGuest ? "Misafir" : (user?.username || "Oyuncu");
   const initials = username.slice(0, 2).toUpperCase();
 
 
@@ -145,7 +146,7 @@ export function Sidebar() {
             <div className="min-w-0">
               <p className="truncate text-sm font-bold">{username}</p>
               <p className="text-xs text-white/50">
-                &#199;evrimi&#231;i
+                {isGuest ? "Giri\u015f yap\u0131lmad\u0131" : "\u00c7evrimi\u00e7i"}
               </p>
             </div>
           </div>
@@ -268,16 +269,29 @@ export function Sidebar() {
 
       {/* Alt k&#305;s&#305;m */}
       <div className="border-t border-white/10 p-3 space-y-1">
-        <button
-          onClick={logout}
-          className={cn(
-            "flex w-full items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-white/60 transition-colors hover:bg-white/10 hover:text-white",
-            collapsed && "justify-center px-2"
-          )}
-        >
-          <LogOut className="h-5 w-5 shrink-0" />
-          {!collapsed && <span>&#199;&#305;k&#305;&#351; Yap</span>}
-        </button>
+        {isGuest ? (
+          <Link
+            href="/login"
+            className={cn(
+              "flex w-full items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-brand-lime transition-colors hover:bg-white/10",
+              collapsed && "justify-center px-2"
+            )}
+          >
+            <LogOut className="h-5 w-5 shrink-0" />
+            {!collapsed && <span>Giri&#351; Yap</span>}
+          </Link>
+        ) : (
+          <button
+            onClick={logout}
+            className={cn(
+              "flex w-full items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-white/60 transition-colors hover:bg-white/10 hover:text-white",
+              collapsed && "justify-center px-2"
+            )}
+          >
+            <LogOut className="h-5 w-5 shrink-0" />
+            {!collapsed && <span>&#199;&#305;k&#305;&#351; Yap</span>}
+          </button>
+        )}
 
         <button
           onClick={() => setCollapsed(!collapsed)}
