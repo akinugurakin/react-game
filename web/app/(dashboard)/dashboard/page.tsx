@@ -100,6 +100,26 @@ export default function DashboardPage() {
   const username = user?.username || "Misafir";
   const initials = username.slice(0, 2).toUpperCase();
 
+  // Gizlilik ayarları
+  const [showName, setShowName] = useState(() => {
+    if (typeof window !== "undefined") return localStorage.getItem("lumo-show-name") !== "false";
+    return true;
+  });
+  const [showSchool, setShowSchool] = useState(() => {
+    if (typeof window !== "undefined") return localStorage.getItem("lumo-show-school") !== "false";
+    return true;
+  });
+  const toggleShowName = () => {
+    const next = !showName;
+    setShowName(next);
+    localStorage.setItem("lumo-show-name", String(next));
+  };
+  const toggleShowSchool = () => {
+    const next = !showSchool;
+    setShowSchool(next);
+    localStorage.setItem("lumo-show-school", String(next));
+  };
+
   const [avatarPickerOpen, setAvatarPickerOpen] = useState(false);
   const [avatarId, setAvatarId] = useState<string | null>(() => {
     if (typeof window !== "undefined") return localStorage.getItem("lumo-avatar-id") || null;
@@ -373,6 +393,51 @@ export default function DashboardPage() {
           </div>
         </>
       )}
+
+      {/* Gizlilik Ayarları */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.4, delay: 0.8 }}
+        className="mt-8"
+      >
+        <h2 className="mb-4 text-xl font-bold">Gizlilik Ayarları</h2>
+        <Card>
+          <CardContent className="p-5 space-y-4">
+            <p className="text-sm text-muted-foreground">
+              Liderlik tablosunda hangi bilgilerinizin görüneceğini seçin.
+            </p>
+            <div className="flex items-center justify-between rounded-xl bg-muted/50 p-4">
+              <div>
+                <p className="text-sm font-semibold">Ad Soyad</p>
+                <p className="text-xs text-muted-foreground">
+                  {showName ? "Liderlik tablosunda adınız görünür" : "Adınız gizli — \"Anonim\" olarak görünür"}
+                </p>
+              </div>
+              <button
+                onClick={toggleShowName}
+                className={`relative h-6 w-11 rounded-full transition-colors ${showName ? "bg-[#9FC131]" : "bg-muted-foreground/30"}`}
+              >
+                <span className={`absolute top-0.5 h-5 w-5 rounded-full bg-white shadow transition-transform ${showName ? "left-[22px]" : "left-0.5"}`} />
+              </button>
+            </div>
+            <div className="flex items-center justify-between rounded-xl bg-muted/50 p-4">
+              <div>
+                <p className="text-sm font-semibold">Okulum</p>
+                <p className="text-xs text-muted-foreground">
+                  {showSchool ? "Liderlik tablosunda okulunuz görünür" : "Okul bilginiz gizli"}
+                </p>
+              </div>
+              <button
+                onClick={toggleShowSchool}
+                className={`relative h-6 w-11 rounded-full transition-colors ${showSchool ? "bg-[#9FC131]" : "bg-muted-foreground/30"}`}
+              >
+                <span className={`absolute top-0.5 h-5 w-5 rounded-full bg-white shadow transition-transform ${showSchool ? "left-[22px]" : "left-0.5"}`} />
+              </button>
+            </div>
+          </CardContent>
+        </Card>
+      </motion.div>
 
       <AvatarPicker
         isOpen={avatarPickerOpen}

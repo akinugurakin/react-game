@@ -32,6 +32,7 @@ export default function LoginPage() {
   const hydrated = useAuthHydrated();
   const [step, setStep] = useState<"role" | "form">("role");
   const [role, setRole] = useState<"student" | "teacher">("student");
+  const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -54,7 +55,7 @@ export default function LoginPage() {
       const mockUser = {
         id: 1,
         email,
-        username: email.split("@")[0],
+        username: fullName || email.split("@")[0],
         age: 10,
         avatar_url: null,
         role: role as "student" | "teacher",
@@ -159,6 +160,17 @@ export default function LoginPage() {
                 {error}
               </div>
             )}
+
+            <div className="space-y-2">
+              <Label htmlFor="fullName">Ad Soyad</Label>
+              <Input
+                id="fullName"
+                placeholder="Akın Uğur Akın"
+                value={fullName}
+                onChange={(e) => setFullName(e.target.value)}
+                required
+              />
+            </div>
 
             <div className="space-y-2">
               <Label htmlFor="email">E-posta</Label>
