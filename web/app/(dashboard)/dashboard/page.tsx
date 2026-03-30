@@ -250,8 +250,19 @@ export default function DashboardPage() {
               </button>
               <div className="mb-1">
                 <h1 className="text-2xl font-extrabold">{username}</h1>
-                {schoolName && (
+                {schoolName ? (
                   <p className="text-sm font-medium text-muted-foreground/80">{schoolName}</p>
+                ) : (
+                  <button
+                    onClick={() => {
+                      setEditingSchool(true);
+                      const el = document.getElementById("school-settings");
+                      if (el) el.scrollIntoView({ behavior: "smooth" });
+                    }}
+                    className="text-sm font-medium text-[#005C53] hover:underline"
+                  >
+                    + Okul ekle
+                  </button>
                 )}
                 <p className="text-sm text-muted-foreground">
                   {stats && stats.total_games > 0
@@ -411,7 +422,7 @@ export default function DashboardPage() {
         transition={{ duration: 0.4, delay: 0.8 }}
         className="mt-8"
       >
-        <h2 className="mb-4 text-xl font-bold">Profil Ayarları</h2>
+        <h2 id="school-settings" className="mb-4 text-xl font-bold">Profil Ayarları</h2>
         <Card>
           <CardContent className="p-5 space-y-4">
             {/* Okul bilgisi */}
