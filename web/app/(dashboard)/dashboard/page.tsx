@@ -100,6 +100,13 @@ export default function DashboardPage() {
   const username = user?.username || "Misafir";
   const initials = username.slice(0, 2).toUpperCase();
 
+  // Okul bilgisi
+  const [schoolName, setSchoolName] = useState(() => {
+    if (typeof window !== "undefined") return localStorage.getItem("lumo-school") || "";
+    return "";
+  });
+  const [editingSchool, setEditingSchool] = useState(false);
+
   // Gizlilik ayarları
   const [showName, setShowName] = useState(() => {
     if (typeof window !== "undefined") return localStorage.getItem("lumo-show-name") !== "false";
@@ -243,6 +250,9 @@ export default function DashboardPage() {
               </button>
               <div className="mb-1">
                 <h1 className="text-2xl font-extrabold">{username}</h1>
+                {schoolName && (
+                  <p className="text-sm font-medium text-muted-foreground/80">{schoolName}</p>
+                )}
                 <p className="text-sm text-muted-foreground">
                   {stats && stats.total_games > 0
                     ? `${stats.total_games} oyun oynandı`
@@ -394,14 +404,48 @@ export default function DashboardPage() {
         </>
       )}
 
-      {/* Gizlilik Ayarları */}
+      {/* Profil Ayarları */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4, delay: 0.8 }}
         className="mt-8"
       >
-        <h2 className="mb-4 text-xl font-bold">Gizlilik Ayarları</h2>
+        <h2 className="mb-4 text-xl font-bold">Profil Ayarları</h2>
+        <Card>
+          <CardContent className="p-5 space-y-4">
+            {/* Okul bilgisi */}
+            <div className="rounded-xl bg-muted/50 p-4">
+              <div className="flex items-center justify-between">
+                <p className="text-sm font-semibold">Okulum</p>
+                <button
+                  onClick={() => setEditingSchool(!editingSchool)}
+                  className="text-xs font-medium text-[#005C53] hover:underline"
+                >
+                  {editingSchool ? "Kaydet" : "Düzenle"}
+                </button>
+              </div>
+              {editingSchool ? (
+                <input
+                  type="text"
+                  value={schoolName}
+                  onChange={(e) => {
+                    setSchoolName(e.target.value);
+                    localStorage.setItem("lumo-school", e.target.value);
+                  }}
+                  placeholder="Okul adını girin"
+                  className="mt-2 w-full rounded-lg border border-input bg-background px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#005C53]/30"
+                />
+              ) : (
+                <p className="mt-1 text-xs text-muted-foreground">
+                  {schoolName || "Henüz okul eklenmedi"}
+                </p>
+              )}
+            </div>
+          </CardContent>
+        </Card>
+
+        <h2 className="mb-4 mt-8 text-xl font-bold">Gizlilik Ayarları</h2>
         <Card>
           <CardContent className="p-5 space-y-4">
             <p className="text-sm text-muted-foreground">
