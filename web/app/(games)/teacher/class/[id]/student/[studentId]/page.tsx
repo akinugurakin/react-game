@@ -109,16 +109,16 @@ export default function StudentDetailPage() {
       {/* Profil banner */}
       <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4, delay: 0.05 }} className="mb-8">
         <Card className="overflow-hidden border-0 shadow-sm">
-          <div className="h-24 bg-gradient-to-r from-[#042940] via-[#005C53] to-[#9FC131]" />
-          <CardContent className="relative px-6 pb-6">
-            <div className="-mt-10 flex items-end gap-4">
-              <div className="flex h-20 w-20 items-center justify-center overflow-hidden rounded-full bg-[#DBEAFE] ring-4 ring-white">
-                <div style={{ width: 72, height: 72 }}>
+          <div className="h-14 bg-gradient-to-r from-[#042940] via-[#005C53] to-[#9FC131]" />
+          <CardContent className="px-6 pb-6 pt-4">
+            <div className="flex items-center gap-4">
+              <div className="flex h-16 w-16 shrink-0 items-center justify-center overflow-hidden rounded-full bg-[#DBEAFE] ring-4 ring-white">
+                <div style={{ width: 56, height: 56 }}>
                   <BeanHead skinTone={d.skinTone as any} hair={d.hair as any} hairColor={d.hairColor as any} eyes={d.eyes as any} eyebrows="raised" mouth={d.mouth as any} body={d.body as any} clothing="shirt" clothingColor="blue" accessory="none" hat="none" hatColor="white" facialHair="none" graphic="none" lashes={d.lashes || false} lipColor="red" faceMaskColor="white" mask={false} faceMask={false} />
                 </div>
               </div>
-              <div className="mb-1">
-                <h1 className="text-2xl font-extrabold">{data.ad}</h1>
+              <div>
+                <h1 className="text-2xl font-extrabold text-[#042940]">{data.ad}</h1>
                 <p className="text-sm text-muted-foreground">{data.sinif} &middot; {data.oyunSayisi} oyun &middot; {data.rozetSayisi} rozet</p>
               </div>
             </div>
