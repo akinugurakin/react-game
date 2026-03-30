@@ -82,12 +82,17 @@ function RegisterContent() {
         payload.school_name = formData.school_name;
       }
 
-      const data = await api.post<RegisterResponse>("/auth/register", payload);
-      setAuth(
-        { ...data.user, role: data.user.role || role },
-        data.access_token,
-        data.refresh_token
-      );
+      // TODO: Backend hazır olduğunda gerçek API'ye bağlanacak
+      // Mock register
+      const mockUser = {
+        id: 1,
+        email: formData.email,
+        username: formData.username,
+        age: role === "student" ? parseInt(formData.sinif) + 5 : 30,
+        avatar_url: null,
+        role: role as "student" | "teacher",
+      };
+      setAuth(mockUser, "mock-access-token", "mock-refresh-token");
       router.push(role === "teacher" ? "/teacher" : "/dashboard");
     } catch (err) {
       setError(err instanceof Error ? err.message : "Bir hata oluştu");

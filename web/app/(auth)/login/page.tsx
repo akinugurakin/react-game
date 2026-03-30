@@ -48,19 +48,21 @@ export default function LoginPage() {
     setError("");
     setLoading(true);
 
+    // TODO: Backend hazır olduğunda gerçek API'ye bağlanacak
+    // Mock login — şimdilik doğrudan giriş yap
     try {
-      const data = await api.post<LoginResponse>("/auth/login", {
+      const mockUser = {
+        id: 1,
         email,
-        password,
-      });
-      setAuth(
-        { ...data.user, role: data.user.role || role },
-        data.access_token,
-        data.refresh_token
-      );
+        username: email.split("@")[0],
+        age: 10,
+        avatar_url: null,
+        role: role as "student" | "teacher",
+      };
+      setAuth(mockUser, "mock-access-token", "mock-refresh-token");
       router.push(role === "teacher" ? "/teacher" : "/dashboard");
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Bir hata oluştu");
+      setError("Bir hata oluştu");
     } finally {
       setLoading(false);
     }
