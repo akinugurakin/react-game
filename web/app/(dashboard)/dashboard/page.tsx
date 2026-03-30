@@ -23,6 +23,7 @@ import { Pencil } from "lucide-react";
 import { HexAvatar } from "@/components/ui/hex-avatar";
 import { BadgeIcon, ALL_BADGES } from "@/components/ui/badge-icon";
 import { AvatarPicker, BeanHeadAvatar } from "@/components/ui/avatar-picker";
+import { SchoolPicker } from "@/components/ui/school-picker";
 import { useAuthStore } from "@/lib/auth";
 import { api } from "@/lib/api";
 
@@ -433,20 +434,20 @@ export default function DashboardPage() {
                   onClick={() => setEditingSchool(!editingSchool)}
                   className="text-xs font-medium text-[#005C53] hover:underline"
                 >
-                  {editingSchool ? "Kaydet" : "Düzenle"}
+                  {editingSchool ? "Kapat" : "Değiştir"}
                 </button>
               </div>
               {editingSchool ? (
-                <input
-                  type="text"
-                  value={schoolName}
-                  onChange={(e) => {
-                    setSchoolName(e.target.value);
-                    localStorage.setItem("lumo-school", e.target.value);
-                  }}
-                  placeholder="Okul adını girin"
-                  className="mt-2 w-full rounded-lg border border-input bg-background px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#005C53]/30"
-                />
+                <div className="mt-2">
+                  <SchoolPicker
+                    value={schoolName}
+                    onChange={(name) => {
+                      setSchoolName(name);
+                      localStorage.setItem("lumo-school", name);
+                      setEditingSchool(false);
+                    }}
+                  />
+                </div>
               ) : (
                 <p className="mt-1 text-xs text-muted-foreground">
                   {schoolName || "Henüz okul eklenmedi"}

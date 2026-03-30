@@ -10,6 +10,7 @@ import { Label } from "@/components/ui/label";
 import { useAuthStore, useAuthHydrated } from "@/lib/auth";
 import { api } from "@/lib/api";
 import { cn } from "@/lib/utils";
+import { SchoolPicker } from "@/components/ui/school-picker";
 import { Suspense } from "react";
 
 interface RegisterResponse {
@@ -228,8 +229,11 @@ function RegisterContent() {
 
             {role === "student" && (
               <div className="space-y-2">
-                <Label htmlFor="school_name">Okul Adı (Opsiyonel)</Label>
-                <Input id="school_name" name="school_name" placeholder="Atatürk İlkokulu" value={formData.school_name} onChange={handleChange} />
+                <Label>Okul (Opsiyonel)</Label>
+                <SchoolPicker
+                  value={formData.school_name}
+                  onChange={(name) => setFormData((prev) => ({ ...prev, school_name: name }))}
+                />
               </div>
             )}
 
@@ -245,8 +249,11 @@ function RegisterContent() {
 
             {role === "teacher" && (
               <div className="space-y-2">
-                <Label htmlFor="school_name">Okul Adı</Label>
-                <Input id="school_name" name="school_name" placeholder="Atatürk İlkokulu" value={formData.school_name} onChange={handleChange} required />
+                <Label>Okul</Label>
+                <SchoolPicker
+                  value={formData.school_name}
+                  onChange={(name) => setFormData((prev) => ({ ...prev, school_name: name }))}
+                />
               </div>
             )}
 
