@@ -568,8 +568,7 @@ export function BackgroundSymbols() {
 
   return (
     <div
-      className="pointer-events-none absolute inset-x-0 top-0 z-0 overflow-hidden"
-      style={{ height: `${BLOCK_COUNT * 100}vh` }}
+      className="pointer-events-none absolute inset-0 z-0 overflow-hidden"
       aria-hidden="true"
     >
       {blocks.map((blockItems, bIdx) => (
