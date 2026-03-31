@@ -101,7 +101,7 @@ export function Header() {
   const initials = username.slice(0, 2).toUpperCase();
 
   return (
-    <header className="sticky top-0 z-50 border-b bg-background/95 backdrop-blur">
+    <header className="sticky top-0 z-50 border-b bg-[#F5F4EF]/90 backdrop-blur-md">
       <div className="container flex h-16 items-center justify-between">
         <div className="flex items-center gap-4">
           <Link href="/" className="flex items-center gap-2">

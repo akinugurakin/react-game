@@ -124,7 +124,7 @@ export default function BlogPage() {
   const rest = BLOG_POSTS.filter((p) => !p.featured);
 
   return (
-    <div className="relative min-h-screen overflow-hidden bg-[#F5F4EF]">
+    <div className="relative min-h-screen overflow-x-hidden bg-[#F5F4EF]">
       <BackgroundSymbols />
       <Header />
       <main className="relative z-10">

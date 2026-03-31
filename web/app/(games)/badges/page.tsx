@@ -775,7 +775,7 @@ export default function BadgesPage() {
               >
                 {/* Soru işareti */}
                 <button
-                  className="absolute right-3 top-3 z-10 text-[#042940]/25 transition-colors hover:text-[#042940]/50"
+                  className="absolute right-4 top-3 z-10 text-[#042940]/25 transition-colors hover:text-[#042940]/50"
                   onClick={(e) => {
                     e.stopPropagation();
                     setSelectedBadge(badge);

@@ -92,7 +92,7 @@ const VALUES = [
 
 export default function AboutPage() {
   return (
-    <div className="relative min-h-screen overflow-hidden bg-[#F5F4EF]">
+    <div className="relative min-h-screen overflow-x-hidden bg-[#F5F4EF]">
       <BackgroundSymbols />
       <Header />
       <main className="relative z-10">
