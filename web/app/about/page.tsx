@@ -5,14 +5,12 @@ import { motion } from "framer-motion";
 import {
   GraduationCap,
   Gamepad2,
-  Trophy,
   Shield,
   Heart,
   Target,
   Users,
   Mail,
   ArrowRight,
-  CheckCircle2,
   Lightbulb,
   BarChart3,
 } from "lucide-react";
@@ -86,28 +84,6 @@ const VALUES = [
   },
 ];
 
-const FAQ = [
-  {
-    q: "LUMO hangi yaş grubuna hitap ediyor?",
-    a: "LUMO, ilkokul ve ortaokul (1-8. sınıf) öğrencileri için tasarlanmıştır. Oyunlar, her sınıf düzeyine uygun zorluk seviyelerinde sunulur.",
-  },
-  {
-    q: "Oyunlar hangi dersleri kapsıyor?",
-    a: "Türkçe, Matematik, Fen Bilimleri, Sosyal Bilgiler ve İngilizce derslerini kapsayan oyunlar sunuyoruz. Tüm içerikler MEB müfredatına uygundur.",
-  },
-  {
-    q: "LUMO ücretsiz mi?",
-    a: "LUMO'nun ücretsiz deneme sürümü mevcuttur. Tüm oyunlara ve özelliklere erişim için aylık veya yıllık abonelik planları sunuyoruz.",
-  },
-  {
-    q: "Öğretmenler platformu nasıl kullanabilir?",
-    a: "Öğretmenler sınıf oluşturabilir, öğrencilerini ekleyebilir, ödev atayabilir ve detaylı ilerleme raporlarını takip edebilir.",
-  },
-  {
-    q: "Verilerimiz güvende mi?",
-    a: "Evet. LUMO, KVKK (Kişisel Verilerin Korunması Kanunu) uyumlu çalışır. Çocuk verileri özel olarak korunur ve üçüncü taraflarla paylaşılmaz.",
-  },
-];
 
 /* ------------------------------------------------------------------ */
 /*  SAYFA                                                              */
@@ -236,44 +212,6 @@ export default function AboutPage() {
               </div>
             </motion.div>
           </div>
-        </section>
-
-        {/* SSS */}
-        <section className="container py-16">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4, delay: 0.3 }}
-          >
-            <h2 className="mb-2 text-center text-2xl font-extrabold text-[#042940]">
-              Sıkça Sorulan Sorular
-            </h2>
-            <p className="mb-8 text-center text-sm text-[#042940]/50">
-              Merak ettiklerinize yanıt bulun
-            </p>
-            <div className="mx-auto max-w-2xl space-y-4">
-              {FAQ.map((item, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 16 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.3, delay: 0.35 + index * 0.06 }}
-                >
-                  <Card className="border-0 shadow-sm">
-                    <CardContent className="p-5">
-                      <h3 className="mb-2 flex items-start gap-2 text-sm font-bold text-[#042940]">
-                        <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-[#9FC131]" />
-                        {item.q}
-                      </h3>
-                      <p className="pl-6 text-sm leading-relaxed text-[#042940]/50">
-                        {item.a}
-                      </p>
-                    </CardContent>
-                  </Card>
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
         </section>
 
         {/* İletişim CTA */}

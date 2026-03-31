@@ -83,6 +83,11 @@ const NAV_ITEMS: MegaMenuItem[] = [
   },
   {
     id: 5,
+    label: "SSS",
+    href: "/sss",
+  },
+  {
+    id: 6,
     label: "Hakkımızda",
     href: "/about",
   },
@@ -172,6 +177,9 @@ export function Header() {
               </Link>
               <Link href="/blog" className="text-lg font-semibold">
                 Blog
+              </Link>
+              <Link href="/sss" className="text-lg font-semibold">
+                SSS
               </Link>
               <Link href="/about" className="text-lg font-semibold">
                 Hakkımızda
