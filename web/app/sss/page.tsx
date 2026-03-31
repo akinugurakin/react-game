@@ -30,72 +30,78 @@ interface FaqItem {
 const FAQ_ITEMS: FaqItem[] = [
   // Genel
   {
-    q: "LUMO nedir?",
-    a: "LUMO, 1-8. sınıf öğrencileri için MEB müfredatına uygun, oyunlaştırılmış bir eğitim platformudur. Çocuklar oyun oynayarak Türkçe, Matematik, Fen Bilimleri, Sosyal Bilgiler ve İngilizce derslerinde kendilerini geliştirir.",
+    q: "Lumo nedir?",
+    a: "Lumo; ilkokul ve ortaokul çağındaki çocukların Türkçe, matematik, fen bilimleri, sosyal bilimler ve İngilizce derslerinde eğlenceli mini oyunlarla öğrenmesini destekleyen bir eğitim platformudur. Çocuklar oyunlarda başarı gösterdikçe rozetler kazanır, liderlik tablosunda sıralamalarını yükselterek arkadaşlarıyla yarışır.",
     category: "Genel",
   },
   {
-    q: "LUMO hangi yaş grubuna hitap ediyor?",
-    a: "LUMO, ilkokul ve ortaokul (1-8. sınıf) öğrencileri için tasarlanmıştır. Oyunlar, her sınıf düzeyine uygun zorluk seviyelerinde sunulur.",
+    q: "Lumo hangi yaş grubuna uygundur?",
+    a: "Lumo, ilkokul ve ortaokul (3-8. sınıf) öğrencileri için tasarlanmıştır. Temelini güçlendirmek isteyen lise öğrencileri de platformu kullanabilir.",
     category: "Genel",
   },
   {
-    q: "Oyunlar hangi dersleri kapsıyor?",
-    a: "Türkçe, Matematik, Fen Bilimleri, Sosyal Bilgiler ve İngilizce derslerini kapsayan oyunlar sunuyoruz. Tüm içerikler MEB müfredatına uygundur.",
+    q: "Oyunlar kimler tarafından tasarlanıyor?",
+    a: "Oyunlarımız, alanında uzman eğitimciler ve deneyimli oyun geliştiricilerinin iş birliğiyle hazırlanmaktadır. Her oyun pedagojik açıdan değerlendirilip onaylandıktan sonra platforma eklenir.",
     category: "Genel",
   },
   {
-    q: "LUMO'yu hangi cihazlarda kullanabilirim?",
-    a: "LUMO web tarayıcısı üzerinden tüm cihazlarda (bilgisayar, tablet, telefon) kullanılabilir. Ayrıca iOS ve Android için mobil uygulamamız da yakında yayınlanacaktır.",
+    q: "Hangi cihazlardan erişebilirim?",
+    a: "Lumo'ya iOS ve Android tablet uygulamalarımızdan veya bilgisayar üzerinden web tarayıcısı aracılığıyla erişebilirsiniz.",
     category: "Genel",
   },
   // Ücretlendirme
   {
-    q: "LUMO ücretsiz mi?",
-    a: "LUMO'nun ücretsiz deneme sürümü mevcuttur. Tüm oyunlara ve özelliklere erişim için aylık veya yıllık abonelik planları sunuyoruz.",
+    q: "Ücretsiz deneme süresi var mı?",
+    a: "Evet! Lumo'yu 7 gün boyunca ücretsiz deneyebilirsiniz. Deneme süresi boyunca tüm oyunlara ve özelliklere sınırsız erişim sağlayabilirsiniz. Deneme süresi sonunda onayınız olmadan otomatik ücretlendirme yapılmaz. Ayrıca her dersten birer ücretsiz oyunu dilediğiniz zaman oynayabilirsiniz.",
     category: "Ücretlendirme",
   },
   {
-    q: "Abonelik planları nelerdir?",
-    a: "Aylık ve yıllık olmak üzere iki abonelik planımız bulunmaktadır. Yıllık planda önemli bir indirim sunuyoruz. Detaylı fiyat bilgisi için fiyatlandırma sayfamızı ziyaret edebilirsiniz.",
+    q: "Kardeş paketi nedir?",
+    a: "Tek abonelikle aynı evdeki birden fazla çocuk için ayrı profiller oluşturabilirsiniz. Her çocuğun ilerlemesi, rozetleri ve liderlik tablosu sıralaması kendine özeldir. İkinci çocuk için %50, üçüncü çocuk için %75 indirim uygulanır.",
     category: "Ücretlendirme",
   },
+  // Eğitim & İçerik
   {
-    q: "Aboneliğimi iptal edebilir miyim?",
-    a: "Evet, aboneliğinizi istediğiniz zaman iptal edebilirsiniz. İptal işlemi sonrasında mevcut dönem sonuna kadar erişiminiz devam eder.",
-    category: "Ücretlendirme",
-  },
-  // Öğretmenler
-  {
-    q: "Öğretmenler platformu nasıl kullanabilir?",
-    a: "Öğretmenler sınıf oluşturabilir, öğrencilerini ekleyebilir, ödev atayabilir ve detaylı ilerleme raporlarını takip edebilir. Öğretmen hesabı oluşturmak ücretsizdir.",
-    category: "Öğretmenler",
+    q: "Çocuğumun gelişimini nasıl takip edebilirim?",
+    a: "Ebeveyn panelinden çocuğunuzun hangi oyunları oynadığını, hangi konularda ilerlediğini ve geliştirilmesi gereken alanlarını takip edebilirsiniz. Aylık gelişim raporları ile çocuğunuzun öğrenme sürecini yakından izleyebilirsiniz.",
+    category: "Eğitim & İçerik",
   },
   {
-    q: "Sınıfıma kaç öğrenci ekleyebilirim?",
-    a: "Bir sınıfa en fazla 40 öğrenci ekleyebilirsiniz. Birden fazla sınıf oluşturabilir ve her birini ayrı ayrı yönetebilirsiniz.",
-    category: "Öğretmenler",
+    q: "Oyunlar yeni müfredata ne kadar uyumlu?",
+    a: "Oyunlarımız müfredatla yalnızca uyumlu değil, doğrudan müfredat kazanımları üzerine inşa edilmektedir. Her oyunun tasarım süreci, ilgili sınıf ve dersin MEB kazanımlarının belirlenmesiyle başlar. Bu sayede çocuğunuz oyun oynarken müfredatın hedeflediği becerileri doğrudan pekiştirir.",
+    category: "Eğitim & İçerik",
   },
   {
-    q: "Öğrenci ilerlemesini nasıl takip edebilirim?",
-    a: "Öğretmen panelinden her öğrencinin oynadığı oyunları, skorlarını, doğru-yanlış oranlarını ve harcadığı süreyi detaylı olarak görebilirsiniz.",
-    category: "Öğretmenler",
-  },
-  // Güvenlik
-  {
-    q: "Verilerimiz güvende mi?",
-    a: "Evet. LUMO, KVKK (Kişisel Verilerin Korunması Kanunu) uyumlu çalışır. Çocuk verileri özel olarak korunur ve üçüncü taraflarla paylaşılmaz.",
-    category: "Güvenlik",
+    q: "Liderlik tablosu nedir?",
+    a: "Liderlik tablosu, çocukların oyunlardaki skorlarına göre sıralandığı bir motivasyon aracıdır. Haftalık, aylık ve tüm zamanlar olmak üzere her oyun ve her ders için ayrı sıralamalar bulunur. Haftalık tablo her Pazartesi, aylık tablo her ayın başında sıfırlanır; böylece herkes yeniden şans yakalar.",
+    category: "Eğitim & İçerik",
   },
   {
-    q: "Platformda reklam var mı?",
-    a: "Hayır. LUMO tamamen reklamsız bir platformdur. Çocukların dikkatini dağıtacak hiçbir reklam içeriği bulunmaz.",
-    category: "Güvenlik",
+    q: "Rozet sistemi nasıl çalışır?",
+    a: "Çocuklar oyunları tamamladıkça, belirli hedeflere ulaştıkça ve düzenli oynadıkça dijital rozetler kazanır. Matematik Profesörü, Harita Uzmanı, Sözcük Avcısı gibi rozetler profil sayfasında sergilenir ve çocukları düzenli oynamaya teşvik eder.",
+    category: "Eğitim & İçerik",
+  },
+  // Kurumsal
+  {
+    q: "Öğretmenler için özel bir panel var mı?",
+    a: "Evet! Öğretmenler sınıf genelindeki ilerlemeyi tek bir panelden takip edebilir ve öğrencilerine oyun atayabilir. Her öğrencinin istatistiklerine kolayca ulaşarak gelişim süreçlerini yakından gözlemleyebilir.",
+    category: "Kurumsal",
   },
   {
-    q: "Çocuğumun ekran süresini kontrol edebilir miyim?",
-    a: "Ebeveyn panelinden günlük ve haftalık ekran süresi limitleri belirleyebilirsiniz. Limit dolduğunda çocuğunuz otomatik olarak bilgilendirilir.",
-    category: "Güvenlik",
+    q: "Lumo'yu okulumuzda kullanmak istiyoruz, nasıl başlarız?",
+    a: "Okullara özel kurumsal paketlerimiz mevcuttur. info@lumo.com.tr adresinden veya web sitemizdeki iletişim formundan bize ulaşarak okulunuza özel bir teklif alabilirsiniz.",
+    category: "Kurumsal",
+  },
+  // Güvenlik & Gizlilik
+  {
+    q: "Çocuğumun verileri güvende mi?",
+    a: "Çocuğunuzun güvenliği en büyük önceliğimizdir. Tüm veriler şifreli olarak saklanır ve KVKK mevzuatına tam uyum sağlanır. Çocuklara ait kişisel bilgileri üçüncü taraflarla paylaşmıyor, reklam amacıyla kullanmıyoruz. Platformda herhangi bir reklam bulunmaz.",
+    category: "Güvenlik & Gizlilik",
+  },
+  {
+    q: "Çocuklar diğer kullanıcılarla iletişim kurabilir mi?",
+    a: "Hayır. Lumo'da çocuklar arası mesajlaşma, sohbet veya herhangi bir iletişim özelliği bulunmaz. Liderlik tablosunda yalnızca isim ve okul bilgileri görünür. Profil ayarlarından liderlik tablosundaki isim ve okul görünürlüğü kapatılabilir. Platform tamamen güvenli ve kapalı bir ortamda çalışır.",
+    category: "Güvenlik & Gizlilik",
   },
 ];
 
@@ -103,8 +109,9 @@ const CATEGORIES = [
   { key: "Tümü", icon: HelpCircle },
   { key: "Genel", icon: Gamepad2 },
   { key: "Ücretlendirme", icon: CreditCard },
-  { key: "Öğretmenler", icon: GraduationCap },
-  { key: "Güvenlik", icon: Shield },
+  { key: "Eğitim & İçerik", icon: GraduationCap },
+  { key: "Kurumsal", icon: Users },
+  { key: "Güvenlik & Gizlilik", icon: Shield },
 ];
 
 /* ------------------------------------------------------------------ */
