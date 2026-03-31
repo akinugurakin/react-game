@@ -18,7 +18,6 @@ import {
   FlaskConical,
   Globe,
   SpellCheck,
-  HelpCircle,
   X,
   type LucideIcon,
 } from "lucide-react";
@@ -782,7 +781,7 @@ export default function BadgesPage() {
                     setSelectedBadge(badge);
                   }}
                 >
-                  <HelpCircle className="h-5 w-5" />
+                  <span className="text-base font-bold leading-none">?</span>
                 </button>
 
                 <CardContent className="p-5">
