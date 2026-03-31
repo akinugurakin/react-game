@@ -14,6 +14,7 @@ import {
 import { Card, CardContent } from "@/components/ui/card";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
+import { BackgroundSymbols } from "@/components/ui/background-symbols";
 import { cn } from "@/lib/utils";
 
 /* ------------------------------------------------------------------ */
@@ -167,9 +168,10 @@ export default function SSSPage() {
       : FAQ_ITEMS.filter((item) => item.category === activeCategory);
 
   return (
-    <>
+    <div className="relative min-h-screen overflow-hidden bg-[#F5F4EF]">
+      <BackgroundSymbols />
       <Header />
-      <main className="min-h-screen bg-gradient-to-b from-white to-[#042940]/[0.02]">
+      <main className="relative z-10">
         <div className="container py-12">
           {/* Başlık */}
           <motion.div
@@ -241,6 +243,6 @@ export default function SSSPage() {
         </div>
       </main>
       <Footer />
-    </>
+    </div>
   );
 }

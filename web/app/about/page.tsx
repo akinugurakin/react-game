@@ -18,6 +18,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
+import { BackgroundSymbols } from "@/components/ui/background-symbols";
 
 /* ------------------------------------------------------------------ */
 /*  VERİ                                                               */
@@ -91,9 +92,10 @@ const VALUES = [
 
 export default function AboutPage() {
   return (
-    <>
+    <div className="relative min-h-screen overflow-hidden bg-[#F5F4EF]">
+      <BackgroundSymbols />
       <Header />
-      <main className="min-h-screen bg-gradient-to-b from-white to-[#042940]/[0.02]">
+      <main className="relative z-10">
         {/* Hero */}
         <section className="container py-16 text-center">
           <motion.div
@@ -250,6 +252,6 @@ export default function AboutPage() {
         </section>
       </main>
       <Footer />
-    </>
+    </div>
   );
 }
