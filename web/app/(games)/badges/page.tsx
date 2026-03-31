@@ -776,13 +776,13 @@ export default function BadgesPage() {
               >
                 {/* Soru işareti */}
                 <button
-                  className="absolute left-2 top-2 z-10 flex h-6 w-6 items-center justify-center rounded-full bg-[#042940]/5 text-[#042940]/30 transition-colors hover:bg-[#042940]/10 hover:text-[#042940]/60"
+                  className="absolute right-3 top-3 z-10 text-[#042940]/25 transition-colors hover:text-[#042940]/50"
                   onClick={(e) => {
                     e.stopPropagation();
                     setSelectedBadge(badge);
                   }}
                 >
-                  <HelpCircle className="h-3.5 w-3.5" />
+                  <HelpCircle className="h-5 w-5" />
                 </button>
 
                 <CardContent className="p-5">
