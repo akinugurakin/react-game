@@ -3,19 +3,11 @@
 import Link from "next/link";
 import { useTranslations } from "next-intl";
 import {
-  Gamepad2,
   Lightbulb,
   Menu,
   Calculator,
   FlaskConical,
   Globe,
-  HelpCircle,
-  Users,
-  Shield,
-  GraduationCap,
-  Phone,
-  CreditCard,
-  MessageCircleQuestion,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
@@ -76,61 +68,23 @@ const NAV_ITEMS: MegaMenuItem[] = [
   },
   {
     id: 2,
-    label: "Platform",
-    subMenus: [
-      {
-        title: "Keşfet",
-        items: [
-          {
-            label: "Nasıl Çalışır?",
-            description: "LUMO platformunu tanıyın",
-            icon: HelpCircle,
-            href: "#nasil-calisir",
-          },
-          {
-            label: "Öğretmenler İçin",
-            description: "Sınıfınızı oluşturun, ilerlemeyi takip edin",
-            icon: GraduationCap,
-            href: "/teacher",
-          },
-          {
-            label: "Veliler İçin",
-            description: "Güvenli ortam, ebeveyn kontrolü",
-            icon: Users,
-            href: "#veliler",
-          },
-        ],
-      },
-    ],
+    label: "Liderlik Tablosu",
+    href: "/leaderboard",
   },
   {
     id: 3,
+    label: "Rozetler",
+    href: "/badges",
+  },
+  {
+    id: 4,
+    label: "Blog",
+    href: "/blog",
+  },
+  {
+    id: 5,
     label: "Hakkımızda",
-    subMenus: [
-      {
-        title: "Bilgi",
-        items: [
-          {
-            label: "Fiyatlandırma",
-            description: "Basit ve şeffaf planlar",
-            icon: CreditCard,
-            href: "#fiyatlandirma",
-          },
-          {
-            label: "SSS",
-            description: "Sıkça sorulan sorular",
-            icon: MessageCircleQuestion,
-            href: "#sss",
-          },
-          {
-            label: "İletişim",
-            description: "Bize ulaşın",
-            icon: Phone,
-            href: "#iletisim",
-          },
-        ],
-      },
-    ],
+    href: "/about",
   },
 ];
 
@@ -211,7 +165,16 @@ export function Header() {
                 Oyunlar
               </Link>
               <Link href="/leaderboard" className="text-lg font-semibold">
-                Liderlik
+                Liderlik Tablosu
+              </Link>
+              <Link href="/badges" className="text-lg font-semibold">
+                Rozetler
+              </Link>
+              <Link href="/blog" className="text-lg font-semibold">
+                Blog
+              </Link>
+              <Link href="/about" className="text-lg font-semibold">
+                Hakkımızda
               </Link>
               {isAuthenticated ? (
                 <>
