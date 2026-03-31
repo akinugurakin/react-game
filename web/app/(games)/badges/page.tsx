@@ -18,6 +18,7 @@ import {
   FlaskConical,
   Globe,
   SpellCheck,
+  HelpCircle,
   X,
   type LucideIcon,
 } from "lucide-react";
@@ -56,7 +57,7 @@ interface UserStats {
 }
 
 const BADGES: BadgeDef[] = [
-  // Genel
+  /* ── GENEL ── */
   {
     id: "first-game",
     name: "İlk Adım",
@@ -66,7 +67,7 @@ const BADGES: BadgeDef[] = [
     color: "text-amber-400",
     bgColor: "bg-amber-400/15",
     ringColor: "ring-amber-400/30",
-    category: "all",
+    category: "genel",
     requirement: "1 oyun oyna",
     checkEarned: (s) => s.total_games >= 1,
     getProgress: (s) => Math.min(100, (s.total_games / 1) * 100),
@@ -80,7 +81,7 @@ const BADGES: BadgeDef[] = [
     color: "text-orange-500",
     bgColor: "bg-orange-500/15",
     ringColor: "ring-orange-500/30",
-    category: "all",
+    category: "genel",
     requirement: "10 oyun oyna",
     checkEarned: (s) => s.total_games >= 10,
     getProgress: (s) => Math.min(100, (s.total_games / 10) * 100),
@@ -94,7 +95,7 @@ const BADGES: BadgeDef[] = [
     color: "text-blue-500",
     bgColor: "bg-blue-500/15",
     ringColor: "ring-blue-500/30",
-    category: "all",
+    category: "genel",
     requirement: "50 oyun oyna",
     checkEarned: (s) => s.total_games >= 50,
     getProgress: (s) => Math.min(100, (s.total_games / 50) * 100),
@@ -108,7 +109,7 @@ const BADGES: BadgeDef[] = [
     color: "text-violet-500",
     bgColor: "bg-violet-500/15",
     ringColor: "ring-violet-500/30",
-    category: "all",
+    category: "genel",
     requirement: "100 oyun oyna",
     checkEarned: (s) => s.total_games >= 100,
     getProgress: (s) => Math.min(100, (s.total_games / 100) * 100),
@@ -122,7 +123,7 @@ const BADGES: BadgeDef[] = [
     color: "text-yellow-500",
     bgColor: "bg-yellow-500/15",
     ringColor: "ring-yellow-500/30",
-    category: "all",
+    category: "genel",
     requirement: "80+ puan",
     checkEarned: (s) => s.best_score >= 80,
     getProgress: (s) => Math.min(100, (s.best_score / 80) * 100),
@@ -136,7 +137,7 @@ const BADGES: BadgeDef[] = [
     color: "text-emerald-500",
     bgColor: "bg-emerald-500/15",
     ringColor: "ring-emerald-500/30",
-    category: "all",
+    category: "genel",
     requirement: "0 hata ile bitir",
     checkEarned: (s) => s.total_correct > 0 && s.total_wrong === 0,
     getProgress: (s) => {
@@ -154,7 +155,7 @@ const BADGES: BadgeDef[] = [
     color: "text-purple-500",
     bgColor: "bg-purple-500/15",
     ringColor: "ring-purple-500/30",
-    category: "all",
+    category: "genel",
     requirement: "Sıralama #1",
     checkEarned: (s) => s.rank === 1,
     getProgress: (s) => (s.rank <= 10 ? Math.max(10, 100 - (s.rank - 1) * 10) : 5),
@@ -168,7 +169,7 @@ const BADGES: BadgeDef[] = [
     color: "text-sky-500",
     bgColor: "bg-sky-500/15",
     ringColor: "ring-sky-500/30",
-    category: "all",
+    category: "genel",
     requirement: "7 günlük seri",
     checkEarned: () => false,
     getProgress: () => 0,
@@ -182,12 +183,13 @@ const BADGES: BadgeDef[] = [
     color: "text-rose-500",
     bgColor: "bg-rose-500/15",
     ringColor: "ring-rose-500/30",
-    category: "all",
+    category: "genel",
     requirement: "5 farklı ders",
     checkEarned: () => false,
     getProgress: () => 0,
   },
-  // Matematik
+
+  /* ── MATEMATİK ── */
   {
     id: "math-beginner",
     name: "Sayı Avcısı",
@@ -203,20 +205,49 @@ const BADGES: BadgeDef[] = [
     getProgress: () => 0,
   },
   {
+    id: "math-10",
+    name: "Hesap Makinesi",
+    description: "10 matematik oyunu tamamla",
+    detailText: "10 matematik oyunu bitirdin! Sayılarla aran giderek güçleniyor.",
+    icon: Calculator,
+    color: "text-blue-500",
+    bgColor: "bg-blue-500/15",
+    ringColor: "ring-blue-500/30",
+    category: "matematik",
+    requirement: "10 matematik oyunu",
+    checkEarned: () => false,
+    getProgress: () => 0,
+  },
+  {
+    id: "math-perfect",
+    name: "Sıfır Hata",
+    description: "Matematik oyununda hatasız bitir",
+    detailText: "Bir matematik oyununu hiç hata yapmadan tamamla. Konsantrasyonun harika!",
+    icon: Target,
+    color: "text-indigo-500",
+    bgColor: "bg-indigo-500/15",
+    ringColor: "ring-indigo-500/30",
+    category: "matematik",
+    requirement: "0 hata (matematik)",
+    checkEarned: () => false,
+    getProgress: () => 0,
+  },
+  {
     id: "math-master",
     name: "Matematik Dehası",
     description: "Matematik oyunlarında 90+ puan al",
     detailText: "Bir matematik oyununda 90 veya üzeri puan al. Sayılarla aran çok iyi!",
-    icon: Calculator,
-    color: "text-indigo-500",
-    bgColor: "bg-indigo-500/15",
-    ringColor: "ring-indigo-500/30",
+    icon: Crown,
+    color: "text-indigo-600",
+    bgColor: "bg-indigo-600/15",
+    ringColor: "ring-indigo-600/30",
     category: "matematik",
     requirement: "90+ puan (matematik)",
     checkEarned: () => false,
     getProgress: () => 0,
   },
-  // Türkçe
+
+  /* ── TÜRKÇE ── */
   {
     id: "turkce-beginner",
     name: "Kelime Ustası",
@@ -232,20 +263,49 @@ const BADGES: BadgeDef[] = [
     getProgress: () => 0,
   },
   {
+    id: "turkce-10",
+    name: "Kitap Kurdu",
+    description: "10 Türkçe oyunu tamamla",
+    detailText: "10 Türkçe oyunu bitirdin! Kelime hazinen her geçen gün büyüyor.",
+    icon: BookOpen,
+    color: "text-rose-500",
+    bgColor: "bg-rose-500/15",
+    ringColor: "ring-rose-500/30",
+    category: "turkce",
+    requirement: "10 Türkçe oyunu",
+    checkEarned: () => false,
+    getProgress: () => 0,
+  },
+  {
+    id: "turkce-perfect",
+    name: "Dikkatli Yazar",
+    description: "Türkçe oyununda hatasız bitir",
+    detailText: "Bir Türkçe oyununu sıfır hatayla tamamla. Yazım kurallarına hakimsin!",
+    icon: Target,
+    color: "text-pink-500",
+    bgColor: "bg-pink-500/15",
+    ringColor: "ring-pink-500/30",
+    category: "turkce",
+    requirement: "0 hata (Türkçe)",
+    checkEarned: () => false,
+    getProgress: () => 0,
+  },
+  {
     id: "turkce-master",
     name: "Edebiyatçı",
     description: "Türkçe oyunlarında 90+ puan al",
     detailText: "Türkçe'de ustalaştın! 90+ puan alarak dil becerinizi kanıtla.",
-    icon: BookOpen,
-    color: "text-pink-500",
-    bgColor: "bg-pink-500/15",
-    ringColor: "ring-pink-500/30",
+    icon: Crown,
+    color: "text-pink-600",
+    bgColor: "bg-pink-600/15",
+    ringColor: "ring-pink-600/30",
     category: "turkce",
     requirement: "90+ puan (Türkçe)",
     checkEarned: () => false,
     getProgress: () => 0,
   },
-  // Fen Bilimleri
+
+  /* ── FEN BİLİMLERİ ── */
   {
     id: "fen-beginner",
     name: "Genç Bilim İnsanı",
@@ -261,20 +321,49 @@ const BADGES: BadgeDef[] = [
     getProgress: () => 0,
   },
   {
+    id: "fen-10",
+    name: "Laboratuvar Faresi",
+    description: "10 Fen Bilimleri oyunu tamamla",
+    detailText: "10 fen oyunu bitirdin! Deneyler ve keşiflerle bilim sevgini büyütüyorsun.",
+    icon: FlaskConical,
+    color: "text-green-500",
+    bgColor: "bg-green-500/15",
+    ringColor: "ring-green-500/30",
+    category: "fen",
+    requirement: "10 Fen oyunu",
+    checkEarned: () => false,
+    getProgress: () => 0,
+  },
+  {
+    id: "fen-perfect",
+    name: "Kesin Sonuç",
+    description: "Fen oyununda hatasız bitir",
+    detailText: "Bir fen oyununu hiç hata yapmadan tamamla. Bilimsel düşüncen mükemmel!",
+    icon: Target,
+    color: "text-teal-500",
+    bgColor: "bg-teal-500/15",
+    ringColor: "ring-teal-500/30",
+    category: "fen",
+    requirement: "0 hata (Fen)",
+    checkEarned: () => false,
+    getProgress: () => 0,
+  },
+  {
     id: "fen-master",
     name: "Profesör",
     description: "Fen Bilimleri oyunlarında 90+ puan al",
     detailText: "Fen Bilimleri'nde 90+ puan! Gerçek bir bilim insanı gibi düşünüyorsun.",
-    icon: FlaskConical,
-    color: "text-teal-500",
-    bgColor: "bg-teal-500/15",
-    ringColor: "ring-teal-500/30",
+    icon: Crown,
+    color: "text-teal-600",
+    bgColor: "bg-teal-600/15",
+    ringColor: "ring-teal-600/30",
     category: "fen",
     requirement: "90+ puan (Fen)",
     checkEarned: () => false,
     getProgress: () => 0,
   },
-  // Sosyal Bilgiler
+
+  /* ── SOSYAL BİLGİLER ── */
   {
     id: "sosyal-beginner",
     name: "Kaşif",
@@ -285,7 +374,35 @@ const BADGES: BadgeDef[] = [
     bgColor: "bg-amber-600/15",
     ringColor: "ring-amber-600/30",
     category: "sosyal",
-    requirement: "1 Sosyal Bilgiler oyunu",
+    requirement: "1 Sosyal oyunu",
+    checkEarned: () => false,
+    getProgress: () => 0,
+  },
+  {
+    id: "sosyal-10",
+    name: "Gezgin",
+    description: "10 Sosyal Bilgiler oyunu tamamla",
+    detailText: "10 sosyal bilgiler oyunu bitirdin! Dünyayı ve tarihi keşfetmeye devam ediyorsun.",
+    icon: Globe,
+    color: "text-amber-500",
+    bgColor: "bg-amber-500/15",
+    ringColor: "ring-amber-500/30",
+    category: "sosyal",
+    requirement: "10 Sosyal oyunu",
+    checkEarned: () => false,
+    getProgress: () => 0,
+  },
+  {
+    id: "sosyal-perfect",
+    name: "Hafıza Ustası",
+    description: "Sosyal Bilgiler oyununda hatasız bitir",
+    detailText: "Bir sosyal bilgiler oyununu sıfır hatayla tamamla. Tarihi çok iyi biliyorsun!",
+    icon: Target,
+    color: "text-orange-500",
+    bgColor: "bg-orange-500/15",
+    ringColor: "ring-orange-500/30",
+    category: "sosyal",
+    requirement: "0 hata (Sosyal)",
     checkEarned: () => false,
     getProgress: () => 0,
   },
@@ -294,7 +411,7 @@ const BADGES: BadgeDef[] = [
     name: "Tarihçi",
     description: "Sosyal Bilgiler oyunlarında 90+ puan al",
     detailText: "Tarih ve coğrafyada uzmanlaştın! 90+ puanla geçmişi çok iyi biliyorsun.",
-    icon: Globe,
+    icon: Crown,
     color: "text-orange-600",
     bgColor: "bg-orange-600/15",
     ringColor: "ring-orange-600/30",
@@ -303,7 +420,8 @@ const BADGES: BadgeDef[] = [
     checkEarned: () => false,
     getProgress: () => 0,
   },
-  // İngilizce
+
+  /* ── İNGİLİZCE ── */
   {
     id: "ing-beginner",
     name: "Hello!",
@@ -319,11 +437,39 @@ const BADGES: BadgeDef[] = [
     getProgress: () => 0,
   },
   {
+    id: "ing-10",
+    name: "Bookworm",
+    description: "10 İngilizce oyunu tamamla",
+    detailText: "10 İngilizce oyunu bitirdin! Vocabulary'n hızla gelişiyor.",
+    icon: SpellCheck,
+    color: "text-cyan-500",
+    bgColor: "bg-cyan-500/15",
+    ringColor: "ring-cyan-500/30",
+    category: "ingilizce",
+    requirement: "10 İngilizce oyunu",
+    checkEarned: () => false,
+    getProgress: () => 0,
+  },
+  {
+    id: "ing-perfect",
+    name: "Flawless",
+    description: "İngilizce oyununda hatasız bitir",
+    detailText: "Bir İngilizce oyununu sıfır hatayla tamamla. Perfect score!",
+    icon: Target,
+    color: "text-sky-500",
+    bgColor: "bg-sky-500/15",
+    ringColor: "ring-sky-500/30",
+    category: "ingilizce",
+    requirement: "0 hata (İngilizce)",
+    checkEarned: () => false,
+    getProgress: () => 0,
+  },
+  {
     id: "ing-master",
     name: "Polyglot",
     description: "İngilizce oyunlarında 90+ puan al",
     detailText: "İngilizce'de harikasın! 90+ puanla dil becerini kanıtladın.",
-    icon: SpellCheck,
+    icon: Crown,
     color: "text-sky-600",
     bgColor: "bg-sky-600/15",
     ringColor: "ring-sky-600/30",
@@ -336,6 +482,7 @@ const BADGES: BadgeDef[] = [
 
 const CATEGORIES = [
   { key: "all", label: "Tümü", icon: Award },
+  { key: "genel", label: "Genel", icon: Gamepad2 },
   { key: "matematik", label: "Matematik", icon: Calculator },
   { key: "turkce", label: "Türkçe", icon: BookOpen },
   { key: "fen", label: "Fen Bilimleri", icon: FlaskConical },
@@ -516,7 +663,7 @@ export default function BadgesPage() {
   const filteredBadges =
     activeCategory === "all"
       ? BADGES
-      : BADGES.filter((b) => b.category === activeCategory || b.category === "all");
+      : BADGES.filter((b) => b.category === activeCategory);
 
   const earnedCount = BADGES.filter((b) => b.checkEarned(currentStats)).length;
 
@@ -622,11 +769,22 @@ export default function BadgesPage() {
             >
               <Card
                 className={cn(
-                  "cursor-pointer overflow-hidden border-0 shadow-sm transition-all duration-200 hover:shadow-md hover:scale-[1.02]",
+                  "relative cursor-pointer overflow-hidden border-0 shadow-sm transition-all duration-200 hover:shadow-md hover:scale-[1.02]",
                   earned && "ring-2 " + badge.ringColor
                 )}
                 onClick={() => setSelectedBadge(badge)}
               >
+                {/* Soru işareti */}
+                <button
+                  className="absolute left-2 top-2 z-10 flex h-6 w-6 items-center justify-center rounded-full bg-[#042940]/5 text-[#042940]/30 transition-colors hover:bg-[#042940]/10 hover:text-[#042940]/60"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setSelectedBadge(badge);
+                  }}
+                >
+                  <HelpCircle className="h-3.5 w-3.5" />
+                </button>
+
                 <CardContent className="p-5">
                   <div className="flex items-start gap-4">
                     {/* İkon */}
