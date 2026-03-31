@@ -62,11 +62,6 @@ const FAQ_ITEMS: FaqItem[] = [
   },
   // Eğitim & İçerik
   {
-    q: "Çocuğumun gelişimini nasıl takip edebilirim?",
-    a: "Ebeveyn panelinden çocuğunuzun hangi oyunları oynadığını, hangi konularda ilerlediğini ve geliştirilmesi gereken alanlarını takip edebilirsiniz. Aylık gelişim raporları ile çocuğunuzun öğrenme sürecini yakından izleyebilirsiniz.",
-    category: "Eğitim & İçerik",
-  },
-  {
     q: "Oyunlar yeni müfredata ne kadar uyumlu?",
     a: "Oyunlarımız müfredatla yalnızca uyumlu değil, doğrudan müfredat kazanımları üzerine inşa edilmektedir. Her oyunun tasarım süreci, ilgili sınıf ve dersin MEB kazanımlarının belirlenmesiyle başlar. Bu sayede çocuğunuz oyun oynarken müfredatın hedeflediği becerileri doğrudan pekiştirir.",
     category: "Eğitim & İçerik",
@@ -79,6 +74,11 @@ const FAQ_ITEMS: FaqItem[] = [
   {
     q: "Rozet sistemi nasıl çalışır?",
     a: "Çocuklar oyunları tamamladıkça, belirli hedeflere ulaştıkça ve düzenli oynadıkça dijital rozetler kazanır. Matematik Profesörü, Harita Uzmanı, Sözcük Avcısı gibi rozetler profil sayfasında sergilenir ve çocukları düzenli oynamaya teşvik eder.",
+    category: "Eğitim & İçerik",
+  },
+  {
+    q: "Çocuğumun gelişimini nasıl takip edebilirim?",
+    a: "Ebeveyn panelinden çocuğunuzun hangi oyunları oynadığını, hangi konularda ilerlediğini ve geliştirilmesi gereken alanlarını takip edebilirsiniz. Aylık gelişim raporları ile çocuğunuzun öğrenme sürecini yakından izleyebilirsiniz.",
     category: "Eğitim & İçerik",
   },
   // Kurumsal

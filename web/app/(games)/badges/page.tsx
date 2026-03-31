@@ -1,6 +1,7 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
+import { useSearchParams } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Trophy,
@@ -623,12 +624,18 @@ function BadgeDetailModal({
 /*  SAYFA                                                              */
 /* ------------------------------------------------------------------ */
 
-export default function BadgesPage() {
+function BadgesContent() {
+  const searchParams = useSearchParams();
+  const catParam = searchParams.get("cat") || "all";
   const { accessToken } = useAuthStore();
   const [stats, setStats] = useState<UserStats | null>(null);
   const [loading, setLoading] = useState(true);
-  const [activeCategory, setActiveCategory] = useState<string>("all");
+  const [activeCategory, setActiveCategory] = useState<string>(catParam);
   const [selectedBadge, setSelectedBadge] = useState<BadgeDef | null>(null);
+
+  useEffect(() => {
+    setActiveCategory(catParam);
+  }, [catParam]);
 
   useEffect(() => {
     async function fetchStats() {
@@ -881,5 +888,13 @@ export default function BadgesPage() {
         )}
       </AnimatePresence>
     </div>
+  );
+}
+
+export default function BadgesPage() {
+  return (
+    <Suspense fallback={<div className="container py-8"><p className="text-[#042940]/50">Yükleniyor...</p></div>}>
+      <BadgesContent />
+    </Suspense>
   );
 }

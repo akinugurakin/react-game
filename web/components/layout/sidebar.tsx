@@ -7,6 +7,7 @@ import {
   Lightbulb,
   LayoutDashboard,
   Trophy,
+  Award,
   Calculator,
   FlaskConical,
   Globe,
@@ -37,6 +38,17 @@ function getOyunAltMenusu(prefix: string) {
   ];
 }
 
+function getRozetAltMenusu(prefix: string) {
+  return [
+    { href: `${prefix}?cat=genel`, icon: Gamepad2, label: "Genel" },
+    { href: `${prefix}?cat=matematik`, icon: Calculator, label: "Matematik" },
+    { href: `${prefix}?cat=turkce`, icon: BookOpen, label: "Türkçe" },
+    { href: `${prefix}?cat=fen`, icon: FlaskConical, label: "Fen Bilimleri" },
+    { href: `${prefix}?cat=sosyal`, icon: Globe, label: "Sosyal Bilgiler" },
+    { href: `${prefix}?cat=ingilizce`, icon: SpellCheck, label: "İngilizce" },
+  ];
+}
+
 function getLiderlikAltMenusu(prefix: string, showSinif: boolean) {
   const items = [
     { href: `${prefix}?scope=turkiye`, icon: MapPin, label: "Türkiye Geneli" },
@@ -52,6 +64,7 @@ const studentMenuItems = [
   { href: "/dashboard", icon: User, label: "Profil" },
   { href: "/games", icon: Gamepad2, label: "Oyunlar", hasSubmenu: true },
   { href: "/leaderboard", icon: Trophy, label: "Liderlik", hasSubmenu: true },
+  { href: "/badges", icon: Award, label: "Rozetler", hasSubmenu: true },
 ];
 
 const teacherMenuItems = [
@@ -67,6 +80,7 @@ export function Sidebar() {
   const [collapsed, setCollapsed] = useState(false);
   const [oyunlarAcik, setOyunlarAcik] = useState(pathname.startsWith("/games"));
   const [liderlikAcik, setLiderlikAcik] = useState(pathname.startsWith("/leaderboard"));
+  const [rozetlerAcik, setRozetlerAcik] = useState(pathname.startsWith("/badges"));
   // URL search params'i takip et (client-side navigation icin)
   const [currentSearch, setCurrentSearch] = useState("");
   useEffect(() => {
@@ -212,14 +226,19 @@ export function Sidebar() {
           if (item.hasSubmenu) {
             const isOyunlar = item.href.endsWith("/games");
             const isLiderlik = item.href.endsWith("/leaderboard");
-            const subMenuOpen = isOyunlar ? oyunlarAcik : liderlikAcik;
-            const setSubMenuOpen = isOyunlar ? setOyunlarAcik : setLiderlikAcik;
+            const isRozetler = item.href.endsWith("/badges");
+            const subMenuOpen = isOyunlar ? oyunlarAcik : isLiderlik ? liderlikAcik : rozetlerAcik;
+            const setSubMenuOpen = isOyunlar ? setOyunlarAcik : isLiderlik ? setLiderlikAcik : setRozetlerAcik;
             const gamesPrefix = isTeacher ? "/teacher/games" : "/games";
             const leaderboardPrefix = isTeacher ? "/teacher/leaderboard" : "/leaderboard";
-            const subItems = isOyunlar ? getOyunAltMenusu(gamesPrefix) : getLiderlikAltMenusu(leaderboardPrefix, !isTeacher);
-            const paramKey = isOyunlar ? "subject" : "scope";
-            const allLabel = isOyunlar ? "Tüm Oyunlar" : "Genel";
-            const AllIcon = isOyunlar ? Gamepad2 : Trophy;
+            const subItems = isOyunlar
+              ? getOyunAltMenusu(gamesPrefix)
+              : isLiderlik
+                ? getLiderlikAltMenusu(leaderboardPrefix, !isTeacher)
+                : getRozetAltMenusu("/badges");
+            const paramKey = isOyunlar ? "subject" : isLiderlik ? "scope" : "cat";
+            const allLabel = isOyunlar ? "Tüm Oyunlar" : isLiderlik ? "Genel" : "Tümü";
+            const AllIcon = isOyunlar ? Gamepad2 : isLiderlik ? Trophy : Award;
 
             return (
               <div key={item.href}>
@@ -251,8 +270,8 @@ export function Sidebar() {
                 {!collapsed && (
                   <div className={cn("overflow-hidden transition-all duration-300 ease-in-out", subMenuOpen ? "mt-1 max-h-[250px] opacity-100" : "max-h-0 opacity-0")}>
                     <div className="ml-3 space-y-0.5 border-l border-white/10 pl-3">
-                      {/* Tüm Oyunlar - sadece Oyunlar menüsünde */}
-                      {isOyunlar && (
+                      {/* Tümü / Tüm Oyunlar linki */}
+                      {(isOyunlar || isRozetler) && (
                         <Link
                           href={basePath}
                           onClick={() => setTimeout(() => setCurrentSearch(""), 0)}
