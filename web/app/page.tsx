@@ -925,7 +925,7 @@ export default function HomePage() {
               <Button
                 asChild
                 size="lg"
-                className="mt-8 rounded-full bg-[#9FC131] px-12 py-7 text-lg font-bold text-white hover:bg-[#9FC131]/90"
+                className="mt-6 rounded-full bg-[#9FC131] px-12 py-7 text-lg font-bold text-white hover:bg-[#9FC131]/90"
               >
                 <Link href="/register">
                   Hemen Başla
