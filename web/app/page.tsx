@@ -859,7 +859,7 @@ export default function HomePage() {
         {/* ═══════════════════════════════════════════════════════════ */}
         {/*  GÜVENLİK                                        */}
         {/* ═══════════════════════════════════════════════════════════ */}
-        <section className="py-16 md:py-20">
+        <section className="pt-16 pb-8 md:pt-20 md:pb-10">
           <div className="container">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -904,7 +904,7 @@ export default function HomePage() {
         {/* ═══════════════════════════════════════════════════════════ */}
         {/*  ÜCRETSİZ DENEME CTA                            */}
         {/* ═══════════════════════════════════════════════════════════ */}
-        <section className="py-10 md:py-12">
+        <section className="pb-12 md:pb-14">
           <div className="container">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -913,7 +913,7 @@ export default function HomePage() {
               transition={{ duration: 0.5 }}
               className="mx-auto max-w-lg text-center"
             >
-              <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-2xl bg-[#DBF227]/20">
+              <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-[#DBF227]/20">
                 <Sparkles className="h-8 w-8 text-[#9FC131]" />
               </div>
               <h2 className="text-3xl font-extrabold text-[#042940] md:text-4xl">
