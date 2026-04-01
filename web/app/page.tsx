@@ -904,7 +904,7 @@ export default function HomePage() {
         {/* ═══════════════════════════════════════════════════════════ */}
         {/*  ÜCRETSİZ DENEME CTA                            */}
         {/* ═══════════════════════════════════════════════════════════ */}
-        <section className="pb-12 md:pb-14">
+        <section className="py-14 md:py-16">
           <div className="container">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -920,7 +920,7 @@ export default function HomePage() {
                 İlk Hafta Ücretsiz
               </h2>
               <p className="mt-3 text-lg text-[#042940]/50">
-                Kredi kartı gerekmez. Hemen başlayın.
+                Onayınız olmadan ödeme alınmaz.
               </p>
               <Button
                 asChild
