@@ -904,35 +904,35 @@ export default function HomePage() {
         {/* ═══════════════════════════════════════════════════════════ */}
         {/*  ÜCRETSİZ DENEME CTA                            */}
         {/* ═══════════════════════════════════════════════════════════ */}
-        <section className="py-14 md:py-16">
+        <section className="pt-4 pb-16 md:pt-6 md:pb-20">
           <div className="container">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5 }}
-              className="mx-auto max-w-lg text-center"
+              className="mx-auto max-w-xl text-center"
             >
-              <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-[#DBF227]/20">
-                <Sparkles className="h-8 w-8 text-[#9FC131]" />
+              <div className="mx-auto mb-5 flex h-18 w-18 items-center justify-center rounded-2xl bg-[#DBF227]/20" style={{ width: 72, height: 72 }}>
+                <Sparkles className="h-10 w-10 text-[#9FC131]" />
               </div>
-              <h2 className="text-3xl font-extrabold text-[#042940] md:text-4xl">
+              <h2 className="text-4xl font-extrabold text-[#042940] md:text-5xl">
                 İlk Hafta Ücretsiz
               </h2>
-              <p className="mt-3 text-lg text-[#042940]/50">
+              <p className="mt-4 text-xl text-[#042940]/50">
                 Onayınız olmadan ödeme alınmaz.
               </p>
               <Button
                 asChild
                 size="lg"
-                className="mt-8 rounded-full bg-[#9FC131] px-10 text-base font-bold text-white hover:bg-[#9FC131]/90"
+                className="mt-8 rounded-full bg-[#9FC131] px-12 py-7 text-lg font-bold text-white hover:bg-[#9FC131]/90"
               >
                 <Link href="/register">
                   Hemen Başla
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </Link>
               </Button>
-              <p className="mt-4 text-sm text-[#042940]/40">
+              <p className="mt-5 text-base text-[#042940]/40">
                 7 gün ücretsiz deneme &middot; İstediğin zaman iptal et
               </p>
             </motion.div>
