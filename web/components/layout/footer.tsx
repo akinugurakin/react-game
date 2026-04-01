@@ -55,11 +55,12 @@ const footerLinks: FooterSection[] = [
   {
     label: "Kurumsal",
     links: [
-      { title: "Hakkımızda", href: "#hakkimizda" },
-      { title: "Gizlilik Politikası", href: "#gizlilik" },
-      { title: "KVKK", href: "#kvkk" },
-      { title: "Kullanım Koşulları", href: "#kosullar" },
-      { title: "SSS", href: "#sss" },
+      { title: "Hakkımızda", href: "/about" },
+      { title: "Gizlilik Politikası", href: "/gizlilik-politikasi" },
+      { title: "KVKK Aydınlatma Metni", href: "/gizlilik-politikasi/aydinlatma-metni" },
+      { title: "Çerez Politikası", href: "/gizlilik-politikasi/cerez-politikasi" },
+      { title: "Kullanım Koşulları", href: "/kullanim-kosullari" },
+      { title: "SSS", href: "/sss" },
     ],
   },
   {

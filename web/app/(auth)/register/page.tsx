@@ -44,11 +44,9 @@ function RegisterContent() {
     parent_email: "",
     school_name: "",
   });
+  const [privacyAccepted, setPrivacyAccepted] = useState(false);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
-
-  const sinifNum = parseInt(formData.sinif) || 0;
-  const needsParent = role === "student" && sinifNum > 0 && sinifNum <= 4;
 
   useEffect(() => {
     if (hydrated && isAuthenticated) {
@@ -75,7 +73,7 @@ function RegisterContent() {
       if (role === "student") {
         payload.sinif = parseInt(formData.sinif);
         if (formData.school_name) payload.school_name = formData.school_name;
-        if (needsParent && formData.parent_email) {
+        if (formData.parent_email) {
           payload.parent_email = formData.parent_email;
         }
       }
@@ -92,9 +90,16 @@ function RegisterContent() {
         age: role === "student" ? parseInt(formData.sinif) + 5 : 30,
         avatar_url: null,
         role: role as "student" | "teacher",
+        parentApproved: role !== "student",
       };
       setAuth(mockUser, "mock-access-token", "mock-refresh-token");
-      router.push(role === "teacher" ? "/teacher" : "/dashboard");
+
+      if (role === "student") {
+        // Öğrenci kayıtlarında ebeveyn onayı bekleniyor sayfasına yönlendir
+        router.push("/ebeveyn-onay/bekliyor");
+      } else {
+        router.push("/teacher");
+      }
     } catch (err) {
       setError(err instanceof Error ? err.message : "Bir hata oluştu");
     } finally {
@@ -237,10 +242,13 @@ function RegisterContent() {
               </div>
             )}
 
-            {needsParent && (
-              <div className="space-y-2 rounded-lg bg-muted/50 p-4">
-                <p className="text-sm text-muted-foreground">
-                  1-4. sınıf öğrencileri için ebeveyn e-postası gereklidir.
+            {role === "student" && (
+              <div className="space-y-2 rounded-lg bg-[#005C53]/5 p-4">
+                <p className="text-sm font-medium text-[#042940]">
+                  Ebeveyn / Veli Bilgileri
+                </p>
+                <p className="text-xs text-muted-foreground">
+                  Çocuk hesapları ebeveyn onayı gerektirir. Kayıt sonrası ebeveyn e-postasına bir onay bağlantısı gönderilecektir.
                 </p>
                 <Label htmlFor="parent_email">Ebeveyn E-postası</Label>
                 <Input id="parent_email" name="parent_email" type="email" placeholder="ebeveyn@email.com" value={formData.parent_email} onChange={handleChange} required />
@@ -257,7 +265,26 @@ function RegisterContent() {
               </div>
             )}
 
-            <Button type="submit" className="w-full" size="lg" disabled={loading}>
+            <div className="space-y-3">
+              <label className="flex items-start gap-2.5 cursor-pointer">
+                <input
+                  type="checkbox"
+                  checked={privacyAccepted}
+                  onChange={(e) => setPrivacyAccepted(e.target.checked)}
+                  className="mt-1 h-4 w-4 shrink-0 rounded border-gray-300 text-[#005C53] focus:ring-[#005C53]"
+                  required
+                />
+                <span className="text-xs leading-relaxed text-muted-foreground">
+                  <Link href="/gizlilik-politikasi" target="_blank" className="font-semibold text-[#005C53] hover:underline">Gizlilik Politikası</Link>,{" "}
+                  <Link href="/gizlilik-politikasi/aydinlatma-metni" target="_blank" className="font-semibold text-[#005C53] hover:underline">KVKK Aydınlatma Metni</Link>,{" "}
+                  <Link href="/gizlilik-politikasi/acik-riza" target="_blank" className="font-semibold text-[#005C53] hover:underline">Açık Rıza Metni</Link> ve{" "}
+                  <Link href="/kullanim-kosullari" target="_blank" className="font-semibold text-[#005C53] hover:underline">Kullanım Koşulları</Link>&apos;nı
+                  okudum ve kabul ediyorum.
+                </span>
+              </label>
+            </div>
+
+            <Button type="submit" className="w-full" size="lg" disabled={loading || !privacyAccepted}>
               {loading ? "Kayıt yapılıyor..." : "Kayıt Ol"}
             </Button>
 

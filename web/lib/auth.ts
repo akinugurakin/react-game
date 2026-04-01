@@ -9,6 +9,7 @@ interface User {
   age: number;
   avatar_url: string | null;
   role: "student" | "teacher";
+  parentApproved?: boolean;
 }
 
 interface AuthState {
