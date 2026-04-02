@@ -38,8 +38,8 @@ const footerLinks: FooterSection[] = [
       { title: "Nasıl Çalışır?", href: "#nasil-calisir" },
       { title: "Oyunlar", href: "/games" },
       { title: "Liderlik Tablosu", href: "/leaderboard?scope=turkiye" },
-      { title: "Fiyatlandırma", href: "#fiyatlandirma" },
-      { title: "Öğretmenler İçin", href: "#ogretmenler" },
+      { title: "Ücretlendirme", href: "#fiyatlandirma" },
+      { title: "Öğretmenler İçin", href: "/teacher" },
     ],
   },
   {
@@ -133,7 +133,7 @@ export function Footer() {
             </Link>
             <p className="max-w-xs text-sm leading-relaxed text-white/50">
               MEB müfredatına uygun eğitsel oyunlarla çocuklarınız eğlenirken öğrensin.
-              1-8. sınıf öğrencileri için tasarlandı.
+              3-8. sınıf öğrencileri için tasarlandı.
             </p>
 
             {/* İletişim bilgileri */}

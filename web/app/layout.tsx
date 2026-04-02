@@ -6,7 +6,7 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   title: "LUMO - MEB Müfredatına Uygun Eğitsel Oyun Platformu",
-  description: "1-8. sınıf öğrencileri için Matematik, Fen Bilimleri ve Sosyal Bilgiler derslerinde oyunlaştırılmış öğrenme deneyimi.",
+  description: "3-8. sınıf öğrencileri için Matematik, Fen Bilimleri ve Sosyal Bilgiler derslerinde oyunlaştırılmış öğrenme deneyimi.",
 };
 
 export default async function RootLayout({
