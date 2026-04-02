@@ -226,10 +226,21 @@ export default function SSSPage() {
           </motion.div>
 
           {/* SSS Listesi */}
-          <div className="mx-auto max-w-2xl space-y-3">
-            {filtered.map((item, index) => (
-              <FaqAccordion key={item.q} item={item} index={index} />
-            ))}
+          <div className="mx-auto max-w-5xl flex flex-col md:flex-row gap-3">
+            <div className="flex-1 space-y-3">
+              {filtered
+                .filter((_, i) => i % 2 === 0)
+                .map((item, index) => (
+                  <FaqAccordion key={item.q} item={item} index={index * 2} />
+                ))}
+            </div>
+            <div className="flex-1 space-y-3">
+              {filtered
+                .filter((_, i) => i % 2 === 1)
+                .map((item, index) => (
+                  <FaqAccordion key={item.q} item={item} index={index * 2 + 1} />
+                ))}
+            </div>
           </div>
 
           {/* Alt bilgi */}
