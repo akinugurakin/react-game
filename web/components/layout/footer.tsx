@@ -39,7 +39,8 @@ const footerLinks: FooterSection[] = [
       { title: "Oyunlar", href: "/games" },
       { title: "Liderlik Tablosu", href: "/leaderboard?scope=turkiye" },
       { title: "Ücretlendirme", href: "/ucretlendirme" },
-      { title: "Öğretmenler İçin", href: "/teacher" },
+      { title: "Öğretmen Paneli", href: "/teacher" },
+      { title: "Veli Paneli", href: "/veli" },
     ],
   },
   {
