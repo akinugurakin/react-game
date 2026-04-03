@@ -78,16 +78,21 @@ const NAV_ITEMS: MegaMenuItem[] = [
   },
   {
     id: 4,
+    label: "Planlar",
+    href: "/ucretlendirme",
+  },
+  {
+    id: 5,
     label: "Blog",
     href: "/blog",
   },
   {
-    id: 5,
+    id: 6,
     label: "Hakkımızda",
     href: "/about",
   },
   {
-    id: 6,
+    id: 7,
     label: "SSS",
     href: "/sss",
   },
@@ -175,6 +180,9 @@ export function Header() {
               </Link>
               <Link href="/badges" className="text-lg font-semibold">
                 Rozetler
+              </Link>
+              <Link href="/ucretlendirme" className="text-lg font-semibold">
+                Planlar
               </Link>
               <Link href="/blog" className="text-lg font-semibold">
                 Blog

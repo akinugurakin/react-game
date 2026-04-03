@@ -113,7 +113,7 @@ export default function AboutPage() {
               <Lightbulb className="h-8 w-8 text-[#005C53]" />
             </div>
             <h1 className="text-4xl font-extrabold text-[#042940] sm:text-5xl">
-              Eğitimi Eğlenceli Hale Getiriyoruz
+              Eğitimi <span className="rounded-lg bg-[#DBF227] px-3 py-0.5">Eğlenceli</span> Hale Getiriyoruz
             </h1>
             <p className="mx-auto mt-4 max-w-2xl text-lg text-[#042940]/50">
               LUMO, Türkiye'deki ilkokul ve ortaokul öğrencileri için MEB müfredatına uygun,
@@ -151,7 +151,7 @@ export default function AboutPage() {
             transition={{ duration: 0.4, delay: 0.15 }}
           >
             <h2 className="mb-2 text-center text-2xl font-extrabold text-[#042940]">
-              Neden LUMO?
+              Neden <span className="rounded-lg bg-[#DBF227] px-2 py-0.5">LUMO</span>?
             </h2>
             <p className="mb-8 text-center text-sm text-[#042940]/50">
               Platformumuzun temel özellikleri

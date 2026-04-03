@@ -38,7 +38,7 @@ const footerLinks: FooterSection[] = [
       { title: "Nasıl Çalışır?", href: "#nasil-calisir" },
       { title: "Oyunlar", href: "/games" },
       { title: "Liderlik Tablosu", href: "/leaderboard?scope=turkiye" },
-      { title: "Ücretlendirme", href: "#fiyatlandirma" },
+      { title: "Ücretlendirme", href: "/ucretlendirme" },
       { title: "Öğretmenler İçin", href: "/teacher" },
     ],
   },
