@@ -210,7 +210,7 @@ function GameDetailModal({
         animate={{ opacity: 1, scale: 1, y: 0 }}
         exit={{ opacity: 0, scale: 0.9, y: 20 }}
         transition={{ type: "spring", stiffness: 400, damping: 30 }}
-        className="relative w-full max-w-sm overflow-hidden rounded-2xl bg-white shadow-2xl"
+        className="relative w-full max-w-sm overflow-visible rounded-2xl bg-white shadow-2xl"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Kapat */}
