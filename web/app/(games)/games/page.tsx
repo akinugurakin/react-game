@@ -24,11 +24,18 @@ import {
   SpellCheck,
   Lock,
   X,
+  GraduationCap,
 } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { useAuthStore } from "@/lib/auth";
+
+type Kazanim = {
+  code: string;
+  description: string;
+  grade: string;
+};
 
 type GameItem = {
   id: number;
@@ -45,11 +52,18 @@ type GameItem = {
   href: string;
   free: boolean;
   info: string;
+  kazanimlar?: Kazanim[];
 };
 
 const allGames: GameItem[] = [
   // ── Matematik ──
-  { id: 1, title: "Matematik Yarışması", description: "Toplama, çıkarma, çarpma ve bölme ile hızını test et.", icon: Calculator, color: "bg-brand-teal", minAge: 6, maxAge: 12, category: "Matematik", subject: "matematik", players: 1245, avgDuration: "3-5 dk", href: "/games/math", free: true, info: "Dört işlem becerini zamana karşı test et. Her doğru cevap puan kazandırır, hızlı cevaplar bonus verir." },
+  { id: 1, title: "Matematik Yarışması", description: "Toplama, çıkarma, çarpma ve bölme ile hızını test et.", icon: Calculator, color: "bg-brand-teal", minAge: 6, maxAge: 12, category: "Matematik", subject: "matematik", players: 1245, avgDuration: "3-5 dk", href: "/games/math", free: true, info: "Dört işlem becerini zamana karşı test et. Her doğru cevap puan kazandırır, hızlı cevaplar bonus verir.", kazanimlar: [
+    { code: "MAT.1.2.2", description: "Toplama ve çıkarma işlemlerinin sonuçlarını tahminde bulunarak ve zihinden işlem yaparak muhakeme edebilme", grade: "1. Sınıf" },
+    { code: "MAT.2.2.4", description: "Çarpma ve bölme işlemlerini toplama ve çıkarma işlemlerine dayalı olarak çözümleyebilme", grade: "2. Sınıf" },
+    { code: "MAT.2.2.5", description: "Çarpma ve bölme işlemlerinin sonuçlarını muhakeme edebilme", grade: "2. Sınıf" },
+    { code: "MAT.3.2.3", description: "Çarpma ve bölme işlemlerinin sonuçlarını muhakeme edebilme", grade: "3. Sınıf" },
+    { code: "MAT.3.2.4", description: "Çarpma ve bölme işlemlerini çözümleyebilme", grade: "3. Sınıf" },
+  ] },
   { id: 2, title: "Bulmaca Dünyası", description: "Geometrik şekilleri doğru yere yerleştir.", icon: Puzzle, color: "bg-brand-green", minAge: 6, maxAge: 12, category: "Geometri", subject: "matematik", players: 670, avgDuration: "5-8 dk", href: "#", free: false, info: "Geometrik şekilleri tanıyarak doğru alanlara yerleştir. Uzamsal zeka ve şekil algısını geliştirir." },
   { id: 3, title: "Kesir Ustası", description: "Kesirleri karşılaştır, topla ve çıkar.", icon: Layers, color: "bg-brand-dark", minAge: 8, maxAge: 12, category: "Kesirler", subject: "matematik", players: 540, avgDuration: "4-6 dk", href: "#", free: false, info: "Kesirleri görsel olarak anlama, karşılaştırma ve işlem yapma becerisi kazandırır." },
   // ── Fen Bilimleri ──
@@ -252,6 +266,31 @@ function GameDetailModal({
               {game.info}
             </p>
           </div>
+
+          {/* Kazanımlar */}
+          {game.kazanimlar && game.kazanimlar.length > 0 && (
+            <div className="mt-4 rounded-xl bg-[#005C53]/[0.05] p-4">
+              <div className="mb-2 flex items-center gap-1.5 text-xs font-bold text-[#042940]/70">
+                <GraduationCap className="h-3.5 w-3.5" />
+                Müfredat Kazanımları
+              </div>
+              <div className="flex flex-wrap gap-1.5">
+                {game.kazanimlar.map((k) => (
+                  <span
+                    key={k.code}
+                    className="group/tip relative cursor-default rounded-md bg-[#005C53]/10 px-2 py-1 text-[11px] font-semibold text-[#005C53] transition-colors hover:bg-[#005C53]/20"
+                  >
+                    {k.code}
+                    <span className="pointer-events-none absolute bottom-full left-0 z-50 mb-2 w-56 rounded-lg bg-[#042940] px-3 py-2 text-[11px] font-normal leading-relaxed text-white opacity-0 shadow-lg transition-opacity group-hover/tip:opacity-100">
+                      <span className="block font-semibold text-[#9FC131]">{k.grade}</span>
+                      {k.description}
+                      <span className="absolute left-4 top-full border-4 border-transparent border-t-[#042940]" />
+                    </span>
+                  </span>
+                ))}
+              </div>
+            </div>
+          )}
 
           {/* İstatistikler */}
           <div className="mt-4 flex items-center justify-center gap-6 text-xs text-[#042940]/40">
