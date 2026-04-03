@@ -8,7 +8,7 @@ interface User {
   username: string;
   age: number;
   avatar_url: string | null;
-  role: "student" | "teacher";
+  role: "student" | "teacher" | "veli";
   parentApproved?: boolean;
 }
 

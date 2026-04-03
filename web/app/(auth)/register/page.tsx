@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
-import { Lightbulb, GraduationCap, Users, ArrowLeft } from "lucide-react";
+import { Lightbulb, GraduationCap, Users, ArrowLeft, Heart } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -24,7 +24,7 @@ interface RegisterResponse {
     avatar_url: string | null;
     is_active: boolean;
     created_at: string;
-    role?: "student" | "teacher";
+    role?: "student" | "teacher" | "veli";
   };
 }
 
@@ -33,9 +33,10 @@ function RegisterContent() {
   const searchParams = useSearchParams();
   const { isAuthenticated, setAuth } = useAuthStore();
   const hydrated = useAuthHydrated();
-  const initialRole = searchParams.get("role") === "teacher" ? "teacher" : "student";
-  const [step, setStep] = useState<"role" | "form">(searchParams.get("role") ? "form" : "role");
-  const [role, setRole] = useState<"student" | "teacher">(initialRole as "student" | "teacher");
+  const roleParam = searchParams.get("role");
+  const initialRole = roleParam === "teacher" ? "teacher" : roleParam === "veli" ? "veli" : "student";
+  const [step, setStep] = useState<"role" | "form">(roleParam ? "form" : "role");
+  const [role, setRole] = useState<"student" | "teacher" | "veli">(initialRole);
   const [formData, setFormData] = useState({
     email: "",
     username: "",
@@ -89,14 +90,15 @@ function RegisterContent() {
         username: formData.username,
         age: role === "student" ? parseInt(formData.sinif) + 5 : 30,
         avatar_url: null,
-        role: role as "student" | "teacher",
+        role: role as "student" | "teacher" | "veli",
         parentApproved: role !== "student",
       };
       setAuth(mockUser, "mock-access-token", "mock-refresh-token");
 
       if (role === "student") {
-        // Öğrenci kayıtlarında ebeveyn onayı bekleniyor sayfasına yönlendir
         router.push("/ebeveyn-onay/bekliyor");
+      } else if (role === "veli") {
+        router.push("/veli");
       } else {
         router.push("/teacher");
       }
@@ -126,19 +128,21 @@ function RegisterContent() {
             ? "Nasıl kayıt olmak istiyorsun?"
             : role === "teacher"
               ? "Öğretmen hesabı oluştur"
-              : "Yeni bir hesap oluştur ve oynamaya başla"}
+              : role === "veli"
+                ? "Veli hesabı oluştur"
+                : "Yeni bir hesap oluştur ve oynamaya başla"}
         </p>
       </div>
 
       {step === "role" ? (
         <div className="space-y-4">
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-3 gap-4">
             <button
               onClick={() => { setRole("student"); setStep("form"); }}
-              className="group flex flex-col items-center gap-3 rounded-2xl border-2 border-transparent bg-background p-8 shadow-sm transition-all hover:border-[#005C53] hover:shadow-md"
+              className="group flex flex-col items-center gap-3 rounded-2xl border-2 border-transparent bg-background p-6 shadow-sm transition-all hover:border-[#005C53] hover:shadow-md"
             >
-              <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-[#005C53]/10 transition-colors group-hover:bg-[#005C53] group-hover:text-white">
-                <GraduationCap className="h-8 w-8 text-[#005C53] group-hover:text-white" />
+              <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-[#005C53]/10 transition-colors group-hover:bg-[#005C53] group-hover:text-white">
+                <GraduationCap className="h-7 w-7 text-[#005C53] group-hover:text-white" />
               </div>
               <div className="text-center">
                 <p className="font-bold text-[#042940]">Öğrenci</p>
@@ -148,14 +152,27 @@ function RegisterContent() {
 
             <button
               onClick={() => { setRole("teacher"); setStep("form"); }}
-              className="group flex flex-col items-center gap-3 rounded-2xl border-2 border-transparent bg-background p-8 shadow-sm transition-all hover:border-[#9FC131] hover:shadow-md"
+              className="group flex flex-col items-center gap-3 rounded-2xl border-2 border-transparent bg-background p-6 shadow-sm transition-all hover:border-[#9FC131] hover:shadow-md"
             >
-              <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-[#9FC131]/10 transition-colors group-hover:bg-[#9FC131] group-hover:text-white">
-                <Users className="h-8 w-8 text-[#9FC131] group-hover:text-white" />
+              <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-[#9FC131]/10 transition-colors group-hover:bg-[#9FC131] group-hover:text-white">
+                <Users className="h-7 w-7 text-[#9FC131] group-hover:text-white" />
               </div>
               <div className="text-center">
                 <p className="font-bold text-[#042940]">Öğretmen</p>
                 <p className="mt-1 text-xs text-muted-foreground">Sınıf yönet, takip et</p>
+              </div>
+            </button>
+
+            <button
+              onClick={() => { setRole("veli"); setStep("form"); }}
+              className="group flex flex-col items-center gap-3 rounded-2xl border-2 border-transparent bg-background p-6 shadow-sm transition-all hover:border-[#E8634A] hover:shadow-md"
+            >
+              <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-[#E8634A]/10 transition-colors group-hover:bg-[#E8634A] group-hover:text-white">
+                <Heart className="h-7 w-7 text-[#E8634A] group-hover:text-white" />
+              </div>
+              <div className="text-center">
+                <p className="font-bold text-[#042940]">Veli</p>
+                <p className="mt-1 text-xs text-muted-foreground">Takip et, yönet</p>
               </div>
             </button>
           </div>
@@ -179,15 +196,17 @@ function RegisterContent() {
 
           <div className={cn(
             "flex items-center gap-3 rounded-xl p-3",
-            role === "teacher" ? "bg-[#9FC131]/10" : "bg-[#005C53]/10"
+            role === "teacher" ? "bg-[#9FC131]/10" : role === "veli" ? "bg-[#E8634A]/10" : "bg-[#005C53]/10"
           )}>
             {role === "teacher" ? (
               <Users className="h-5 w-5 text-[#9FC131]" />
+            ) : role === "veli" ? (
+              <Heart className="h-5 w-5 text-[#E8634A]" />
             ) : (
               <GraduationCap className="h-5 w-5 text-[#005C53]" />
             )}
             <span className="text-sm font-semibold text-[#042940]">
-              {role === "teacher" ? "Öğretmen Kayıt" : "Öğrenci Kayıt"}
+              {role === "teacher" ? "Öğretmen Kayıt" : role === "veli" ? "Veli Kayıt" : "Öğrenci Kayıt"}
             </span>
           </div>
 

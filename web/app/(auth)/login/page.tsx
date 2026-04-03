@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { Lightbulb, GraduationCap, Users, ArrowLeft } from "lucide-react";
+import { Lightbulb, GraduationCap, Users, ArrowLeft, Heart } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -22,7 +22,7 @@ interface LoginResponse {
     avatar_url: string | null;
     is_active: boolean;
     created_at: string;
-    role?: "student" | "teacher";
+    role?: "student" | "teacher" | "veli";
   };
 }
 
@@ -31,7 +31,7 @@ export default function LoginPage() {
   const { isAuthenticated, setAuth } = useAuthStore();
   const hydrated = useAuthHydrated();
   const [step, setStep] = useState<"role" | "form">("role");
-  const [role, setRole] = useState<"student" | "teacher">("student");
+  const [role, setRole] = useState<"student" | "teacher" | "veli">("student");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -57,10 +57,10 @@ export default function LoginPage() {
         username: email.split("@")[0],
         age: 10,
         avatar_url: null,
-        role: role as "student" | "teacher",
+        role: role as "student" | "teacher" | "veli",
       };
       setAuth(mockUser, "mock-access-token", "mock-refresh-token");
-      router.push(role === "teacher" ? "/teacher" : "/dashboard");
+      router.push(role === "teacher" ? "/teacher" : role === "veli" ? "/veli" : "/dashboard");
     } catch (err) {
       setError("Bir hata oluştu");
     } finally {
@@ -83,21 +83,21 @@ export default function LoginPage() {
         </Link>
         {step !== "role" && (
           <p className="mt-2 text-muted-foreground">
-            {role === "teacher" ? "Öğretmen hesabına giriş yap" : "Hesabına giriş yap ve oynamaya başla"}
+            {role === "teacher" ? "Öğretmen hesabına giriş yap" : role === "veli" ? "Veli hesabına giriş yap" : "Hesabına giriş yap ve oynamaya başla"}
           </p>
         )}
       </div>
 
       {step === "role" ? (
         <div className="space-y-4">
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-3 gap-4">
             {/* Öğrenci */}
             <button
               onClick={() => { setRole("student"); setStep("form"); }}
-              className="group flex flex-col items-center gap-3 rounded-2xl border-2 border-transparent bg-background p-8 shadow-sm transition-all hover:border-[#005C53] hover:shadow-md"
+              className="group flex flex-col items-center gap-3 rounded-2xl border-2 border-transparent bg-background p-6 shadow-sm transition-all hover:border-[#005C53] hover:shadow-md"
             >
-              <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-[#005C53]/10 transition-colors group-hover:bg-[#005C53] group-hover:text-white">
-                <GraduationCap className="h-8 w-8 text-[#005C53] group-hover:text-white" />
+              <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-[#005C53]/10 transition-colors group-hover:bg-[#005C53] group-hover:text-white">
+                <GraduationCap className="h-7 w-7 text-[#005C53] group-hover:text-white" />
               </div>
               <div className="text-center">
                 <p className="font-bold text-[#042940]">Öğrenci</p>
@@ -108,14 +108,28 @@ export default function LoginPage() {
             {/* Öğretmen */}
             <button
               onClick={() => { setRole("teacher"); setStep("form"); }}
-              className="group flex flex-col items-center gap-3 rounded-2xl border-2 border-transparent bg-background p-8 shadow-sm transition-all hover:border-[#9FC131] hover:shadow-md"
+              className="group flex flex-col items-center gap-3 rounded-2xl border-2 border-transparent bg-background p-6 shadow-sm transition-all hover:border-[#9FC131] hover:shadow-md"
             >
-              <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-[#9FC131]/10 transition-colors group-hover:bg-[#9FC131] group-hover:text-white">
-                <Users className="h-8 w-8 text-[#9FC131] group-hover:text-white" />
+              <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-[#9FC131]/10 transition-colors group-hover:bg-[#9FC131] group-hover:text-white">
+                <Users className="h-7 w-7 text-[#9FC131] group-hover:text-white" />
               </div>
               <div className="text-center">
                 <p className="font-bold text-[#042940]">Öğretmen</p>
                 <p className="mt-1 text-xs text-muted-foreground">Sınıf yönet, takip et</p>
+              </div>
+            </button>
+
+            {/* Veli */}
+            <button
+              onClick={() => { setRole("veli"); setStep("form"); }}
+              className="group flex flex-col items-center gap-3 rounded-2xl border-2 border-transparent bg-background p-6 shadow-sm transition-all hover:border-[#E8634A] hover:shadow-md"
+            >
+              <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-[#E8634A]/10 transition-colors group-hover:bg-[#E8634A] group-hover:text-white">
+                <Heart className="h-7 w-7 text-[#E8634A] group-hover:text-white" />
+              </div>
+              <div className="text-center">
+                <p className="font-bold text-[#042940]">Veli</p>
+                <p className="mt-1 text-xs text-muted-foreground">Takip et, yönet</p>
               </div>
             </button>
           </div>
@@ -141,15 +155,17 @@ export default function LoginPage() {
           {/* Rol göstergesi */}
           <div className={cn(
             "flex items-center gap-3 rounded-xl p-3",
-            role === "teacher" ? "bg-[#9FC131]/10" : "bg-[#005C53]/10"
+            role === "teacher" ? "bg-[#9FC131]/10" : role === "veli" ? "bg-[#E8634A]/10" : "bg-[#005C53]/10"
           )}>
             {role === "teacher" ? (
               <Users className="h-5 w-5 text-[#9FC131]" />
+            ) : role === "veli" ? (
+              <Heart className="h-5 w-5 text-[#E8634A]" />
             ) : (
               <GraduationCap className="h-5 w-5 text-[#005C53]" />
             )}
             <span className="text-sm font-semibold text-[#042940]">
-              {role === "teacher" ? "Öğretmen Girişi" : "Öğrenci Girişi"}
+              {role === "teacher" ? "Öğretmen Girişi" : role === "veli" ? "Veli Girişi" : "Öğrenci Girişi"}
             </span>
           </div>
 
@@ -190,7 +206,7 @@ export default function LoginPage() {
 
             <p className="text-center text-sm text-muted-foreground">
               Hesabın yok mu?{" "}
-              <Link href={`/register${role === "teacher" ? "?role=teacher" : ""}`} className="font-semibold text-brand-dark hover:underline">
+              <Link href={`/register${role === "teacher" ? "?role=teacher" : role === "veli" ? "?role=veli" : ""}`} className="font-semibold text-brand-dark hover:underline">
                 Kayıt Ol
               </Link>
             </p>
