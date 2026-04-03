@@ -164,19 +164,25 @@ export function Sidebar() {
             </button>
           </>
         ) : (
-          <div className="flex flex-col items-center gap-2 mx-auto">
+          <div className="flex w-full items-center justify-center">
             <Link href="/">
               <Lightbulb className="h-7 w-7 text-brand-lime" />
             </Link>
-            <button
-              onClick={() => setCollapsed(false)}
-              className="flex h-6 w-6 items-center justify-center rounded-lg text-white/40 transition-colors hover:bg-white/10 hover:text-white"
-            >
-              <ChevronRight className="h-3.5 w-3.5" />
-            </button>
           </div>
         )}
       </div>
+
+      {/* Expand butonu — collapsed */}
+      {collapsed && (
+        <div className="flex justify-center border-b border-white/10 py-2">
+          <button
+            onClick={() => setCollapsed(false)}
+            className="flex h-7 w-7 items-center justify-center rounded-lg text-white/40 transition-colors hover:bg-white/10 hover:text-white"
+          >
+            <ChevronRight className="h-4 w-4" />
+          </button>
+        </div>
+      )}
 
       {/* Kullanıcı */}
       <div
