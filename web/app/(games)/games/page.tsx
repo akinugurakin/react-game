@@ -294,7 +294,7 @@ function GameCard({ game, index, locked, onSelect }: { game: GameItem; index: nu
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4, delay: index * 0.08 }}
     >
-      <Card className={`group relative overflow-hidden transition-shadow hover:shadow-lg ${locked ? "opacity-75" : ""}`}>
+      <Card className={`group relative cursor-pointer overflow-hidden transition-shadow hover:shadow-lg ${locked ? "opacity-75" : ""}`} onClick={onSelect}>
         {/* Soru işareti */}
         <button
           className="absolute right-4 top-3 z-10 text-[#042940]/25 transition-colors hover:text-[#042940]/50"
