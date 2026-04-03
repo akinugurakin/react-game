@@ -1,8 +1,10 @@
 "use client";
 
+import { useState } from "react";
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import {
+  ChevronDown,
   GraduationCap,
   Gamepad2,
   Shield,
@@ -19,6 +21,7 @@ import { Button } from "@/components/ui/button";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 import { BackgroundSymbols } from "@/components/ui/background-symbols";
+import { cn } from "@/lib/utils";
 
 /* ------------------------------------------------------------------ */
 /*  VERİ                                                               */
@@ -54,7 +57,7 @@ const MISSION_ITEMS = [
 const STATS = [
   { value: "5+", label: "Ders Kategorisi" },
   { value: "20+", label: "Eğitsel Oyun" },
-  { value: "1-8", label: "Sınıf Düzeyi" },
+  { value: "3-8", label: "Sınıf Düzeyi" },
   { value: "7/24", label: "Erişim" },
 ];
 
@@ -91,6 +94,9 @@ const VALUES = [
 /* ------------------------------------------------------------------ */
 
 export default function AboutPage() {
+  const [akinExpanded, setAkinExpanded] = useState(false);
+  const [gulerExpanded, setGulerExpanded] = useState(false);
+
   return (
     <div className="relative min-h-screen overflow-x-hidden bg-[#F5F4EF]">
       <BackgroundSymbols />
@@ -214,6 +220,77 @@ export default function AboutPage() {
               </div>
             </motion.div>
           </div>
+        </section>
+
+        {/* Biz Kimiz */}
+        <section className="container py-16">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4, delay: 0.3 }}
+          >
+            <h2 className="mb-2 text-center text-2xl font-extrabold text-[#042940]">
+              Biz Kimiz?
+            </h2>
+            <p className="mb-10 text-center text-sm text-[#042940]/50">
+              LUMO'nun arkasındaki ekip
+            </p>
+            <div className="mx-auto grid max-w-5xl grid-cols-1 gap-10 sm:grid-cols-2 sm:gap-12 items-start">
+              {/* Kurucu 1 */}
+              <motion.div
+                initial={{ opacity: 0, y: 16 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.3, delay: 0.35 }}
+                className="flex flex-col items-center text-center"
+              >
+                <div className="mb-4 h-32 w-32 overflow-hidden rounded-full border-4 border-[#005C53]/10 bg-[#042940]/5 shadow-md">
+                  {/* Fotoğraf buraya gelecek */}
+                  <div className="flex h-full w-full items-center justify-center text-3xl font-bold text-[#005C53]/30">
+                    AA
+                  </div>
+                </div>
+                <h3 className="text-lg font-bold text-[#042940]">Akın Uğur Akın</h3>
+                <p className="mt-1 text-sm font-medium text-[#005C53]">Matematik Öğretmeni · Eğitim Danışmanı</p>
+                <p className="mt-2 max-w-[420px] text-sm leading-relaxed text-[#042940]/50">
+                  Boğaziçi Üniversitesi'nde makine mühendisliği bölümünde başladığı lisans eğitimini İlköğretim Matematik Öğretmenliği bölümünden mezun olarak tamamladı.{akinExpanded ? " Yüksek lisans eğitiminde yine aynı üniversitede öğretmen farkındalığı ve matematiksel düşünme üzerine çalıştı. Ayrıca MEB müfredatını felsefi, tarihi, psikolojik ve sosyolojik açıdan derinlemesine incelemiş ve hâkim olduğu ulusal ve uluslararası müfredatlarla (Finlandiya, AP, IB, A Level ve GCSE) karşılaştırmalı analizlerini yapmıştır. Bugün hâlâ matematik öğretmeni olarak ilkokul seviyesinden üniversite seviyesine kadar matematik dersleri vermektedir." : ".."}
+                  {" "}
+                  <button
+                    onClick={() => setAkinExpanded(!akinExpanded)}
+                    className="inline text-[#005C53] font-medium hover:underline"
+                  >
+                    {akinExpanded ? <span className="text-2xl leading-none">‹</span> : "devamını oku"}
+                  </button>
+                </p>
+              </motion.div>
+
+              {/* Kurucu 2 */}
+              <motion.div
+                initial={{ opacity: 0, y: 16 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.3, delay: 0.4 }}
+                className="flex flex-col items-center text-center"
+              >
+                <div className="mb-4 h-32 w-32 overflow-hidden rounded-full border-4 border-[#005C53]/10 bg-[#042940]/5 shadow-md">
+                  {/* Fotoğraf buraya gelecek */}
+                  <div className="flex h-full w-full items-center justify-center text-3xl font-bold text-[#005C53]/30">
+                    GA
+                  </div>
+                </div>
+                <h3 className="text-lg font-bold text-[#042940]">Güler Ardıç</h3>
+                <p className="mt-1 text-sm font-medium text-[#005C53]">Dilbilim Mühendisi · Yapay Zeka Uzmanı</p>
+                <p className="mt-2 max-w-[420px] text-sm leading-relaxed text-[#042940]/50">
+                  Kanada'da Meta bünyesinde Dilbilim Mühendisi ve Yapay Zeka Uzmanı olarak çalışmaktadır.{gulerExpanded ? " Detaylı biyografi bilgisi eklenecektir." : ".."}
+                  {" "}
+                  <button
+                    onClick={() => setGulerExpanded(!gulerExpanded)}
+                    className="inline text-[#005C53] font-medium hover:underline"
+                  >
+                    {gulerExpanded ? <span className="text-2xl leading-none">‹</span> : "devamını oku"}
+                  </button>
+                </p>
+              </motion.div>
+            </div>
+          </motion.div>
         </section>
 
         {/* İletişim CTA */}
