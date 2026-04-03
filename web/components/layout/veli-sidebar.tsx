@@ -46,20 +46,32 @@ export function VeliSidebar() {
       )}
     >
       {/* Logo */}
-      <div className="flex h-16 items-center justify-between px-4">
-        <Link href="/veli" className="flex items-center gap-2 overflow-hidden">
+      <div className={cn("flex h-16 items-center", collapsed ? "justify-center px-2" : "justify-between px-4")}>
+        <Link href="/veli" className="flex items-center gap-2">
           <Lightbulb className="h-7 w-7 shrink-0 text-[#DBF227]" />
           {!collapsed && (
             <span className="text-lg font-extrabold tracking-tight">LUMO</span>
           )}
         </Link>
-        <button
-          onClick={() => setCollapsed(!collapsed)}
-          className="flex h-7 w-7 items-center justify-center rounded-lg text-white/40 transition-colors hover:bg-white/10 hover:text-white"
-        >
-          {collapsed ? <ChevronRight className="h-4 w-4" /> : <ChevronLeft className="h-4 w-4" />}
-        </button>
+        {!collapsed && (
+          <button
+            onClick={() => setCollapsed(true)}
+            className="flex h-7 w-7 items-center justify-center rounded-lg text-white/40 transition-colors hover:bg-white/10 hover:text-white"
+          >
+            <ChevronLeft className="h-4 w-4" />
+          </button>
+        )}
       </div>
+      {collapsed && (
+        <div className="flex justify-center px-3 pb-2">
+          <button
+            onClick={() => setCollapsed(false)}
+            className="flex h-7 w-7 items-center justify-center rounded-lg text-white/40 transition-colors hover:bg-white/10 hover:text-white"
+          >
+            <ChevronRight className="h-4 w-4" />
+          </button>
+        </div>
+      )}
 
       {/* Veli badge */}
       {!collapsed && (

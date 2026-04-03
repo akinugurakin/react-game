@@ -147,19 +147,34 @@ export function Sidebar() {
     >
       {/* Logo */}
       <div className="flex h-16 items-center justify-between border-b border-white/10 px-4">
-        {!collapsed && (
-          <Link href="/" className="flex items-center gap-2">
-            <Lightbulb className="h-7 w-7 text-brand-lime" />
-            <div>
-              <span className="text-lg font-extrabold text-white">LUMO</span>
-              <p className="text-[10px] font-normal leading-tight text-white/40">Eğitsel Oyun Platformu</p>
-            </div>
-          </Link>
-        )}
-        {collapsed && (
-          <Link href="/" className="mx-auto">
-            <Lightbulb className="h-7 w-7 text-brand-lime" />
-          </Link>
+        {!collapsed ? (
+          <>
+            <Link href="/" className="flex items-center gap-2">
+              <Lightbulb className="h-7 w-7 text-brand-lime" />
+              <div>
+                <span className="text-lg font-extrabold text-white">LUMO</span>
+                <p className="text-[10px] font-normal leading-tight text-white/40">Eğitsel Oyun Platformu</p>
+              </div>
+            </Link>
+            <button
+              onClick={() => setCollapsed(true)}
+              className="flex h-7 w-7 items-center justify-center rounded-lg text-white/40 transition-colors hover:bg-white/10 hover:text-white"
+            >
+              <ChevronLeft className="h-4 w-4" />
+            </button>
+          </>
+        ) : (
+          <div className="flex flex-col items-center gap-2 mx-auto">
+            <Link href="/">
+              <Lightbulb className="h-7 w-7 text-brand-lime" />
+            </Link>
+            <button
+              onClick={() => setCollapsed(false)}
+              className="flex h-6 w-6 items-center justify-center rounded-lg text-white/40 transition-colors hover:bg-white/10 hover:text-white"
+            >
+              <ChevronRight className="h-3.5 w-3.5" />
+            </button>
+          </div>
         )}
       </div>
 
