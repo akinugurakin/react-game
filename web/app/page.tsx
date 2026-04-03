@@ -876,27 +876,42 @@ export default function HomePage() {
               </p>
             </motion.div>
 
-            <div className="max-w-2xl space-y-3">
-              {guvenlikMaddeleri.map((madde, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, x: -16 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.4, delay: index * 0.08 }}
-                >
-                  <Card className="border-0 bg-white shadow-sm transition-shadow hover:shadow-md">
-                    <CardContent className="flex items-center gap-4 p-4">
-                      <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#9FC131]/15">
-                        <CheckCircle2 className="h-5 w-5 text-[#9FC131]" />
-                      </div>
-                      <span className="text-sm font-medium text-[#042940]">
-                        {madde}
-                      </span>
-                    </CardContent>
-                  </Card>
-                </motion.div>
-              ))}
+            <div className="flex flex-col gap-8 lg:flex-row lg:items-center">
+              <div className="flex-1 max-w-2xl space-y-3">
+                {guvenlikMaddeleri.map((madde, index) => (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, x: -16 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.4, delay: index * 0.08 }}
+                  >
+                    <Card className="border-0 bg-white shadow-sm transition-shadow hover:shadow-md">
+                      <CardContent className="flex items-center gap-4 p-4">
+                        <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#9FC131]/15">
+                          <CheckCircle2 className="h-5 w-5 text-[#9FC131]" />
+                        </div>
+                        <span className="text-sm font-medium text-[#042940]">
+                          {madde}
+                        </span>
+                      </CardContent>
+                    </Card>
+                  </motion.div>
+                ))}
+              </div>
+              <motion.div
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.2 }}
+                className="hidden lg:flex flex-1 items-center justify-center"
+              >
+                <img
+                  src="/images/security-illustration.svg"
+                  alt="Güvenlik ve gizlilik"
+                  className="w-72 h-72"
+                />
+              </motion.div>
             </div>
           </div>
         </section>
