@@ -597,7 +597,7 @@ export default function HomePage() {
               </p>
             </motion.div>
 
-            <div className="grid gap-6 md:grid-cols-3 lg:grid-cols-5">
+            <div className="grid gap-6 grid-cols-2 sm:grid-cols-3 lg:grid-cols-5">
               {[
                 { baslik: "Türkçe", icon: BookOpen, aciklama: "Kelime, dilbilgisi ve yazım oyunları", renk: "bg-[#005C53]", oyun: 4 },
                 { baslik: "Matematik", icon: Calculator, aciklama: "Sayılar, işlemler, geometri ve daha fazlası", renk: "bg-[#9FC131]", oyun: 3 },
@@ -612,16 +612,16 @@ export default function HomePage() {
                   viewport={{ once: true }}
                   transition={{ duration: 0.4, delay: index * 0.1 }}
                 >
-                  <Card className="group overflow-hidden border-0 bg-white shadow-sm transition-shadow hover:shadow-lg">
-                    <CardContent className="p-0">
+                  <Card className="group h-full overflow-hidden border-0 bg-white shadow-sm transition-shadow hover:shadow-lg">
+                    <CardContent className="flex h-full flex-col p-0">
                       <div className={`flex items-center justify-center ${ders.renk} p-10 text-white`}>
                         <ders.icon className="h-14 w-14" />
                       </div>
-                      <div className="p-6">
+                      <div className="flex flex-1 flex-col p-6">
                         <h3 className="text-lg font-bold text-[#042940]">
                           {ders.baslik}
                         </h3>
-                        <p className="mt-2 text-sm text-[#042940]/50">
+                        <p className="mt-2 flex-1 text-sm text-[#042940]/50">
                           {ders.aciklama}
                         </p>
                         <div className="mt-4 flex items-center justify-between">
@@ -657,10 +657,10 @@ export default function HomePage() {
               className="mb-12"
             >
               <h2 className="text-3xl font-extrabold text-[#042940] md:text-4xl">
-                Aileler Ne Diyor?
+                Aileler ve Eğitimciler Ne Diyor?
               </h2>
               <p className="mt-2 text-[#042940]/50">
-                LUMO kullanan ailelerden geri bildirimler
+                LUMO kullanan aile ve eğitimcilerden geri bildirimler
               </p>
             </motion.div>
 
