@@ -14,6 +14,7 @@ import { cn } from "@/lib/utils";
 interface LoginResponse {
   access_token: string;
   refresh_token: string;
+  token_type: string;
   user: {
     id: number;
     email: string;
@@ -22,7 +23,6 @@ interface LoginResponse {
     avatar_url: string | null;
     is_active: boolean;
     created_at: string;
-    role?: "student" | "teacher" | "veli";
   };
 }
 
@@ -48,21 +48,20 @@ export default function LoginPage() {
     setError("");
     setLoading(true);
 
-    // TODO: Backend hazır olduğunda gerçek API'ye bağlanacak
-    // Mock login — şimdilik doğrudan giriş yap
     try {
-      const mockUser = {
-        id: 1,
-        email,
-        username: email.split("@")[0],
-        age: 10,
-        avatar_url: null,
+      const data = await api.post<LoginResponse>("/auth/login", { email, password });
+      const user = {
+        id: data.user.id,
+        email: data.user.email,
+        username: data.user.username,
+        age: data.user.age,
+        avatar_url: data.user.avatar_url,
         role: role as "student" | "teacher" | "veli",
       };
-      setAuth(mockUser, "mock-access-token", "mock-refresh-token");
+      setAuth(user, data.access_token, data.refresh_token);
       router.push(role === "teacher" ? "/teacher" : role === "veli" ? "/veli" : "/dashboard");
     } catch (err) {
-      setError("Bir hata oluştu");
+      setError(err instanceof Error ? err.message : "Giriş yapılamadı. Lütfen bilgilerinizi kontrol edin.");
     } finally {
       setLoading(false);
     }

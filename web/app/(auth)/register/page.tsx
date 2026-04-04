@@ -16,6 +16,7 @@ import { Suspense } from "react";
 interface RegisterResponse {
   access_token: string;
   refresh_token: string;
+  token_type: string;
   user: {
     id: number;
     email: string;
@@ -24,7 +25,6 @@ interface RegisterResponse {
     avatar_url: string | null;
     is_active: boolean;
     created_at: string;
-    role?: "student" | "teacher" | "veli";
   };
 }
 
@@ -82,25 +82,37 @@ function RegisterContent() {
         payload.school_name = formData.school_name;
       }
 
-      // TODO: Backend hazır olduğunda gerçek API'ye bağlanacak
-      // Mock register
-      const mockUser = {
-        id: 1,
+      const age = role === "student" ? parseInt(formData.sinif) + 5 : 30;
+      const registerPayload: Record<string, unknown> = {
         email: formData.email,
         username: formData.username,
-        age: role === "student" ? parseInt(formData.sinif) + 5 : 30,
-        avatar_url: null,
-        role: role as "student" | "teacher" | "veli",
-        parentApproved: role !== "student",
+        password: formData.password,
+        age,
       };
-      setAuth(mockUser, "mock-access-token", "mock-refresh-token");
+      if (role === "student" && formData.parent_email) {
+        registerPayload.parent_email = formData.parent_email;
+      }
 
-      if (role === "student") {
+      const data = await api.post<RegisterResponse>("/auth/register", registerPayload);
+      const user = {
+        id: data.user.id,
+        email: data.user.email,
+        username: data.user.username,
+        age: data.user.age,
+        avatar_url: data.user.avatar_url,
+        role: role as "student" | "teacher" | "veli",
+        parentApproved: age >= 13,
+      };
+      setAuth(user, data.access_token, data.refresh_token);
+
+      if (role === "student" && age < 13) {
         router.push("/ebeveyn-onay/bekliyor");
       } else if (role === "veli") {
         router.push("/veli");
-      } else {
+      } else if (role === "teacher") {
         router.push("/teacher");
+      } else {
+        router.push("/dashboard");
       }
     } catch (err) {
       setError(err instanceof Error ? err.message : "Bir hata oluştu");

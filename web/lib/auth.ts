@@ -18,6 +18,8 @@ interface AuthState {
   refreshToken: string | null;
   isAuthenticated: boolean;
   setAuth: (user: User, accessToken: string, refreshToken: string) => void;
+  updateUser: (updates: Partial<User>) => void;
+  setTokens: (accessToken: string, refreshToken: string) => void;
   logout: () => void;
 }
 
@@ -30,6 +32,12 @@ export const useAuthStore = create<AuthState>()(
       isAuthenticated: false,
       setAuth: (user, accessToken, refreshToken) =>
         set({ user, accessToken, refreshToken, isAuthenticated: true }),
+      updateUser: (updates) =>
+        set((state) => ({
+          user: state.user ? { ...state.user, ...updates } : null,
+        })),
+      setTokens: (accessToken, refreshToken) =>
+        set({ accessToken, refreshToken }),
       logout: () =>
         set({ user: null, accessToken: null, refreshToken: null, isAuthenticated: false }),
     }),
@@ -47,4 +55,34 @@ export function useAuthHydrated() {
     return () => unsub();
   }, []);
   return hydrated;
+}
+
+// Token refresh helper
+export async function refreshAccessToken(): Promise<boolean> {
+  const { refreshToken, setTokens, logout } = useAuthStore.getState();
+  if (!refreshToken) {
+    logout();
+    return false;
+  }
+
+  try {
+    const API_URL = process.env.NEXT_PUBLIC_API_URL || "https://react-game-api.onrender.com";
+    const res = await fetch(`${API_URL}/auth/refresh`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ refresh_token: refreshToken }),
+    });
+
+    if (!res.ok) {
+      logout();
+      return false;
+    }
+
+    const data = await res.json();
+    setTokens(data.access_token, data.refresh_token);
+    return true;
+  } catch {
+    logout();
+    return false;
+  }
 }
