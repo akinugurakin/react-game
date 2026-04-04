@@ -14,6 +14,7 @@ import {
   BookOpen,
   User,
   LogOut,
+  BarChart3,
   ChevronLeft,
   ChevronRight,
   ChevronDown,
@@ -70,6 +71,7 @@ const studentMenuItems = [
 const teacherMenuItems = [
   { href: "/teacher", icon: LayoutDashboard, label: "Öğretmen Paneli" },
   { href: "/teacher/games", icon: Gamepad2, label: "Oyunlar", hasSubmenu: true },
+  { href: "/teacher/istatistik", icon: BarChart3, label: "Müfredat İstatistik" },
   { href: "/teacher/leaderboard", icon: Trophy, label: "Liderlik", hasSubmenu: true },
 ];
 
