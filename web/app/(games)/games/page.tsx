@@ -67,21 +67,39 @@ const allGames: GameItem[] = [
   { id: 2, title: "Bulmaca Dünyası", description: "Geometrik şekilleri doğru yere yerleştir.", icon: Puzzle, color: "bg-brand-green", minAge: 6, maxAge: 12, category: "Geometri", subject: "matematik", players: 670, avgDuration: "5-8 dk", href: "#", free: false, info: "Geometrik şekilleri tanıyarak doğru alanlara yerleştir. Uzamsal zeka ve şekil algısını geliştirir." },
   { id: 3, title: "Kesir Ustası", description: "Kesirleri karşılaştır, topla ve çıkar.", icon: Layers, color: "bg-brand-dark", minAge: 8, maxAge: 12, category: "Kesirler", subject: "matematik", players: 540, avgDuration: "4-6 dk", href: "#", free: false, info: "Kesirleri görsel olarak anlama, karşılaştırma ve işlem yapma becerisi kazandırır." },
   // ── Fen Bilimleri ──
-  { id: 4, title: "Atom Keşfi", description: "Atomun yapısını keşfet. Proton, nötron ve elektronları yerleştir!", icon: Atom, color: "bg-brand-teal", minAge: 10, maxAge: 12, category: "Fizik", subject: "fen", players: 380, avgDuration: "4-6 dk", href: "#", free: false, info: "Atom modelini interaktif olarak oluştur. Proton, nötron ve elektron sayılarını doğru yerleştir." },
+  { id: 4, title: "Periyodik Kaos", description: "Laboratuvarda patlama oldu! Periyodik tabloyu yeniden oluştur.", icon: Atom, color: "bg-brand-teal", minAge: 13, maxAge: 14, category: "Kimya", subject: "fen", players: 380, avgDuration: "5-8 dk", href: "/games/periyodik-tablo", free: true, info: "Metal, ametal, yarı metal ve soy gaz bloklarını yerleştir, ardından dağılan elementleri doğru hücrelere taşı.", kazanimlar: [
+    { code: "FB.8.5.1.1", description: "Elementleri periyodik tablo üzerinde metal, ametal, yarımetal ve soy gaz olarak sınıflandırabilme", grade: "8. Sınıf" },
+  ] },
   { id: 5, title: "Canlılar Alemi", description: "Canlıları sınıflandır, yaşam alanlarını keşfet.", icon: TreePine, color: "bg-brand-green", minAge: 6, maxAge: 10, category: "Biyoloji", subject: "fen", players: 720, avgDuration: "3-5 dk", href: "#", free: true, info: "Canlıları bitkiler, hayvanlar ve mikroorganizmalar olarak sınıflandır. Ekosistem bilgini test et." },
   { id: 6, title: "Deney Labı", description: "Sanal laboratuvarda deneyler yap.", icon: FlaskConical, color: "bg-brand-dark", minAge: 8, maxAge: 12, category: "Kimya", subject: "fen", players: 450, avgDuration: "5-7 dk", href: "#", free: false, info: "Güvenli sanal ortamda kimya ve fizik deneyleri gerçekleştir. Deney adımlarını doğru sırayla uygula." },
   // ── Sosyal Bilgiler ──
-  { id: 7, title: "Tarih Yolculuğu", description: "Osmanlı'dan Cumhuriyet'e tarihte yolculuk yap.", icon: Landmark, color: "bg-brand-teal", minAge: 8, maxAge: 12, category: "Tarih", subject: "sosyal", players: 560, avgDuration: "4-6 dk", href: "#", free: false, info: "Tarihi olayları kronolojik sıraya koy. Önemli kişileri ve dönemleri eşleştirerek tarih bilgini pekiştir." },
-  { id: 8, title: "Harita Ustası", description: "Şehirleri, dağları ve nehirleri harita üzerinde bul.", icon: Map, color: "bg-brand-green", minAge: 8, maxAge: 12, category: "Coğrafya", subject: "sosyal", players: 430, avgDuration: "3-5 dk", href: "#", free: true, info: "Türkiye ve dünya haritası üzerinde coğrafi konumları doğru işaretle. Bölge ve iklim bilgilerini öğren." },
+  { id: 7, title: "İnkılap Yolu", description: "Samsun'dan Cumhuriyet'e uzanan yolculukta olayları sıraya diz!", icon: Landmark, color: "bg-brand-teal", minAge: 13, maxAge: 14, category: "Tarih", subject: "sosyal", players: 560, avgDuration: "4-6 dk", href: "/games/inkilap-yolu", free: false, info: "Millî Mücadele'nin dönüm noktalarını keşfet. Olayları kronolojik sıraya koy, kavramları eşleştir.", kazanimlar: [
+    { code: "İTA.8.3.1", description: "Mondros Ateşkesi'ne Osmanlı'nın tepkisini açıklar", grade: "8. Sınıf" },
+    { code: "İTA.8.3.2", description: "Millî Mücadele'nin başlamasını sağlayan gelişmeleri sıralar", grade: "8. Sınıf" },
+    { code: "İTA.8.4.1", description: "Cumhuriyetin ilanını ve önemini açıklar", grade: "8. Sınıf" },
+  ] },
+  { id: 8, title: "Harita Kaptanı", description: "3D dünya modeli üzerinde kıtaları, okyanusları ve koordinatları keşfet.", icon: Map, color: "bg-brand-green", minAge: 11, maxAge: 12, category: "Coğrafya", subject: "sosyal", players: 430, avgDuration: "5-8 dk", href: "/games/harita-kaptani", free: true, info: "Eski deniz haritaları bir fırtınada kayboldu! Kıtaları, okyanusları işaretle, koordinatları bul, yön sorularını yanıtla.", kazanimlar: [
+    { code: "SB.6.2.1", description: "Ülkemizin, kıtaların ve okyanusların konum özelliklerini belirleyebilme", grade: "6. Sınıf" },
+  ] },
   { id: 9, title: "Vatandaşlık Bilgisi", description: "Hak ve sorumluluklarını öğren.", icon: Globe, color: "bg-brand-dark", minAge: 10, maxAge: 12, category: "Vatandaşlık", subject: "sosyal", players: 310, avgDuration: "3-4 dk", href: "#", free: false, info: "Temel hak ve özgürlükler, vatandaşlık sorumlulukları ve demokrasi kavramlarını interaktif olarak öğren." },
   // ── Türkçe ──
   { id: 10, title: "Kelime Avı", description: "Karışık harflerden anlamlı kelimeler oluştur.", icon: BookOpen, color: "bg-brand-teal", minAge: 7, maxAge: 12, category: "Kelime", subject: "turkce", players: 890, avgDuration: "4-6 dk", href: "#", free: true, info: "Karışık harflerden anlamlı kelimeler oluşturarak kelime hazineni genişlet. Süreye karşı yarış!" },
-  { id: 11, title: "Hafıza Kartları", description: "Kartları çevir ve eşleşen çiftleri bul.", icon: Brain, color: "bg-brand-green", minAge: 6, maxAge: 10, category: "Hafıza", subject: "turkce", players: 1100, avgDuration: "3-4 dk", href: "#", free: true, info: "Kelime ve anlamlarını eşleştirerek hem hafızanı hem kelime bilgini güçlendir." },
-  { id: 12, title: "Cümle Kurma", description: "Karışık kelimeleri doğru sıraya koy.", icon: MessageSquare, color: "bg-brand-dark", minAge: 7, maxAge: 12, category: "Dilbilgisi", subject: "turkce", players: 620, avgDuration: "3-5 dk", href: "#", free: false, info: "Kelimeleri doğru sıraya koyarak anlamlı cümleler oluştur. Türkçe cümle yapısını pekiştir." },
+  { id: 11, title: "Eş Anlamlı Hafıza", description: "Kartları çevir, eş anlamlı kelime çiftlerini bul.", icon: Brain, color: "bg-brand-green", minAge: 8, maxAge: 12, category: "Hafıza", subject: "turkce", players: 1100, avgDuration: "3-5 dk", href: "/games/es-anlamli-hafiza", free: true, info: "24 kapalı kartın arkasında eş anlamlı kelimeler saklı. Çiftleri eşleştirerek hem hafızanı hem kelime hazineni güçlendir.", kazanimlar: [
+    { code: "TDL.4.6.1", description: "Eş anlamlı ve zıt anlamlı kelimeleri fark edebilme ve kullanabilme", grade: "4. Sınıf" },
+    { code: "TDL.5.6.1", description: "Kelimeler arasındaki anlam ilişkilerini (eş anlamlılık, zıt anlamlılık) kavrayabilme", grade: "5. Sınıf" },
+  ] },
+  { id: 12, title: "Söz Avcısı", description: "Kelime Ormanı'nda eş anlamlı, zıt anlamlı kelimeleri ve deyimleri eşleştir!", icon: MessageSquare, color: "bg-brand-dark", minAge: 11, maxAge: 12, category: "Söz Varlığı", subject: "turkce", players: 620, avgDuration: "3-5 dk", href: "/games/soz-avcisi", free: false, info: "Eş anlamlı ve zıt anlamlı kelimeleri, deyimleri doğru tanımlarıyla eşleştir. Türkçe söz varlığını pekiştir.", kazanimlar: [
+    { code: "T.O.6.21", description: "Eş anlamlı ve zıt anlamlı kelimeleri kullanır", grade: "6. Sınıf" },
+    { code: "T.O.6.22", description: "Deyimlerin anlamlarını kavrar", grade: "6. Sınıf" },
+  ] },
   { id: 13, title: "Yazım Kılavuzu", description: "Doğru yazım kurallarını öğren.", icon: Pen, color: "bg-brand-lime", minAge: 8, maxAge: 12, category: "Yazım", subject: "turkce", players: 340, avgDuration: "4-6 dk", href: "#", free: false, info: "Sık yapılan yazım hatalarını tespit et. Büyük harf, noktalama ve birleşik kelimeleri doğru yaz." },
   // ── İngilizce ──
   { id: 14, title: "Vocabulary Builder", description: "Resimlerle eşleştirerek İngilizce kelime öğren.", icon: SpellCheck, color: "bg-brand-teal", minAge: 7, maxAge: 12, category: "Kelime", subject: "ingilizce", players: 780, avgDuration: "3-5 dk", href: "#", free: true, info: "Görseller ve kelimeler arasında bağ kurarak İngilizce kelime hazineni geliştir." },
-  { id: 15, title: "Grammar Quest", description: "İngilizce dilbilgisi kurallarını pekiştir!", icon: BookOpen, color: "bg-brand-green", minAge: 8, maxAge: 12, category: "Dilbilgisi", subject: "ingilizce", players: 520, avgDuration: "4-6 dk", href: "#", free: false, info: "Tense, article ve preposition gibi İngilizce dilbilgisi konularını oyunla öğren." },
+  { id: 15, title: "World Explorer", description: "Dünyayı gez, simge yapıları eşleştir, İngilizce cümleler kur!", icon: BookOpen, color: "bg-brand-green", minAge: 12, maxAge: 13, category: "Kelime & Dilbilgisi", subject: "ingilizce", players: 520, avgDuration: "4-6 dk", href: "/games/world-explorer", free: false, info: "Dünya kültürlerini keşfet, İngilizce kelime hazineni genişlet ve present perfect zamanını pekiştir.", kazanimlar: [
+    { code: "ENG.7.6.R3", description: "Dünya kültürlerine dair metinleri okur ve anlar", grade: "7. Sınıf" },
+    { code: "ENG.7.6.V1", description: "Konu bağlamında sözcük dağarcığını genişletir", grade: "7. Sınıf" },
+    { code: "ENG.7.6.G1", description: "Present perfect zamanı doğru kullanır", grade: "7. Sınıf" },
+  ] },
   { id: 16, title: "Listening Lab", description: "Dinlediğini anla, soruları yanıtla.", icon: MessageSquare, color: "bg-brand-dark", minAge: 8, maxAge: 12, category: "Dinleme", subject: "ingilizce", players: 390, avgDuration: "5-7 dk", href: "#", free: false, info: "İngilizce ses kayıtlarını dinle ve anlama sorularını yanıtla. Dinleme becerisini geliştir." },
 ];
 
@@ -95,10 +113,11 @@ const subjectLabels: Record<string, string> = {
 
 function GamesContent() {
   const searchParams = useSearchParams();
-  const { isAuthenticated } = useAuthStore();
+  const { isAuthenticated, hasActiveSubscription } = useAuthStore();
   const [selectedGame, setSelectedGame] = useState<GameItem | null>(null);
   const subject = searchParams.get("subject");
-  const isGuest = !isAuthenticated;
+  // Ücretsiz oyunlar: abonelik yoksa veya giriş yapılmamışsa premium kilitli
+  const isGuest = !isAuthenticated || !hasActiveSubscription;
 
   const filteredGames = subject
     ? allGames.filter((g) => g.subject === subject)
@@ -308,7 +327,7 @@ function GameDetailModal({
           <div className="mt-5">
             {locked ? (
               <Button asChild className="w-full rounded-xl py-5" variant="outline">
-                <Link href="/register">
+                <Link href="/ucretlendirme">
                   <Lock className="mr-2 h-4 w-4" /> Abone Ol
                 </Link>
               </Button>
@@ -386,7 +405,7 @@ function GameCard({ game, index, locked, onSelect }: { game: GameItem; index: nu
                 </div>
                 {locked ? (
                   <Button asChild size="sm" variant="outline">
-                    <Link href="/register">
+                    <Link href="/ucretlendirme">
                       <Lock className="mr-1 h-3.5 w-3.5" /> Abone Ol
                     </Link>
                   </Button>

@@ -100,9 +100,9 @@ const NAV_ITEMS: MegaMenuItem[] = [
 
 export function Header() {
   const t = useTranslations("auth");
-  const { isAuthenticated, user, logout } = useAuthStore();
+  const { isAuthenticated, parent, activeStudent, logout } = useAuthStore();
   const hydrated = useAuthHydrated();
-  const username = user?.username || "Oyuncu";
+  const username = activeStudent?.first_name || parent?.first_name || "Oyuncu";
   const initials = username.slice(0, 2).toUpperCase();
 
   return (

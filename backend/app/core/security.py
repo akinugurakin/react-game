@@ -30,5 +30,20 @@ def create_refresh_token(data: dict) -> str:
     return jwt.encode(to_encode, settings.SECRET_KEY, algorithm=settings.ALGORITHM)
 
 
+def create_student_session_token(student_id: int) -> str:
+    """Öğrenci PIN doğrulaması sonrası kısa süreli session token."""
+    expire = datetime.now(UTC) + timedelta(minutes=settings.STUDENT_SESSION_EXPIRE_MINUTES)
+    payload = {"sub": str(student_id), "type": "student_session", "exp": expire}
+    return jwt.encode(payload, settings.SECRET_KEY, algorithm=settings.ALGORITHM)
+
+
+def hash_pin(pin: str) -> str:
+    return pwd_context.hash(pin)
+
+
+def verify_pin(plain_pin: str, hashed_pin: str) -> bool:
+    return pwd_context.verify(plain_pin, hashed_pin)
+
+
 def decode_token(token: str) -> dict:
     return jwt.decode(token, settings.SECRET_KEY, algorithms=[settings.ALGORITHM])

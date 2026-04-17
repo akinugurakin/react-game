@@ -224,6 +224,7 @@ export default function UcretlendirmePage() {
                     </ul>
 
                     <Button
+                      asChild
                       className={cn(
                         "w-full rounded-xl py-6 text-base font-bold",
                         isActive
@@ -231,8 +232,10 @@ export default function UcretlendirmePage() {
                           : "bg-[#042940]/5 text-[#042940] hover:bg-[#042940]/10"
                       )}
                     >
-                      7 Gün Ücretsiz Dene
-                      <ArrowRight className="ml-2 h-4 w-4" />
+                      <Link href={`/register?plan=${plan.id}`}>
+                        7 Gün Ücretsiz Dene
+                        <ArrowRight className="ml-2 h-4 w-4" />
+                      </Link>
                     </Button>
                   </div>
                 );

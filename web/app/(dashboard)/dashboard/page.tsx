@@ -27,8 +27,11 @@ import { SchoolPicker } from "@/components/ui/school-picker";
 import { useAuthStore } from "@/lib/auth";
 import { api } from "@/lib/api";
 
-const GAME_NAMES: Record<number, string> = {
-  1: "Matematik Yarışması",
+const GAME_NAMES: Record<string, string> = {
+  "math": "Matematik Yarışması",
+  "es-anlamli-hafiza": "Eş Anlamlı Hafıza",
+  "harita-kaptani": "Harita Kaptanı",
+  "periyodik-tablo": "Periyodik Tablo",
 };
 
 const games = [
@@ -76,15 +79,15 @@ function formatTime(seconds: number): string {
 }
 
 interface UserStats {
-  username: string;
+  student_id: number;
+  first_name: string;
   total_games: number;
   best_score: number;
   total_time: number;
   total_correct: number;
   total_wrong: number;
-  rank: number;
   recent_sessions: {
-    game_id: number;
+    game_id: string;
     score: number;
     correct_count: number;
     wrong_count: number;
@@ -94,11 +97,11 @@ interface UserStats {
 }
 
 export default function DashboardPage() {
-  const { user, accessToken } = useAuthStore();
+  const { activeStudent, studentSessionToken } = useAuthStore();
   const [stats, setStats] = useState<UserStats | null>(null);
   const [loading, setLoading] = useState(true);
 
-  const username = user?.username || "Misafir";
+  const username = activeStudent?.first_name || "Misafir";
   const initials = username.slice(0, 2).toUpperCase();
 
   // Okul bilgisi
@@ -149,12 +152,12 @@ export default function DashboardPage() {
 
   useEffect(() => {
     async function fetchStats() {
-      if (!accessToken) {
+      if (!studentSessionToken) {
         setLoading(false);
         return;
       }
       try {
-        const data = await api.get<UserStats>("/games/my-stats", accessToken);
+        const data = await api.get<UserStats>("/games/my-stats", studentSessionToken);
         setStats(data);
       } catch {
         // Giriş yapılmamış veya API hatası
@@ -163,7 +166,7 @@ export default function DashboardPage() {
       }
     }
     fetchStats();
-  }, [accessToken]);
+  }, [studentSessionToken]);
 
   const statCards = [
     {
@@ -188,8 +191,8 @@ export default function DashboardPage() {
       bgColor: "bg-emerald-50",
     },
     {
-      title: "Sıralama",
-      value: stats ? `#${stats.rank}` : "-",
+      title: "Doğru Cevap",
+      value: stats ? String(stats.total_correct) : "0",
       icon: TrendingUp,
       color: "text-rose-600",
       bgColor: "bg-rose-50",
@@ -203,7 +206,7 @@ export default function DashboardPage() {
     if (stats.total_games >= 10) earnedBadgeIds.push("10-games");
     if (stats.total_games >= 50) earnedBadgeIds.push("50-games");
     if (stats.best_score >= 80) earnedBadgeIds.push("high-score");
-    if (stats.rank === 1) earnedBadgeIds.push("champion");
+    if (stats.best_score >= 500) earnedBadgeIds.push("champion");
     if (stats.total_correct > 0 && stats.total_wrong === 0) earnedBadgeIds.push("perfect");
   }
 

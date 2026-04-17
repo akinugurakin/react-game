@@ -53,7 +53,6 @@ interface UserStats {
   total_time: number;
   total_correct: number;
   total_wrong: number;
-  rank: number;
 }
 
 const BADGES: BadgeDef[] = [
@@ -156,9 +155,9 @@ const BADGES: BadgeDef[] = [
     bgColor: "bg-purple-500/15",
     ringColor: "ring-purple-500/30",
     category: "genel",
-    requirement: "Sıralama #1",
-    checkEarned: (s) => s.rank === 1,
-    getProgress: (s) => (s.rank <= 10 ? Math.max(10, 100 - (s.rank - 1) * 10) : 5),
+    requirement: "1000+ puan kazan",
+    checkEarned: (s) => s.best_score >= 1000,
+    getProgress: (s) => Math.min(100, (s.best_score / 1000) * 100),
   },
   {
     id: "defender",
@@ -627,7 +626,7 @@ function BadgeDetailModal({
 function BadgesContent() {
   const searchParams = useSearchParams();
   const catParam = searchParams.get("cat") || "all";
-  const { accessToken } = useAuthStore();
+  const { studentSessionToken } = useAuthStore();
   const [stats, setStats] = useState<UserStats | null>(null);
   const [loading, setLoading] = useState(true);
   const [activeCategory, setActiveCategory] = useState<string>(catParam);
@@ -639,12 +638,12 @@ function BadgesContent() {
 
   useEffect(() => {
     async function fetchStats() {
-      if (!accessToken) {
+      if (!studentSessionToken) {
         setLoading(false);
         return;
       }
       try {
-        const data = await api.get<UserStats>("/games/my-stats", accessToken);
+        const data = await api.get<UserStats>("/games/my-stats", studentSessionToken);
         setStats(data);
       } catch {
         // API hatası
@@ -653,7 +652,7 @@ function BadgesContent() {
       }
     }
     fetchStats();
-  }, [accessToken]);
+  }, [studentSessionToken]);
 
   const defaultStats: UserStats = {
     total_games: 0,
@@ -661,7 +660,6 @@ function BadgesContent() {
     total_time: 0,
     total_correct: 0,
     total_wrong: 0,
-    rank: 999,
   };
 
   const currentStats = stats || defaultStats;

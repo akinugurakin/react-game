@@ -13,6 +13,7 @@ import {
   ChevronLeft,
   ChevronRight,
   Heart,
+  Trophy,
 } from "lucide-react";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
@@ -23,15 +24,16 @@ const menuItems = [
   { href: "/veli/cocuklar", icon: Users, label: "Çocuklarım" },
   { href: "/veli/raporlar", icon: BarChart3, label: "Raporlar" },
   { href: "/veli/ekran-suresi", icon: Clock, label: "Ekran Süresi" },
+  { href: "/leaderboard", icon: Trophy, label: "Liderlik Tablosu" },
   { href: "/veli/abonelik", icon: CreditCard, label: "Abonelik" },
 ];
 
 export function VeliSidebar() {
   const pathname = usePathname();
   const router = useRouter();
-  const { user, logout } = useAuthStore();
+  const { parent, logout } = useAuthStore();
   const [collapsed, setCollapsed] = useState(false);
-  const username = user?.username || "Veli";
+  const username = parent ? `${parent.first_name} ${parent.last_name}` : "Veli";
 
   const handleLogout = () => {
     logout();
@@ -109,7 +111,7 @@ export function VeliSidebar() {
         {!collapsed && (
           <div className="mb-2 px-3 py-2">
             <p className="truncate text-sm font-semibold">{username}</p>
-            <p className="truncate text-xs text-white/40">{user?.email}</p>
+            <p className="truncate text-xs text-white/40">{parent?.email}</p>
           </div>
         )}
         <button

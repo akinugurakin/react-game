@@ -2,62 +2,111 @@ import { useEffect, useState } from "react";
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 
-interface User {
+// ---- Tipler ----
+
+export interface ParentUser {
   id: number;
+  first_name: string;
+  last_name: string;
   email: string;
-  username: string;
-  age: number;
-  avatar_url: string | null;
-  role: "student" | "teacher" | "veli";
-  parentApproved?: boolean;
+  is_active: boolean;
+  created_at: string;
 }
 
+export interface StudentProfile {
+  id: number;
+  parent_id: number;
+  first_name: string;
+  last_name: string;
+  avatar: string;
+  class_level: number;
+  created_at: string;
+}
+
+// ---- Auth Store ----
+
 interface AuthState {
-  user: User | null;
+  parent: ParentUser | null;
   accessToken: string | null;
   refreshToken: string | null;
   isAuthenticated: boolean;
-  setAuth: (user: User, accessToken: string, refreshToken: string) => void;
-  updateUser: (updates: Partial<User>) => void;
+
+  // Abonelik durumu (profil-sec sonrası yüklenir)
+  hasActiveSubscription: boolean;
+
+  // Aktif öğrenci oturumu
+  activeStudent: StudentProfile | null;
+  studentSessionToken: string | null;
+
+  setAuth: (parent: ParentUser, accessToken: string, refreshToken: string) => void;
+  setStudentSession: (student: StudentProfile, token: string) => void;
+  setSubscriptionStatus: (active: boolean) => void;
+  clearStudentSession: () => void;
   setTokens: (accessToken: string, refreshToken: string) => void;
+  updateParent: (updates: Partial<ParentUser>) => void;
   logout: () => void;
 }
 
 export const useAuthStore = create<AuthState>()(
   persist(
     (set) => ({
-      user: null,
+      parent: null,
       accessToken: null,
       refreshToken: null,
       isAuthenticated: false,
-      setAuth: (user, accessToken, refreshToken) =>
-        set({ user, accessToken, refreshToken, isAuthenticated: true }),
-      updateUser: (updates) =>
-        set((state) => ({
-          user: state.user ? { ...state.user, ...updates } : null,
-        })),
+      hasActiveSubscription: false,
+      activeStudent: null,
+      studentSessionToken: null,
+
+      setAuth: (parent, accessToken, refreshToken) =>
+        set({ parent, accessToken, refreshToken, isAuthenticated: true }),
+
+      setStudentSession: (student, token) =>
+        set({ activeStudent: student, studentSessionToken: token }),
+
+      setSubscriptionStatus: (active) =>
+        set({ hasActiveSubscription: active }),
+
+      clearStudentSession: () =>
+        set({ activeStudent: null, studentSessionToken: null }),
+
       setTokens: (accessToken, refreshToken) =>
         set({ accessToken, refreshToken }),
+
+      updateParent: (updates) =>
+        set((state) => ({
+          parent: state.parent ? { ...state.parent, ...updates } : null,
+        })),
+
       logout: () =>
-        set({ user: null, accessToken: null, refreshToken: null, isAuthenticated: false }),
+        set({
+          parent: null,
+          accessToken: null,
+          refreshToken: null,
+          isAuthenticated: false,
+          hasActiveSubscription: false,
+          activeStudent: null,
+          studentSessionToken: null,
+        }),
     }),
-    { name: "auth-storage" }
+    { name: "lumo-auth" }
   )
 );
 
-// Hydration hook — SSR'de false döner, client'ta localStorage'dan yüklendikten sonra true
+// ---- Hydration hook ----
+
 export function useAuthHydrated() {
   const [hydrated, setHydrated] = useState(false);
   useEffect(() => {
     const unsub = useAuthStore.persist.onFinishHydration(() => setHydrated(true));
-    // Zaten hydrate olmuşsa
     if (useAuthStore.persist.hasHydrated()) setHydrated(true);
     return () => unsub();
   }, []);
   return hydrated;
 }
 
-// Token refresh helper
+// ---- Token refresh ----
+
 export async function refreshAccessToken(): Promise<boolean> {
   const { refreshToken, setTokens, logout } = useAuthStore.getState();
   if (!refreshToken) {
@@ -66,7 +115,7 @@ export async function refreshAccessToken(): Promise<boolean> {
   }
 
   try {
-    const API_URL = process.env.NEXT_PUBLIC_API_URL || "https://react-game-api.onrender.com";
+    const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
     const res = await fetch(`${API_URL}/auth/refresh`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },

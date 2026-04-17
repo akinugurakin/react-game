@@ -11,17 +11,14 @@ import { useAuthStore, useAuthHydrated } from "@/lib/auth";
 
 export default function ParentApprovalPendingPage() {
   const router = useRouter();
-  const { user, isAuthenticated } = useAuthStore();
+  const { isAuthenticated } = useAuthStore();
   const hydrated = useAuthHydrated();
 
   useEffect(() => {
     if (hydrated && !isAuthenticated) {
       router.replace("/login");
     }
-    if (hydrated && isAuthenticated && user?.parentApproved) {
-      router.replace("/dashboard");
-    }
-  }, [hydrated, isAuthenticated, user, router]);
+  }, [hydrated, isAuthenticated, router]);
 
   if (!hydrated || !isAuthenticated) return null;
 
@@ -110,25 +107,13 @@ export default function ParentApprovalPendingPage() {
                 Onay E-postasını Tekrar Gönder
               </Button>
 
-              {/* DEV: Geliştirme amaçlı — backend yokken onayı simüle et */}
               {process.env.NODE_ENV === "development" && (
                 <Button
                   className="w-full bg-[#9FC131] text-white hover:bg-[#9FC131]/90"
-                  onClick={() => {
-                    const { user: currentUser, setAuth } = useAuthStore.getState();
-                    const { accessToken, refreshToken } = useAuthStore.getState();
-                    if (currentUser && accessToken && refreshToken) {
-                      setAuth(
-                        { ...currentUser, parentApproved: true },
-                        accessToken,
-                        refreshToken
-                      );
-                      router.push("/dashboard");
-                    }
-                  }}
+                  onClick={() => router.push("/profil-sec")}
                 >
                   <ArrowRight className="mr-2 h-4 w-4" />
-                  (DEV) Onayı Simüle Et
+                  (DEV) Profil Seçimine Git
                 </Button>
               )}
             </div>

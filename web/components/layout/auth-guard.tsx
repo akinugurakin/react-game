@@ -2,22 +2,26 @@
 
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { useAuthStore } from "@/lib/auth";
+import { useAuthStore, useAuthHydrated } from "@/lib/auth";
 
-// TODO: Backend hazır olduğunda BYPASS'ı kaldır
-const DEV_BYPASS = true;
-
+// Dashboard guard — requires an active student session
 export function AuthGuard({ children }: { children: React.ReactNode }) {
   const router = useRouter();
-  const { isAuthenticated } = useAuthStore();
+  const hydrated = useAuthHydrated();
+  const { studentSessionToken, isAuthenticated } = useAuthStore();
 
   useEffect(() => {
-    if (!DEV_BYPASS && !isAuthenticated) {
+    if (!hydrated) return;
+    if (!isAuthenticated) {
       router.replace("/login");
+    } else if (!studentSessionToken) {
+      router.replace("/profil-sec");
     }
-  }, [isAuthenticated, router]);
+  }, [hydrated, isAuthenticated, studentSessionToken, router]);
 
-  if (!DEV_BYPASS && !isAuthenticated) {
+  if (!hydrated) return null;
+
+  if (!isAuthenticated || !studentSessionToken) {
     return (
       <div className="flex min-h-[50vh] items-center justify-center">
         <p className="text-muted-foreground">Yönlendiriliyorsunuz...</p>

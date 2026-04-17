@@ -163,10 +163,10 @@ function ChampionsPanel({ champions }: { champions: Champion[] }) {
 
 // --- Main Component ---
 export function MathQuiz() {
-  const authUser = useAuthStore((s) => s.user);
-  const isLoggedIn = !!authUser;
+  const activeStudent = useAuthStore((s) => s.activeStudent);
+  const isLoggedIn = !!activeStudent;
   const [phase, setPhase] = useState<GamePhase>("name");
-  const [playerName, setPlayerName] = useState(authUser?.username || "");
+  const [playerName, setPlayerName] = useState(activeStudent?.first_name || "");
   const [countdown, setCountdown] = useState(COUNTDOWN_FROM);
   const [questions, setQuestions] = useState<Question[]>([]);
   const [currentQ, setCurrentQ] = useState(0);
@@ -179,16 +179,16 @@ export function MathQuiz() {
   const [lastAnswer, setLastAnswer] = useState<{ correct: boolean; value: string } | null>(null);
   const [champions, setChampions] = useState<Champion[]>([]);
   const timerRef = useRef<NodeJS.Timeout | null>(null);
-  const { isAuthenticated, accessToken } = useAuthStore();
+  const { isAuthenticated, studentSessionToken } = useAuthStore();
 
   // Load champions — API'den veya localStorage'dan
   useEffect(() => {
     async function loadLeaderboard() {
       try {
-        const data = await api.get<Champion[]>("/games/1/leaderboard");
+        const data = await api.get<Champion[]>("/games/math/leaderboard");
         if (data.length > 0) {
           setChampions(data.map((d: any) => ({
-            name: d.username,
+            name: d.display_name,
             score: d.score,
             correct: d.correct_count,
             time: d.duration_seconds,
@@ -212,17 +212,16 @@ export function MathQuiz() {
       return next;
     });
 
-    // Giriş yapmışsa API'ye de kaydet
-    const token = useAuthStore.getState().accessToken;
-    const authed = useAuthStore.getState().isAuthenticated;
-    if (authed && token) {
+    // Öğrenci oturumu varsa API'ye kaydet
+    const token = useAuthStore.getState().studentSessionToken;
+    if (token) {
       try {
-        await api.post("/games/1/session", {
-          game_id: 1,
+        await api.post("/games/math/session", {
           score: entry.score,
           correct_count: entry.correct,
           wrong_count: TOTAL_QUESTIONS - entry.correct,
           duration_seconds: entry.time,
+          platform: "web",
         }, token);
       } catch (err) {
         console.error("Skor kaydedilemedi:", err);
@@ -267,7 +266,7 @@ export function MathQuiz() {
   });
 
   const startGame = () => {
-    const name = playerName.trim() || authUser?.username || "";
+    const name = playerName.trim() || activeStudent?.first_name || "";
     if (!name) return;
     setPlayerName(name);
     setQuestions(generateQuestions());
@@ -287,12 +286,12 @@ export function MathQuiz() {
   useEffect(() => {
     if (isLoggedIn && !autoStarted.current && phase === "name") {
       autoStarted.current = true;
-      setPlayerName(authUser!.username);
+      setPlayerName(activeStudent!.first_name);
       setQuestions(generateQuestions());
       setCountdown(COUNTDOWN_FROM);
       setPhase("countdown");
     }
-  }, [isLoggedIn, phase, authUser]);
+  }, [isLoggedIn, phase, activeStudent]);
 
   const handleNumber = (n: number) => {
     if (input.length >= 3) return;

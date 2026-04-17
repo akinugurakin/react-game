@@ -2,7 +2,7 @@
 
 import { useState, Suspense } from "react";
 import Link from "next/link";
-import { useSearchParams } from "next/navigation";
+import { useSearchParams, useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Calculator, BookOpen, Brain, Puzzle, Play, Users, Clock,
@@ -23,11 +23,11 @@ const allGames: GameItem[] = [
   { id: 1, title: "Matematik Yarışması", description: "Toplama, çıkarma, çarpma ve bölme ile hızını test et.", icon: Calculator, color: "bg-brand-teal", category: "Matematik", subject: "matematik", players: 1245, avgDuration: "3-5 dk", href: "/games/math", info: "Dört işlem becerini zamana karşı test et. Her doğru cevap puan kazandırır, hızlı cevaplar bonus verir." },
   { id: 2, title: "Bulmaca Dünyası", description: "Geometrik şekilleri doğru yere yerleştir.", icon: Puzzle, color: "bg-brand-green", category: "Geometri", subject: "matematik", players: 670, avgDuration: "5-8 dk", href: "#", info: "Geometrik şekilleri tanıyarak doğru alanlara yerleştir. Uzamsal zeka ve şekil algısını geliştirir." },
   { id: 3, title: "Kesir Ustası", description: "Kesirleri karşılaştır, topla ve çıkar.", icon: Layers, color: "bg-brand-dark", category: "Kesirler", subject: "matematik", players: 540, avgDuration: "4-6 dk", href: "#", info: "Kesirleri görsel olarak anlama, karşılaştırma ve işlem yapma becerisi kazandırır." },
-  { id: 4, title: "Atom Keşfi", description: "Atomun yapısını keşfet.", icon: Atom, color: "bg-brand-teal", category: "Fizik", subject: "fen", players: 380, avgDuration: "4-6 dk", href: "#", info: "Atom modelini interaktif olarak oluştur. Proton, nötron ve elektron sayılarını doğru yerleştir." },
+  { id: 4, title: "Periyodik Kaos", description: "Laboratuvarda patlama oldu! Periyodik tabloyu yeniden oluştur.", icon: Atom, color: "bg-brand-teal", category: "Kimya", subject: "fen", players: 380, avgDuration: "5-8 dk", href: "/games/periyodik-tablo", info: "Metal, ametal, yarı metal ve soy gaz bloklarını yerleştir, ardından dağılan elementleri doğru hücrelere taşı. Ücretsiz!" },
   { id: 5, title: "Canlılar Alemi", description: "Canlıları sınıflandır, yaşam alanlarını keşfet.", icon: TreePine, color: "bg-brand-green", category: "Biyoloji", subject: "fen", players: 720, avgDuration: "3-5 dk", href: "#", info: "Canlıları bitkiler, hayvanlar ve mikroorganizmalar olarak sınıflandır. Ekosistem bilgini test et." },
   { id: 6, title: "Deney Labı", description: "Sanal laboratuvarda deneyler yap.", icon: FlaskConical, color: "bg-brand-dark", category: "Kimya", subject: "fen", players: 450, avgDuration: "5-7 dk", href: "#", info: "Güvenli sanal ortamda kimya ve fizik deneyleri gerçekleştir. Deney adımlarını doğru sırayla uygula." },
   { id: 7, title: "Tarih Yolculuğu", description: "Osmanlı'dan Cumhuriyet'e tarihte yolculuk yap.", icon: Landmark, color: "bg-brand-teal", category: "Tarih", subject: "sosyal", players: 560, avgDuration: "4-6 dk", href: "#", info: "Tarihi olayları kronolojik sıraya koy. Önemli kişileri ve dönemleri eşleştirerek tarih bilgini pekiştir." },
-  { id: 8, title: "Harita Ustası", description: "Şehirleri, dağları ve nehirleri harita üzerinde bul.", icon: Map, color: "bg-brand-green", category: "Coğrafya", subject: "sosyal", players: 430, avgDuration: "3-5 dk", href: "#", info: "Türkiye ve dünya haritası üzerinde coğrafi konumları doğru işaretle. Bölge ve iklim bilgilerini öğren." },
+  { id: 8, title: "Harita Kaptanı", description: "3D dünya modeli üzerinde kıtaları, okyanusları ve koordinatları keşfet.", icon: Map, color: "bg-brand-green", category: "Coğrafya", subject: "sosyal", players: 430, avgDuration: "5-8 dk", href: "/games/harita-kaptani", info: "Eski deniz haritaları bir fırtınada kayboldu! Kıtaları, okyanusları işaretle, koordinatları bul, yön sorularını yanıtla." },
   { id: 9, title: "Vatandaşlık Bilgisi", description: "Hak ve sorumluluklarını öğren.", icon: Globe, color: "bg-brand-dark", category: "Vatandaşlık", subject: "sosyal", players: 310, avgDuration: "3-4 dk", href: "#", info: "Temel hak ve özgürlükler, vatandaşlık sorumlulukları ve demokrasi kavramlarını interaktif olarak öğren." },
   { id: 10, title: "Kelime Avı", description: "Karışık harflerden anlamlı kelimeler oluştur.", icon: BookOpen, color: "bg-brand-teal", category: "Kelime", subject: "turkce", players: 890, avgDuration: "4-6 dk", href: "#", info: "Karışık harflerden anlamlı kelimeler oluşturarak kelime hazineni genişlet. Süreye karşı yarış!" },
   { id: 11, title: "Hafıza Kartları", description: "Kartları çevir ve eşleşen çiftleri bul.", icon: Brain, color: "bg-brand-green", category: "Hafıza", subject: "turkce", players: 1100, avgDuration: "3-4 dk", href: "#", info: "Kelime ve anlamlarını eşleştirerek hem hafızanı hem kelime bilgini güçlendir." },
@@ -43,6 +43,7 @@ const subjectLabels: Record<string, string> = {
 };
 
 function GameDetailModal({ game, onClose }: { game: GameItem; onClose: () => void }) {
+  const router = useRouter();
   const Icon = game.icon;
 
   return (
@@ -106,7 +107,11 @@ function GameDetailModal({ game, onClose }: { game: GameItem; onClose: () => voi
                 <Play className="mr-2 h-4 w-4" /> Oyna
               </Link>
             </Button>
-            <Button className="flex-1 rounded-xl py-5" variant="outline">
+            <Button
+              className="flex-1 rounded-xl py-5"
+              variant="outline"
+              onClick={() => router.push(`/teacher/games/${game.id}/stats`)}
+            >
               <BarChart3 className="mr-2 h-4 w-4" /> İstatistik
             </Button>
           </div>
@@ -118,6 +123,7 @@ function GameDetailModal({ game, onClose }: { game: GameItem; onClose: () => voi
 
 function TeacherGamesContent() {
   const searchParams = useSearchParams();
+  const router = useRouter();
   const [selectedGame, setSelectedGame] = useState<GameItem | null>(null);
   const subject = searchParams.get("subject");
   const filteredGames = subject ? allGames.filter((g) => g.subject === subject) : allGames;
@@ -171,7 +177,7 @@ function TeacherGamesContent() {
                         <span className="flex items-center gap-1"><Users className="h-3.5 w-3.5" />{game.players.toLocaleString("tr-TR")} oyuncu</span>
                         <span className="flex items-center gap-1"><Clock className="h-3.5 w-3.5" />{game.avgDuration}</span>
                       </div>
-                      <Button size="sm" variant="outline" onClick={(e) => e.stopPropagation()}>
+                      <Button size="sm" variant="outline" onClick={(e) => { e.stopPropagation(); router.push(`/teacher/games/${game.id}/stats`); }}>
                         <BarChart3 className="mr-1 h-4 w-4" /> İstatistik
                       </Button>
                     </div>

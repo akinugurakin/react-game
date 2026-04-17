@@ -1,0 +1,173 @@
+{
+  "gameId": "world-explorer",
+  "title": "World Explorer",
+  "story": "You are a young explorer travelling the world! Your mission is to visit famous capitals, discover landmarks, and learn about exciting sports events across different countries. At each stop, you'll face challenges that test your English skills — matching landmarks to their cities, building sentences about your journey, and answering questions about world culture. The more you explore, the more stamps you collect in your passport. Can you fill your passport and become the ultimate World Explorer?",
+  "mechanic": "The game has 3 rounds, each with a different mechanic:\n\nRound 1 — 'Landmark Match' (Drag & Drop Matching): Players see 8 landmark images on the left and 8 capital/city names on the right. They drag each landmark to its correct city. Correct matches glow green and earn 10 points. Wrong matches shake and return. Time limit: 90 seconds.\n\nRound 2 — 'Sentence Builder' (Word Ordering): Players drag scrambled words into correct order to form sentences using Present Perfect Tense with 'for' and question tags. 8 sentences total, each worth 10 points.\n\nRound 3 — 'Sports Quiz' (Multiple Choice): Players read short passages about world sports events and answer comprehension questions. 6 questions, each with 4 options, worth 10 points each.\n\nScoring: Total 200 points possible. Normalized to 0-100 scale. Time bonus: finishing each round with >30s remaining adds 5 bonus points per round (max 15 bonus).",
+  "targetCurriculum": {
+    "primaryCode": "ENG.7.6.R3",
+    "primaryDescription": "Students can make sense of and derive meaning from the current content on 'life in the world and culture with capitals, landmarks, famous places, and activities in capitals; sports events in different parts of the world'.",
+    "secondaryCodes": [
+      {
+        "code": "ENG.7.6.V1",
+        "description": "Students can select and use target vocabulary efficiently and accurately about 'life in the world and culture'."
+      },
+      {
+        "code": "ENG.7.6.G1",
+        "description": "Students can select and use Present Perfect Tense with 'for' and question tags efficiently and accurately."
+      },
+      {
+        "code": "ENG.7.6.L3",
+        "description": "Students can make sense of and derive meaning from listening/watching content on life in the world and culture."
+      },
+      {
+        "code": "ENG.7.6.W3",
+        "description": "Students can construct new written content on 'life in the world and culture'."
+      }
+    ]
+  },
+  "discipline": "ingilizce",
+  "grade": 7,
+  "difficulty": "orta",
+  "visualTheme": "Passport and travel theme. Deep blue background resembling a passport cover, golden accents for stamps and borders. Round 1: stylized world map with dotted travel routes. Round 2: airport lounge with departure boards. Round 3: stadium atmosphere with colorful flags. Flat vector illustrations, simple line-art landmarks. Passport book UI tracks progress with stamp icons.",
+  "estimatedDuration": 10,
+  "ageRange": { "min": 12, "max": 13 },
+  "tags": ["english", "vocabulary", "present-perfect", "question-tags", "world-culture", "capitals", "landmarks", "sports", "drag-and-drop", "sentence-building", "reading-comprehension"],
+  "targetVocabulary": {
+    "nouns": ["crowd", "attraction", "palace", "square", "bridge", "castle", "tower", "site", "hall", "coast", "adventure", "tournament", "event", "runner", "score", "seat", "medal", "track", "field", "movement", "weight"],
+    "verbs": ["tour", "pack", "cycle", "experience", "compete", "score", "attack", "support", "touch", "cheer"],
+    "adjectives": ["wide", "wooden", "bright", "light", "historic", "active", "ancient", "hidden", "exciting", "global", "international"],
+    "adverbs": ["clearly", "locally", "abroad", "especially", "either"],
+    "phrases": ["take a tour", "attend an event", "take a photograph"]
+  },
+  "targetGrammar": {
+    "structures": [
+      "Present Perfect Tense with 'for': e.g., 'People have celebrated cultural festivals for centuries.'",
+      "Question tags for Present Perfect Tense: e.g., 'They have preserved their heritage, haven't they?'"
+    ],
+    "functions": [
+      "Expressing actions that began in the past and continued up to the present for a specific duration.",
+      "Confirming information or seeking reassurance about actions or experiences."
+    ]
+  },
+  "socialLanguage": [
+    "Some souvenir shops are tourist traps in this city!",
+    "The stadium is packed, everyone here is football mad!",
+    "We're taking in the sights of Istanbul this weekend!"
+  ],
+  "rounds": [
+    {
+      "id": "landmark-match",
+      "title": "Landmark Match",
+      "type": "drag-and-drop",
+      "description": "Match famous landmarks to their capitals/cities",
+      "timeLimit": 90,
+      "maxScore": 80,
+      "items": [
+        { "landmark": "Eiffel Tower", "city": "Paris", "country": "France" },
+        { "landmark": "Big Ben", "city": "London", "country": "England" },
+        { "landmark": "Colosseum", "city": "Rome", "country": "Italy" },
+        { "landmark": "Hagia Sophia", "city": "Istanbul", "country": "Turkiye" },
+        { "landmark": "Statue of Liberty", "city": "New York", "country": "USA" },
+        { "landmark": "Great Wall", "city": "Beijing", "country": "China" },
+        { "landmark": "Sydney Opera House", "city": "Sydney", "country": "Australia" },
+        { "landmark": "Galata Tower", "city": "Istanbul", "country": "Turkiye" }
+      ]
+    },
+    {
+      "id": "sentence-builder",
+      "title": "Sentence Builder",
+      "type": "word-ordering",
+      "description": "Build correct sentences using Present Perfect with 'for' and question tags",
+      "timeLimit": 120,
+      "maxScore": 80,
+      "sentences": [
+        {
+          "scrambled": ["have", "visited", "the", "ancient", "castle", "They", "for", "years"],
+          "correct": "They have visited the ancient castle for years.",
+          "grammar": "present-perfect-for"
+        },
+        {
+          "scrambled": ["has", "toured", "She", "historic", "cities", "for", "a", "long", "time"],
+          "correct": "She has toured historic cities for a long time.",
+          "grammar": "present-perfect-for"
+        },
+        {
+          "scrambled": ["have", "competed", "in", "tournaments", "We", "for", "three", "seasons"],
+          "correct": "We have competed in tournaments for three seasons.",
+          "grammar": "present-perfect-for"
+        },
+        {
+          "scrambled": ["have", "People", "celebrated", "this", "festival", "for", "centuries"],
+          "correct": "People have celebrated this festival for centuries.",
+          "grammar": "present-perfect-for"
+        },
+        {
+          "scrambled": ["has", "taken", "a", "tour", "He", "of", "the", "palace", ",", "hasn't", "he", "?"],
+          "correct": "He has taken a tour of the palace, hasn't he?",
+          "grammar": "question-tag"
+        },
+        {
+          "scrambled": ["have", "cheered", "for", "the", "runners", "They", ",", "haven't", "they", "?"],
+          "correct": "They have cheered for the runners, haven't they?",
+          "grammar": "question-tag"
+        },
+        {
+          "scrambled": ["has", "experienced", "life", "abroad", "She", ",", "hasn't", "she", "?"],
+          "correct": "She has experienced life abroad, hasn't she?",
+          "grammar": "question-tag"
+        },
+        {
+          "scrambled": ["have", "attended", "the", "event", "You", ",", "haven't", "you", "?"],
+          "correct": "You have attended the event, haven't you?",
+          "grammar": "question-tag"
+        }
+      ]
+    },
+    {
+      "id": "sports-quiz",
+      "title": "Sports Quiz",
+      "type": "multiple-choice",
+      "description": "Read about world sports events and answer comprehension questions",
+      "timeLimit": 120,
+      "maxScore": 60,
+      "questions": [
+        {
+          "passage": "The Olympic Games is one of the most exciting global events. Athletes from all over the world compete for gold, silver, and bronze medals. Runners train on the track and field every day to prepare for this international tournament.",
+          "question": "What do athletes compete for at the Olympics?",
+          "options": ["Trophies", "Medals", "Money", "Flags"],
+          "correct": 1
+        },
+        {
+          "passage": "Football fans have supported their teams for decades. When a player scores a goal, the crowd cheers loudly. The stadium is packed with excited supporters wearing their team colours.",
+          "question": "What happens when a player scores a goal?",
+          "options": ["The crowd leaves", "The crowd cheers", "The game stops", "The lights turn off"],
+          "correct": 1
+        },
+        {
+          "passage": "Cycling is a popular sport in many countries. Riders cycle through wide roads, across ancient bridges, and along beautiful coasts. The most famous cycling tournament in the world has been held in France for over a hundred years.",
+          "question": "Where do cyclists ride through?",
+          "options": ["Only in cities", "Through wide roads, bridges, and coasts", "Only on tracks", "Only in France"],
+          "correct": 1
+        },
+        {
+          "passage": "Istanbul has hosted many international sports events. Athletes have competed in this historic city for many years. The city's active sports community supports runners, swimmers, and cyclists.",
+          "question": "What kind of city is Istanbul described as?",
+          "options": ["A quiet city", "A historic city with active sports", "A small town", "A city with no events"],
+          "correct": 1
+        },
+        {
+          "passage": "Attending a live sports event is a great adventure. You can feel the movement and energy of the crowd. Many fans take photographs of the exciting moments and cheer for their favourite athletes.",
+          "question": "What do fans do at live sports events?",
+          "options": ["Sleep", "Take photographs and cheer", "Read books", "Cook food"],
+          "correct": 1
+        },
+        {
+          "passage": "The World Cup is a global football tournament. Teams from different countries compete to win the golden trophy. Millions of people watch the matches on TV. Players have trained for months to score goals on the international field.",
+          "question": "How long have players trained for the World Cup?",
+          "options": ["For days", "For weeks", "For months", "For a day"],
+          "correct": 2
+        }
+      ]
+    }
+  ]
+}

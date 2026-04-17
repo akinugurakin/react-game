@@ -3,35 +3,24 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { Lightbulb, GraduationCap, Users, ArrowLeft, Heart } from "lucide-react";
+import { Lightbulb } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { useAuthStore, useAuthHydrated } from "@/lib/auth";
+import { useAuthStore, useAuthHydrated, type ParentUser } from "@/lib/auth";
 import { api } from "@/lib/api";
-import { cn } from "@/lib/utils";
 
 interface LoginResponse {
   access_token: string;
   refresh_token: string;
   token_type: string;
-  user: {
-    id: number;
-    email: string;
-    username: string;
-    age: number;
-    avatar_url: string | null;
-    is_active: boolean;
-    created_at: string;
-  };
+  parent: ParentUser;
 }
 
 export default function LoginPage() {
   const router = useRouter();
   const { isAuthenticated, setAuth } = useAuthStore();
   const hydrated = useAuthHydrated();
-  const [step, setStep] = useState<"role" | "form">("role");
-  const [role, setRole] = useState<"student" | "teacher" | "veli">("student");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -39,7 +28,7 @@ export default function LoginPage() {
 
   useEffect(() => {
     if (hydrated && isAuthenticated) {
-      router.replace("/dashboard");
+      router.replace("/profil-sec");
     }
   }, [hydrated, isAuthenticated, router]);
 
@@ -50,16 +39,8 @@ export default function LoginPage() {
 
     try {
       const data = await api.post<LoginResponse>("/auth/login", { email, password });
-      const user = {
-        id: data.user.id,
-        email: data.user.email,
-        username: data.user.username,
-        age: data.user.age,
-        avatar_url: data.user.avatar_url,
-        role: role as "student" | "teacher" | "veli",
-      };
-      setAuth(user, data.access_token, data.refresh_token);
-      router.push(role === "teacher" ? "/teacher" : role === "veli" ? "/veli" : "/dashboard");
+      setAuth(data.parent, data.access_token, data.refresh_token);
+      router.push("/profil-sec");
     } catch (err) {
       setError(err instanceof Error ? err.message : "Giriş yapılamadı. Lütfen bilgilerinizi kontrol edin.");
     } finally {
@@ -80,138 +61,54 @@ export default function LoginPage() {
             <p className="text-[9px] font-normal text-brand-dark/40">Eğitsel Oyun Platformu</p>
           </div>
         </Link>
-        {step !== "role" && (
-          <p className="mt-2 text-muted-foreground">
-            {role === "teacher" ? "Öğretmen hesabına giriş yap" : role === "veli" ? "Veli hesabına giriş yap" : "Hesabına giriş yap ve oynamaya başla"}
-          </p>
-        )}
+        <h1 className="text-3xl font-extrabold text-[#042940]">Giriş Yap</h1>
+        <p className="mt-2 text-muted-foreground">
+          Hesabınıza giriş yapın
+        </p>
       </div>
 
-      {step === "role" ? (
-        <div className="space-y-4">
-          <div className="grid grid-cols-3 gap-4">
-            {/* Öğrenci */}
-            <button
-              onClick={() => { setRole("student"); setStep("form"); }}
-              className="group flex flex-col items-center gap-3 rounded-2xl border-2 border-transparent bg-background p-6 shadow-sm transition-all hover:border-[#005C53] hover:shadow-md"
-            >
-              <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-[#005C53]/10 transition-colors group-hover:bg-[#005C53] group-hover:text-white">
-                <GraduationCap className="h-7 w-7 text-[#005C53] group-hover:text-white" />
-              </div>
-              <div className="text-center">
-                <p className="font-bold text-[#042940]">Öğrenci</p>
-                <p className="mt-1 text-xs text-muted-foreground">Oyun oyna, öğren</p>
-              </div>
-            </button>
-
-            {/* Öğretmen */}
-            <button
-              onClick={() => { setRole("teacher"); setStep("form"); }}
-              className="group flex flex-col items-center gap-3 rounded-2xl border-2 border-transparent bg-background p-6 shadow-sm transition-all hover:border-[#9FC131] hover:shadow-md"
-            >
-              <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-[#9FC131]/10 transition-colors group-hover:bg-[#9FC131] group-hover:text-white">
-                <Users className="h-7 w-7 text-[#9FC131] group-hover:text-white" />
-              </div>
-              <div className="text-center">
-                <p className="font-bold text-[#042940]">Öğretmen</p>
-                <p className="mt-1 text-xs text-muted-foreground">Sınıf yönet, takip et</p>
-              </div>
-            </button>
-
-            {/* Veli */}
-            <button
-              onClick={() => { setRole("veli"); setStep("form"); }}
-              className="group flex flex-col items-center gap-3 rounded-2xl border-2 border-transparent bg-background p-6 shadow-sm transition-all hover:border-[#E8634A] hover:shadow-md"
-            >
-              <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-[#E8634A]/10 transition-colors group-hover:bg-[#E8634A] group-hover:text-white">
-                <Heart className="h-7 w-7 text-[#E8634A] group-hover:text-white" />
-              </div>
-              <div className="text-center">
-                <p className="font-bold text-[#042940]">Veli</p>
-                <p className="mt-1 text-xs text-muted-foreground">Takip et, yönet</p>
-              </div>
-            </button>
+      <form onSubmit={handleSubmit} className="space-y-5 rounded-2xl border bg-background p-8 shadow-sm">
+        {error && (
+          <div className="rounded-lg bg-destructive/10 p-3 text-sm text-destructive">
+            {error}
           </div>
+        )}
 
-          <p className="text-center text-sm text-muted-foreground">
-            Hesabın yok mu?{" "}
-            <Link href="/register" className="font-semibold text-brand-dark hover:underline">
-              Kayıt Ol
-            </Link>
-          </p>
+        <div className="space-y-2">
+          <Label htmlFor="email">E-posta</Label>
+          <Input
+            id="email"
+            type="email"
+            placeholder="ornek@email.com"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
         </div>
-      ) : (
-        <div className="space-y-4">
-          {/* Geri butonu */}
-          <button
-            onClick={() => { setStep("role"); setError(""); }}
-            className="flex items-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground"
-          >
-            <ArrowLeft className="h-4 w-4" />
-            Rol seçimine dön
-          </button>
 
-          {/* Rol göstergesi */}
-          <div className={cn(
-            "flex items-center gap-3 rounded-xl p-3",
-            role === "teacher" ? "bg-[#9FC131]/10" : role === "veli" ? "bg-[#E8634A]/10" : "bg-[#005C53]/10"
-          )}>
-            {role === "teacher" ? (
-              <Users className="h-5 w-5 text-[#9FC131]" />
-            ) : role === "veli" ? (
-              <Heart className="h-5 w-5 text-[#E8634A]" />
-            ) : (
-              <GraduationCap className="h-5 w-5 text-[#005C53]" />
-            )}
-            <span className="text-sm font-semibold text-[#042940]">
-              {role === "teacher" ? "Öğretmen Girişi" : role === "veli" ? "Veli Girişi" : "Öğrenci Girişi"}
-            </span>
-          </div>
-
-          <form onSubmit={handleSubmit} className="space-y-5 rounded-2xl border bg-background p-8 shadow-sm">
-            {error && (
-              <div className="rounded-lg bg-destructive/10 p-3 text-sm text-destructive">
-                {error}
-              </div>
-            )}
-
-            <div className="space-y-2">
-              <Label htmlFor="email">E-posta</Label>
-              <Input
-                id="email"
-                type="email"
-                placeholder="ornek@email.com"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required
-              />
-            </div>
-
-            <div className="space-y-2">
-              <Label htmlFor="password">Şifre</Label>
-              <Input
-                id="password"
-                type="password"
-                placeholder="&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                required
-              />
-            </div>
-
-            <Button type="submit" className="w-full" size="lg" disabled={loading}>
-              {loading ? "Giriş yapılıyor..." : "Giriş Yap"}
-            </Button>
-
-            <p className="text-center text-sm text-muted-foreground">
-              Hesabın yok mu?{" "}
-              <Link href={`/register${role === "teacher" ? "?role=teacher" : role === "veli" ? "?role=veli" : ""}`} className="font-semibold text-brand-dark hover:underline">
-                Kayıt Ol
-              </Link>
-            </p>
-          </form>
+        <div className="space-y-2">
+          <Label htmlFor="password">Şifre</Label>
+          <Input
+            id="password"
+            type="password"
+            placeholder="&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
         </div>
-      )}
+
+        <Button type="submit" className="w-full" size="lg" disabled={loading}>
+          {loading ? "Giriş yapılıyor..." : "Giriş Yap"}
+        </Button>
+
+        <p className="text-center text-sm text-muted-foreground">
+          Hesabınız yok mu?{" "}
+          <Link href="/register" className="font-semibold text-brand-dark hover:underline">
+            Hesap Oluştur
+          </Link>
+        </p>
+      </form>
     </div>
   );
 }

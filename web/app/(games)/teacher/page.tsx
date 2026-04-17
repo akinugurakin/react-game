@@ -50,8 +50,8 @@ const enAktifOgrenciler = [
 /* ------------------------------------------------------------------ */
 
 export default function TeacherDashboard() {
-  const { user } = useAuthStore();
-  const username = user?.username || "Öğretmen";
+  const { parent } = useAuthStore();
+  const username = parent ? `${parent.first_name} ${parent.last_name}` : "Öğretmen";
 
   const toplamOgrenci = siniflar.reduce((a, s) => a + s.ogrenciSayisi, 0);
   const ortalamaIlerleme = Math.round(siniflar.reduce((a, s) => a + s.ortalamaIlerleme, 0) / siniflar.length);

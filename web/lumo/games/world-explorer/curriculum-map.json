@@ -1,0 +1,138 @@
+{
+  "gameId": "world-explorer",
+  "title": "World Explorer",
+  "grade": 7,
+  "discipline": "ingilizce",
+  "level": "A2.3",
+  "theme": {
+    "number": 6,
+    "title": "Life in the World & Culture",
+    "subThemes": [
+      "Capitals, landmarks, famous places, and activities in capitals",
+      "Sports events in different parts of the world"
+    ]
+  },
+  "primaryCurriculum": {
+    "code": "ENG.7.6.R3",
+    "description": "Students can make sense of and derive meaning from the current content on 'life in the world and culture with capitals, landmarks, famous places, and activities in capitals; sports events in different parts of the world'.",
+    "alignmentScore": 5,
+    "alignmentNotes": "Round 1 (Landmark Match) doğrudan başkent-simge yapı ilişkisi üzerinden anlam çıkarmayı hedefler. Round 3 (Sports Quiz) kısa metinlerden anlam çıkarma becerisi geliştirir. Kazanımla birebir uyumlu.",
+    "coveredSubOutcomes": [
+      "ENG.7.6.R3.a — Classify significant elements of the content",
+      "ENG.7.6.R3.b — Compare significant elements with each other",
+      "ENG.7.6.R3.d — Make meaningful inferences from information",
+      "ENG.7.6.R3.e — Internalise inferences in an individualised way"
+    ]
+  },
+  "secondaryCurriculum": [
+    {
+      "code": "ENG.7.6.V1",
+      "description": "Students can select and use target vocabulary efficiently, effectively, and accurately.",
+      "alignmentScore": 5,
+      "alignmentNotes": "Oyundaki tüm kelimeler (crowd, palace, castle, tournament, medal, track, field vb.) müfredatın hedef kelime listesinden alınmıştır. Round 1 kelimeleri bağlam içinde tanımayı, Round 2 kelimeleri cümle içinde kullanmayı, Round 3 kelimeleri metin içinde anlamlandırmayı hedefler.",
+      "coveredSubOutcomes": [
+        "ENG.7.6.V1.c — Scan target content to find key components",
+        "ENG.7.6.V1.f — Examine target words to understand how they are used",
+        "ENG.7.6.V1.k — Use target words in contextual activities accurately"
+      ]
+    },
+    {
+      "code": "ENG.7.6.G1",
+      "description": "Students can select and use target grammatical language items (Present Perfect Tense with 'for', question tags) efficiently, effectively, and accurately.",
+      "alignmentScore": 5,
+      "alignmentNotes": "Round 2 (Sentence Builder) tamamen bu kazanıma odaklanır. İlk 4 cümle Present Perfect with 'for' yapısını, son 4 cümle question tags yapısını hedefler. Öğrenciler kelimeleri sürükleyerek doğru cümle yapısını keşfeder — müfredatın önerdiği 'inductive/discovery' yaklaşımıyla uyumlu.",
+      "coveredSubOutcomes": [
+        "ENG.7.6.G1.c — Analyse content to identify sentences with target grammar",
+        "ENG.7.6.G1.d — Find commonalities between identified sentences",
+        "ENG.7.6.G1.f — Formulate rules about target grammar based on observations",
+        "ENG.7.6.G1.h — Practise by selecting accurate items in meaningful activities"
+      ]
+    },
+    {
+      "code": "ENG.7.6.L3",
+      "description": "Students can make sense of and derive meaning from listening/watching content on life in the world and culture.",
+      "alignmentScore": 3,
+      "alignmentNotes": "Dolaylı destek sağlar. Oyun görsel-metin tabanlı olsa da, öğrencilerin bu temadaki dinleme becerilerine zemin hazırlar. Landmarks ve sports terimlerini tanıma kapasitesi gelişir.",
+      "coveredSubOutcomes": [
+        "ENG.7.6.L3.b — Make significant classifications in the content",
+        "ENG.7.6.L3.e — Make essential inferences to understand meaning"
+      ]
+    },
+    {
+      "code": "ENG.7.6.W3",
+      "description": "Students can construct new written content on 'life in the world and culture'.",
+      "alignmentScore": 3,
+      "alignmentNotes": "Round 2'deki cümle kurma etkinliği yazma becerisine dolaylı katkı sağlar. Öğrenciler kelime sıralamasını anlayarak benzer yapılarda yazma kapasitesi geliştirir.",
+      "coveredSubOutcomes": [
+        "ENG.7.6.W3.d — Produce a well-organised draft appropriate for language level"
+      ]
+    }
+  ],
+  "additionalCurriculumSuggestions": [
+    {
+      "code": "ENG.7.6.S3",
+      "description": "Students can produce meaningful spoken content related to life in the world and culture.",
+      "suggestion": "Oyun sonunda öğrencilere 'Favourite landmark' veya 'A sport event I want to attend' konusunda kısa konuşma ödevi verilebilir. Bu, oyundaki kazanımları speaking becerisine taşır."
+    },
+    {
+      "code": "ENG.7.6.P1",
+      "description": "Students can select and use target phonological aspects in utterances.",
+      "suggestion": "Gelecek sürümde sesli telaffuz desteği eklenebilir: landmark isimlerini doğru telaffuz etme, 'haven't they?' gibi question tag intonation'ını duyma ve tekrarlama."
+    }
+  ],
+  "crossCurricularLinks": [
+    {
+      "discipline": "Sosyal Bilgiler",
+      "connection": "Dünya başkentleri, simge yapılar ve coğrafi konum bilgisi"
+    },
+    {
+      "discipline": "Beden Eğitimi ve Spor",
+      "connection": "Uluslararası spor etkinlikleri, Olimpiyatlar, Dünya Kupası"
+    },
+    {
+      "discipline": "Görsel Sanatlar",
+      "connection": "Tarihi yapıların mimari özellikleri ve görsel tanıma"
+    }
+  ],
+  "conceptualSkillsAddressed": [
+    "D1.1 Curiosity — Farklı ülkelerin simge yapılarını keşfetme merakı",
+    "D1.5 Self-Confidence — Her turda artan zorlukla başa çıkma özgüveni",
+    "D3.1 Reasoning — Cümle yapısını mantıksal olarak çözme",
+    "D3.3 Creativity — Kelime ve yapıları yeni bağlamlarda kullanma",
+    "D3.5 Open-Mindedness — Farklı kültürlere ve spor geleneklerine açıklık"
+  ],
+  "socialEmotionalSkillsAddressed": [
+    "SELS1.1 Self-Awareness — Kendi İngilizce seviyesini fark etme",
+    "SELS1.2 Self-Regulation — Süre baskısı altında sakin kalma",
+    "SELS3.3 Responsible Decision-Making — Doğru eşleştirme için düşünerek karar verme"
+  ],
+  "gamificationAlignment": {
+    "description": "Oyunlaştırma öğeleri müfredatın 'meaningful, collaborative, and communicative' öğrenme yaklaşımıyla uyumludur.",
+    "elements": [
+      {
+        "element": "Pasaport & Damga Sistemi",
+        "curriculumLink": "Her tur tamamlandığında pasaporta damga eklenir. Bu, müfredatın önerdiği 'reflective activities' ile örtüşür — öğrenci ilerlemesini somut olarak görür."
+      },
+      {
+        "element": "Artan Zorluk (Scaffolding)",
+        "curriculumLink": "Round 1 görsel eşleştirme (kolay), Round 2 dilbilgisi yapısı (orta), Round 3 okuma anlama (zor). Müfredatın 'receptive to productive' sıralamasıyla uyumlu."
+      },
+      {
+        "element": "Süre Bonusu",
+        "curriculumLink": "Hızlı ve doğru karar verme becerisi, müfredatın 'automaticity in language use' hedefiyle örtüşür."
+      },
+      {
+        "element": "Seri (Streak) Sistemi",
+        "curriculumLink": "Art arda doğru cevaplar motivasyonu artırır. D1.3 Perseverance and Determination kazanımını destekler."
+      },
+      {
+        "element": "14 Farklı Rozet",
+        "curriculumLink": "Çok katmanlı başarı sistemi (bronz/gümüş/altın) her seviyedeki öğrenciyi motive eder. Kolay rozetler katılımı, zor rozetler mükemmelliği ödüllendirir."
+      },
+      {
+        "element": "Anlık Geri Bildirim",
+        "curriculumLink": "Doğru eşleştirmede yeşil parıltı, yanlışta sallama animasyonu. Müfredatın 'feedback and reflection' döngüsüyle uyumlu."
+      }
+    ]
+  }
+}

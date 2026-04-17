@@ -1,0 +1,193 @@
+[
+  {
+    "id": "we-first-flight",
+    "gameId": "world-explorer",
+    "name": "İlk Uçuş",
+    "description": "World Explorer oyununu ilk kez tamamla. Pasaportun artık hazır!",
+    "tier": "bronz",
+    "condition": {
+      "type": "completion",
+      "threshold": 1,
+      "comparison": "gte"
+    },
+    "iconSuggestion": "Havada süzülen küçük bir kağıt uçak, arkasında kesikli çizgi izi"
+  },
+  {
+    "id": "we-landmark-rookie",
+    "gameId": "world-explorer",
+    "name": "Harita Çırağı",
+    "description": "Landmark Match turunda en az 4 simge yapıyı doğru eşleştir.",
+    "tier": "bronz",
+    "condition": {
+      "type": "score",
+      "threshold": 40,
+      "comparison": "gte",
+      "round": "landmark-match"
+    },
+    "iconSuggestion": "Katlanmış bir dünya haritası üzerinde küçük bir pin işareti"
+  },
+  {
+    "id": "we-landmark-master",
+    "gameId": "world-explorer",
+    "name": "Dünya Gezgini",
+    "description": "Landmark Match turunda 8 simge yapının tamamını doğru eşleştir!",
+    "tier": "altin",
+    "condition": {
+      "type": "score",
+      "threshold": 80,
+      "comparison": "eq",
+      "round": "landmark-match"
+    },
+    "iconSuggestion": "Altın çerçeveli bir dünya küresi, etrafında küçük simge yapı ikonları"
+  },
+  {
+    "id": "we-grammar-beginner",
+    "gameId": "world-explorer",
+    "name": "Cümle Ustası Adayı",
+    "description": "Sentence Builder turunda en az 4 cümleyi doğru kur.",
+    "tier": "bronz",
+    "condition": {
+      "type": "score",
+      "threshold": 40,
+      "comparison": "gte",
+      "round": "sentence-builder"
+    },
+    "iconSuggestion": "Karışık harflerden oluşan bloklar, birkaçı yerine oturmuş"
+  },
+  {
+    "id": "we-grammar-expert",
+    "gameId": "world-explorer",
+    "name": "Dilbilgisi Sihirbazı",
+    "description": "Sentence Builder turunda 8 cümlenin tamamını doğru kur. Present Perfect artık senin için çocuk oyuncağı!",
+    "tier": "altin",
+    "condition": {
+      "type": "score",
+      "threshold": 80,
+      "comparison": "eq",
+      "round": "sentence-builder"
+    },
+    "iconSuggestion": "Parlayan bir sihirbaz şapkası, içinden İngilizce kelimeler çıkıyor"
+  },
+  {
+    "id": "we-quiz-starter",
+    "gameId": "world-explorer",
+    "name": "Spor Muhabiri",
+    "description": "Sports Quiz turunda en az 3 soruyu doğru yanıtla.",
+    "tier": "bronz",
+    "condition": {
+      "type": "score",
+      "threshold": 30,
+      "comparison": "gte",
+      "round": "sports-quiz"
+    },
+    "iconSuggestion": "Küçük bir mikrofon ve not defteri, spor muhabiri teması"
+  },
+  {
+    "id": "we-quiz-champion",
+    "gameId": "world-explorer",
+    "name": "Spor Ansiklopedisi",
+    "description": "Sports Quiz turunda 6 sorunun tamamını doğru yanıtla!",
+    "tier": "altin",
+    "condition": {
+      "type": "score",
+      "threshold": 60,
+      "comparison": "eq",
+      "round": "sports-quiz"
+    },
+    "iconSuggestion": "Altın bir ansiklopedi kitabı, kapağında futbol topu ve madalya"
+  },
+  {
+    "id": "we-speed-demon",
+    "gameId": "world-explorer",
+    "name": "Işık Hızı",
+    "description": "Herhangi bir turu süre bonusu alarak tamamla (30 saniyeden fazla süre kalsın).",
+    "tier": "gumus",
+    "condition": {
+      "type": "time",
+      "threshold": 30,
+      "comparison": "gte"
+    },
+    "iconSuggestion": "Arkasında hız çizgileri olan bir roket, kronometre ile birlikte"
+  },
+  {
+    "id": "we-triple-speed",
+    "gameId": "world-explorer",
+    "name": "Süpersonik Kaşif",
+    "description": "Üç turda da süre bonusu kazan. Hem hızlısın hem doğrusun!",
+    "tier": "altin",
+    "condition": {
+      "type": "custom",
+      "threshold": 3,
+      "comparison": "eq",
+      "customRule": "all_rounds_time_bonus"
+    },
+    "iconSuggestion": "Üç altın yıldız ve süpersonik uçak, arkasında üç renkli iz"
+  },
+  {
+    "id": "we-perfect-score",
+    "gameId": "world-explorer",
+    "name": "Mükemmel Kaşif",
+    "description": "Oyunu tam puan (100/100) ile tamamla. Sen gerçek bir World Explorer'sın!",
+    "tier": "altin",
+    "condition": {
+      "type": "score",
+      "threshold": 100,
+      "comparison": "eq"
+    },
+    "iconSuggestion": "Tamamen dolu altın pasaport, etrafında konfeti ve yıldızlar"
+  },
+  {
+    "id": "we-persistent-explorer",
+    "gameId": "world-explorer",
+    "name": "Vazgeçmeyen Gezgin",
+    "description": "World Explorer'ı 5 kez oyna. Her seyahatte yeni şeyler öğrenirsin!",
+    "tier": "gumus",
+    "condition": {
+      "type": "completion",
+      "threshold": 5,
+      "comparison": "gte"
+    },
+    "iconSuggestion": "Yıpranmış ama sevgiyle taşınan bir sırt çantası, üzerinde 5 bayrak rozeti"
+  },
+  {
+    "id": "we-streak-master",
+    "gameId": "world-explorer",
+    "name": "Seri Avcısı",
+    "description": "Bir oturumda art arda 10 doğru cevap ver (turlar arası seri devam eder).",
+    "tier": "gumus",
+    "condition": {
+      "type": "streak",
+      "threshold": 10,
+      "comparison": "gte"
+    },
+    "iconSuggestion": "Ateş halinde bir zincir, her halkasında bir tik işareti"
+  },
+  {
+    "id": "we-no-mistakes",
+    "gameId": "world-explorer",
+    "name": "Hatasız Kaptan",
+    "description": "Herhangi bir turu sıfır hatayla tamamla.",
+    "tier": "gumus",
+    "condition": {
+      "type": "custom",
+      "threshold": 0,
+      "comparison": "eq",
+      "customRule": "zero_mistakes_any_round"
+    },
+    "iconSuggestion": "Altın çerçeveli bir kalkan, ortasında parlayan bir tik işareti"
+  },
+  {
+    "id": "we-improvement",
+    "gameId": "world-explorer",
+    "name": "Yükselen Yıldız",
+    "description": "Bir önceki oyunundan daha yüksek skor al. Gelişimin görülüyor!",
+    "tier": "gumus",
+    "condition": {
+      "type": "custom",
+      "threshold": 1,
+      "comparison": "gte",
+      "customRule": "score_improvement_over_previous"
+    },
+    "iconSuggestion": "Yukarı doğru yükselen bir grafik çizgisi üzerinde parlayan bir yıldız"
+  }
+]

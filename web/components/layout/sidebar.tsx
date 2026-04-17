@@ -78,8 +78,10 @@ const teacherMenuItems = [
 export function Sidebar() {
   const pathname = usePathname();
   const router = useRouter();
-  const { user, logout, isAuthenticated } = useAuthStore();
-  const [collapsed, setCollapsed] = useState(false);
+  const { activeStudent, parent, logout, isAuthenticated } = useAuthStore();
+  // Oyun sayfalarında sidebar otomatik küçülür
+  const isGamePage = /^\/games\/.+/.test(pathname);
+  const [collapsed, setCollapsed] = useState(isGamePage);
   const [oyunlarAcik, setOyunlarAcik] = useState(pathname.startsWith("/games"));
   const [liderlikAcik, setLiderlikAcik] = useState(pathname.startsWith("/leaderboard"));
   const [rozetlerAcik, setRozetlerAcik] = useState(pathname.startsWith("/badges"));
@@ -87,6 +89,11 @@ export function Sidebar() {
   const [currentSearch, setCurrentSearch] = useState("");
   useEffect(() => {
     setCurrentSearch(window.location.search);
+  }, [pathname]);
+
+  // Oyun sayfasına girince küçül, çıkınca aç
+  useEffect(() => {
+    setCollapsed(/^\/games\/.+/.test(pathname));
   }, [pathname]);
   // pathname degistiginde URL'yi de kontrol et
   useEffect(() => {
@@ -124,8 +131,10 @@ export function Sidebar() {
   }, [pathname, avatarId, avatarBg]);
   const isGuest = !isAuthenticated;
   // Öğretmen sayfasındaysa öğretmen modu, değilse öğrenci/misafir
-  const isTeacher = user?.role === "teacher" || pathname.startsWith("/teacher");
-  const username = isGuest ? (isTeacher ? "Öğretmen" : "Misafir") : (user?.username || "Misafir");
+  const isTeacher = pathname.startsWith("/teacher");
+  const username = isGuest
+    ? isTeacher ? "Öğretmen" : "Misafir"
+    : (activeStudent?.first_name || parent?.first_name || "Misafir");
   const initials = username.slice(0, 2).toUpperCase();
   const menuItems = isTeacher ? teacherMenuItems : studentMenuItems;
 

@@ -1,0 +1,46 @@
+version: "3.9"
+
+# Production override — kullanım:
+#   docker compose -f docker-compose.yml -f docker-compose.prod.yml up -d
+
+services:
+  postgres:
+    restart: always
+    ports: []  # production'da dışarıya açma
+
+  redis:
+    restart: always
+    ports: []
+
+  backend:
+    build:
+      context: ./backend
+      target: prod
+    restart: always
+    ports: []  # nginx arkasında
+    volumes: []  # prod'da bind mount yok
+    command: uvicorn app.main:app --host 0.0.0.0 --port 8000 --workers 4
+
+  web:
+    build:
+      context: ./web
+      target: prod
+    restart: always
+    ports: []
+    volumes: []
+    environment:
+      NODE_ENV: production
+
+  nginx:
+    image: nginx:alpine
+    container_name: lumo-nginx
+    restart: always
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf:ro
+      - ./nginx/certs:/etc/nginx/certs:ro
+    depends_on:
+      - backend
+      - web

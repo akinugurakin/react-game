@@ -30,6 +30,7 @@ import { Footer } from "@/components/layout/footer";
 import { useAuthStore, useAuthHydrated } from "@/lib/auth";
 import { useRouter } from "next/navigation";
 import { BackgroundSymbols } from "@/components/ui/background-symbols";
+import ImageMask from "@/components/ui/image-mask";
 
 /* ------------------------------------------------------------------ */
 /*  RENK PALETI                                                        */
@@ -859,14 +860,14 @@ export default function HomePage() {
         {/* ═══════════════════════════════════════════════════════════ */}
         {/*  GÜVENLİK                                        */}
         {/* ═══════════════════════════════════════════════════════════ */}
-        <section className="pt-16 pb-8 md:pt-20 md:pb-10">
+        <section className="pt-8 pb-8 md:pt-10 md:pb-10">
           <div className="container">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4 }}
-              className="mb-12"
+              className="mb-8 lg:pl-16"
             >
               <h2 className="text-3xl font-extrabold text-[#042940] md:text-4xl">
                 Güvenlik ve Gizlilik
@@ -876,8 +877,8 @@ export default function HomePage() {
               </p>
             </motion.div>
 
-            <div className="flex flex-col gap-8 lg:flex-row lg:items-center">
-              <div className="flex-1 max-w-2xl space-y-3">
+            <div className="flex flex-col gap-8 lg:flex-row lg:items-center lg:justify-end">
+              <div className="lg:w-1/2 lg:pl-16 space-y-3">
                 {guvenlikMaddeleri.map((madde, index) => (
                   <motion.div
                     key={index}
@@ -906,10 +907,10 @@ export default function HomePage() {
                 transition={{ duration: 0.5, delay: 0.2 }}
                 className="hidden lg:flex flex-1 items-center justify-center"
               >
-                <img
-                  src="/images/security-illustration.svg"
+                <ImageMask
+                  src="/images/security-child.png"
                   alt="Güvenlik ve gizlilik"
-                  className="w-72 h-72"
+                  className="w-[28rem] h-[28rem]"
                 />
               </motion.div>
             </div>

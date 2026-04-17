@@ -1,0 +1,182 @@
+{
+  "gameId": "inkilap-yolu",
+  "title": "İnkılap Yolu",
+  "discipline": "sosyal",
+  "grade": 8,
+  "program": "Türkiye Yüzyılı Maarif Modeli — T.C. İnkılap Tarihi ve Atatürkçülük Dersi Öğretim Programı (8. Sınıf), 2024",
+  "primaryCurriculum": {
+    "code": "İTA.8.3.1",
+    "description": "Mondros Mütarekesi'ne karşı Osmanlı yönetiminin, Mustafa Kemal'in, aydınların ve halkın tutumunu karşılaştırabilme",
+    "unit": "3. Ünite: Millî Mücadele",
+    "alignmentScore": 5,
+    "alignmentNotes": "Tur 2'deki Mondros Mütarekesi kavram eşleştirmesi ve Tur 3'teki sorular bu kazanımla doğrudan ilişkili. Oyuncu mütareke sonrası gelişmeleri kronolojik sıraya koyarken farklı kesimlerin tutumlarını kavrar.",
+    "processComponents": [
+      "a) Mondros Mütarekesi'ne karşı tutumları kaynaklar üzerinden belirler — Oyundaki kavram kartları ve bilgi soruları kaynak işlevi görür",
+      "b) Tutuma ilişkin benzerlik ve farklılıkları belirler — Eşleştirme turunda farklı kavramların karşılaştırılması bu beceriyi destekler"
+    ]
+  },
+  "secondaryCurriculum": [
+    {
+      "code": "İTA.8.3.2",
+      "description": "Millî Mücadele'nin hazırlık sürecinde yapılan çalışmaların etkilerini değerlendirebilme",
+      "unit": "3. Ünite: Millî Mücadele",
+      "alignmentScore": 5,
+      "alignmentNotes": "Tur 1'deki kronoloji dizimi doğrudan bu kazanımı hedefler. Amasya Genelgesi → Erzurum Kongresi → Sivas Kongresi → TBMM sıralaması, hazırlık sürecinin sistematik bir şekilde ilerlemesini gösterir.",
+      "processComponents": [
+        "a) Hazırlık sürecinde yapılan çalışmaları etkileri bakımından karşılaştırır — Kronolojik sıralama bu karşılaştırmayı zorunlu kılar",
+        "b) Çalışmaların başarıya giden yoldaki etkilerini değerlendirir — Her doğru adımda haritanın aydınlanması bu etkiyi somutlaştırır"
+      ]
+    },
+    {
+      "code": "İTA.8.3.3",
+      "description": "Millî Mücadele sürecinde meydana gelen siyasi ve askerî gelişmeleri neden ve sonuçlarıyla birlikte yorumlayabilme",
+      "unit": "3. Ünite: Millî Mücadele",
+      "alignmentScore": 4,
+      "alignmentNotes": "Tur 1'de Sakarya Meydan Muharebesi ve Büyük Taarruz'un kronolojik konumlandırılması, Tur 3'te bu muharebelerle ilgili sorular askerî gelişmelerin neden-sonuç ilişkisini pekiştirir.",
+      "processComponents": [
+        "a) Siyasi ve askerî gelişmelerin nedenlerini inceler — Tur 3'teki bağlam soruları bunu destekler",
+        "ç) Gelişmelerin nedenlerini ve sonuçlarını özetler — Kronoloji tamamlandığında tüm süreç görselleşir"
+      ]
+    },
+    {
+      "code": "İTA.8.4.1",
+      "description": "Cumhuriyet'in ilanına kadar geçen süreçte meydana gelen siyasi ve diplomatik gelişmeleri özetleyebilme",
+      "unit": "4. Ünite: Türkiye Cumhuriyeti'nin Kuruluşu ve İnkılaplar",
+      "alignmentScore": 4,
+      "alignmentNotes": "Oyunun son kartı Cumhuriyet'in ilanı (29 Ekim 1923). Tüm oyun bu hedefe yönelik bir yolculuk olarak kurgulanmıştır. Tur 3'teki Lozan Antlaşması ve Cumhurbaşkanlığı soruları diplomatik gelişmeleri kapsar.",
+      "processComponents": [
+        "a) Cumhuriyet'e giden yolda gerçekleşen siyasi ve diplomatik olayları çözümler",
+        "b) Olayları sınıflandırır — Tur yapısı siyasi/askerî/kavramsal ayrımı sağlar"
+      ]
+    },
+    {
+      "code": "İTA.8.1.1",
+      "description": "Mustafa Kemal'in doğduğu dönemde Osmanlı Devleti'nin içinde bulunduğu siyasi, sosyal ve ekonomik durumu neden ve sonuçlarıyla yorumlayabilme",
+      "unit": "1. Ünite: Mustafa Kemal'in Hayatı",
+      "alignmentScore": 2,
+      "alignmentNotes": "Oyun 1919-1923 dönemine odaklanır, bu kazanım arka plan bilgisi olarak desteklenir. Tur 3'teki Çanakkale sorusu Mustafa Kemal'in önceki askerî hayatına değinir."
+    },
+    {
+      "code": "İTA.8.2.3",
+      "description": "Osmanlı Devleti'nin Birinci Dünya Savaşı'nda savaştığı cephelerin savaşın gidişatına etkisini sorgulayabilme",
+      "unit": "2. Ünite: Birinci Dünya Savaşı",
+      "alignmentScore": 2,
+      "alignmentNotes": "Tur 3'teki Çanakkale Cephesi sorusu bu kazanımla dolaylı ilişkilidir. Oyun ağırlıklı olarak Millî Mücadele dönemine odaklanır."
+    }
+  ],
+  "skillsAddressed": {
+    "alanBecerileri": [
+      {
+        "code": "SBAB1",
+        "name": "Zamanı Algılama ve Kronolojik Düşünme",
+        "how": "Tur 1'in tamamı kronolojik sıralama becerisini doğrudan geliştirir. 8 olayın doğru zaman çizelgesine yerleştirilmesi."
+      },
+      {
+        "code": "SBAB1.2",
+        "name": "Sıralama",
+        "how": "Olayların kronolojik sıraya dizilmesi bu alt beceriyi hedefler."
+      },
+      {
+        "code": "SBAB10.1",
+        "name": "Harita Okuma",
+        "how": "Anadolu haritası üzerinde aydınlanan bölgeler, olayların coğrafi boyutunu görselleştirir."
+      },
+      {
+        "code": "SBAB4.2",
+        "name": "Değişim ve Sürekliliği Neden ve Sonuçlarıyla Yorumlama",
+        "how": "Kronoloji turundaki sıralama, olaylar arası neden-sonuç zincirini ortaya koyar."
+      }
+    ],
+    "kavamsalBeceriler": [
+      {
+        "code": "KB2.7",
+        "name": "Karşılaştırma",
+        "how": "Tur 2'deki kavram eşleştirme, farklı kavramların karşılaştırılmasını gerektirir."
+      },
+      {
+        "code": "KB2.3",
+        "name": "Özetleme",
+        "how": "Tur 3'teki çoktan seçmeli sorular, bilgiyi özetleyerek doğru yanıtı seçmeyi gerektirir."
+      }
+    ],
+    "egilimler": [
+      "E3.2 — Odaklanma: Kronoloji sıralaması dikkatli düşünme gerektirir",
+      "E3.6 — Analitik Düşünme: Kavram eşleştirme ve soru cevaplama analitik düşünceyi harekete geçirir",
+      "E3.7 — Sistematik Olma: Tarih şeridi oluşturma sistematik yaklaşım gerektirir"
+    ]
+  },
+  "values": [
+    {
+      "code": "D19",
+      "name": "Vatanseverlik",
+      "how": "Oyunun tüm bağlamı Türk milletinin vatanı için verdiği mücadeleyi anlatır. Millî bilinci güçlendirir."
+    },
+    {
+      "code": "D11",
+      "name": "Özgürlük",
+      "how": "Millî Mücadele'nin temel motivasyonu bağımsızlık ve özgürlüktür. Oyun bu değeri her turda vurgular."
+    },
+    {
+      "code": "D16",
+      "name": "Sorumluluk",
+      "how": "Mustafa Kemal'in ve Türk milletinin üstlendiği sorumluluk, oyun anlatısının merkezindedir."
+    },
+    {
+      "code": "D12",
+      "name": "Sabır",
+      "how": "1919'dan 1923'e uzanan uzun mücadele süreci, sabır ve kararlılık değerini pekiştirir."
+    },
+    {
+      "code": "D20",
+      "name": "Yardımseverlik",
+      "how": "Tekâlif-i Milliye kavramı, halkın ordu için gösterdiği dayanışma ve fedakârlığı somutlaştırır."
+    }
+  ],
+  "literacySkills": [
+    "OB1 — Bilgi Okuryazarlığı: Oyundaki kavram açıklamaları ve sorular bilgi okuryazarlığını geliştirir",
+    "OB4 — Görsel Okuryazarlık: Harita üzerindeki görselleştirme ve kart tasarımları görsel okuryazarlığı destekler",
+    "OB2 — Dijital Okuryazarlık: Dijital ortamda etkileşimli tarih öğrenme deneyimi"
+  ],
+  "socialEmotionalSkills": [
+    "SDB2.3 — Sosyal Farkındalık: Dönemin insanlarının yaşadığı zorlukları anlama",
+    "SDB3.3 — Sorumlu Karar Verme: Her sürükleme ve seçim bilinçli bir karar gerektirir"
+  ],
+  "crossDisciplinaryLinks": [
+    "Türkçe: Kavram açıklamaları ve tarihsel terimlerin anlaşılması dil becerilerini destekler",
+    "Görsel Sanatlar: Antika harita teması ve görsel tasarım estetik farkındalık geliştirir",
+    "Bilişim Teknolojileri: Dijital ortamda etkileşimli öğrenme deneyimi"
+  ],
+  "contentFrameworkAlignment": {
+    "unit3_topics_covered": [
+      "Mondros Mütarekesi'ne Karşı Tepkiler",
+      "Millî Mücadele Hazırlık Süreci",
+      "Millî Mücadele Döneminde Siyasi ve Askerî Gelişmeler",
+      "Türk Milletinin Millî Mücadele Sürecindeki Rolü"
+    ],
+    "unit4_topics_covered": [
+      "Cumhuriyet'in İlanına Kadar Yaşanan Siyasi ve Diplomatik Gelişmeler"
+    ],
+    "keyConceptsCovered": [
+      "Mîsâk-ı Millî",
+      "Kuvâ-yı Milliye",
+      "Tekâlif-i Milliye",
+      "Mondros Mütarekesi",
+      "Mudanya Ateşkesi",
+      "TBMM",
+      "genelge",
+      "kongre",
+      "başkomutan",
+      "düzenli ordu",
+      "İstiklâl Marşı"
+    ]
+  },
+  "recommendations": [
+    "Oyun sonrası öğretmen rehberliğinde sınıf tartışması yapılması önerilir: 'Millî Mücadele'nin başarıya ulaşmasında en kritik adım hangisiydi?'",
+    "Tur 1 kronoloji verilerinin sınıf içi tarih şeridi etkinliğiyle pekiştirilmesi önerilir",
+    "İsteğe bağlı ek tur olarak 'İnkılaplar Eşleştirme' (4. Ünite kazanımları için) eklenebilir",
+    "Farklılaştırma: İleri düzey öğrenciler için tarih arası karşılaştırma soruları eklenebilir",
+    "Destekleme: Zorlanan öğrenciler için ipucu sistemi ve olayların kısa açıklamaları sunulabilir"
+  ],
+  "generatedAt": "2026-03-31",
+  "generatedBy": "curriculum-agent"
+}

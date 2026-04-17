@@ -1,0 +1,24 @@
+{
+  "gameId": "soz-avcisi",
+  "title": "Söz Avcısı",
+  "story": "Kelime Ormanı'nda sözcükler birbirinden ayrı düşmüş! Eş anlamlı, zıt anlamlı ve deyimlerin parçaları ormanın dört bir yanına saçılmış. Genç bir söz avcısı olarak görevin, doğru kelime çiftlerini bulup eşleştirmek ve ormanın düzenini yeniden sağlamak. Her doğru eşleştirmede orman biraz daha canlanıyor!",
+  "mechanic": "Ekranda kelime kartları ızgara şeklinde dizilir. Oyuncu iki kartı seçerek eşleştirir. Üç tur vardır: 1) Eş anlamlı kelime eşleştirme, 2) Zıt anlamlı kelime eşleştirme, 3) Deyim-anlam eşleştirme. Her turda 6 çift (12 kart) bulunur. Doğru eşleştirmede kartlar açılır ve yeşil yanar, yanlışta kırmızı yanıp kapanır. Süre ve deneme sayısı takip edilir.",
+  "targetCurriculum": {
+    "code": "T.O.6.21",
+    "description": "Metinden hareketle söz varlığını geliştirmeye yönelik çözümleme yapabilme"
+  },
+  "discipline": "turkce",
+  "grade": 6,
+  "difficulty": "orta",
+  "visualTheme": "Renkli, düz çizim orman teması. Ağaçlar, yapraklar ve kelime kartları doğa tonlarında (yeşil, kahverengi, turuncu). Kartlar ahşap doku görünümünde. Arka plan yumuşak gradient yeşil.",
+  "estimatedDuration": 8,
+  "ageRange": { "min": 11, "max": 12 },
+  "tags": [
+    "soz-varligi",
+    "es-anlamli",
+    "zit-anlamli",
+    "deyimler",
+    "eslestirme",
+    "kelime-oyunu"
+  ]
+}

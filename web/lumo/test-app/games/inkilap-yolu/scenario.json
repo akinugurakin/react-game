@@ -1,0 +1,41 @@
+{
+  "gameId": "inkilap-yolu",
+  "title": "İnkılap Yolu",
+  "story": "Yıl 1919... Anadolu'nun dört bir yanı işgal altında. Genç bir tarih kaşifi olarak görevin, Mustafa Kemal'in Samsun'a çıkışından Cumhuriyet'in ilanına kadar uzanan yolculuğu doğru sırayla tamamlamak! Her doğru adımda Anadolu haritası biraz daha aydınlanıyor, yanlış adımlarda ise yolunu kaybediyorsun. Olayları kronolojik sıraya diz, önemli kişi ve kavramları eşleştir, Millî Mücadele'nin dönüm noktalarını keşfet. Cumhuriyet'e giden yol seni bekliyor!",
+  "mechanic": "Oyun 3 turdan oluşur:\n\n**Tur 1 — Kronoloji Yolu (Sürükle-Bırak Timeline):**\nEkranın altında karışık sırada 8 tarihsel olay kartı bulunur. Oyuncu bu kartları ekranın üst kısmındaki zaman çizelgesine (1919-1923) doğru kronolojik sıraya sürükleyip bırakır. Olaylar: Samsun'a Çıkış (19 Mayıs 1919), Amasya Genelgesi (22 Haziran 1919), Erzurum Kongresi (23 Temmuz 1919), Sivas Kongresi (4 Eylül 1919), TBMM'nin Açılışı (23 Nisan 1920), Sakarya Meydan Muharebesi (23 Ağustos 1921), Büyük Taarruz (26 Ağustos 1922), Cumhuriyet'in İlanı (29 Ekim 1923). Doğru yerleştirilen kart yeşil yanar ve harita üzerinde ilgili bölge aydınlanır. Yanlış yerleştirme kırmızı yanıp geri döner.\n\n**Tur 2 — Kavram Eşleştirme:**\n6 çift kavram kartı ızgara düzeninde sunulur. Oyuncu bir kavramla onun açıklamasını eşleştirir. Çiftler: Mîsâk-ı Millî ↔ Millî sınırlar içinde tam bağımsızlık kararı, Kuvâ-yı Milliye ↔ Düzenli ordu kurulmadan önce halkın direniş güçleri, Tekâlif-i Milliye ↔ Ordunun ihtiyaçları için halktan toplanan yardımlar, Mondros Mütarekesi ↔ Osmanlı'nın I. Dünya Savaşı sonunda imzaladığı ateşkes, TBMM ↔ Ankara'da kurulan yeni millî meclis, Mudanya Ateşkesi ↔ Kurtuluş Savaşı'nı sona erdiren ateşkes antlaşması.\n\n**Tur 3 — Kim-Ne-Nerede:**\nEkranda bir tarihsel kişi/olay görseli ve 4 seçenek sunulur. Oyuncu doğru cevabı seçer. 8 soru: Mustafa Kemal hangi cephede 'Anafartalar Kahramanı' unvanını aldı? (Çanakkale), Erzurum Kongresi'nde alınan en önemli karar neydi? (Millî sınırlar içinde vatanın bütünlüğü), İstiklâl Marşı'nın yazarı kimdir? (Mehmet Âkif Ersoy), Büyük Taarruz'un başkomutanı kimdir? (Mustafa Kemal Paşa), Lozan Antlaşması hangi yıl imzalandı? (1923), Sakarya Meydan Muharebesi'nin önemi nedir? (Türk ordusunun savunmadan taarruza geçtiği dönüm noktası), Sivas Kongresi'nin en önemli kararı nedir? (Tüm cemiyetlerin birleştirilmesi), Cumhuriyet'in ilanıyla birlikte ilk cumhurbaşkanı kim seçildi? (Mustafa Kemal Atatürk).\n\nHer turda doğru cevaplar puan kazandırır. Süre bonusu uygulanır. Toplam skor 0-100 arası normalize edilir.",
+  "targetCurriculum": {
+    "code": "İTA.8.3.1",
+    "description": "Mondros Mütarekesi'ne karşı Osmanlı yönetiminin, Mustafa Kemal'in, aydınların ve halkın tutumunu karşılaştırabilme"
+  },
+  "secondaryCurriculum": [
+    {
+      "code": "İTA.8.3.2",
+      "description": "Millî Mücadele'nin hazırlık sürecinde yapılan çalışmaların etkilerini değerlendirebilme"
+    },
+    {
+      "code": "İTA.8.3.3",
+      "description": "Millî Mücadele sürecinde meydana gelen siyasi ve askerî gelişmeleri neden ve sonuçlarıyla birlikte yorumlayabilme"
+    },
+    {
+      "code": "İTA.8.4.1",
+      "description": "Cumhuriyet'in ilanına kadar geçen süreçte meydana gelen siyasi ve diplomatik gelişmeleri özetleyebilme"
+    }
+  ],
+  "discipline": "sosyal",
+  "grade": 8,
+  "difficulty": "orta",
+  "visualTheme": "Eski harita ve kâğıt dokusu teması. Arka plan soluk bej/krem tonlarında antika harita görünümü. Kartlar eski telgraf kâğıdı stilinde, kenarları hafif yıpranmış efektle. Anadolu haritası merkezde, doğru cevaplarda ilgili bölge altın-sarısı ışıkla aydınlanır. Tipografi: ciddi ama çocuk dostu serif font. Renkler: koyu kahverengi (#5C3D2E) metin, altın (#C9A84C) vurgular, kırmızı (#B22222) Türk bayrağı aksanları, krem (#F5F0E1) arka plan.",
+  "estimatedDuration": 10,
+  "ageRange": { "min": 13, "max": 14 },
+  "tags": [
+    "inkilap-tarihi",
+    "milli-mucadele",
+    "kronoloji",
+    "ataturk",
+    "cumhuriyet",
+    "eslestirme",
+    "timeline",
+    "tarih",
+    "8-sinif"
+  ]
+}

@@ -1,4 +1,14 @@
-from app.models.user import User
-from app.models.game_session import GameSession
+from app.models.parent_user import ParentUser
+from app.models.student_profile import StudentProfile
+from app.models.subscription import Subscription, PlanType, SubscriptionStatus
+from app.models.game_session import GameSession, Platform
 
-__all__ = ["User", "GameSession"]
+__all__ = [
+    "ParentUser",
+    "StudentProfile",
+    "Subscription",
+    "PlanType",
+    "SubscriptionStatus",
+    "GameSession",
+    "Platform",
+]

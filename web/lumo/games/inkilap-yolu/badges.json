@@ -1,0 +1,109 @@
+{
+  "gameId": "inkilap-yolu",
+  "badges": [
+    {
+      "id": "badge-ilk-adim",
+      "gameId": "inkilap-yolu",
+      "name": "İlk Adım",
+      "description": "İnkılap Yolu oyununu ilk kez tamamla",
+      "tier": "bronz",
+      "condition": {
+        "type": "completion",
+        "threshold": 1,
+        "comparison": "gte"
+      },
+      "iconSuggestion": "Samsun'a doğru yürüyen bir ayak izi silüeti, bronz tonlarında"
+    },
+    {
+      "id": "badge-kronoloji-ustasi",
+      "gameId": "inkilap-yolu",
+      "name": "Kronoloji Ustası",
+      "description": "Kronoloji turunda tüm olayları ilk denemede doğru sıraya diz",
+      "tier": "altin",
+      "condition": {
+        "type": "score",
+        "threshold": 40,
+        "comparison": "eq"
+      },
+      "iconSuggestion": "Altın renkli bir zaman çizelgesi üzerinde parlayan yıldız"
+    },
+    {
+      "id": "badge-kavram-bilgini",
+      "gameId": "inkilap-yolu",
+      "name": "Kavram Bilgini",
+      "description": "Kavram eşleştirme turunda tüm çiftleri doğru eşleştir",
+      "tier": "gumus",
+      "condition": {
+        "type": "score",
+        "threshold": 30,
+        "comparison": "gte"
+      },
+      "iconSuggestion": "Gümüş renkli açık bir kitap, sayfalarında kavram kartları"
+    },
+    {
+      "id": "badge-tarih-kahramani",
+      "gameId": "inkilap-yolu",
+      "name": "Tarih Kahramanı",
+      "description": "Toplam 90 veya üzeri puan al",
+      "tier": "altin",
+      "condition": {
+        "type": "score",
+        "threshold": 90,
+        "comparison": "gte"
+      },
+      "iconSuggestion": "Altın renkli Türk bayrağı motifli bir kalkan üzerinde yıldız"
+    },
+    {
+      "id": "badge-hizli-kasif",
+      "gameId": "inkilap-yolu",
+      "name": "Hızlı Kaşif",
+      "description": "Oyunu 5 dakikadan kısa sürede tamamla",
+      "tier": "gumus",
+      "condition": {
+        "type": "time",
+        "threshold": 300,
+        "comparison": "lte"
+      },
+      "iconSuggestion": "Gümüş renkli koşan bir at silüeti, arka planda saat"
+    },
+    {
+      "id": "badge-anadolu-aydinlatici",
+      "gameId": "inkilap-yolu",
+      "name": "Anadolu Aydınlatıcı",
+      "description": "Haritadaki tüm bölgeleri aydınlat (tüm kronoloji kartlarını doğru yerleştir)",
+      "tier": "gumus",
+      "condition": {
+        "type": "custom",
+        "threshold": 8,
+        "comparison": "eq"
+      },
+      "iconSuggestion": "Anadolu haritası silüeti, üzerinde parlayan güneş ışınları"
+    },
+    {
+      "id": "badge-cumhuriyet-yolcusu",
+      "gameId": "inkilap-yolu",
+      "name": "Cumhuriyet Yolcusu",
+      "description": "Oyunu 3 kez tamamla",
+      "tier": "bronz",
+      "condition": {
+        "type": "streak",
+        "threshold": 3,
+        "comparison": "gte"
+      },
+      "iconSuggestion": "Bronz renkli bir yol üzerinde üç bayrak direği"
+    },
+    {
+      "id": "badge-kusursuz-zafer",
+      "gameId": "inkilap-yolu",
+      "name": "Kusursuz Zafer",
+      "description": "Tüm turlarda sıfır hata yap ve tam puan al",
+      "tier": "altin",
+      "condition": {
+        "type": "score",
+        "threshold": 100,
+        "comparison": "eq"
+      },
+      "iconSuggestion": "Altın çelenkle çevrilmiş parlak bir yıldız, arka planda Cumhuriyet anıtı silüeti"
+    }
+  ]
+}

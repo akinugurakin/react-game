@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { NextIntlClientProvider } from "next-intl";
 import { getLocale, getMessages } from "next-intl/server";
 import { CookieBanner } from "@/components/ui/cookie-banner";
+import { Chatbot } from "@/components/ui/chatbot";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -23,6 +24,7 @@ export default async function RootLayout({
         <NextIntlClientProvider messages={messages}>
           {children}
           <CookieBanner />
+          <Chatbot />
         </NextIntlClientProvider>
       </body>
     </html>

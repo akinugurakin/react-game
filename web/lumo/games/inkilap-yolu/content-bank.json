@@ -1,0 +1,284 @@
+{
+  "gameId": "inkilap-yolu",
+  "rounds": {
+    "round1_kronoloji": {
+      "title": "Kronoloji Yolu",
+      "description": "Olayları doğru kronolojik sıraya diz",
+      "events": [
+        {
+          "id": "evt-01",
+          "title": "Samsun'a Çıkış",
+          "date": "19 Mayıs 1919",
+          "sortOrder": 1,
+          "shortDescription": "Mustafa Kemal'in Millî Mücadele'yi başlatmak üzere Samsun'a ayak basması",
+          "mapRegion": "samsun",
+          "hint": "Millî Mücadele'nin başlangıç noktası"
+        },
+        {
+          "id": "evt-02",
+          "title": "Amasya Genelgesi",
+          "date": "22 Haziran 1919",
+          "sortOrder": 2,
+          "shortDescription": "Vatanın bütünlüğü ve milletin bağımsızlığının tehlikede olduğunun ilan edilmesi",
+          "mapRegion": "amasya",
+          "hint": "İlk kez milletin kendi kaderini belirlemesi gerektiği vurgulandı"
+        },
+        {
+          "id": "evt-03",
+          "title": "Erzurum Kongresi",
+          "date": "23 Temmuz 1919",
+          "sortOrder": 3,
+          "shortDescription": "Doğu illerinin temsilcileriyle toplanan bölgesel kongre",
+          "mapRegion": "erzurum",
+          "hint": "Millî sınırlar içinde vatanın bütünlüğü kararının alındığı bölgesel kongre"
+        },
+        {
+          "id": "evt-04",
+          "title": "Sivas Kongresi",
+          "date": "4 Eylül 1919",
+          "sortOrder": 4,
+          "shortDescription": "Tüm cemiyetlerin 'Anadolu ve Rumeli Müdafaa-i Hukuk Cemiyeti' altında birleştirilmesi",
+          "mapRegion": "sivas",
+          "hint": "Mücadelenin ulusal boyut kazandığı kongre"
+        },
+        {
+          "id": "evt-05",
+          "title": "TBMM'nin Açılışı",
+          "date": "23 Nisan 1920",
+          "sortOrder": 5,
+          "shortDescription": "Ankara'da Büyük Millet Meclisi'nin açılarak millî iradeye dayalı yeni yönetimin kurulması",
+          "mapRegion": "ankara",
+          "hint": "Bugün Ulusal Egemenlik ve Çocuk Bayramı olarak kutlanır"
+        },
+        {
+          "id": "evt-06",
+          "title": "Sakarya Meydan Muharebesi",
+          "date": "23 Ağustos 1921",
+          "sortOrder": 6,
+          "shortDescription": "Türk ordusunun savunmadan taarruza geçtiği dönüm noktası muharebesi",
+          "mapRegion": "sakarya",
+          "hint": "22 gün 22 gece süren ve savaşın kaderini değiştiren muharebe"
+        },
+        {
+          "id": "evt-07",
+          "title": "Büyük Taarruz",
+          "date": "26 Ağustos 1922",
+          "sortOrder": 7,
+          "shortDescription": "Başkomutan Mustafa Kemal önderliğinde düşmanın kesin olarak yenilgiye uğratılması",
+          "mapRegion": "afyon",
+          "hint": "Dumlupınar'da kazanılan zafer, işgalin sonunu getirdi"
+        },
+        {
+          "id": "evt-08",
+          "title": "Cumhuriyet'in İlanı",
+          "date": "29 Ekim 1923",
+          "sortOrder": 8,
+          "shortDescription": "Türkiye Cumhuriyeti'nin resmen ilan edilmesi ve Mustafa Kemal'in ilk cumhurbaşkanı seçilmesi",
+          "mapRegion": "ankara",
+          "hint": "Her yıl Cumhuriyet Bayramı olarak kutladığımız tarih"
+        }
+      ]
+    },
+    "round2_kavram_eslestirme": {
+      "title": "Kavram Eşleştirme",
+      "description": "Kavramları doğru açıklamalarıyla eşleştir",
+      "pairs": [
+        {
+          "id": "pair-01",
+          "term": "Mîsâk-ı Millî",
+          "definition": "Millî sınırlar içinde tam bağımsızlık kararı",
+          "category": "siyasi"
+        },
+        {
+          "id": "pair-02",
+          "term": "Kuvâ-yı Milliye",
+          "definition": "Düzenli ordu kurulmadan önce halkın direniş güçleri",
+          "category": "askeri"
+        },
+        {
+          "id": "pair-03",
+          "term": "Tekâlif-i Milliye",
+          "definition": "Ordunun ihtiyaçları için halktan toplanan yardımlar",
+          "category": "ekonomik"
+        },
+        {
+          "id": "pair-04",
+          "term": "Mondros Mütarekesi",
+          "definition": "Osmanlı'nın I. Dünya Savaşı sonunda imzaladığı ateşkes",
+          "category": "siyasi"
+        },
+        {
+          "id": "pair-05",
+          "term": "TBMM",
+          "definition": "Ankara'da kurulan yeni millî meclis",
+          "category": "siyasi"
+        },
+        {
+          "id": "pair-06",
+          "term": "Mudanya Ateşkesi",
+          "definition": "Kurtuluş Savaşı'nı sona erdiren ateşkes antlaşması",
+          "category": "askeri"
+        }
+      ],
+      "extraPairs": [
+        {
+          "id": "pair-07",
+          "term": "İstiklâl Marşı",
+          "definition": "Mehmet Âkif Ersoy'un yazdığı millî marş",
+          "category": "kültürel"
+        },
+        {
+          "id": "pair-08",
+          "term": "Lozan Antlaşması",
+          "definition": "Yeni Türk devletinin uluslararası alanda tanınmasını sağlayan barış antlaşması",
+          "category": "siyasi"
+        },
+        {
+          "id": "pair-09",
+          "term": "Maarif Kongresi",
+          "definition": "Savaş devam ederken eğitimin geleceğini planlayan toplantı",
+          "category": "kültürel"
+        },
+        {
+          "id": "pair-10",
+          "term": "Sevr Antlaşması",
+          "definition": "Osmanlı topraklarını paylaşmayı öngören ve Türk milletince reddedilen antlaşma",
+          "category": "siyasi"
+        }
+      ]
+    },
+    "round3_bilgi_yarismasi": {
+      "title": "Kim-Ne-Nerede",
+      "description": "Doğru cevabı seç",
+      "questions": [
+        {
+          "id": "q-01",
+          "question": "Mustafa Kemal hangi cephede 'Anafartalar Kahramanı' unvanını aldı?",
+          "options": ["Kafkas Cephesi", "Çanakkale Cephesi", "Kanal Cephesi", "Suriye Cephesi"],
+          "correctAnswer": 1,
+          "explanation": "Mustafa Kemal, 1915'te Çanakkale Cephesi'nde Anafartalar Grubu komutanı olarak büyük başarı göstermiş ve bu unvanı almıştır.",
+          "relatedCurriculum": "İTA.8.1.2"
+        },
+        {
+          "id": "q-02",
+          "question": "Erzurum Kongresi'nde alınan en önemli karar nedir?",
+          "options": ["Saltanatın kaldırılması", "Millî sınırlar içinde vatanın bütünlüğü", "Cumhuriyet'in ilanı", "Halifeliğin kaldırılması"],
+          "correctAnswer": 1,
+          "explanation": "Erzurum Kongresi'nde millî sınırlar içinde vatanın bir bütün olduğu ve parçalanamayacağı kararı alınmıştır.",
+          "relatedCurriculum": "İTA.8.3.2"
+        },
+        {
+          "id": "q-03",
+          "question": "İstiklâl Marşı'nın yazarı kimdir?",
+          "options": ["Yahya Kemal Beyatlı", "Ziya Gökalp", "Mehmet Âkif Ersoy", "Namık Kemal"],
+          "correctAnswer": 2,
+          "explanation": "İstiklâl Marşı, Mehmet Âkif Ersoy tarafından yazılmış ve 12 Mart 1921'de TBMM tarafından kabul edilmiştir.",
+          "relatedCurriculum": "İTA.8.3.3"
+        },
+        {
+          "id": "q-04",
+          "question": "Büyük Taarruz'un başkomutanı kimdir?",
+          "options": ["İsmet Paşa", "Kâzım Karabekir", "Mustafa Kemal Paşa", "Fevzi Çakmak"],
+          "correctAnswer": 2,
+          "explanation": "Büyük Taarruz, Başkomutan Mustafa Kemal Paşa'nın doğrudan komutasında 26 Ağustos 1922'de başlamıştır.",
+          "relatedCurriculum": "İTA.8.3.3"
+        },
+        {
+          "id": "q-05",
+          "question": "Lozan Antlaşması hangi yıl imzalandı?",
+          "options": ["1921", "1922", "1923", "1924"],
+          "correctAnswer": 2,
+          "explanation": "Lozan Barış Antlaşması 24 Temmuz 1923'te imzalanmış ve yeni Türk devletinin uluslararası alanda tanınmasını sağlamıştır.",
+          "relatedCurriculum": "İTA.8.4.1"
+        },
+        {
+          "id": "q-06",
+          "question": "Sakarya Meydan Muharebesi'nin önemi nedir?",
+          "options": ["İlk diplomatik zafer", "Türk ordusunun savunmadan taarruza geçtiği dönüm noktası", "İstanbul'un kurtuluşu", "Saltanatın kaldırılması"],
+          "correctAnswer": 1,
+          "explanation": "Sakarya Meydan Muharebesi, Türk ordusunun savunma dönemini sona erdirip taarruz dönemine geçtiği kritik dönüm noktasıdır.",
+          "relatedCurriculum": "İTA.8.3.3"
+        },
+        {
+          "id": "q-07",
+          "question": "Sivas Kongresi'nin en önemli kararı nedir?",
+          "options": ["TBMM'nin açılması", "Cumhuriyet'in ilanı", "Tüm cemiyetlerin birleştirilmesi", "Düzenli ordunun kurulması"],
+          "correctAnswer": 2,
+          "explanation": "Sivas Kongresi'nde tüm millî cemiyetler 'Anadolu ve Rumeli Müdafaa-i Hukuk Cemiyeti' adı altında birleştirilmiştir.",
+          "relatedCurriculum": "İTA.8.3.2"
+        },
+        {
+          "id": "q-08",
+          "question": "Cumhuriyet'in ilanıyla birlikte ilk cumhurbaşkanı kim seçildi?",
+          "options": ["İsmet İnönü", "Fevzi Çakmak", "Mustafa Kemal Atatürk", "Kâzım Karabekir"],
+          "correctAnswer": 2,
+          "explanation": "29 Ekim 1923'te Cumhuriyet ilan edilmiş ve Mustafa Kemal Atatürk oybirliğiyle ilk cumhurbaşkanı seçilmiştir.",
+          "relatedCurriculum": "İTA.8.4.1"
+        }
+      ],
+      "extraQuestions": [
+        {
+          "id": "q-09",
+          "question": "Amasya Genelgesi'nde ilk kez vurgulanan ilke nedir?",
+          "options": ["Padişahın otoritesi", "Milletin kendi kaderini belirlemesi", "Düzenli ordu kurulması", "İnkılapların başlaması"],
+          "correctAnswer": 1,
+          "explanation": "Amasya Genelgesi'nde ilk kez 'Milletin istiklâlini yine milletin azim ve kararı kurtaracaktır' ilkesi vurgulanmıştır.",
+          "relatedCurriculum": "İTA.8.3.2"
+        },
+        {
+          "id": "q-10",
+          "question": "Tekâlif-i Milliye Emirleri ne amaçla çıkarılmıştır?",
+          "options": ["Vergi toplamak", "Ordunun ihtiyaçlarını karşılamak", "Yeni kanunlar yapmak", "Eğitim reformu"],
+          "correctAnswer": 1,
+          "explanation": "Tekâlif-i Milliye Emirleri, Sakarya Muharebesi öncesinde ordunun silah, yiyecek ve giyecek ihtiyaçlarını karşılamak için çıkarılmıştır.",
+          "relatedCurriculum": "İTA.8.3.3"
+        },
+        {
+          "id": "q-11",
+          "question": "Mudanya Ateşkes Antlaşması hangi savaşı sona erdirdi?",
+          "options": ["I. Dünya Savaşı", "Balkan Savaşları", "Kurtuluş Savaşı", "Kore Savaşı"],
+          "correctAnswer": 2,
+          "explanation": "Mudanya Ateşkes Antlaşması 11 Ekim 1922'de imzalanmış ve Kurtuluş Savaşı'nı sona erdirmiştir.",
+          "relatedCurriculum": "İTA.8.3.3"
+        },
+        {
+          "id": "q-12",
+          "question": "Mîsâk-ı Millî hangi mecliste kabul edilmiştir?",
+          "options": ["TBMM", "Osmanlı Mebusan Meclisi", "Sivas Kongresi", "Erzurum Kongresi"],
+          "correctAnswer": 1,
+          "explanation": "Mîsâk-ı Millî, 28 Ocak 1920'de Osmanlı Mebusan Meclisi tarafından kabul edilmiştir.",
+          "relatedCurriculum": "İTA.8.3.2"
+        }
+      ]
+    }
+  },
+  "scoring": {
+    "round1": {
+      "maxPoints": 40,
+      "perCorrectPlacement": 5,
+      "timeBonus": {
+        "under60s": 5,
+        "under90s": 3,
+        "under120s": 1
+      }
+    },
+    "round2": {
+      "maxPoints": 30,
+      "perCorrectMatch": 5,
+      "timeBonus": {
+        "under45s": 3,
+        "under60s": 2,
+        "under90s": 1
+      }
+    },
+    "round3": {
+      "maxPoints": 30,
+      "perCorrectAnswer": 3,
+      "firstAttemptBonus": 1,
+      "timeBonus": {
+        "under10sPerQuestion": 2
+      }
+    },
+    "normalization": "Toplam ham puan 100 üzerinden normalize edilir. Formül: (ham_puan / max_puan) * 100"
+  }
+}

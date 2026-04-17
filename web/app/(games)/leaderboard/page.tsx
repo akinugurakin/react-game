@@ -1,226 +1,85 @@
 "use client";
 
-import { useState, Suspense } from "react";
-import { useSearchParams } from "next/navigation";
+import { useState, useEffect, Suspense } from "react";
 import { motion } from "framer-motion";
 import {
   Trophy,
   Medal,
   Crown,
-  MapPin,
-  School,
-  UsersRound,
   Calculator,
   BookOpen,
-  FlaskConical,
+  Brain,
   Globe,
-  SpellCheck,
-  Gamepad2,
-  ChevronDown,
+  Loader2,
+  Landmark,
+  MessageSquare,
 } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
-import { BeanHead } from "beanheads";
 import { cn } from "@/lib/utils";
+import { api } from "@/lib/api";
 
 /* ------------------------------------------------------------------ */
-/*  AVATAR CONFIGS (sabit, her renderda ayni)                          */
+/*  TYPES                                                               */
 /* ------------------------------------------------------------------ */
 
-type AvatarDef = {
-  skinTone: "light" | "yellow" | "red" | "brown" | "dark";
-  hair: string;
-  hairColor: string;
-  eyes: string;
-  mouth: string;
-  body: string;
-  lashes?: boolean;
-  accessory?: string;
-  hat?: string;
-  hatColor?: string;
-};
+interface LeaderboardEntry {
+  display_name: string;
+  avatar: string;
+  score: number;
+  correct_count: number;
+  duration_seconds: number;
+  completed_at: string;
+}
 
-const avatarPool: AvatarDef[] = [
-  { skinTone: "light", hair: "short", hairColor: "brown", eyes: "happy", mouth: "grin", body: "chest" },
-  { skinTone: "yellow", hair: "long", hairColor: "black", eyes: "normal", mouth: "openSmile", body: "breasts", lashes: true },
-  { skinTone: "light", hair: "buzz", hairColor: "blonde", eyes: "content", mouth: "openSmile", body: "chest" },
-  { skinTone: "light", hair: "bob", hairColor: "orange", eyes: "wink", mouth: "grin", body: "breasts", lashes: true },
-  { skinTone: "yellow", hair: "short", hairColor: "black", eyes: "happy", mouth: "tongue", body: "chest" },
-  { skinTone: "light", hair: "pixie", hairColor: "brown", eyes: "normal", mouth: "openSmile", body: "breasts", lashes: true },
-  { skinTone: "red", hair: "short", hairColor: "brown", eyes: "squint", mouth: "serious", body: "chest" },
-  { skinTone: "light", hair: "bun", hairColor: "blonde", eyes: "happy", mouth: "lips", body: "breasts", lashes: true },
-  { skinTone: "yellow", hair: "buzz", hairColor: "brown", eyes: "content", mouth: "grin", body: "chest" },
-  { skinTone: "light", hair: "long", hairColor: "pink", eyes: "heart", mouth: "openSmile", body: "breasts", lashes: true },
-  { skinTone: "light", hair: "short", hairColor: "black", eyes: "normal", mouth: "openSmile", body: "chest", accessory: "roundGlasses" },
-  { skinTone: "yellow", hair: "bob", hairColor: "brown", eyes: "happy", mouth: "grin", body: "breasts", lashes: true },
-  { skinTone: "light", hair: "short", hairColor: "orange", eyes: "wink", mouth: "tongue", body: "chest" },
-  { skinTone: "light", hair: "pixie", hairColor: "blue", eyes: "content", mouth: "openSmile", body: "breasts", lashes: true },
-  { skinTone: "yellow", hair: "short", hairColor: "blonde", eyes: "happy", mouth: "grin", body: "chest" },
-  { skinTone: "light", hair: "long", hairColor: "brown", eyes: "normal", mouth: "lips", body: "breasts", lashes: true },
-  { skinTone: "light", hair: "buzz", hairColor: "black", eyes: "squint", mouth: "serious", body: "chest", hat: "beanie", hatColor: "red" },
-  { skinTone: "yellow", hair: "bob", hairColor: "black", eyes: "happy", mouth: "openSmile", body: "breasts", lashes: true, accessory: "tinyGlasses" },
-  { skinTone: "light", hair: "short", hairColor: "brown", eyes: "content", mouth: "grin", body: "chest" },
-  { skinTone: "light", hair: "long", hairColor: "white", eyes: "normal", mouth: "openSmile", body: "breasts", lashes: true },
+interface RankedEntry extends LeaderboardEntry {
+  rank: number;
+}
+
+/* ------------------------------------------------------------------ */
+/*  OYUN TANIMI                                                         */
+/* ------------------------------------------------------------------ */
+
+const GAMES = [
+  { id: "math", label: "Matematik Yarışması", icon: Calculator, color: "bg-blue-500" },
+  { id: "es-anlamli-hafiza", label: "Eş Anlamlı Hafıza", icon: Brain, color: "bg-purple-500" },
+  { id: "harita-kaptani", label: "Harita Kaptanı", icon: Globe, color: "bg-emerald-500" },
+  { id: "periyodik-tablo", label: "Periyodik Tablo", icon: BookOpen, color: "bg-amber-500" },
+  { id: "inkilap-yolu", label: "İnkılap Yolu", icon: Landmark, color: "bg-red-500" },
+  { id: "soz-avcisi", label: "Söz Avcısı", icon: MessageSquare, color: "bg-teal-500" },
+  { id: "world-explorer", label: "World Explorer", icon: Globe, color: "bg-indigo-500" },
 ];
 
-function PlayerAvatar({ def, size = 36 }: { def: AvatarDef; size?: number }) {
+/* ------------------------------------------------------------------ */
+/*  AVATAR                                                              */
+/* ------------------------------------------------------------------ */
+
+const AVATAR_EMOJIS: Record<string, string> = {
+  avatar_1: "🦁", avatar_2: "🐯", avatar_3: "🦊", avatar_4: "🐧",
+  avatar_5: "🦋", avatar_6: "🐬", avatar_7: "🦄", avatar_8: "🐸",
+  avatar_9: "🐼", avatar_10: "🦉", avatar_11: "🐙", avatar_12: "🦕",
+};
+
+function AvatarBubble({ avatar, size = 48 }: { avatar: string; size?: number }) {
   return (
-    <div className="flex items-center justify-center overflow-hidden rounded-full bg-[#DBEAFE]" style={{ width: size, height: size }}>
-      <div style={{ width: size, height: size }}>
-        <BeanHead
-          skinTone={def.skinTone as any}
-          hair={def.hair as any}
-          hairColor={def.hairColor as any}
-          eyes={def.eyes as any}
-          eyebrows="raised"
-          mouth={def.mouth as any}
-          body={def.body as any}
-          clothing="shirt"
-          clothingColor="blue"
-          accessory={(def.accessory || "none") as any}
-          hat={(def.hat || "none") as any}
-          hatColor={(def.hatColor || "white") as any}
-          facialHair="none"
-          graphic="none"
-          lashes={def.lashes || false}
-          lipColor="red"
-          faceMaskColor="white"
-          mask={false}
-          faceMask={false}
-        />
-      </div>
+    <div
+      className="flex items-center justify-center rounded-full bg-[#005C53]/10 text-2xl"
+      style={{ width: size, height: size, fontSize: size * 0.55 }}
+    >
+      {AVATAR_EMOJIS[avatar] ?? "🦁"}
     </div>
   );
 }
 
 /* ------------------------------------------------------------------ */
-/*  MOCK DATA - scope bazli                                            */
+/*  YARDIMCI                                                            */
 /* ------------------------------------------------------------------ */
 
-type Player = {
-  rank: number;
-  username: string;
-  avatarIdx: number;
-  score: number;
-  games: number;
-  isCurrentUser?: boolean;
-};
-
-const turkiyeData: Player[] = [
-  { rank: 1, username: "EfeYıldız", avatarIdx: 0, score: 9850, games: 142 },
-  { rank: 2, username: "ZeynepKaya", avatarIdx: 1, score: 9420, games: 138 },
-  { rank: 3, username: "AliDemir", avatarIdx: 2, score: 9100, games: 131 },
-  { rank: 4, username: "EceArslan", avatarIdx: 3, score: 8750, games: 125 },
-  { rank: 5, username: "CanYılmaz", avatarIdx: 4, score: 8500, games: 119 },
-  { rank: 6, username: "DefneKoç", avatarIdx: 5, score: 8200, games: 115 },
-  { rank: 7, username: "EmreAkın", avatarIdx: 6, score: 7900, games: 108 },
-  { rank: 8, username: "MertCan", avatarIdx: 8, score: 7400, games: 98 },
-  { rank: 9, username: "AyşeGül", avatarIdx: 7, score: 7100, games: 95 },
-  { rank: 10, username: "İremSu", avatarIdx: 9, score: 6800, games: 90 },
-  { rank: 11, username: "BurakAy", avatarIdx: 10, score: 6500, games: 87 },
-  { rank: 12, username: "SedaTürk", avatarIdx: 11, score: 6200, games: 82 },
-  { rank: 13, username: "YıldızEla", avatarIdx: 12, score: 5900, games: 78 },
-  { rank: 14, username: "OnurBey", avatarIdx: 13, score: 5600, games: 74 },
-  { rank: 15, username: "NilayGün", avatarIdx: 14, score: 5300, games: 70 },
-  { rank: 16, username: "Oyuncu", avatarIdx: 15, score: 5000, games: 66, isCurrentUser: true },
-  { rank: 17, username: "KaanDeğer", avatarIdx: 16, score: 4700, games: 62 },
-  { rank: 18, username: "TuğçeAk", avatarIdx: 17, score: 4400, games: 58 },
-  { rank: 19, username: "UmutŞen", avatarIdx: 18, score: 4100, games: 54 },
-  { rank: 20, username: "PelinAy", avatarIdx: 19, score: 3800, games: 50 },
-];
-
-const okulData: Player[] = [
-  { rank: 1, username: "EceArslan", avatarIdx: 3, score: 4850, games: 65 },
-  { rank: 2, username: "CanYılmaz", avatarIdx: 4, score: 4620, games: 61 },
-  { rank: 3, username: "EmreAkın", avatarIdx: 6, score: 4380, games: 58 },
-  { rank: 4, username: "Oyuncu", avatarIdx: 15, score: 4100, games: 55, isCurrentUser: true },
-  { rank: 5, username: "DefneKoç", avatarIdx: 5, score: 3900, games: 52 },
-  { rank: 6, username: "MertCan", avatarIdx: 8, score: 3650, games: 48 },
-  { rank: 7, username: "İremSu", avatarIdx: 9, score: 3400, games: 45 },
-  { rank: 8, username: "BurakAy", avatarIdx: 10, score: 3200, games: 42 },
-  { rank: 9, username: "SedaTürk", avatarIdx: 11, score: 2950, games: 39 },
-  { rank: 10, username: "YıldızEla", avatarIdx: 12, score: 2700, games: 36 },
-  { rank: 11, username: "OnurBey", avatarIdx: 13, score: 2500, games: 33 },
-  { rank: 12, username: "NilayGün", avatarIdx: 14, score: 2300, games: 30 },
-  { rank: 13, username: "KaanDeğer", avatarIdx: 16, score: 2100, games: 28 },
-  { rank: 14, username: "TuğçeAk", avatarIdx: 17, score: 1900, games: 25 },
-  { rank: 15, username: "UmutŞen", avatarIdx: 18, score: 1700, games: 22 },
-  { rank: 16, username: "PelinAy", avatarIdx: 19, score: 1500, games: 20 },
-  { rank: 17, username: "AyşeGül", avatarIdx: 7, score: 1300, games: 17 },
-  { rank: 18, username: "ElifNur", avatarIdx: 1, score: 1100, games: 15 },
-  { rank: 19, username: "AhmetCan", avatarIdx: 0, score: 900, games: 12 },
-  { rank: 20, username: "BetülAy", avatarIdx: 11, score: 700, games: 9 },
-];
-
-const sinifData: Player[] = [
-  { rank: 1, username: "CanYılmaz", avatarIdx: 4, score: 2450, games: 32 },
-  { rank: 2, username: "Oyuncu", avatarIdx: 15, score: 2280, games: 30, isCurrentUser: true },
-  { rank: 3, username: "DefneKoç", avatarIdx: 5, score: 2100, games: 28 },
-  { rank: 4, username: "MertCan", avatarIdx: 8, score: 1920, games: 25 },
-  { rank: 5, username: "İremSu", avatarIdx: 9, score: 1750, games: 23 },
-  { rank: 6, username: "BurakAy", avatarIdx: 10, score: 1580, games: 21 },
-  { rank: 7, username: "SedaTürk", avatarIdx: 11, score: 1400, games: 18 },
-  { rank: 8, username: "YıldızEla", avatarIdx: 12, score: 1220, games: 16 },
-];
-
-const dataByScope: Record<string, Player[]> = {
-  turkiye: turkiyeData,
-  okul: okulData,
-  sinif: sinifData,
-};
-
-/* ------------------------------------------------------------------ */
-/*  FILTRE SECENEKLERI                                                 */
-/* ------------------------------------------------------------------ */
-
-type FilterOption = { value: string; label: string; icon: React.ElementType };
-
-const filterOptions: FilterOption[] = [
-  { value: "genel", label: "Genel Sıralama", icon: Trophy },
-  { value: "turkce", label: "Türkçe", icon: BookOpen },
-  { value: "matematik", label: "Matematik", icon: Calculator },
-  { value: "fen", label: "Fen Bilimleri", icon: FlaskConical },
-  { value: "sosyal", label: "Sosyal Bilgiler", icon: Globe },
-  { value: "ingilizce", label: "İngilizce", icon: SpellCheck },
-];
-
-const gamesBySubject: Record<string, { value: string; label: string }[]> = {
-  turkce: [
-    { value: "kelime-avi", label: "Kelime Avı" },
-    { value: "hafiza-kartlari", label: "Hafıza Kartları" },
-    { value: "cumle-kurma", label: "Cümle Kurma" },
-    { value: "yazim-kilavuzu", label: "Yazım Kılavuzu" },
-  ],
-  matematik: [
-    { value: "matematik-yarismasi", label: "Matematik Yarışması" },
-    { value: "bulmaca-dunyasi", label: "Bulmaca Dünyası" },
-    { value: "kesir-ustasi", label: "Kesir Ustası" },
-  ],
-  fen: [
-    { value: "atom-kesfi", label: "Atom Keşfi" },
-    { value: "canlilar-alemi", label: "Canlılar Alemi" },
-    { value: "deney-labi", label: "Deney Labı" },
-  ],
-  sosyal: [
-    { value: "tarih-yolculugu", label: "Tarih Yolculuğu" },
-    { value: "harita-ustasi", label: "Harita Ustası" },
-    { value: "vatandaslik", label: "Vatandaşlık Bilgisi" },
-  ],
-  ingilizce: [
-    { value: "vocabulary-builder", label: "Vocabulary Builder" },
-    { value: "grammar-quest", label: "Grammar Quest" },
-    { value: "listening-lab", label: "Listening Lab" },
-  ],
-};
-
-const scopeLabels: Record<string, { label: string; icon: React.ElementType }> = {
-  turkiye: { label: "Türkiye Geneli", icon: MapPin },
-  okul: { label: "Okulum", icon: School },
-  sinif: { label: "Sınıfım", icon: UsersRound },
-};
-
-/* ------------------------------------------------------------------ */
-/*  YARDIMCI                                                           */
-/* ------------------------------------------------------------------ */
+function formatTime(seconds: number): string {
+  if (seconds < 60) return `${seconds}sn`;
+  const m = Math.floor(seconds / 60);
+  const s = seconds % 60;
+  return `${m}dk ${s}sn`;
+}
 
 function getRankDisplay(rank: number) {
   if (rank === 1) return <Crown className="h-5 w-5 text-amber-400" />;
@@ -229,48 +88,40 @@ function getRankDisplay(rank: number) {
   return <span className="text-sm font-bold text-[#042940]/40">#{rank}</span>;
 }
 
-function getRankBg(rank: number, isCurrentUser?: boolean) {
-  if (isCurrentUser) return "bg-[#DBF227]/10";
-  if (rank === 1) return "bg-amber-50/50";
-  if (rank === 2) return "bg-gray-50/50";
-  if (rank === 3) return "bg-orange-50/50";
+function getRankBg(rank: number) {
+  if (rank === 1) return "bg-amber-50/60";
+  if (rank === 2) return "bg-gray-50/60";
+  if (rank === 3) return "bg-orange-50/60";
   return "";
 }
 
 /* ------------------------------------------------------------------ */
-/*  SAYFA                                                              */
+/*  SAYFA                                                               */
 /* ------------------------------------------------------------------ */
 
 function LeaderboardContent() {
-  const searchParams = useSearchParams();
-  const scope = searchParams.get("scope") || "turkiye";
-  const scopeInfo = scopeLabels[scope] || scopeLabels.turkiye;
-  const ScopeIcon = scopeInfo.icon;
-  const players = dataByScope[scope] || turkiyeData;
+  const [selectedGameId, setSelectedGameId] = useState(GAMES[0].id);
+  const [entries, setEntries] = useState<RankedEntry[]>([]);
+  const [loading, setLoading] = useState(true);
 
-  const [selectedFilter, setSelectedFilter] = useState("genel");
-  const [selectedGame, setSelectedGame] = useState<string | null>(null);
-  const [showGameDropdown, setShowGameDropdown] = useState(false);
+  useEffect(() => {
+    setLoading(true);
+    setEntries([]);
+    api.get<LeaderboardEntry[]>(`/games/${selectedGameId}/leaderboard`)
+      .then((data) => {
+        setEntries(
+          data.map((entry, i) => ({ ...entry, rank: i + 1 }))
+        );
+      })
+      .catch(() => setEntries([]))
+      .finally(() => setLoading(false));
+  }, [selectedGameId]);
 
-  const availableGames = selectedFilter !== "genel" ? gamesBySubject[selectedFilter] || [] : [];
-
-  // Oyun secildiginde siralama degissin
-  const displayPlayers = (() => {
-    if (!selectedGame) return players;
-    // Oyuna gore farkli siralama - seed bazli karistirma
-    const seed = selectedGame.split("").reduce((a, c) => a + c.charCodeAt(0), 0);
-    const shuffled = [...players].map((p) => ({
-      ...p,
-      score: Math.max(100, p.score - ((seed * (p.avatarIdx + 1) * 37) % (p.score / 2))),
-      games: Math.max(1, Math.floor(p.games * (0.3 + ((seed * (p.avatarIdx + 2) * 13) % 70) / 100))),
-    }));
-    shuffled.sort((a, b) => b.score - a.score);
-    return shuffled.map((p, i) => ({ ...p, rank: i + 1 }));
-  })();
+  const selectedGame = GAMES.find((g) => g.id === selectedGameId)!;
 
   return (
     <div className="container py-8">
-      {/* Baslik */}
+      {/* Başlık */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -279,141 +130,130 @@ function LeaderboardContent() {
       >
         <div className="flex items-center gap-3">
           <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#005C53]/10">
-            <ScopeIcon className="h-5 w-5 text-[#005C53]" />
+            <Trophy className="h-5 w-5 text-[#005C53]" />
           </div>
           <div>
             <h1 className="text-3xl font-extrabold text-[#042940]">Liderlik Tablosu</h1>
-            <p className="text-sm text-[#042940]/50">{scopeInfo.label} &middot; {displayPlayers.length} kişi</p>
+            <p className="text-sm text-[#042940]/50">
+              {selectedGame.label} &middot; En iyi {entries.length} oyuncu
+            </p>
           </div>
         </div>
       </motion.div>
 
-      {/* Filtreler */}
+      {/* Oyun seçici */}
       <motion.div
         initial={{ opacity: 0, y: 16 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4, delay: 0.1 }}
-        className="mb-6 space-y-4"
+        className="mb-6 flex flex-wrap gap-2"
       >
-        <div className="flex flex-wrap gap-2">
-          {filterOptions.map((opt) => (
-            <button
-              key={opt.value}
-              onClick={() => { setSelectedFilter(opt.value); setSelectedGame(null); setShowGameDropdown(false); }}
-              className={cn(
-                "flex items-center gap-2 rounded-xl px-4 py-2 text-sm font-medium transition-all",
-                selectedFilter === opt.value
-                  ? "bg-[#005C53] text-white shadow-md"
-                  : "bg-white text-[#042940]/60 hover:bg-[#042940]/5 hover:text-[#042940]"
-              )}
-            >
-              <opt.icon className="h-4 w-4" />
-              {opt.label}
-            </button>
-          ))}
-        </div>
-
-        {selectedFilter !== "genel" && availableGames.length > 0 && (
-          <div className="relative inline-block">
-            <button
-              onClick={() => setShowGameDropdown(!showGameDropdown)}
-              className="flex items-center gap-2 rounded-xl border border-[#042940]/10 bg-white px-4 py-2 text-sm font-medium text-[#042940] transition-colors hover:bg-[#042940]/5"
-            >
-              <Gamepad2 className="h-4 w-4 text-[#042940]/40" />
-              {selectedGame ? availableGames.find((g) => g.value === selectedGame)?.label : "Tüm Oyunlar"}
-              <ChevronDown className={cn("h-4 w-4 text-[#042940]/40 transition-transform", showGameDropdown && "rotate-180")} />
-            </button>
-            {showGameDropdown && (
-              <div className="absolute left-0 top-full z-20 mt-1 w-56 rounded-xl border border-[#042940]/10 bg-white py-1 shadow-lg">
-                <button
-                  onClick={() => { setSelectedGame(null); setShowGameDropdown(false); }}
-                  className={cn("w-full px-4 py-2 text-left text-sm transition-colors", !selectedGame ? "bg-[#005C53]/10 font-medium text-[#005C53]" : "text-[#042940]/60 hover:bg-[#042940]/5")}
-                >
-                  Tüm Oyunlar
-                </button>
-                {availableGames.map((game) => (
-                  <button
-                    key={game.value}
-                    onClick={() => { setSelectedGame(game.value); setShowGameDropdown(false); }}
-                    className={cn("w-full px-4 py-2 text-left text-sm transition-colors", selectedGame === game.value ? "bg-[#005C53]/10 font-medium text-[#005C53]" : "text-[#042940]/60 hover:bg-[#042940]/5")}
-                  >
-                    {game.label}
-                  </button>
-                ))}
-              </div>
-            )}
-          </div>
-        )}
-      </motion.div>
-
-      {/* Top 3 */}
-      <motion.div
-        initial={{ opacity: 0, y: 16 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.4, delay: 0.2 }}
-        className="mb-6 grid gap-4 md:grid-cols-3"
-      >
-        {displayPlayers.slice(0, 3).map((player, i) => (
-          <Card
-            key={player.rank}
+        {GAMES.map((game) => (
+          <button
+            key={game.id}
+            onClick={() => setSelectedGameId(game.id)}
             className={cn(
-              "overflow-hidden border-0 shadow-sm",
-              i === 0 && "md:order-2",
-              i === 1 && "md:order-1",
-              i === 2 && "md:order-3",
-              player.isCurrentUser && "ring-2 ring-[#9FC131]"
+              "flex items-center gap-2 rounded-xl px-4 py-2 text-sm font-medium transition-all",
+              selectedGameId === game.id
+                ? "bg-[#005C53] text-white shadow-md"
+                : "bg-white text-[#042940]/60 hover:bg-[#042940]/5 hover:text-[#042940]"
             )}
           >
-            <CardContent className={cn("p-5 text-center", getRankBg(player.rank, player.isCurrentUser))}>
-              <div className="mb-3 flex justify-center">{getRankDisplay(player.rank)}</div>
-              <div className="mx-auto mb-3 flex justify-center">
-                <PlayerAvatar def={avatarPool[player.avatarIdx % avatarPool.length]} size={56} />
-              </div>
-              <p className={cn("text-sm font-bold", player.isCurrentUser ? "text-[#9FC131]" : "text-[#042940]")}>
-                {player.username} {player.isCurrentUser && "(Sen)"}
-              </p>
-              <p className="mt-1 text-2xl font-extrabold text-[#005C53]">{player.score.toLocaleString("tr-TR")}</p>
-              <p className="text-xs text-[#042940]/40">{player.games} oyun</p>
-            </CardContent>
-          </Card>
+            <game.icon className="h-4 w-4" />
+            {game.label}
+          </button>
         ))}
       </motion.div>
 
-      {/* Liste */}
-      {displayPlayers.length > 3 && (
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.4, delay: 0.3 }}
-        >
-          <Card className="overflow-hidden border-0 shadow-sm">
-            <CardContent className="p-0">
-              <div className="divide-y divide-[#042940]/5">
-                {displayPlayers.slice(3).map((player, index) => (
-                  <motion.div
-                    key={player.rank}
-                    initial={{ opacity: 0, x: -10 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.3, delay: 0.4 + index * 0.03 }}
-                    className={cn("flex items-center gap-4 px-5 py-3.5", getRankBg(player.rank, player.isCurrentUser))}
-                  >
-                    <div className="flex h-8 w-8 items-center justify-center">
-                      {getRankDisplay(player.rank)}
+      {loading ? (
+        <div className="flex justify-center py-20">
+          <Loader2 className="h-8 w-8 animate-spin text-muted-foreground" />
+        </div>
+      ) : entries.length === 0 ? (
+        <Card className="border-2 border-dashed border-gray-200 shadow-none">
+          <CardContent className="flex flex-col items-center gap-3 p-12 text-center">
+            <Trophy className="h-8 w-8 text-[#042940]/20" />
+            <p className="font-semibold text-[#042940]">Henüz kimse oynamadı</p>
+            <p className="text-sm text-[#042940]/50">
+              Bu oyunu ilk oynayan sen ol!
+            </p>
+          </CardContent>
+        </Card>
+      ) : (
+        <>
+          {/* Top 3 podyum */}
+          {entries.length >= 3 && (
+            <motion.div
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4, delay: 0.2 }}
+              className="mb-6 grid gap-4 md:grid-cols-3"
+            >
+              {entries.slice(0, 3).map((entry, i) => (
+                <Card
+                  key={entry.rank}
+                  className={cn(
+                    "overflow-hidden border-0 shadow-sm",
+                    i === 0 && "md:order-2",
+                    i === 1 && "md:order-1",
+                    i === 2 && "md:order-3"
+                  )}
+                >
+                  <CardContent className={cn("p-5 text-center", getRankBg(entry.rank))}>
+                    <div className="mb-3 flex justify-center">{getRankDisplay(entry.rank)}</div>
+                    <div className="mb-3 flex justify-center">
+                      <AvatarBubble avatar={entry.avatar} size={56} />
                     </div>
-                    <PlayerAvatar def={avatarPool[player.avatarIdx % avatarPool.length]} size={36} />
-                    <div className="flex-1">
-                      <p className={cn("text-sm font-bold", player.isCurrentUser ? "text-[#9FC131]" : "text-[#042940]")}>
-                        {player.username} {player.isCurrentUser && "(Sen)"}
+                    <p className="text-sm font-bold text-[#042940]">{entry.display_name}</p>
+                    <p className="mt-1 text-2xl font-extrabold text-[#005C53]">
+                      {entry.score.toLocaleString("tr-TR")}
+                    </p>
+                    <p className="text-xs text-[#042940]/40">
+                      {entry.correct_count} doğru &middot; {formatTime(entry.duration_seconds)}
+                    </p>
+                  </CardContent>
+                </Card>
+              ))}
+            </motion.div>
+          )}
+
+          {/* Tam liste */}
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4, delay: 0.3 }}
+          >
+            <Card className="overflow-hidden border-0 shadow-sm">
+              <CardContent className="p-0">
+                <div className="divide-y divide-[#042940]/5">
+                  {(entries.length >= 3 ? entries.slice(3) : entries).map((entry, index) => (
+                    <motion.div
+                      key={`${entry.rank}-${entry.display_name}`}
+                      initial={{ opacity: 0, x: -10 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ duration: 0.3, delay: 0.4 + index * 0.03 }}
+                      className={cn("flex items-center gap-4 px-5 py-3.5", getRankBg(entry.rank))}
+                    >
+                      <div className="flex h-8 w-8 items-center justify-center">
+                        {getRankDisplay(entry.rank)}
+                      </div>
+                      <AvatarBubble avatar={entry.avatar} size={36} />
+                      <div className="flex-1">
+                        <p className="text-sm font-bold text-[#042940]">{entry.display_name}</p>
+                        <p className="text-xs text-[#042940]/40">
+                          {entry.correct_count} doğru &middot; {formatTime(entry.duration_seconds)}
+                        </p>
+                      </div>
+                      <p className="text-sm font-extrabold text-[#005C53]">
+                        {entry.score.toLocaleString("tr-TR")}
                       </p>
-                      <p className="text-xs text-[#042940]/40">{player.games} oyun</p>
-                    </div>
-                    <p className="text-sm font-extrabold text-[#005C53]">{player.score.toLocaleString("tr-TR")}</p>
-                  </motion.div>
-                ))}
-              </div>
-            </CardContent>
-          </Card>
-        </motion.div>
+                    </motion.div>
+                  ))}
+                </div>
+              </CardContent>
+            </Card>
+          </motion.div>
+        </>
       )}
     </div>
   );
