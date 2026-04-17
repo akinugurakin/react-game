@@ -2,7 +2,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 from app.core.config import settings
-from app.routers import auth, games, payments, students
+from app.routers import auth, games, payments, students, teacher
 
 app = FastAPI(
     title=settings.APP_NAME,
@@ -22,6 +22,7 @@ app.include_router(auth.router)
 app.include_router(students.router)
 app.include_router(payments.router)
 app.include_router(games.router)
+app.include_router(teacher.router)
 
 
 @app.get("/health")
