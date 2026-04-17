@@ -24,6 +24,8 @@ from app.schemas.auth import ParentRegister
 
 _OTP_KEY = "otp:{phone}"
 _OTP_TTL = 600  # 10 dakika
+_REFRESH_BLOCKLIST_KEY = "refresh_blocklist:{jti}"
+_REFRESH_BLOCKLIST_TTL = settings.REFRESH_TOKEN_EXPIRE_DAYS * 86400
 
 
 def _generate_otp() -> str:
@@ -155,8 +157,21 @@ async def login_parent(
     return parent, access_token, refresh_token
 
 
+async def logout_parent(redis: Redis, refresh_token: str) -> None:
+    """Refresh token'ı Redis blocklist'e ekler — süresi dolana kadar geçersiz."""
+    try:
+        payload = decode_token(refresh_token)
+    except jwt.InvalidTokenError:
+        return  # Zaten geçersiz, sessizce geç
+
+    # jti yoksa token hash'ini kullan
+    jti = payload.get("jti") or refresh_token[-32:]
+    key = _REFRESH_BLOCKLIST_KEY.format(jti=jti)
+    await redis.setex(key, _REFRESH_BLOCKLIST_TTL, "1")
+
+
 async def refresh_parent_tokens(
-    db: AsyncSession, refresh_token: str
+    db: AsyncSession, refresh_token: str, redis: Redis | None = None
 ) -> tuple[ParentUser, str, str]:
     try:
         payload = decode_token(refresh_token)
@@ -176,6 +191,15 @@ async def refresh_parent_tokens(
             status_code=status.HTTP_401_UNAUTHORIZED,
             detail="Geçersiz token.",
         )
+
+    # Blocklist kontrolü
+    if redis is not None:
+        jti = payload.get("jti") or refresh_token[-32:]
+        if await redis.exists(_REFRESH_BLOCKLIST_KEY.format(jti=jti)):
+            raise HTTPException(
+                status_code=status.HTTP_401_UNAUTHORIZED,
+                detail="Token geçersiz kılınmış. Lütfen tekrar giriş yapın.",
+            )
 
     result = await db.execute(select(ParentUser).where(ParentUser.id == int(payload["sub"])))
     parent = result.scalar_one_or_none()

@@ -2,12 +2,14 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 from app.core.config import settings
+from app.core.scheduler import lifespan
 from app.routers import auth, games, payments, students, teacher
 
 app = FastAPI(
     title=settings.APP_NAME,
     docs_url="/docs",
     redoc_url="/redoc",
+    lifespan=lifespan,
 )
 
 app.add_middleware(

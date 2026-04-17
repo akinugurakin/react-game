@@ -22,6 +22,7 @@ from app.schemas.auth import (
 from app.services.auth_service import (
     login_parent,
     login_student_pin,
+    logout_parent,
     refresh_parent_tokens,
     register_parent,
     verify_phone_otp,
@@ -77,9 +78,11 @@ async def login(
 
 @router.post("/refresh", response_model=TokenResponse)
 async def refresh(
-    data: TokenRefresh, db: AsyncSession = Depends(get_db)
+    data: TokenRefresh,
+    db: AsyncSession = Depends(get_db),
+    redis: Redis = Depends(get_redis),
 ) -> TokenResponse:
-    parent, access_token, refresh_token = await refresh_parent_tokens(db, data.refresh_token)
+    parent, access_token, refresh_token = await refresh_parent_tokens(db, data.refresh_token, redis)
     return TokenResponse(
         access_token=access_token,
         refresh_token=refresh_token,
@@ -110,6 +113,9 @@ async def student_login(
 
 
 @router.delete("/logout", response_model=MessageResponse)
-async def logout() -> MessageResponse:
-    # JWT stateless — client tarafında token silinir.
+async def logout(
+    data: TokenRefresh,
+    redis: Redis = Depends(get_redis),
+) -> MessageResponse:
+    await logout_parent(redis, data.refresh_token)
     return MessageResponse(message="Başarıyla çıkış yapıldı.")
