@@ -21,6 +21,7 @@ from app.core.security import (
 from app.models.parent_user import ParentUser
 from app.models.student_profile import StudentProfile
 from app.schemas.auth import ParentRegister
+from app.services.sms_service import send_otp_sms
 
 _OTP_KEY = "otp:{phone}"
 _OTP_TTL = 600  # 10 dakika
@@ -79,8 +80,7 @@ async def register_parent(
     otp_key = _OTP_KEY.format(phone=data.phone_number)
     await redis.setex(otp_key, _OTP_TTL, otp_code)
 
-    # TODO: Gerçek SMS göndermek için Twilio/Netgsm entegrasyonu buraya
-    # sms_client.send(to=data.phone_number, body=f"Lumo doğrulama kodunuz: {otp_code}")
+    await send_otp_sms(data.phone_number, otp_code)
 
     return parent, otp_code
 

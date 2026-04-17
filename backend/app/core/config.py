@@ -29,6 +29,11 @@ class Settings(BaseSettings):
     STRIPE_MONTHLY_PRICE_ID: str = ""
     STRIPE_YEARLY_PRICE_ID: str = ""
 
+    # SMS — Netgsm
+    NETGSM_USERCODE: str = ""
+    NETGSM_PASSWORD: str = ""
+    NETGSM_HEADER: str = "LUMO"  # Onaylı başlık (alfanümerik, max 11 karakter)
+
     # CORS — virgülle ayrılmış
     ALLOWED_ORIGINS: str = "http://localhost:3000"
 
