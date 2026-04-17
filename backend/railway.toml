@@ -1,7 +1,3 @@
-[build]
-dockerfilePath = "Dockerfile"
-dockerBuildTarget = "prod"
-
 [deploy]
 healthcheckPath = "/health"
 healthcheckTimeout = 60
